@@ -77,7 +77,7 @@ public class Finder extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 
 	private Student				student;
-	private Collection<Class>	results;
+	private Collection<Class_>	results;
 
 
 	@Valid
@@ -92,11 +92,11 @@ public class Finder extends DomainEntity {
 	}
 
 	@ManyToMany
-	public Collection<Class> getResults() {
+	public Collection<Class_> getResults() {
 		return results;
 	}
 
-	public void setResults(Collection<Class> results) {
+	public void setResults(Collection<Class_> results) {
 		this.results = results;
 	}
 }

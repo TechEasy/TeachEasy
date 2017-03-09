@@ -67,18 +67,18 @@ public class Request extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Class	class_;
+	private Class_	class_;
 	private Student	student;
 
 
 	@NotNull
 	@Valid
 	@ManyToOne
-	public Class getClass_() {
+	public Class_ getClass_() {
 		return class_;
 	}
 
-	public void setClass_(Class class_) {
+	public void setClass_(Class_ class_) {
 		this.class_ = class_;
 	}
 

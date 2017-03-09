@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Proposal extends Class {
+public class Proposal extends Class_ {
 
 	// Constructors -----------------------------------------------------------
 
