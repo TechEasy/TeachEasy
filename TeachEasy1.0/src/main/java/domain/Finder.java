@@ -7,10 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -31,72 +28,60 @@ public class Finder extends DomainEntity {
 
 	@NotBlank
 	public String getCity() {
-		return city;
+		return this.city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 
 	@Digits(fraction = 2, integer = 5)
 	public Double getMinimumPrice() {
-		return minimumPrice;
+		return this.minimumPrice;
 	}
 
-	public void setMinimumPrice(Double minimumPrice) {
+	public void setMinimumPrice(final Double minimumPrice) {
 		this.minimumPrice = minimumPrice;
 	}
 
 	@Digits(fraction = 2, integer = 5)
 	public Double getMaximumPrice() {
-		return maximumPrice;
+		return this.maximumPrice;
 	}
 
-	public void setMaximumPrice(Double maximumPrice) {
+	public void setMaximumPrice(final Double maximumPrice) {
 		this.maximumPrice = maximumPrice;
 	}
 
 	public String getKeyword() {
-		return keyword;
+		return this.keyword;
 	}
 
-	public void setKeyword(String keyword) {
+	public void setKeyword(final String keyword) {
 		this.keyword = keyword;
 	}
 
 	@NotBlank
 	public String getMatter() {
-		return matter;
+		return this.matter;
 	}
 
-	public void setMatter(String matter) {
+	public void setMatter(final String matter) {
 		this.matter = matter;
 	}
 
 
 	// Relationships ----------------------------------------------------------
 
-	private Student				student;
 	private Collection<Class_>	results;
 
 
-	@Valid
-	@NotNull
-	@OneToOne(optional = true)
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
 	@ManyToMany
 	public Collection<Class_> getResults() {
-		return results;
+		return this.results;
 	}
 
-	public void setResults(Collection<Class_> results) {
+	public void setResults(final Collection<Class_> results) {
 		this.results = results;
 	}
 }

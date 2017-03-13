@@ -4,8 +4,6 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -33,53 +31,40 @@ public class Curricula extends DomainEntity {
 
 	@URL
 	public String getPhoto() {
-		return photo;
+		return this.photo;
 	}
 
-	public void setPhoto(String photo) {
+	public void setPhoto(final String photo) {
 		this.photo = photo;
 	}
 
 	@NotBlank
 	public String getEducationSection() {
-		return educationSection;
+		return this.educationSection;
 	}
 
-	public void setEducationSection(String educationSection) {
+	public void setEducationSection(final String educationSection) {
 		this.educationSection = educationSection;
 	}
 
 	@NotBlank
 	public String getExperienceSection() {
-		return experienceSection;
+		return this.experienceSection;
 	}
 
-	public void setExperienceSection(String experienceSection) {
+	public void setExperienceSection(final String experienceSection) {
 		this.experienceSection = experienceSection;
 	}
 
 	@NotBlank
 	public String getHobbiesSection() {
-		return hobbiesSection;
+		return this.hobbiesSection;
 	}
 
-	public void setHobbiesSection(String hobbiesSection) {
+	public void setHobbiesSection(final String hobbiesSection) {
 		this.hobbiesSection = hobbiesSection;
 	}
 
-
 	// Relationships ----------------------------------------------------------
-	private Teacher	teacher;
-
-
-	@Valid
-	@OneToOne(optional = false)
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
 
 }
