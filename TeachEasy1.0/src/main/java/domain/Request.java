@@ -8,7 +8,6 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -67,24 +66,22 @@ public class Request extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Class_	class_;
+	private RClass	rClass;
 	private Student	student;
 
 
-	@NotNull
 	@Valid
-	@ManyToOne
-	public Class_ getClass_() {
-		return class_;
+	@ManyToOne(optional=false)
+	public RClass getRClass() {
+		return rClass;
 	}
 
-	public void setClass_(Class_ class_) {
-		this.class_ = class_;
+	public void setRClass(RClass rClass) {
+		this.rClass = rClass;
 	}
 
-	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional=false)
 	public Student getStudent() {
 		return student;
 	}

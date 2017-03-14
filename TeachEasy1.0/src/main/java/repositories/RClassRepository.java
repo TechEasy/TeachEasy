@@ -4,9 +4,9 @@ package repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import domain.Class_;
+import domain.RClass;
 
 @Repository
-public interface Class_Repository extends JpaRepository<Class_, Integer> {
+public interface RClassRepository extends JpaRepository<RClass, Integer> {
 
 }

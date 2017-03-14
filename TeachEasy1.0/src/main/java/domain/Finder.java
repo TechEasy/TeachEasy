@@ -73,15 +73,15 @@ public class Finder extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	private Collection<Class_>	results;
+	private Collection<RClass>	results;
 
 
 	@ManyToMany
-	public Collection<Class_> getResults() {
+	public Collection<RClass> getResults() {
 		return this.results;
 	}
 
-	public void setResults(final Collection<Class_> results) {
+	public void setResults(final Collection<RClass> results) {
 		this.results = results;
 	}
 }

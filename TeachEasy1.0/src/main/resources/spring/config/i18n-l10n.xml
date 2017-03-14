@@ -28,6 +28,8 @@
 		<value>/views/profile/messages</value>
 		
 		<value>/views/teacher/messages</value>
+		<value>/views/student/messages</value>
+		
 	</util:list>
 
 </beans>

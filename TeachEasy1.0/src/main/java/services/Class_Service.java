@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repositories.Class_Repository;
-import domain.Class_;
+import repositories.RClassRepository;
+import domain.RClass;
 
 @Service
 @Transactional
@@ -18,7 +18,7 @@ public class Class_Service {
 	// Managed repository
 
 	@Autowired
-	Class_Repository	class_Repository;
+	RClassRepository	class_Repository;
 
 
 	// Supporting services
@@ -30,32 +30,32 @@ public class Class_Service {
 	}
 
 	// Simple CRUD methods
-	public Class_ create() {
-		Class_ result;
-		result = new Class_();
+	public RClass create() {
+		RClass result;
+		result = new RClass();
 		return result;
 	}
 
-	public Collection<Class_> findAll() {
-		Collection<Class_> result;
+	public Collection<RClass> findAll() {
+		Collection<RClass> result;
 		result = class_Repository.findAll();
 		return result;
 	}
 
-	public Class_ findOne(int id) {
-		Class_ result;
+	public RClass findOne(int id) {
+		RClass result;
 		result = class_Repository.findOne(id);
 		return result;
 	}
 
-	public Class_ save(Class_ class_) {
-		Class_ result;
+	public RClass save(RClass class_) {
+		RClass result;
 		result = class_Repository.save(class_);
 		return result;
 
 	}
 
-	public void delete(Class_ class_) {
+	public void delete(RClass class_) {
 		class_Repository.delete(class_);
 	}
 }

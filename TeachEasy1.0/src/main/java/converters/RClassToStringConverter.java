@@ -6,23 +6,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Class_;
+import domain.RClass;
 
 @Component
 @Transactional
-public class Class_ToStringConverter implements Converter<Class_, String> {
+public class RClassToStringConverter implements Converter<RClass, String> {
 
 	@Override
-	public String convert(Class_ class_) {
-		Assert.notNull(class_);
+	public String convert(RClass rClass) {
+		Assert.notNull(rClass);
 
 		String result;
 
-		if (class_ == null) {
+		if (rClass == null) {
 			result = null;
 
 		} else {
-			result = String.valueOf(class_.getId());
+			result = String.valueOf(rClass.getId());
 		}
 
 		return result;

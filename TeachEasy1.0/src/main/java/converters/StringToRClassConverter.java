@@ -8,22 +8,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.Class_Repository;
-import domain.Class_;
+import repositories.RClassRepository;
+import domain.RClass;
 
 @Component
 @Transactional
-public class StringToClass_Converter implements Converter<String, Class_> {
+public class StringToRClassConverter implements Converter<String, RClass> {
 
 	@Autowired
-	Class_Repository	class_Repository;
+	RClassRepository	rClassRepository;
 
 
 	@Override
-	public Class_ convert(String text) {
+	public RClass convert(String text) {
 		Assert.hasText(text);
 
-		Class_ result;
+		RClass result;
 		int id;
 
 		try {
@@ -31,7 +31,7 @@ public class StringToClass_Converter implements Converter<String, Class_> {
 				result = null;
 			} else {
 				id = Integer.valueOf(text);
-				result = class_Repository.findOne(id);
+				result = rClassRepository.findOne(id);
 			}
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);

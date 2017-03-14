@@ -20,11 +20,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Class_ extends DomainEntity {
+public class RClass extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
 
-	public Class_() {
+	public RClass() {
 		super();
 	}
 
@@ -93,7 +93,7 @@ public class Class_ extends DomainEntity {
 
 
 	@Valid
-	@OneToMany(mappedBy = "class")
+	@OneToMany(mappedBy = "rClass")
 	public Collection<Request> getRequests() {
 		return requests;
 	}
