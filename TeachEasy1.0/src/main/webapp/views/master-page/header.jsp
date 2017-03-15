@@ -30,6 +30,7 @@
 		</security:authorize>
 			
 		<security:authorize access="hasRole('STUDENT')">
+		<li><a class="fNiv" href="student/finder/display.do"><spring:message code="master.page.student.finder" /></a></li>
 			<li><a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
 			        (<security:authentication property="principal.username" />)

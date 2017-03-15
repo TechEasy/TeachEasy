@@ -15,6 +15,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Query("select distinct p from Course p where p.academy.city=?2 and (p.title like %?1%)")
 	Collection<Course> findByKey(String key, String city);
 
-	@Query("select distinct v.academy.city from Course v where v.teacher.city=?1")
+	@Query("select distinct v.academy.city from Course v where v.academy.city=?1")
 	Collection<Course> findByCity(String city);
 }
