@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import repositories.ProposalRepository;
+import domain.Finder;
 import domain.Proposal;
 
 @Service
@@ -57,5 +59,37 @@ public class ProposalService {
 
 	public void delete(Proposal proposal) {
 		proposalRepository.delete(proposal);
+	}
+	public Collection<Proposal> findByFinder(Finder finder) {
+		Collection<Proposal> result = new ArrayList<Proposal>();
+		Collection<Proposal> aux;
+		if (finder.getKeyword() == null) {
+			aux = proposalRepository.findByCity(finder.getCity());
+		} else {
+			aux = proposalRepository.findByKey(finder.getKeyword(), finder.getCity());
+		}
+		if (finder.getMinimumPrice() == null && finder.getMaximumPrice() == null) {
+			result = aux;
+		} else if (finder.getMinimumPrice() == null) {
+			for (Proposal p : aux) {
+				if (p.getRate() <= finder.getMaximumPrice()) {
+					result.add(p);
+				}
+			}
+		} else if (finder.getMaximumPrice() == null) {
+			for (Proposal p : aux) {
+				if (p.getRate() >= finder.getMinimumPrice()) {
+					result.add(p);
+				}
+			}
+		} else {
+			for (Proposal p : aux) {
+				if (p.getRate() >= finder.getMinimumPrice() && p.getRate() <= finder.getMaximumPrice()) {
+					result.add(p);
+				}
+			}
+		}
+		return result;
+
 	}
 }
