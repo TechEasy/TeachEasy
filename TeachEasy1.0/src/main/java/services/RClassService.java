@@ -13,18 +13,18 @@ import domain.RClass;
 
 @Service
 @Transactional
-public class Class_Service {
+public class RClassService {
 
 	// Managed repository
 
 	@Autowired
-	RClassRepository	class_Repository;
+	RClassRepository	rClassRepository;
 
 
 	// Supporting services
 
 	//Constructors
-	public Class_Service() {
+	public RClassService() {
 		super();
 
 	}
@@ -38,24 +38,24 @@ public class Class_Service {
 
 	public Collection<RClass> findAll() {
 		Collection<RClass> result;
-		result = class_Repository.findAll();
+		result = rClassRepository.findAll();
 		return result;
 	}
 
 	public RClass findOne(int id) {
 		RClass result;
-		result = class_Repository.findOne(id);
+		result = rClassRepository.findOne(id);
 		return result;
 	}
 
-	public RClass save(RClass class_) {
+	public RClass save(RClass rClass) {
 		RClass result;
-		result = class_Repository.save(class_);
+		result = rClassRepository.save(rClass);
 		return result;
 
 	}
 
-	public void delete(RClass class_) {
-		class_Repository.delete(class_);
+	public void delete(RClass rClass) {
+		rClassRepository.delete(rClass);
 	}
 }

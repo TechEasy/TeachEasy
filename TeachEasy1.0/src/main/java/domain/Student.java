@@ -23,6 +23,18 @@ public class Student extends Actor {
 
 	// Attributes -------------------------------------------------------------
 
+	private CreditCard creditCard;
+
+	@Valid
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
+
+	
 	// Relationships ----------------------------------------------------------
 	private Finder				finder;
 	private Collection<Request>	requests;
@@ -57,4 +69,5 @@ public class Student extends Actor {
 	public void setComments(Collection<Comment> comments) {
 		this.comments = comments;
 	}
+	
 }

@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -41,8 +42,7 @@ public class Actor extends DomainEntity {
 	private Date		date;
 	private String		city;
 	private String		address;
-	private CreditCard	creditCard;
-
+	private String 		iban;
 
 	@NotBlank
 	public String getName() {
@@ -72,7 +72,7 @@ public class Actor extends DomainEntity {
 		this.email = email;
 	}
 
-	//@Pattern
+	@Pattern(regexp = "^([+]\\d{1,3})?[ ]?(\\d{9})")
 	public String getPhone() {
 		return phone;
 	}
@@ -119,12 +119,13 @@ public class Actor extends DomainEntity {
 		this.address = address;
 	}
 
-	public CreditCard getCreditCard() {
-		return creditCard;
+	@NotBlank
+	@Pattern(regexp = "^ES\\d{22}$")
+	public String getIban(){
+		return iban;
 	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
+	public void setIban(String iban){
+		this.iban=iban;
 	}
 
 

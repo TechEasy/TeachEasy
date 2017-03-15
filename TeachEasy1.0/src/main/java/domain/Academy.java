@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -34,13 +35,13 @@ public class Academy extends DomainEntity {
 	private String	cif;
 	private Double	avgStars;
 	private Double	feeAmount;
+	private String  iban;
 
 
 	@NotBlank
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -49,7 +50,6 @@ public class Academy extends DomainEntity {
 	public String getCity() {
 		return city;
 	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -58,7 +58,6 @@ public class Academy extends DomainEntity {
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -67,7 +66,6 @@ public class Academy extends DomainEntity {
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -76,7 +74,6 @@ public class Academy extends DomainEntity {
 	public String getCif() {
 		return cif;
 	}
-
 	public void setCif(String cif) {
 		this.cif = cif;
 	}
@@ -84,7 +81,6 @@ public class Academy extends DomainEntity {
 	public Double getAvgStars() {
 		return avgStars;
 	}
-
 	public void setAvgStars(Double avgStars) {
 		this.avgStars = avgStars;
 	}
@@ -92,9 +88,17 @@ public class Academy extends DomainEntity {
 	public Double getFeeAmount() {
 		return feeAmount;
 	}
-
 	public void setFeeAmount(Double feeAmount) {
 		this.feeAmount = feeAmount;
+	}
+	
+	@NotBlank
+	@Pattern(regexp = "^ES\\d{22}$")
+	public String getIban(){
+		return iban;
+	}
+	public void setIban(String iban){
+		this.iban=iban;
 	}
 
 
