@@ -26,7 +26,10 @@ public class FinderService {
 	// Managed repository
 
 	@Autowired
-	FinderRepository	finderRepository;
+	private FinderRepository	finderRepository;
+	
+	@Autowired
+	private StudentService studentService;
 
 	@Autowired
 	private Validator validator;
