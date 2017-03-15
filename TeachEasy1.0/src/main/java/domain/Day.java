@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -39,14 +38,11 @@ public class Day extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 	private WorkTime	workTime;
 
-
-	@NotNull
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	public WorkTime getWorkTime() {
 		return workTime;
 	}
-
 	public void setWorkTime(WorkTime workTime) {
 		this.workTime = workTime;
 	}

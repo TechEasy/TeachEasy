@@ -8,22 +8,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.MatterRepository;
-import domain.Matter;
+import repositories.SubjectMatterRepository;
+import domain.SubjectMatter;
 
 @Component
 @Transactional
-public class StringToMatterConverter implements Converter<String, Matter> {
+public class StringToSubjectMatterConverter implements Converter<String, SubjectMatter> {
 
 	@Autowired
-	MatterRepository	matterRepository;
+	SubjectMatterRepository	matterRepository;
 
 
 	@Override
-	public Matter convert(String text) {
+	public SubjectMatter convert(String text) {
 		Assert.hasText(text);
 
-		Matter result;
+		SubjectMatter result;
 		int id;
 
 		try {

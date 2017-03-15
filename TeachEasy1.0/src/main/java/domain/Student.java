@@ -24,21 +24,9 @@ public class Student extends Actor {
 	// Attributes -------------------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Invoice>	invoices;
 	private Finder				finder;
 	private Collection<Request>	requests;
 	private Collection<Comment>	comments;
-
-
-	@Valid
-	@OneToMany(mappedBy = "student")
-	public Collection<Invoice> getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(Collection<Invoice> invoices) {
-		this.invoices = invoices;
-	}
 
 	@Valid
 	@OneToOne

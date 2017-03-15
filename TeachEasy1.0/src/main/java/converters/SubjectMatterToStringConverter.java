@@ -7,14 +7,14 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import domain.Matter;
+import domain.SubjectMatter;
 
 @Component
 @Transactional
-public class MatterToStringConverter implements Converter<Matter, String> {
+public class SubjectMatterToStringConverter implements Converter<SubjectMatter, String> {
 
 	@Override
-	public String convert(Matter matter) {
+	public String convert(SubjectMatter matter) {
 		Assert.notNull(matter);
 
 		String result;

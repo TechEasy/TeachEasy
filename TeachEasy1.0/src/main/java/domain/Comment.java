@@ -79,9 +79,8 @@ public class Comment extends DomainEntity {
 	private Academy	academy;
 
 
-	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional=false)
 	public Student getStudent() {
 		return student;
 	}
@@ -90,9 +89,8 @@ public class Comment extends DomainEntity {
 		this.student = student;
 	}
 
-	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional=true)
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -101,9 +99,8 @@ public class Comment extends DomainEntity {
 		this.teacher = teacher;
 	}
 
-	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional=true)
 	public Academy getAcademy() {
 		return academy;
 	}

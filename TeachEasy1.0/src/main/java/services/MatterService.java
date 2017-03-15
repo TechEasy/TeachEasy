@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repositories.MatterRepository;
-import domain.Matter;
+import repositories.SubjectMatterRepository;
+import domain.SubjectMatter;
 
 @Service
 @Transactional
@@ -18,7 +18,7 @@ public class MatterService {
 	// Managed repository
 
 	@Autowired
-	MatterRepository	matterRepository;
+	SubjectMatterRepository	matterRepository;
 
 
 	// Supporting services
@@ -30,32 +30,32 @@ public class MatterService {
 	}
 
 	// Simple CRUD methods
-	public Matter create() {
-		Matter result;
-		result = new Matter();
+	public SubjectMatter create() {
+		SubjectMatter result;
+		result = new SubjectMatter();
 		return result;
 	}
 
-	public Collection<Matter> findAll() {
-		Collection<Matter> result;
+	public Collection<SubjectMatter> findAll() {
+		Collection<SubjectMatter> result;
 		result = matterRepository.findAll();
 		return result;
 	}
 
-	public Matter findOne(int id) {
-		Matter result;
+	public SubjectMatter findOne(int id) {
+		SubjectMatter result;
 		result = matterRepository.findOne(id);
 		return result;
 	}
 
-	public Matter save(Matter matter) {
-		Matter result;
+	public SubjectMatter save(SubjectMatter matter) {
+		SubjectMatter result;
 		result = matterRepository.save(matter);
 		return result;
 
 	}
 
-	public void delete(Matter matter) {
+	public void delete(SubjectMatter matter) {
 		matterRepository.delete(matter);
 	}
 }

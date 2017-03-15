@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -103,27 +102,23 @@ public class Academy extends DomainEntity {
 	private Collection<SocialIdentity>	socialIdentity;
 	private UserAccount					userAccount;
 	private Collection<Comment>			comments;
-	private Collection<Matter>			matters;
 	private Collection<Course>			courses;
 
 
 	@Valid
-	@OneToMany
+	@OneToMany(mappedBy="academy")
 	public Collection<SocialIdentity> getSocialIdentity() {
 		return socialIdentity;
 	}
-
 	public void setSocialIdentity(Collection<SocialIdentity> socialIdentity) {
 		this.socialIdentity = socialIdentity;
 	}
 
-	@NotNull
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
-
 	public void setUserAccount(UserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
@@ -133,19 +128,8 @@ public class Academy extends DomainEntity {
 	public Collection<Comment> getComments() {
 		return comments;
 	}
-
 	public void setComments(Collection<Comment> comments) {
 		this.comments = comments;
-	}
-
-	@Valid
-	@OneToMany
-	public Collection<Matter> getMatters() {
-		return matters;
-	}
-
-	public void setMatters(Collection<Matter> matters) {
-		this.matters = matters;
 	}
 
 	@Valid

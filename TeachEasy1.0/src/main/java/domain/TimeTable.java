@@ -25,7 +25,6 @@ public class TimeTable extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 	private Collection<Day>	days;
 
-
 	@Valid
 	@OneToMany
 	public Collection<Day> getDay() {

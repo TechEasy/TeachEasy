@@ -134,7 +134,7 @@ public class Actor extends DomainEntity {
 
 
 	@Valid
-	@OneToMany
+	@OneToMany(mappedBy="actor")
 	public Collection<SocialIdentity> getSocialIdentity() {
 		return socialIdentity;
 	}
@@ -143,7 +143,6 @@ public class Actor extends DomainEntity {
 		this.socialIdentity = socialIdentity;
 	}
 
-	@NotNull
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	public UserAccount getUserAccount() {

@@ -6,7 +6,7 @@ import java.util.Collection;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -72,16 +72,14 @@ public class Finder extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
+	private Collection<RClass>	rClasses;
 
-	private Collection<RClass>	results;
 
-
-	@ManyToMany
+	@OneToMany
 	public Collection<RClass> getResults() {
-		return this.results;
+		return this.rClasses;
 	}
-
-	public void setResults(final Collection<RClass> results) {
-		this.results = results;
+	public void setResults(Collection<RClass> rClasses) {
+		this.rClasses = rClasses;
 	}
 }

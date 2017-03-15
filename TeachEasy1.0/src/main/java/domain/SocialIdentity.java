@@ -64,7 +64,7 @@ public class SocialIdentity extends DomainEntity {
 
 
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	public Actor getActor() {
 		return actor;
 	}
@@ -74,8 +74,8 @@ public class SocialIdentity extends DomainEntity {
 	}
 
 	@Valid
-	@ManyToOne(optional = false)
-	public Academy getAAcademy() {
+	@ManyToOne(optional = true)
+	public Academy getAcademy() {
 		return academy;
 	}
 

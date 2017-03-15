@@ -8,6 +8,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,7 +63,6 @@ public class RClass extends DomainEntity {
 	public Date getCreateMoment() {
 		return createMoment;
 	}
-
 	public void setCreateMoment(Date createMoment) {
 		this.createMoment = createMoment;
 	}
@@ -72,17 +72,15 @@ public class RClass extends DomainEntity {
 	public Date getUpdateMoment() {
 		return updateMoment;
 	}
-
 	public void setUpdateMoment(Date updateMoment) {
 		this.updateMoment = updateMoment;
 	}
 
 	@NotNull
+	@Min(0)
 	public Double getRate() {
 		return rate;
 	}
-
-	@Min(0)
 	public void setRate(Double rate) {
 		this.rate = rate;
 	}
@@ -90,16 +88,25 @@ public class RClass extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 	private Collection<Request>	requests;
+	private SubjectMatter subjectMatter;
 
 
 	@Valid
-	@OneToMany(mappedBy = "rClass")
+	@OneToMany(mappedBy = "RClass")
 	public Collection<Request> getRequests() {
 		return requests;
 	}
-
 	public void setRequests(Collection<Request> requests) {
 		this.requests = requests;
+	}
+	
+	@Valid
+	@ManyToOne(optional=false)
+	public SubjectMatter getSubjectMatter(){
+		return subjectMatter;
+	}
+	public void setSubjectMatter(SubjectMatter subjectMatter){
+		this.subjectMatter = subjectMatter;
 	}
 
 }

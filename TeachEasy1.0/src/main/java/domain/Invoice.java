@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -27,23 +27,21 @@ public class Invoice extends DomainEntity {
 
 
 	// Attributes -------------------------------------------------------------
-	private Date		createMoment;
+	private Date		authoredMoment;
 	private String		vatNumber;
 	private String		information;
 	private String		details;
 	private Double		total;
-	private CreditCard	creditCard;
-
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public Date getCreateMoment() {
-		return createMoment;
+	public Date getAuthoredMoment() {
+		return authoredMoment;
 	}
 
-	public void setCreateMoment(Date issued) {
-		this.createMoment = issued;
+	public void setAuthoredMoment(Date authoredMoment) {
+		this.authoredMoment = authoredMoment;
 	}
 
 	@NotBlank
@@ -81,28 +79,17 @@ public class Invoice extends DomainEntity {
 		this.total = total;
 	}
 
-	@NotNull
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-
 
 	// Relationships ----------------------------------------------------------
 
-	private Student	student;
-
+	private Request	request;
 
 	@Valid
-	@ManyToOne(optional = false)
-	public Student getStudent() {
-		return student;
+	@OneToOne(optional = false)
+	public Request getRequest() {
+		return request;
 	}
-
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setRequest(Request request) {
+		this.request = request;
 	}
 }

@@ -21,11 +21,8 @@ public class Curricula extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 	private String	photo;
-
 	private String	educationSection;
-
 	private String	experienceSection;
-
 	private String	hobbiesSection;
 
 

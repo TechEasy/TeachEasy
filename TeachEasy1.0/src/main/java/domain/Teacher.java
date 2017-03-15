@@ -48,7 +48,6 @@ public class Teacher extends Actor {
 	private Curricula			curricula;
 	private Collection<Comment>	comments;
 	private TimeTable			timeTable;
-	private Collection<Matter>	matters;
 
 
 	@Valid
@@ -69,16 +68,6 @@ public class Teacher extends Actor {
 
 	public void setTimeTable(TimeTable timeTable) {
 		this.timeTable = timeTable;
-	}
-
-	@Valid
-	@OneToMany
-	public Collection<Matter> getMatters() {
-		return matters;
-	}
-
-	public void setMatters(Collection<Matter> matters) {
-		this.matters = matters;
 	}
 
 	@Valid

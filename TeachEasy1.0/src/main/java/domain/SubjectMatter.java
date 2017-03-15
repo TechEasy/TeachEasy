@@ -9,11 +9,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Matter extends DomainEntity {
+public class SubjectMatter extends DomainEntity {
 
 	// Constructors -----------------------------------------------------------
 
-	public Matter() {
+	public SubjectMatter() {
 		super();
 	}
 
