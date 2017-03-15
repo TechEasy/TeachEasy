@@ -28,15 +28,15 @@
 			<li><a class="fNiv" href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>
-		
-		<security:authorize access="isAuthenticated()">
-			<li>
-				<a class="fNiv"> 
+			
+		<security:authorize access="hasRole('STUDENT')">
+			<li><a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="student/display.do"><spring:message code="master.page.student.display" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

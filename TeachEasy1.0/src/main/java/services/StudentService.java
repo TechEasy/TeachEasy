@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -14,8 +15,10 @@ import org.springframework.validation.Validator;
 
 import repositories.StudentRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import domain.CreditCard;
+import domain.Finder;
 import domain.Student;
 import form.StudentForm;
 
@@ -34,6 +37,9 @@ public class StudentService {
 	@Autowired
 	private Validator validator;
 	
+	@Autowired
+	private FinderService finderService;
+	
 	//Constructors
 	public StudentService() {
 		super();
@@ -44,6 +50,12 @@ public class StudentService {
 	public Student create() {
 		Student result;
 		result = new Student();
+		
+		Finder finder=finderService.create();
+		finder.setCity("City");
+		finder.setMinimumPrice(0.0);
+		finder = finderService.save(finder);
+		result.setFinder(finder);
 		return result;
 	}
 
@@ -61,6 +73,12 @@ public class StudentService {
 
 	public Student save(Student student) {
 		Student result;
+		
+		String password = student.getUserAccount().getPassword();
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(password, null);
+		student.getUserAccount().setPassword(md5);
+		
 		result = studentRepository.save(student);
 		return result;
 
@@ -181,4 +199,44 @@ public class StudentService {
 
 			return validador;
 		}
+		
+	public Student findByPrincipal() {
+		Student result;
+		int userAccountId;
+
+		userAccountId = LoginService.getPrincipal().getId();
+		result = studentRepository.findByUserAccountId(userAccountId);
+
+		return result;
+	}
+	
+	public Student encryptCreditCard(Student student) {
+		Student result = new Student();
+		CreditCard caux = new CreditCard();
+		String aux;
+
+		result.setId(student.getId());
+		result.setUserAccount(student.getUserAccount());
+		result.setComments(student.getComments());
+		result.setEmail(student.getEmail());
+		result.setName(student.getName());
+		result.setSurname(student.getSurname());
+		result.setPhone(student.getPhone());
+		result.setPicture(student.getPicture());
+		result.setSocialIdentity(student.getSocialIdentity());
+		result.setCity(student.getCity());
+		result.setAddress(student.getAddress());
+		result.setDate(student.getDate());
+
+		caux.setBrandName(student.getCreditCard().getBrandName());
+		caux.setCvv(student.getCreditCard().getCvv());
+		caux.setExpirationMonth(student.getCreditCard().getExpirationMonth());
+		caux.setExpirationYear(student.getCreditCard().getExpirationYear());
+		caux.setHolderName(student.getCreditCard().getHolderName());
+		aux = "************" + student.getCreditCard().getNumber().substring(12);
+		caux.setNumber(aux);
+		result.setCreditCard(caux);
+
+		return result;
+	}
 }

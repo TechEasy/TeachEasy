@@ -29,6 +29,8 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" /> 
 
+		<security:intercept-url pattern="/student/register.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/student/display.do" access="permitAll" /> 
 		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
 		<security:intercept-url pattern="/images/**" access="permitAll" /> 
 		<security:intercept-url pattern="/scripts/**" access="permitAll" /> 
@@ -48,7 +50,7 @@
 		<security:intercept-url pattern="/customer/action-1.do" access="hasRole('CUSTOMER')" /> 
 		<security:intercept-url pattern="/customer/action-2.do" access="hasRole('CUSTOMER')" /> 
 
-		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
+		
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	

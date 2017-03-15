@@ -31,7 +31,7 @@ public class Finder extends DomainEntity {
 		return this.city;
 	}
 
-	public void setCity(final String city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
@@ -40,7 +40,7 @@ public class Finder extends DomainEntity {
 		return this.minimumPrice;
 	}
 
-	public void setMinimumPrice(final Double minimumPrice) {
+	public void setMinimumPrice(Double minimumPrice) {
 		this.minimumPrice = minimumPrice;
 	}
 
@@ -49,7 +49,7 @@ public class Finder extends DomainEntity {
 		return this.maximumPrice;
 	}
 
-	public void setMaximumPrice(final Double maximumPrice) {
+	public void setMaximumPrice(Double maximumPrice) {
 		this.maximumPrice = maximumPrice;
 	}
 
@@ -57,16 +57,14 @@ public class Finder extends DomainEntity {
 		return this.keyword;
 	}
 
-	public void setKeyword(final String keyword) {
+	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 
-	@NotBlank
 	public String getMatter() {
 		return this.matter;
 	}
-
-	public void setMatter(final String matter) {
+	public void setMatter( String matter) {
 		this.matter = matter;
 	}
 

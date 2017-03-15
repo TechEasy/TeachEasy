@@ -34,7 +34,7 @@
 		<tr>
 			<td><jstl:out value="${student.email}"/></td>
 			<td><jstl:out value="${student.phone}"/></td>
-			<td><jstl:out value="${student.city}"/></td>
+			<td><fmt:formatDate value="${student.date }" pattern="dd/MM/yyyy" /></td>
 		</tr>
 		<tr>
 			<th><spring:message code="student.city"/></th>
