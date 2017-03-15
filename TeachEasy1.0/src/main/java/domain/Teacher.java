@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -25,6 +28,7 @@ public class Teacher extends Actor {
 	// Attributes -------------------------------------------------------------
 	private Double	avgStars;
 	private Double	feeAmount;
+	private String 	iban;
 
 
 	public Double getAvgStars() {
@@ -43,6 +47,14 @@ public class Teacher extends Actor {
 		this.feeAmount = feeAmount;
 	}
 
+	@NotBlank
+	@Pattern(regexp = "^ES\\d{22}$")
+	public String getIban(){
+		return iban;
+	}
+	public void setIban(String iban){
+		this.iban=iban;
+	}
 
 	// Relationships ----------------------------------------------------------
 	private Curricula			curricula;

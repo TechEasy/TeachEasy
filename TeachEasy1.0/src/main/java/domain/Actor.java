@@ -42,7 +42,6 @@ public class Actor extends DomainEntity {
 	private Date		date;
 	private String		city;
 	private String		address;
-	private String 		iban;
 
 	@NotBlank
 	public String getName() {
@@ -119,14 +118,7 @@ public class Actor extends DomainEntity {
 		this.address = address;
 	}
 
-	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}$")
-	public String getIban(){
-		return iban;
-	}
-	public void setIban(String iban){
-		this.iban=iban;
-	}
+
 
 
 	// Relationships ----------------------------------------------------------
