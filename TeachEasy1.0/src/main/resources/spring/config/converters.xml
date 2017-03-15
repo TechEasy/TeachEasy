@@ -29,7 +29,7 @@
 		<bean class="converters.DayToStringConverter" /> 
 		<bean class="converters.FinderToStringConverter" />
 		<bean class="converters.InvoiceToStringConverter" />
-		<bean class="converters.MatterToStringConverter" />
+		<bean class="converters.SubjectMatterToStringConverter" />
 		<bean class="converters.ProposalToStringConverter" /> 
 		<bean class="converters.RequestToStringConverter" /> 
 		<bean class="converters.SocialIdentityToStringConverter" />
@@ -48,7 +48,7 @@
 		<bean class="converters.StringToDayConverter" />
 		<bean class="converters.StringToFinderConverter" />
 		<bean class="converters.StringToInvoiceConverter" />
-		<bean class="converters.StringToMatterConverter" />
+		<bean class="converters.StringToSubjectMatterConverter" />
 		<bean class="converters.StringToProposalConverter" />
 		<bean class="converters.StringToRequestConverter" />
 		<bean class="converters.StringToSocialIdentityConverter" />
