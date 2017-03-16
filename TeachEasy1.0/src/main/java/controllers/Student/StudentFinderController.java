@@ -18,8 +18,10 @@ import services.FinderService;
 import services.ProposalService;
 
 import controllers.AbstractController;
+import domain.Course;
 import domain.Finder;
 import domain.Proposal;
+import domain.RClass;
 import form.FinderForm;
 
 @Controller
@@ -53,7 +55,7 @@ public class StudentFinderController extends AbstractController{
 			result = new ModelAndView("finder/display");
 			result.addObject("finder", finder);
 			
-			result.addObject("requestURI", "tenant/finder/display.do");
+			result.addObject("requestURI", "student/finder/display.do");
 
 			return result;
 		}
@@ -90,6 +92,7 @@ public class StudentFinderController extends AbstractController{
 					Collection<Proposal>proposals=proposalService.findByFinder(finder);
 					finderService.save(finder);
 					result = display();
+					System.out.println(proposals);
 					result.addObject("proposals",proposals);
 				} catch (Throwable oops) {
 					result = createEditModelAndView(finderForm, "master.page.commit.error");
@@ -100,7 +103,67 @@ public class StudentFinderController extends AbstractController{
 			return result;
 		}
 		
-		
+		//Display--------------------------
+
+				@RequestMapping(value = "/display2", method = RequestMethod.GET)
+				public ModelAndView display2() {
+
+					ModelAndView result;
+					Finder finder;
+					
+					finder = finderService.findByPrincipal();
+					result = new ModelAndView("finder/display2");
+					result.addObject("finder", finder);
+					
+					result.addObject("requestURI", "student/finder/display2.do");
+
+					return result;
+				}
+
+				
+
+				//Edition--------------------------
+
+				@RequestMapping(value = "/edit2", method = RequestMethod.GET)
+				public ModelAndView edit2(@RequestParam int finderId) {
+
+					ModelAndView result;
+					Finder finder;
+					
+					finder = finderService.findOne(finderId);
+					FinderForm finderform=finderService.transform(finder);
+					Assert.notNull(finderform);
+					result = createEditModelAndView(finderform);
+
+					return result;
+
+				}
+
+				@RequestMapping(value = "/edit2", method = RequestMethod.POST, params = "save")
+				public ModelAndView save2(@Valid FinderForm finderForm, BindingResult binding) {
+
+					ModelAndView result;
+					Finder finder;
+					if (binding.hasErrors()) {
+						result = createEditModelAndView(finderForm);
+					} else {
+						try {
+							finder=finderService.reconstruct(finderForm, binding);
+							Collection<Course>courses=courseService.findByFinder(finder);
+							finderService.save(finder);
+							result = display2();
+							System.out.println(courses);
+							result.addObject("courses",courses);
+						} catch (Throwable oops) {
+							result = createEditModelAndView(finderForm, "master.page.commit.error");
+					}
+
+					
+					}
+					return result;
+				}
+				
+				
 
 		//Ancillary Methods---------------------------
 
