@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -17,8 +18,11 @@ import repositories.StudentRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Comment;
 import domain.CreditCard;
 import domain.Finder;
+import domain.Request;
+import domain.SocialIdentity;
 import domain.Student;
 import form.StudentForm;
 
@@ -49,13 +53,17 @@ public class StudentService {
 	// Simple CRUD methods
 	public Student create() {
 		Student result;
+		Collection<SocialIdentity> socialIdentity = new ArrayList<SocialIdentity>();
+		Collection<Comment> comments = new ArrayList<Comment>();
+		Collection<Request> requests = new ArrayList<Request>();
 		result = new Student();
 		
-		Finder finder=finderService.create();
-		finder.setCity("City");
-		finder.setMinimumPrice(0.0);
-		finder = finderService.save(finder);
-		result.setFinder(finder);
+		//Finder finder=finderService.create();
+		
+		result.setRequests(requests);
+		result.setSocialIdentity(socialIdentity);
+		result.setComments(comments);
+	  //result.setFinder(finder);
 		return result;
 	}
 
@@ -129,7 +137,7 @@ public class StudentService {
 
 			Assert.isTrue(studentForm.getPassword2().equals(password), "notEqualPassword");
 			Assert.isTrue(studentForm.getAgreed(), "agreedNotAccepted");
-			Assert.isTrue(check(studentForm.getCreditCard()));
+			Assert.isTrue(check(studentForm.getCreditCard()), "badCreditCard");
 
 			if(studentForm.getId()==0){
 				result = create();

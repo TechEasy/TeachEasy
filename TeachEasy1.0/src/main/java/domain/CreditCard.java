@@ -1,88 +1,79 @@
-
 package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.CreditCardNumber;
+import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
-@Access(AccessType.PROPERTY)
 @Embeddable
+@Access(AccessType.PROPERTY)
 public class CreditCard {
-
-	private String	number;
-	private String	holderName;
-	private String	brandName;
-	private Integer	expirationYear;
-	private Integer	cvv;
-	private Integer	expirationMonth;
-
-
-	@CreditCardNumber
-	public String getNumber() {
-		return number;
+	
+	//Constructors
+	
+	public CreditCard(){
+		super();
 	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
+	
+	//Attributes
+		
+	private String holderName;
+	private String brandName;
+	private String number;
+	private int expirationMonth;
+	private int expirationYear;		
+	private int cvv;
+		
 	@NotBlank
-	@Valid
 	public String getHolderName() {
 		return holderName;
 	}
-
 	public void setHolderName(String holderName) {
 		this.holderName = holderName;
 	}
-
+	
 	@NotBlank
-	@Valid
 	public String getBrandName() {
 		return brandName;
 	}
-
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
-
-	@Valid
-	@NotNull
-	@Range(min = 2016, max = 2500)
-	public Integer getExpirationYear() {
-		return expirationYear;
+	
+	@NotBlank
+	public String getNumber() {
+		return number;
 	}
-
-	public void setExpirationYear(Integer expirationYear) {
-		this.expirationYear = expirationYear;
+	public void setNumber(String number) {
+		this.number = number;
 	}
-
-	@Valid
-	@NotNull
-	@Range(min = 100, max = 999)
-	public Integer getCvv() {
-		return cvv;
-	}
-
-	public void setCvv(Integer cvv) {
-		this.cvv = cvv;
-	}
-
-	@Valid
-	@NotNull
-	@Range(min = 1, max = 12)
-	public Integer getExpirationMonth() {
+	
+	@Range (min=1,max=12)
+	public int getExpirationMonth() {
 		return expirationMonth;
 	}
-
-	public void setExpirationMonth(Integer expirationMonth) {
+	public void setExpirationMonth(int expirationMonth) {
 		this.expirationMonth = expirationMonth;
 	}
+	
+	@Min(2017)
+	public int getExpirationYear() {
+		return expirationYear;
+	}
+	public void setExpirationYear(int expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+	
+	@Range(min=100, max=999)
+	public int getCvv() {
+		return cvv;
+	}
+	public void setCvv(int cvv) {
+		this.cvv = cvv;
+	}
+	
+	//Relationships
 
 }

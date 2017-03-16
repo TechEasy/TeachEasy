@@ -18,6 +18,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import security.UserAccount;
@@ -47,7 +48,6 @@ public class Actor extends DomainEntity {
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -56,7 +56,6 @@ public class Actor extends DomainEntity {
 	public String getSurname() {
 		return surname;
 	}
-
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
@@ -66,7 +65,6 @@ public class Actor extends DomainEntity {
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -75,27 +73,24 @@ public class Actor extends DomainEntity {
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
 	@NotBlank
+	@URL
 	public String getPicture() {
 		return picture;
 	}
-
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getDate() {
 		return date;
 	}
-
 	public void setDate(Date date) {
 		this.date = date;
 	}
@@ -104,7 +99,6 @@ public class Actor extends DomainEntity {
 	public String getCity() {
 		return city;
 	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -113,13 +107,9 @@ public class Actor extends DomainEntity {
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-
 
 	// Relationships ----------------------------------------------------------
 	private Collection<SocialIdentity>	socialIdentity;

@@ -29,7 +29,6 @@ public class Student extends Actor {
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
-
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
@@ -45,7 +44,6 @@ public class Student extends Actor {
 	public Finder getFinder() {
 		return finder;
 	}
-
 	public void setFinder(Finder finder) {
 		this.finder = finder;
 	}

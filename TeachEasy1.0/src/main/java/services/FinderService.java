@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -16,6 +18,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Finder;
+import domain.RClass;
 import domain.Student;
 import form.FinderForm;
 
@@ -43,8 +46,15 @@ public class FinderService {
 
 	// Simple CRUD methods
 	public Finder create() {
+
 		Finder result;
 		result = new Finder();
+
+		result.setCity("Ciudad");
+		result.setMinimumPrice(0.0);
+
+		save2(result);
+
 		return result;
 	}
 

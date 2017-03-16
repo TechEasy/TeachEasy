@@ -80,10 +80,11 @@ public class StudentController extends AbstractController {
 				String msgCode = "student.register.error";
 				if (oops.getMessage().equals("notEqualPassword")) {
 					msgCode = "student.register.notEqualPassword";
-				} else {
-					if (oops.getMessage().equals("agreedNotAccepted")) {
+				}else if (oops.getMessage().equals("agreedNotAccepted")) {
 						msgCode = "student.register.agreedNotAccepted";
-					}
+				}
+				if (oops.getMessage().equals("badCreditCard")) {
+					msgCode = "student.badCreditCard";
 				}
 				result = createEditModelAndView(studentForm, msgCode);
 			}
