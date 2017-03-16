@@ -31,6 +31,7 @@
 
 		<security:intercept-url pattern="/student/register.do" access="isAnonymous()" /> 
 		<security:intercept-url pattern="/student/display.do" access="permitAll" /> 
+		<security:intercept-url pattern="/teacher/display.do" access="permitAll" /> 
 		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
 		<security:intercept-url pattern="/images/**" access="permitAll" /> 
 		<security:intercept-url pattern="/scripts/**" access="permitAll" /> 

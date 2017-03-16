@@ -32,7 +32,7 @@
 	
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="teacher1" />
-		<property name="password" value="2sd3pwo43557a5a7fd84a03dcdoe4kc3" />
+		<property name="password" value="41c8949aa55b8cb5dbec662f34b62df3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -44,7 +44,7 @@
 	
 		<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="teacher2" />
-		<property name="password" value="2sd3pwo412345678fd84a03dcdoe4kc3" />
+		<property name="password" value="ccffb0bb993eeb79059b31e1611ec353" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -56,7 +56,7 @@
 	
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="teacher3" />
-		<property name="password" value="2sd3alspdirmnueowm789ddcdoe4kc3" />
+		<property name="password" value="82470256ea4b80343b27afccbca1015b" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -68,7 +68,7 @@
 	
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="student1" />
-		<property name="password" value="2123p4d3523a5asdf894a03dcdo12345" />
+		<property name="password" value="5e5545d38a68148a2d5bd5ec9a89e327" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -80,7 +80,7 @@
 	
 	<bean id="userAccount6" class="security.UserAccount">
 		<property name="username" value="student2" />
-		<property name="password" value="2123p4d39dklowedf894a03dcdo12345" />
+		<property name="password" value="213ee683360d88249109c2f92789dbc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -92,7 +92,7 @@
 	
 	<bean id="userAccount7" class="security.UserAccount">
 		<property name="username" value="student3" />
-		<property name="password" value="2123p4d3523a5asdf894a03dslpoqwy5" />
+		<property name="password" value="8e4947690532bc44a8e41e9fb365b76a" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -104,7 +104,7 @@
 	
 	<bean id="userAccount8" class="security.UserAccount">
 		<property name="username" value="academy1" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="password" value="2867dc13a84476546c069b33dc859bc7" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -116,7 +116,7 @@
 	
 	<bean id="userAccount9" class="security.UserAccount">
 		<property name="username" value="academy2" />
-		<property name="password" value="21232f297a57a5a7dkslr8we4a801fc3" />
+		<property name="password" value="86cbff988e1e889653b316f6695e5e6b" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -373,7 +373,6 @@
 	<!-- Curricula -->
 
 	<bean id="curricula1" class="domain.Curricula">
-		<property name="photo" value="https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png" />
 		<property name="educationSection" value="He cursado Ingeniería Informática del Software en Sevilla" />	
 		<property name="experienceSection" value="He estado trabjando 10 años en Everis" />	
 		<property name="hobbiesSection" value="Me gusta leer comics" />		

@@ -20,7 +20,6 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Comment;
 import domain.CreditCard;
-import domain.Finder;
 import domain.Request;
 import domain.SocialIdentity;
 import domain.Student;
@@ -41,8 +40,6 @@ public class StudentService {
 	@Autowired
 	private Validator validator;
 	
-	@Autowired
-	private FinderService finderService;
 	
 	//Constructors
 	public StudentService() {
