@@ -60,7 +60,7 @@ public class Teacher extends Actor {
 	private Curricula			curricula;
 	private Collection<Comment>	comments;
 	private TimeTable			timeTable;
-
+	private Collection<Proposal> proposals;
 
 	@Valid
 	@OneToMany(mappedBy = "teacher")
@@ -90,5 +90,15 @@ public class Teacher extends Actor {
 
 	public void setCurricula(Curricula curricula) {
 		this.curricula = curricula;
+	}
+	
+	@Valid
+	@OneToMany(mappedBy = "teacher")
+	public Collection<Proposal> getProposals() {
+		return proposals;
+	}
+
+	public void setProposals(Collection<Proposal> proposals) {
+		this.proposals = proposals;
 	}
 }
