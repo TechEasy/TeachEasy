@@ -33,4 +33,10 @@
 	<spring:message code="proposal.matter" var="matterHeader"/>
 	<display:column property="proposalList.subjectMatter" title="${matterHeader}"/>
 	
+	
+	<display:column titleKey="proposal.teacher">
+		<a href="teacher/display.do?teacherId=${proposalList.teacher.id}">
+		<spring:message code="proposal.teacher"></spring:message></a>	
+	</display:column>
+	
 </display:table>
