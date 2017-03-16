@@ -29,33 +29,438 @@
 			</list>
 		</property>
 	</bean>
-
+	
 	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="customer" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+		<property name="username" value="teacher1" />
+		<property name="password" value="41c8949aa55b8cb5dbec662f34b62df3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="TEACHER" />
 				</bean>
 			</list>
 		</property>
+	</bean>
+	
+		<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="teacher2" />
+		<property name="password" value="ccffb0bb993eeb79059b31e1611ec353" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TEACHER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="teacher3" />
+		<property name="password" value="82470256ea4b80343b27afccbca1015b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TEACHER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="student1" />
+		<property name="password" value="5e5545d38a68148a2d5bd5ec9a89e327" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="student2" />
+		<property name="password" value="213ee683360d88249109c2f92789dbc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="student3" />
+		<property name="password" value="8e4947690532bc44a8e41e9fb365b76a" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="STUDENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="academy1" />
+		<property name="password" value="2867dc13a84476546c069b33dc859bc7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ACADEMY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="academy2" />
+		<property name="password" value="86cbff988e1e889653b316f6695e5e6b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ACADEMY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- CreditCards -->
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Lessor 1" />
+		<property name="brandName" value="Visa" />
+		<property name="number" value="4556314032839099" />
+		<property name="expirationMonth" value="06" />
+		<property name="expirationYear" value="2017" />
+		<property name="cvv" value="452" />
 	</bean>
 
-	<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="super" />
-		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
-		<property name="authorities">
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="Lessor 2" />
+		<property name="brandName" value="MasterCard" />
+		<property name="number" value="5462093507285125" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2020" />
+		<property name="cvv" value="743" />
+	</bean>
+	
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="Lessor 3" />
+		<property name="brandName" value="Discover" />
+		<property name="number" value="4532870675086719" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="2028" />
+		<property name="cvv" value="823" />
+	</bean>
+	
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="Tenant 1" />
+		<property name="brandName" value="MasterCard" />
+		<property name="number" value="5550642130319173" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="2020" />
+		<property name="cvv" value="720" />
+	</bean>
+
+	<bean id="creditCard5" class="domain.CreditCard">
+		<property name="holderName" value="Tenant 1" />
+		<property name="brandName" value="Discover" />
+		<property name="number" value="6011635376489313" />
+		<property name="expirationMonth" value="03" />
+		<property name="expirationYear" value="2028" />
+		<property name="cvv" value="320" />
+	</bean>
+
+	<bean id="creditCard6" class="domain.CreditCard">
+		<property name="holderName" value="Tenant 2" />
+		<property name="brandName" value="Discover" />
+		<property name="number" value="6011096186968527" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="2024" />
+		<property name="cvv" value="820" />
+	</bean>
+
+	<bean id="creditCard7" class="domain.CreditCard">
+		<property name="holderName" value="Tenant 2" />
+		<property name="brandName" value="MasterCard" />
+		<property name="number" value="5197293153245827" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="820" />
+	</bean>
+
+	<bean id="creditCard8" class="domain.CreditCard">
+		<property name="holderName" value="Tenant 3" />
+		<property name="brandName" value="Discover" />
+		<property name="number" value="6011824468295339" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="2028" />
+		<property name="cvv" value="823" />
+	</bean>
+	
+	<!-- WorkTime -->
+	<bean id="workTime1" class="domain.WorkTime">
+		<property name="checkIn" value="10:00" />
+		<property name="checkOut" value="12:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime2" class="domain.WorkTime">
+		<property name="checkIn" value="11:00" />
+		<property name="checkOut" value="13:00" />
+		<property name="available" value="false" />
+	</bean>
+	
+	<bean id="workTime3" class="domain.WorkTime">
+		<property name="checkIn" value="10:00" />
+		<property name="checkOut" value="12:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<!-- Day  -->
+	<bean id="day1" class="domain.Day">
+		<property name="name" value="Lunes" />
+		<property name="workTimes">
 			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
-				</bean>
+				<ref bean="workTime1"/>
+				<ref bean="workTime2"/>
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="day2" class="domain.Day">
+		<property name="name" value="Martes" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- TimeTabe -->
+	<bean id="timeTable1" class="domain.TimeTable">
+			<property name="days">
+				<list>
+					<ref bean="day1"/>
+				</list>
+			</property>
+	</bean>
+	<bean id="timeTable2" class="domain.TimeTable">
+			<property name="days">
+				<list>
+					<ref bean="day2"/>
+				</list>
+			</property>
+	</bean>
+
+	<!-- Administrators -->
+
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="userAccount" ref="userAccount1" />
+		<property name="name" value="Administrator name" />
+		<property name="surname" value="Administrator surname" />
+		<property name="email" value="administrator1@mail.com" />
+		<property name="phone" value="654123852" />
+		<property name="picture" value="http://stawamuschiefpark.com/wp-content/uploads/2014/12/avatar-300x300.png" />
+		<property name="date" value="28/03/1994" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Calle Sanlucar la Mayor Bloque 7" />		
+		<property name="socialIdentity">
+			<list>
+				<ref bean="socialIdentity1" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Teacher -->
+
+	<bean id="teacher1" class="domain.Teacher">
+		<property name="userAccount" ref="userAccount2" />
+		<property name="name" value="Teacher1 name" />
+		<property name="surname" value="Teacher1 surname" />
+		<property name="email" value="teacher1@mail.com" />
+		<property name="phone" value="654122347" />
+		<property name="picture" value="https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png" />
+		<property name="date" value="12/01/1943" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Alclá de Henares" />	
+		<property name="avgStars" value="2.0" />
+		<property name="feeAmount" value="200.0" />
+		<property name="iban" value="ES9121000418450200051332" />	
+		<property name="curricula" ref="curricula1" />	
+		<property name="socialIdentity">
+			<list>
+				<ref bean="socialIdentity2" />
+			</list>
+		</property>
+		<property name="timeTable" ref="timeTable1"/>
+	</bean>	
+	
+	<bean id="teacher2" class="domain.Teacher">
+		<property name="userAccount" ref="userAccount3" />
+		<property name="name" value="Teacher2 name" />
+		<property name="surname" value="Teacher2 surname" />
+		<property name="email" value="teacher2@mail.com" />
+		<property name="phone" value="609822347" />
+		<property name="picture" value="http://cyrusindia.com/hrpanel/mriAssets2016/me1.png" />
+		<property name="date" value="12/01/1943" />	
+		<property name="city" value="Granada" />	
+		<property name="address" value="Granáh" />	
+		<property name="avgStars" value="5.0" />
+		<property name="feeAmount" value="1000.0" />
+		<property name="iban" value="ES9122220418569870051332" />	
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>
+		<property name="timeTable" ref="timeTable2"/>
+		
+	</bean>	
+	
+	<bean id="teacher3" class="domain.Teacher">
+		<property name="userAccount" ref="userAccount4" />
+		<property name="name" value="Teacher3 name" />
+		<property name="surname" value="Teacher4 surname" />
+		<property name="email" value="teacher4@mail.com" />
+		<property name="phone" value="645692347" />
+		<property name="picture" value="http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png" />
+		<property name="date" value="12/01/1963" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Calle Benito Villamarín" />	
+		<property name="avgStars" value="3.2" />
+		<property name="feeAmount" value="120.0" />
+		<property name="iban" value="ES9122220418569870012332" />	
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>
+	</bean>	
+	
+	<!-- Student -->
+
+	<bean id="student1" class="domain.Student">
+		<property name="userAccount" ref="userAccount5" />
+		<property name="name" value="Student1 name" />
+		<property name="surname" value="Student1 surname" />
+		<property name="email" value="student1@mail.com" />
+		<property name="phone" value="654126547" />
+		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png" />
+		<property name="date" value="12/01/1985" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Triana" />	
+		<property name="creditCard" ref="creditCard1" />
+		<property name="socialIdentity">
+			<list>
+				<ref bean="socialIdentity3" />
+			</list>
+		</property>	
+	</bean>	
+	
+	<bean id="student2" class="domain.Student">
+		<property name="userAccount" ref="userAccount6" />
+		<property name="name" value="Student2 name" />
+		<property name="surname" value="Student2 surname" />
+		<property name="email" value="student2@mail.com" />
+		<property name="phone" value="694123447" />
+		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png" />
+		<property name="date" value="21/03/1960" />	
+		<property name="city" value="Málaga" />	
+		<property name="address" value="Calle de la malagueta" />	
+		<property name="creditCard" ref="creditCard2" />	
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="student3" class="domain.Student">
+		<property name="userAccount" ref="userAccount7" />
+		<property name="name" value="Student3 name" />
+		<property name="surname" value="Student3 surname" />
+		<property name="email" value="student1@mail.com" />
+		<property name="phone" value="654126547" />
+		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png" />
+		<property name="date" value="28/03/1988" />	
+		<property name="city" value="Cadiz" />	
+		<property name="address" value="Plaza de los palilleros" />	
+		<property name="creditCard" ref="creditCard3" />
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>	
+	</bean>	
+	
+	<!-- Academy -->
+
+	<bean id="academy1" class="domain.Academy">
+		<property name="userAccount" ref="userAccount8" />
+		<property name="name" value="Academy1 name" />
+		<property name="city" value="Sevilla" />
+		<property name="address" value="Triana" />	
+		<property name="description" value="Description academy1" />
+		<property name="cif" value="CIF152" />
+		<property name="avgStars" value="3.0" />
+		<property name="feeAmount" value="200.0" />
+		<property name="iban" value="ES1800491500042710151321" />	
+		<property name="socialIdentity">
+			<list>
+				<ref bean="socialIdentity4" />
+			</list>
+		</property>	
+	</bean>	
+	
+	<bean id="academy2" class="domain.Academy">
+		<property name="userAccount" ref="userAccount9" />
+		<property name="name" value="Academy2 name" />
+		<property name="city" value="Cadiz" />
+		<property name="address" value="Calle Teatro Falla" />	
+		<property name="description" value="Description academy2" />
+		<property name="cif" value="CIF45698" />
+		<property name="avgStars" value="5.0" />
+		<property name="feeAmount" value="560.0" />
+		<property name="iban" value="ES3320852066640300082802" />	
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>	
+
+	</bean>	
+	
+	<!-- Curricula -->
+
+	<bean id="curricula1" class="domain.Curricula">
+		<property name="educationSection" value="He cursado Ingeniería Informática del Software en Sevilla" />	
+		<property name="experienceSection" value="He estado trabjando 10 años en Everis" />	
+		<property name="hobbiesSection" value="Me gusta leer comics" />		
+	</bean>	
+	
+	<!-- SocialIdentities -->
+
+	<bean id="socialIdentity1" class="domain.SocialIdentity">
+		<property name="nick" value="admin1" />
+		<property name="socialNetwork" value="Twitter" />	
+		<property name="profileUrl" value="https://twitter.com/admin1" />		
+	</bean>	
+	
+	<bean id="socialIdentity2" class="domain.SocialIdentity">
+		<property name="nick" value="student1" />
+		<property name="socialNetwork" value="Twitter" />	
+		<property name="profileUrl" value="https://twitter.com/student1" />		
+	</bean>
+	
+	<bean id="socialIdentity3" class="domain.SocialIdentity">
+		<property name="nick" value="teacher1" />
+		<property name="socialNetwork" value="Twitter" />	
+		<property name="profileUrl" value="https://twitter.com/teacher1" />		
+	</bean>
+	
+	<bean id="socialIdentity4" class="domain.SocialIdentity">
+		<property name="nick" value="academy1" />
+		<property name="socialNetwork" value="Twitter" />	
+		<property name="profileUrl" value="https://twitter.com/academy1" />		
+	</bean>
+
 	
 	<!-- Other domain beans come here -->	
 	
