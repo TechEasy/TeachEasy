@@ -51,7 +51,7 @@ public class FinderService {
 		result = new Finder();
 
 		result.setCity("Ciudad");
-		result.setMinimumPrice(0.0);
+		
 
 		save2(result);
 

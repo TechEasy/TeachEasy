@@ -40,9 +40,6 @@
 	<spring:message code="finder.keyword" var="keywordHeader"/>
 	<display:column property="keyword" title="${keywordHeader}" sortable="false"/>
 	
-	<spring:message code="finder.keyword" var="keywordHeader"/>
-	<display:column property="keyword" title="${keywordHeader}" sortable="false"/>
-	
 	<spring:message code="finder.matter" var="matterHeader"/>
 	<display:column property="matter" title="${matterHeader}" sortable="false"/>
 	

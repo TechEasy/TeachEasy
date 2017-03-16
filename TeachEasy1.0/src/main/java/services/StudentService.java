@@ -20,6 +20,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Comment;
 import domain.CreditCard;
+import domain.Finder;
 import domain.Request;
 import domain.SocialIdentity;
 import domain.Student;
@@ -40,7 +41,8 @@ public class StudentService {
 	@Autowired
 	private Validator validator;
 	
-	
+	@Autowired
+	private FinderService finderService;
 	//Constructors
 	public StudentService() {
 		super();
@@ -55,12 +57,14 @@ public class StudentService {
 		Collection<Request> requests = new ArrayList<Request>();
 		result = new Student();
 		
-		//Finder finder=finderService.create();
+		Finder finder=finderService.create();
 		
+		
+		Finder f2 = finderService.save2(finder);
 		result.setRequests(requests);
 		result.setSocialIdentity(socialIdentity);
 		result.setComments(comments);
-	  //result.setFinder(finder);
+		result.setFinder(f2);
 		return result;
 	}
 
