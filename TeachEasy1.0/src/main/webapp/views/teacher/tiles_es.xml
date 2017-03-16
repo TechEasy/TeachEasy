@@ -26,4 +26,8 @@
 		<put-attribute name="body" value="/views/teacher/display.jsp" />
 	</definition>
 	
+	<definition name="teacher/register" extends="master.page">	
+		<put-attribute name="title" value="Registrarse como profesor" />
+		<put-attribute name="body" value="/views/teacher/register.jsp" />
+	</definition>
 </tiles-definitions>

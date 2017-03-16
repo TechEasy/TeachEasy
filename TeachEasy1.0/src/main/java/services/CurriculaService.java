@@ -33,6 +33,9 @@ public class CurriculaService {
 	public Curricula create() {
 		Curricula result;
 		result = new Curricula();
+		result.setEducationSection("");
+		result.setExperienceSection("");
+		result.setHobbiesSection("");
 		return result;
 	}
 

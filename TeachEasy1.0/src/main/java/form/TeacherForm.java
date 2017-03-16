@@ -142,6 +142,7 @@ public class TeacherForm {
 	}
 
 	@NotBlank
+	@Pattern(regexp = "^ES\\d{22}")
 	public String getIban() {
 		return iban;
 	}

@@ -4,8 +4,7 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -23,7 +22,7 @@ public class Curricula extends DomainEntity {
 	private String	experienceSection;
 	private String	hobbiesSection;
 
-	@NotBlank
+	@NotNull
 	public String getEducationSection() {
 		return this.educationSection;
 	}
@@ -32,7 +31,7 @@ public class Curricula extends DomainEntity {
 		this.educationSection = educationSection;
 	}
 
-	@NotBlank
+	@NotNull
 	public String getExperienceSection() {
 		return this.experienceSection;
 	}
@@ -41,7 +40,7 @@ public class Curricula extends DomainEntity {
 		this.experienceSection = experienceSection;
 	}
 
-	@NotBlank
+	@NotNull
 	public String getHobbiesSection() {
 		return this.hobbiesSection;
 	}

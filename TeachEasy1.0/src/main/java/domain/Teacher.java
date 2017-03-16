@@ -48,7 +48,7 @@ public class Teacher extends Actor {
 	}
 
 	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}$")
+	@Pattern(regexp = "^ES\\d{22}")
 	public String getIban(){
 		return iban;
 	}

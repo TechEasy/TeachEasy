@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Student;
 import domain.Teacher;
 
-import form.StudentForm;
-import services.StudentService;
+import form.TeacherForm;
 import services.TeacherService;
 
 @Controller
@@ -39,7 +37,7 @@ public class TeacherController extends AbstractController {
 			Teacher teacher;
 
 			teacher = teacherService.findByPrincipal();
-			//teacher = teacherService.encryptCreditCard(teacher);
+			teacher = teacherService.encryptCreditCard(teacher);
 			result=new ModelAndView("teacher/display");
 			result.addObject("teacher", teacher);
 			result.addObject("comments", teacher.getComments());
@@ -52,56 +50,56 @@ public class TeacherController extends AbstractController {
 	
 	
 	
-	/*// Creation ------------------------------------------------
+	// Creation ------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		StudentForm studentForm;
+		TeacherForm teacherForm;
 
-		studentForm = studentService.generateForm();
-		result = createEditModelAndView(studentForm, null);
+		teacherForm = teacherService.generateForm();
+		result = createEditModelAndView(teacherForm, null);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid StudentForm studentForm, BindingResult binding) {
+	public ModelAndView save(@Valid TeacherForm teacherForm, BindingResult binding) {
 		ModelAndView result;
-		Student student;
+		Teacher teacher;
 
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(studentForm, null);
+			result = createEditModelAndView(teacherForm, null);
 		} else {
 			try {
-				student = studentService.reconstruct(studentForm, binding);
-				studentService.save(student);
+				teacher = teacherService.reconstruct(teacherForm, binding);
+				teacherService.save(teacher);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (Throwable oops) {
-				String msgCode = "student.register.error";
+				String msgCode = "teacher.register.error";
 				if (oops.getMessage().equals("notEqualPassword")) {
-					msgCode = "student.register.notEqualPassword";
+					msgCode = "teacher.register.notEqualPassword";
 				}else if (oops.getMessage().equals("agreedNotAccepted")) {
-						msgCode = "student.register.agreedNotAccepted";
+						msgCode = "teacher.register.agreedNotAccepted";
 				}
-				if (oops.getMessage().equals("badCreditCard")) {
-					msgCode = "student.badCreditCard";
+				if (oops.getMessage().equals("badIban")) {
+					msgCode = "teacher.badIban";
 				}
-				result = createEditModelAndView(studentForm, msgCode);
+				result = createEditModelAndView(teacherForm, msgCode);
 			}
 		}
 
 		return result;
 
 	}
-*/
+
 	// Ancillary methods ---------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(StudentForm studentForm, String message) {
+	protected ModelAndView createEditModelAndView(TeacherForm teacherForm, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("student/register");
-		result.addObject("studentForm", studentForm);
+		result = new ModelAndView("teacher/register");
+		result.addObject("teacherForm", teacherForm);
 		result.addObject("message", message);
 
 		return result;

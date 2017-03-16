@@ -1,13 +1,15 @@
 
 package services;
 
+import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import repositories.TeacherRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Curricula;
 import domain.Teacher;
 import form.TeacherForm;
 
@@ -35,6 +38,8 @@ public class TeacherService {
 	@Autowired
 	private Validator	validator;
 
+	@Autowired
+	private CurriculaService	curriculaService;
 
 	//Constructors
 	public TeacherService() {
@@ -45,8 +50,11 @@ public class TeacherService {
 	// Simple CRUD methods
 	public Teacher create() {
 		Teacher result;
+		Curricula curricula = curriculaService.create();
+		curricula = curriculaService.save(curricula);
 		result = new Teacher();
 		
+		result.setCurricula(curricula);
 		result.setAvgStars(0.0);
 		result.setFeeAmount(0.0);
 		return result;
@@ -66,6 +74,12 @@ public class TeacherService {
 
 	public Teacher save(Teacher teacher) {
 		Teacher result;
+		
+		String password = teacher.getUserAccount().getPassword();
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(password, null);
+		teacher.getUserAccount().setPassword(md5);
+		
 		result = teacherRepository.save(teacher);
 		return result;
 
@@ -116,7 +130,7 @@ public class TeacherService {
 
 		Assert.isTrue(teacherForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(teacherForm.getAgreed(), "agreedNotAccepted");
-		Assert.isTrue(validarCuentaBancaria(teacherForm.getIban()), "badCreditCard");
+		Assert.isTrue(validarCuentaBancaria(teacherForm.getIban()), "badIban");
 
 		if(teacherForm.getId()==0){
 			result = create();
@@ -152,39 +166,31 @@ public class TeacherService {
 	
 
 	public static Boolean validarCuentaBancaria(String cuenta){
-		Pattern cuentaPattern = Pattern.compile("\\d{20}");
-		Matcher m = cuentaPattern.matcher(cuenta);
-		if (m.matches()) {
-		// cuenta cumple el patrón (20 dígitos)
-			String banco = cuenta.substring(0, 4);
-			String sucursal = cuenta.substring(4,8);
-			String dC = cuenta.substring(8, 10);
-			String CCC = cuenta.substring(10, 20); 
-			if (!( obtenerDigito("00" + banco + sucursal ) == Integer.parseInt(String.valueOf(dC.charAt(0)))) 
-					||!(obtenerDigito(CCC) == Integer.parseInt(String.valueOf(dC.charAt(1)))))
-				return false;
-			else
-				return true;
-		}
-		return false; 
+		 
+		String A = cuenta.substring(0, 1);
+		String B = cuenta.substring(1, 2);
 		
-	} 
+		List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+		Integer primero = 10+letras.indexOf(A);
+		Integer segundo = 10+letras.indexOf(B);
+		
+		cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
+		cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
 	
-	
-	public static int obtenerDigito(String valor){
-		Integer[] valores = new Integer[]{1, 2, 4, 8, 5, 10, 9, 7, 3, 6};
-	
-		Integer control = 0;
-		for (int i=0; i <=9; i++)
-			control += Integer.parseInt(String.valueOf(valor.charAt(i))) * valores[i];
-			control = 11 - (control % 11);
-		if (control == 11) 
-			control = 0;
-		else if (control == 10) 
-			control = 1;
-		return control;
+		BigInteger numero = new BigInteger(cuenta);
+		BigInteger v = new BigInteger("97");
+		BigInteger s = new BigInteger("1");
+		BigInteger validador = numero.mod(v);
+		
+	    if (validador.compareTo(s)==0){
+	        return true;
+	    }else{
+	        return false;
+	    }
+		
 	}
 	
+
 	public Teacher findByPrincipal() {
 		Teacher result;
 		int userAccountId;
@@ -192,6 +198,40 @@ public class TeacherService {
 		userAccountId = LoginService.getPrincipal().getId();
 		result = teacherRepository.findByUserAccountId(userAccountId);
 
+		return result;
+	}
+	
+	public Double findAvgStars(Teacher teacher){
+		Double result;
+		result = teacherRepository.fingAvgStars(teacher);
+		return result;
+	}
+	
+	public void updateAvgStars(Teacher teacher){
+		teacher.setAvgStars(teacherRepository.fingAvgStars(teacher));
+		save(teacher);
+	}
+	
+	public Teacher encryptCreditCard(Teacher teacher) {
+		Teacher result = new Teacher();
+		
+		result.setId(teacher.getId());
+		result.setUserAccount(teacher.getUserAccount());
+		result.setComments(teacher.getComments());
+		result.setEmail(teacher.getEmail());
+		result.setName(teacher.getName());
+		result.setSurname(teacher.getSurname());
+		result.setPhone(teacher.getPhone());
+		result.setPicture(teacher.getPicture());
+		result.setSocialIdentity(teacher.getSocialIdentity());
+		result.setCity(teacher.getCity());
+		result.setAddress(teacher.getAddress());
+		result.setDate(teacher.getDate());
+		result.setIban("****************" + teacher.getIban().substring(16));
+		result.setCurricula(teacher.getCurricula());
+		result.setAvgStars(teacher.getAvgStars());
+		result.setFeeAmount(teacher.getFeeAmount());
+		
 		return result;
 	}
 }

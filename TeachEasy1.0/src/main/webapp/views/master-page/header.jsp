@@ -26,6 +26,7 @@
 
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
+			<li><a class="fNiv" href="teacher/register.do"><spring:message code="master.page.teacher.register" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>
 			

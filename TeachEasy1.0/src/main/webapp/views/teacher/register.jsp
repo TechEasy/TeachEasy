@@ -58,7 +58,7 @@
 				<br/>
 				<fieldset>
 					<legend align="left"><spring:message code="teacher.iban.info"/></legend>
-					<acme:textbox code="teacher.iban" path="teacher.iban"/>
+					<acme:textbox code="teacher.iban" path="iban"/>
 					<br/>			
 				</fieldset>
 			</fieldset>
