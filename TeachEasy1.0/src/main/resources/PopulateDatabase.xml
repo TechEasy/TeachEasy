@@ -199,7 +199,61 @@
 		<property name="cvv" value="823" />
 	</bean>
 	
+	<!-- WorkTime -->
+	<bean id="workTime1" class="domain.WorkTime">
+		<property name="checkIn" value="10:00" />
+		<property name="checkOut" value="12:00" />
+		<property name="available" value="true" />
+	</bean>
 	
+	<bean id="workTime2" class="domain.WorkTime">
+		<property name="checkIn" value="11:00" />
+		<property name="checkOut" value="13:00" />
+		<property name="available" value="false" />
+	</bean>
+	
+	<bean id="workTime3" class="domain.WorkTime">
+		<property name="checkIn" value="10:00" />
+		<property name="checkOut" value="12:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<!-- Day  -->
+	<bean id="day1" class="domain.Day">
+		<property name="name" value="Lunes" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime1"/>
+				<ref bean="workTime2"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="day2" class="domain.Day">
+		<property name="name" value="Martes" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- TimeTabe -->
+	<bean id="timeTable1" class="domain.TimeTable">
+			<property name="days">
+				<list>
+					<ref bean="day1"/>
+				</list>
+			</property>
+	</bean>
+	<bean id="timeTable2" class="domain.TimeTable">
+			<property name="days">
+				<list>
+					<ref bean="day2"/>
+				</list>
+			</property>
+	</bean>
+
 	<!-- Administrators -->
 
 	<bean id="administrator1" class="domain.Administrator">
@@ -240,6 +294,7 @@
 				<ref bean="socialIdentity2" />
 			</list>
 		</property>
+		<property name="timeTable" ref="timeTable1"/>
 	</bean>	
 	
 	<bean id="teacher2" class="domain.Teacher">
@@ -259,6 +314,8 @@
 			<list>
 			</list>
 		</property>
+		<property name="timeTable" ref="timeTable2"/>
+		
 	</bean>	
 	
 	<bean id="teacher3" class="domain.Teacher">

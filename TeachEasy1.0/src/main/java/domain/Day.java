@@ -1,11 +1,13 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -36,15 +38,15 @@ public class Day extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private WorkTime	workTime;
+	private Collection<WorkTime>	workTimes;
 
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
-	public WorkTime getWorkTime() {
-		return workTime;
+	@OneToMany(cascade = CascadeType.ALL)
+	public Collection<WorkTime> getWorkTimes() {
+		return workTimes;
 	}
-	public void setWorkTime(WorkTime workTime) {
-		this.workTime = workTime;
+	public void setWorkTimes(Collection<WorkTime> workTimes) {
+		this.workTimes = workTimes;
 	}
 
 }

@@ -1,16 +1,11 @@
 
 package domain;
 
-import java.util.Date;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -24,29 +19,27 @@ public class WorkTime extends DomainEntity {
 
 
 	// Attributes -------------------------------------------------------------
-	private Date	checkin;
-	private Date	checkout;
+	private String	checkIn;
+	private String	checkOut;
 	private Boolean	available;
 
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm")
-	public Date getCheckin() {
-		return checkin;
+	@Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+	public String getCheckIn() {
+		return checkIn;
 	}
-	public void setCheckin(Date checkin) {
-		this.checkin = checkin;
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
 	}
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm")
-	public Date getCheckout() {
-		return checkout;
+	@Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+	public String getCheckOut() {
+		return checkOut;
 	}
-	public void setCheckout(Date checkout) {
-		this.checkout = checkout;
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
 	}
 
 	@NotNull
