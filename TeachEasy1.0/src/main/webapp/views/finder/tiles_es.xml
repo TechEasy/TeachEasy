@@ -21,6 +21,11 @@
 		<put-attribute name="body" value="/views/finder/display.jsp" />
 	</definition>
 	
+	<definition name="finder/display2" extends="master.page">	
+		<put-attribute name="title" value="Buscador" />
+		<put-attribute name="body" value="/views/finder/display2.jsp" />
+	</definition>
+	
 	<definition name="finder/edit" extends="master.page">	
 		<put-attribute name="title" value="Editar buscador" />
 		<put-attribute name="body" value="/views/finder/edit.jsp" />

@@ -63,10 +63,14 @@ public class ProposalService {
 	public Collection<Proposal> findByFinder(Finder finder) {
 		Collection<Proposal> result = new ArrayList<Proposal>();
 		Collection<Proposal> aux;
-		if (finder.getKeyword() == null) {
+		if (finder.getKeyword() == null && finder.getMatter()==null) {
 			aux = proposalRepository.findByCity(finder.getCity());
-		} else {
+		} else if(finder.getMatter()==null){
 			aux = proposalRepository.findByKey(finder.getKeyword(), finder.getCity());
+		}else if(finder.getKeyword()==null){
+			aux = proposalRepository.findByMatter(finder.getMatter(), finder.getCity());
+		}else{
+			aux = proposalRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(),finder.getKeyword());
 		}
 		if (finder.getMinimumPrice() == null && finder.getMaximumPrice() == null) {
 			result = aux;

@@ -63,10 +63,14 @@ public class CourseService {
 	public Collection<Course> findByFinder(Finder finder) {
 		Collection<Course> result = new ArrayList<Course>();
 		Collection<Course> aux;
-		if (finder.getKeyword() == null) {
+		if (finder.getKeyword() == null && finder.getMatter()==null) {
 			aux = courseRepository.findByCity(finder.getCity());
-		} else {
+		} else if(finder.getMatter()==null){
 			aux = courseRepository.findByKey(finder.getKeyword(), finder.getCity());
+		}else if(finder.getKeyword()==null){
+			aux = courseRepository.findByMatter(finder.getMatter(), finder.getCity());
+		}else{
+			aux = courseRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(),finder.getKeyword());
 		}
 		if (finder.getMinimumPrice() == null && finder.getMaximumPrice() == null) {
 			result = aux;

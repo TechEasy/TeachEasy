@@ -24,7 +24,7 @@
 	<security:authorize access="hasRole('STUDENT')">
 	
 	<display:column>
-		<a href="student/finder/edit.do?finderId=${row.id}"><spring:message code="finder.edit" /></a>
+		<a href="student/finder/edit2.do?finderId=${row.id}"><spring:message code="finder.edit" /></a>
 	</display:column>			
 	
 					
@@ -47,25 +47,27 @@
 
 </display:table>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="proposals" requestURI="${requestURI}" id="row">
+
+	<display:table pagesize="5" class="displaytag" keepStatus="true" name="courses" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
 	
 	<!-- Attributes -->
-	<spring:message code="proposal.teacher" var="teacher" />
-	<display:column property="teacher.name" title="${teacher}" sortable="false" />
+	<spring:message code="course.academy" var="academy" />
+	<display:column property="academy.name" title="${academy}" sortable="false" />
 	
-	<spring:message code="proposal.teacher.surname" var="teacher" />
-	<display:column property="teacher.surname" title="${teacher}" sortable="false" />
-	
-	<spring:message code="proposal.title" var="titleHeader"/>
+	<spring:message code="course.title" var="titleHeader"/>
 	<display:column property="title" title="${titleHeader}" sortable="false" />
 
-	<spring:message code="proposal.rate" var="rateHeader" />
+	<spring:message code="course.rate" var="rateHeader" />
 	<display:column property="rate" title="${rateHeader}" sortable="true" />
 
-	<display:column>
-		<a href="teacher/display.do?proposalId=${row.id}"><spring:message code="finder.view.teacher" /></a>
-	</display:column>
-	</display:table>
 	
+	<display:column>
+		<a href="academy/display.do?courseId=${row.id}"><spring:message code="finder.view.academy" /></a>
+	</display:column>
+	
+	
+	
+	
+</display:table>
