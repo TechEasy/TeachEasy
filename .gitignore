@@ -7,7 +7,7 @@
 
 #Eclipse
 /.settings/
-/target/
+*/target/*
 TeachEasy/target/m2e-wtp/web-resources/META-INF/mavenTeachEasy/TeachEasy/pom.properties
 TeachEasy/target/m2e-wtp/web-resources/META-INF/maven/TeachEasy/TeachEasy/pom.xml
 TeachEasy1.0/target/TeachEasy-1.0/WEB-INF/classes/displaytag_es.properties
