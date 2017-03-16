@@ -57,7 +57,7 @@ public class FinderForm {
 		public void setKeyword(String keyword) {
 			this.keyword = keyword;
 		}
-		@NotBlank
+		
 		@SafeHtml(whitelistType = WhiteListType.NONE)
 		public String getMatter() {
 			return this.matter;

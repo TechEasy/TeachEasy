@@ -1,5 +1,7 @@
 package controllers.Student;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import services.ProposalService;
 
 import controllers.AbstractController;
 import domain.Finder;
+import domain.Proposal;
 import form.FinderForm;
 
 @Controller
@@ -84,9 +87,10 @@ public class StudentFinderController extends AbstractController{
 			} else {
 				try {
 					finder=finderService.reconstruct(finderForm, binding);
+					Collection<Proposal>proposals=proposalService.findByFinder(finder);
 					finderService.save(finder);
 					result = display();
-					result.addObject("",finder.getResults());
+					result.addObject("proposals",proposals);
 				} catch (Throwable oops) {
 					result = createEditModelAndView(finderForm, "master.page.commit.error");
 			}
