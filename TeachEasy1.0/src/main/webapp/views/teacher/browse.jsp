@@ -16,4 +16,19 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="customer.action.1" /></p>
+<display:table  name="teachers" id="teacherList" requestURI="${requestURI}" class="displaytag">
+	
+	<spring:message code="teacher.name" var="nameHeader"/>
+	<display:column property="name" title="${nameHeader}"/>
+	
+	<spring:message code="teacher.surname" var="surnameHeader"/>
+	<display:column property="surname" title="${surnameHeader}" sortable="true"/>
+	
+	
+
+	<display:column titleKey="teacher.view">
+		<a href="teacher/display.do?teacherId=${teacherList.teacher.id}">
+		<spring:message code="teacher.view"></spring:message></a>	
+	</display:column>
+	
+</display:table>
