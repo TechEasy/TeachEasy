@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table  name="proposals" id="proposalList" requestURI="/nutritionist/list.do" class="displaytag">
+<display:table  name="proposals" id="proposalList" requestURI="${requestURI}" class="displaytag">
 	
 	<spring:message code="proposal.title" var="titleHeader"/>
 	<display:column property="title" title="${titleHeader}"/>
@@ -31,7 +31,7 @@
 	<display:column property="rate" title="${rateHeader}"/>
 	
 	<spring:message code="proposal.matter" var="matterHeader"/>
-	<display:column property="proposalList.subjectMatter" title="${matterHeader}"/>
+	<display:column property="subjectMatter" title="${matterHeader}"/>
 	
 	
 	<display:column titleKey="proposal.teacher">
