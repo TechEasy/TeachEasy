@@ -1,4 +1,7 @@
+
 package controllers;
+
+import java.util.Collection;
 
 import javax.validation.Valid;
 
@@ -9,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Teacher;
-
-import form.TeacherForm;
 import services.TeacherService;
+import domain.Teacher;
+import form.TeacherForm;
 
 @Controller
 @RequestMapping("/teacher")
@@ -31,25 +33,34 @@ public class TeacherController extends AbstractController {
 	}
 
 	// Display ------------------------------------------------
-	@RequestMapping(value="/display", method=RequestMethod.GET)
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
-			ModelAndView result;
-			Teacher teacher;
+		ModelAndView result;
+		Teacher teacher;
 
-			teacher = teacherService.findByPrincipal();
-			teacher = teacherService.encryptCreditCard(teacher);
-			result=new ModelAndView("teacher/display");
-			result.addObject("teacher", teacher);
-			result.addObject("comments", teacher.getComments());
-			result.addObject("requestURI", "teacher/display.do");
-			result.addObject("socialIdentities", teacher.getSocialIdentity());
-			
-			return result;
-		}
-	
-	
-	
-	
+		teacher = teacherService.findByPrincipal();
+		teacher = teacherService.encryptCreditCard(teacher);
+		result = new ModelAndView("teacher/display");
+		result.addObject("teacher", teacher);
+		result.addObject("comments", teacher.getComments());
+		result.addObject("requestURI", "teacher/display.do");
+		result.addObject("socialIdentities", teacher.getSocialIdentity());
+
+		return result;
+	}
+
+	// Browse ------------------------------------------------
+	@RequestMapping(value = "/browse", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Teacher> teachers;
+		teachers = teacherService.findAll();
+		result = new ModelAndView("teacher/browse");
+		result.addObject("teachers", teachers);
+
+		return result;
+	}
+
 	// Creation ------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -79,8 +90,8 @@ public class TeacherController extends AbstractController {
 				String msgCode = "teacher.register.error";
 				if (oops.getMessage().equals("notEqualPassword")) {
 					msgCode = "teacher.register.notEqualPassword";
-				}else if (oops.getMessage().equals("agreedNotAccepted")) {
-						msgCode = "teacher.register.agreedNotAccepted";
+				} else if (oops.getMessage().equals("agreedNotAccepted")) {
+					msgCode = "teacher.register.agreedNotAccepted";
 				}
 				if (oops.getMessage().equals("badIban")) {
 					msgCode = "teacher.badIban";
@@ -106,4 +117,3 @@ public class TeacherController extends AbstractController {
 	}
 
 }
-

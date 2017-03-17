@@ -25,10 +25,11 @@
 	<display:column property="surname" title="${surnameHeader}" sortable="true"/>
 	
 	
-
+	<security:authorize access="isAuthenticated()">
 	<display:column titleKey="teacher.view">
-		<a href="teacher/display.do?teacherId=${teacherList.teacher.id}">
+		<a href="teacher/display.do?teacherId=${teacherList.id}">
 		<spring:message code="teacher.view"></spring:message></a>	
 	</display:column>
+	</security:authorize>
 	
 </display:table>
