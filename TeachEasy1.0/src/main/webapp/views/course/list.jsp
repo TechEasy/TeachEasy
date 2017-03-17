@@ -37,7 +37,7 @@
 	<display:column property="level" title="${levelHeader}"/>
 	
 	<spring:message code="course.matter" var="matterHeader"/>
-	<display:column property="subjectMatter" title="${matterHeader}"/>
+	<display:column property="subjectMatter.name" title="${matterHeader}"/>
 	
 	<%--
 	<display:column titleKey="proposal.teacher">
