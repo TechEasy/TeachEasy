@@ -28,16 +28,16 @@
 	<display:column property="updateMoment" title="${updateMomentHeader}" sortable="true"/>
 	
 	<spring:message code="course.rate" var="rateHeader"/>
-	<display:column property="rate" title="${rateHeader}"/>
+	<display:column property="rate" title="${rateHeader}" sortable="true"/>
 	
 	<spring:message code="course.duration" var="durationHeader"/>
-	<display:column property="duration" title="${durationHeader}"/>
+	<display:column property="duration" title="${durationHeader}" sortable="true"/>
 	
 	<spring:message code="course.level" var="levelHeader"/>
-	<display:column property="level" title="${levelHeader}"/>
+	<display:column property="level" title="${levelHeader}" sortable="true"/>
 	
 	<spring:message code="course.matter" var="matterHeader"/>
-	<display:column property="subjectMatter.name" title="${matterHeader}"/>
+	<display:column property="subjectMatter.name" title="${matterHeader}" sortable="true"/>
 	
 	<%--
 	<display:column titleKey="proposal.teacher">

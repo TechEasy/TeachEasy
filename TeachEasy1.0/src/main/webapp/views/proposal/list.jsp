@@ -28,10 +28,10 @@
 	<display:column property="updateMoment" title="${updateMomentHeader}" sortable="true"/>
 	
 	<spring:message code="proposal.rate" var="rateHeader"/>
-	<display:column property="rate" title="${rateHeader}"/>
+	<display:column property="rate" title="${rateHeader}" sortable="true" />
 	
 	<spring:message code="proposal.matter" var="matterHeader"/>
-	<display:column property="subjectMatter.name" title="${matterHeader}"/>
+	<display:column property="subjectMatter.name" title="${matterHeader}" sortable="true"/>
 	
 	<security:authorize access="isAuthenticated()">
 	<display:column titleKey="proposal.teacher">
