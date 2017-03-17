@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -30,7 +31,7 @@ public class Request extends DomainEntity {
 
 
 	@NotBlank
-	@Pattern(regexp = "^PENDING$|^ACCEPTED$|^DENIED$)")
+	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$")
 	public String getStatus() {
 		return status;
 	}
@@ -39,7 +40,7 @@ public class Request extends DomainEntity {
 	}
 
 	@NotNull
-	@Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckin(){
 		return checkin;
 	}
@@ -48,7 +49,7 @@ public class Request extends DomainEntity {
 	}
 
 	@NotNull
-	@Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckout() {
 		return checkout;
 	}

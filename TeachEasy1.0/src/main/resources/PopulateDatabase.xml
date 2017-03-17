@@ -128,7 +128,7 @@
 	
 	<!-- CreditCards -->
 	<bean id="creditCard1" class="domain.CreditCard">
-		<property name="holderName" value="Lessor 1" />
+		<property name="holderName" value="Antonio" />
 		<property name="brandName" value="Visa" />
 		<property name="number" value="4556314032839099" />
 		<property name="expirationMonth" value="06" />
@@ -137,7 +137,7 @@
 	</bean>
 
 	<bean id="creditCard2" class="domain.CreditCard">
-		<property name="holderName" value="Lessor 2" />
+		<property name="holderName" value="Juan" />
 		<property name="brandName" value="MasterCard" />
 		<property name="number" value="5462093507285125" />
 		<property name="expirationMonth" value="12" />
@@ -146,7 +146,7 @@
 	</bean>
 	
 	<bean id="creditCard3" class="domain.CreditCard">
-		<property name="holderName" value="Lessor 3" />
+		<property name="holderName" value="Francisco" />
 		<property name="brandName" value="Discover" />
 		<property name="number" value="4532870675086719" />
 		<property name="expirationMonth" value="01" />
@@ -155,7 +155,7 @@
 	</bean>
 	
 	<bean id="creditCard4" class="domain.CreditCard">
-		<property name="holderName" value="Tenant 1" />
+		<property name="holderName" value="Rafael" />
 		<property name="brandName" value="MasterCard" />
 		<property name="number" value="5550642130319173" />
 		<property name="expirationMonth" value="10" />
@@ -164,7 +164,7 @@
 	</bean>
 
 	<bean id="creditCard5" class="domain.CreditCard">
-		<property name="holderName" value="Tenant 1" />
+		<property name="holderName" value="Nicolas" />
 		<property name="brandName" value="Discover" />
 		<property name="number" value="6011635376489313" />
 		<property name="expirationMonth" value="03" />
@@ -173,7 +173,7 @@
 	</bean>
 
 	<bean id="creditCard6" class="domain.CreditCard">
-		<property name="holderName" value="Tenant 2" />
+		<property name="holderName" value="Alejandro" />
 		<property name="brandName" value="Discover" />
 		<property name="number" value="6011096186968527" />
 		<property name="expirationMonth" value="01" />
@@ -182,7 +182,7 @@
 	</bean>
 
 	<bean id="creditCard7" class="domain.CreditCard">
-		<property name="holderName" value="Tenant 2" />
+		<property name="holderName" value="Rubén" />
 		<property name="brandName" value="MasterCard" />
 		<property name="number" value="5197293153245827" />
 		<property name="expirationMonth" value="01" />
@@ -191,7 +191,7 @@
 	</bean>
 
 	<bean id="creditCard8" class="domain.CreditCard">
-		<property name="holderName" value="Tenant 3" />
+		<property name="holderName" value="Fran" />
 		<property name="brandName" value="Discover" />
 		<property name="number" value="6011824468295339" />
 		<property name="expirationMonth" value="01" />
@@ -199,7 +199,8 @@
 		<property name="cvv" value="823" />
 	</bean>
 	
-	<!-- WorkTime -->
+	<!-- WorkTimes -->
+	
 	<bean id="workTime1" class="domain.WorkTime">
 		<property name="checkIn" value="10:00" />
 		<property name="checkOut" value="12:00" />
@@ -218,7 +219,8 @@
 		<property name="available" value="true" />
 	</bean>
 	
-	<!-- Day  -->
+	<!-- Days  -->
+	
 	<bean id="day1" class="domain.Day">
 		<property name="name" value="Lunes" />
 		<property name="workTimes">
@@ -238,7 +240,8 @@
 		</property>
 	</bean>
 	
-	<!-- TimeTabe -->
+	<!-- TimeTabes -->
+	
 	<bean id="timeTable1" class="domain.TimeTable">
 			<property name="days">
 				<list>
@@ -246,6 +249,8 @@
 				</list>
 			</property>
 	</bean>
+	
+		
 	<bean id="timeTable2" class="domain.TimeTable">
 			<property name="days">
 				<list>
@@ -258,12 +263,12 @@
 
 	<bean id="administrator1" class="domain.Administrator">
 		<property name="userAccount" ref="userAccount1" />
-		<property name="name" value="Administrator name" />
-		<property name="surname" value="Administrator surname" />
-		<property name="email" value="administrator1@mail.com" />
+		<property name="name" value="Simón" />
+		<property name="surname" value="Antón Antunez" />
+		<property name="email" value="simantant@gmail.com" />
 		<property name="phone" value="654123852" />
 		<property name="picture" value="http://stawamuschiefpark.com/wp-content/uploads/2014/12/avatar-300x300.png" />
-		<property name="date" value="28/03/1994" />	
+		<property name="date" value="28/03/1980" />	
 		<property name="city" value="Sevilla" />	
 		<property name="address" value="Calle Sanlucar la Mayor Bloque 7" />		
 		<property name="socialIdentity">
@@ -277,36 +282,41 @@
 
 	<bean id="teacher1" class="domain.Teacher">
 		<property name="userAccount" ref="userAccount2" />
-		<property name="name" value="Teacher1 name" />
-		<property name="surname" value="Teacher1 surname" />
-		<property name="email" value="teacher1@mail.com" />
+		<property name="name" value="Alberto" />
+		<property name="surname" value="Cabrera Cantero" />
+		<property name="email" value="albcabcan@gmail.com" />
 		<property name="phone" value="654122347" />
 		<property name="picture" value="https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png" />
-		<property name="date" value="12/01/1943" />	
+		<property name="date" value="12/01/1975" />	
 		<property name="city" value="Sevilla" />	
-		<property name="address" value="Alclá de Henares" />	
+		<property name="address" value="Calle Saenz de Tejada" />	
 		<property name="avgStars" value="2.0" />
 		<property name="feeAmount" value="200.0" />
 		<property name="iban" value="ES9121000418450200051332" />	
 		<property name="curricula" ref="curricula1" />	
+		<property name="proposals">
+			<list>
+				<ref bean="proposal1" />
+			</list>
+		</property>	
 		<property name="socialIdentity">
 			<list>
 				<ref bean="socialIdentity2" />
 			</list>
 		</property>
-		<property name="timeTable" ref="timeTable1"/>
+		
 	</bean>	
 	
 	<bean id="teacher2" class="domain.Teacher">
 		<property name="userAccount" ref="userAccount3" />
-		<property name="name" value="Teacher2 name" />
-		<property name="surname" value="Teacher2 surname" />
-		<property name="email" value="teacher2@mail.com" />
+		<property name="name" value="José" />
+		<property name="surname" value="Chamorro Echevarria" />
+		<property name="email" value="joschaech@gmail.com" />
 		<property name="phone" value="609822347" />
 		<property name="picture" value="http://cyrusindia.com/hrpanel/mriAssets2016/me1.png" />
-		<property name="date" value="12/01/1943" />	
-		<property name="city" value="Granada" />	
-		<property name="address" value="Granáh" />	
+		<property name="date" value="12/01/1980" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Pablo Picaso Portal 11" />	
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="1000.0" />
 		<property name="iban" value="ES9122220418569870051332" />	
@@ -314,20 +324,18 @@
 			<list>
 			</list>
 		</property>
-		<property name="timeTable" ref="timeTable2"/>
-		
 	</bean>	
 	
 	<bean id="teacher3" class="domain.Teacher">
 		<property name="userAccount" ref="userAccount4" />
-		<property name="name" value="Teacher3 name" />
-		<property name="surname" value="Teacher4 surname" />
-		<property name="email" value="teacher4@mail.com" />
+		<property name="name" value="Raúl" />
+		<property name="surname" value="Escribano Donoso" />
+		<property name="email" value="rauescdon@gmail.com" />
 		<property name="phone" value="645692347" />
 		<property name="picture" value="http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png" />
-		<property name="date" value="12/01/1963" />	
-		<property name="city" value="Sevilla" />	
-		<property name="address" value="Calle Benito Villamarín" />	
+		<property name="date" value="12/01/1985" />	
+		<property name="city" value="Granada" />	
+		<property name="address" value="Álamo del Marques" />	
 		<property name="avgStars" value="3.2" />
 		<property name="feeAmount" value="120.0" />
 		<property name="iban" value="ES9122220418569870012332" />	
@@ -341,14 +349,14 @@
 
 	<bean id="student1" class="domain.Student">
 		<property name="userAccount" ref="userAccount5" />
-		<property name="name" value="Student1 name" />
-		<property name="surname" value="Student1 surname" />
-		<property name="email" value="student1@mail.com" />
+		<property name="name" value="Antonio" />
+		<property name="surname" value="Iñigo Jaén" />
+		<property name="email" value="antiñijae@gmail.com" />
 		<property name="phone" value="654126547" />
 		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png" />
-		<property name="date" value="12/01/1985" />	
+		<property name="date" value="12/01/1994" />	
 		<property name="city" value="Sevilla" />	
-		<property name="address" value="Triana" />	
+		<property name="address" value="Calle Silos" />	
 		<property name="creditCard" ref="creditCard1" />
 		<property name="socialIdentity">
 			<list>
@@ -359,14 +367,14 @@
 	
 	<bean id="student2" class="domain.Student">
 		<property name="userAccount" ref="userAccount6" />
-		<property name="name" value="Student2 name" />
-		<property name="surname" value="Student2 surname" />
-		<property name="email" value="student2@mail.com" />
+		<property name="name" value="Juan" />
+		<property name="surname" value="Mendizábal Millán" />
+		<property name="email" value="juamenmil@gmail.com" />
 		<property name="phone" value="694123447" />
 		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png" />
-		<property name="date" value="21/03/1960" />	
+		<property name="date" value="21/03/1999" />	
 		<property name="city" value="Málaga" />	
-		<property name="address" value="Calle de la malagueta" />	
+		<property name="address" value="Marqués de Valdecañas" />	
 		<property name="creditCard" ref="creditCard2" />	
 		<property name="socialIdentity">
 			<list>
@@ -376,14 +384,14 @@
 	
 	<bean id="student3" class="domain.Student">
 		<property name="userAccount" ref="userAccount7" />
-		<property name="name" value="Student3 name" />
-		<property name="surname" value="Student3 surname" />
-		<property name="email" value="student1@mail.com" />
+		<property name="name" value="Francisco" />
+		<property name="surname" value="Ramirez Quero" />
+		<property name="email" value="fraramque@gmail.com" />
 		<property name="phone" value="654126547" />
 		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png" />
-		<property name="date" value="28/03/1988" />	
-		<property name="city" value="Cadiz" />	
-		<property name="address" value="Plaza de los palilleros" />	
+		<property name="date" value="28/03/1997" />	
+		<property name="city" value="Sevilla" />	
+		<property name="address" value="Calle Malasmañanas" />	
 		<property name="creditCard" ref="creditCard3" />
 		<property name="socialIdentity">
 			<list>
@@ -395,10 +403,10 @@
 
 	<bean id="academy1" class="domain.Academy">
 		<property name="userAccount" ref="userAccount8" />
-		<property name="name" value="Academy1 name" />
+		<property name="name" value="English academy" />
 		<property name="city" value="Sevilla" />
-		<property name="address" value="Triana" />	
-		<property name="description" value="Description academy1" />
+		<property name="address" value="Calle General Prim" />	
+		<property name="description" value="Somos una academia expecializada en Inglés" />
 		<property name="cif" value="CIF152" />
 		<property name="avgStars" value="3.0" />
 		<property name="feeAmount" value="200.0" />
@@ -412,10 +420,10 @@
 	
 	<bean id="academy2" class="domain.Academy">
 		<property name="userAccount" ref="userAccount9" />
-		<property name="name" value="Academy2 name" />
-		<property name="city" value="Cadiz" />
-		<property name="address" value="Calle Teatro Falla" />	
-		<property name="description" value="Description academy2" />
+		<property name="name" value="ComeToLearn" />
+		<property name="city" value="Granada" />
+		<property name="address" value="Calle Botica" />	
+		<property name="description" value="Academia, con todo tipo de cursos" />
 		<property name="cif" value="CIF45698" />
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="560.0" />
@@ -460,7 +468,59 @@
 		<property name="socialNetwork" value="Twitter" />	
 		<property name="profileUrl" value="https://twitter.com/academy1" />		
 	</bean>
+	
+	<!-- SubjectMatters -->
+	
+	<bean id="subjectMatter1" class="domain.SubjectMatter">
+		<property name="name" value="01" />
+		<property name="description" value="English Classes" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<!-- Proposals -->
+	
+	<bean id="proposal1" class="domain.Proposal">
+		<property name="ticker" value="01" />
+		<property name="title" value="English Classes" />	
+		<property name="createMoment" value="01/04/2017 20:00" />		
+		<property name="updateMoment" value="01/04/2017 21:00" />	
+		<property name="rate" value="3"/>
+		<property name="teacher" ref="teacher1"/>
+		<property name="subjectMatter" ref="subjectMatter1"/>
+	</bean>
+	
+	<!-- Requests -->
+	
+	<bean id="request1" class="domain.Request">
+		<property name="status" value="PENDING" />
+		<property name="checkin" value="04/04/2017 15:00" />	
+		<property name="checkout" value="04/04/2017 16:00" />		
+		<property name="day" value="Lunes" />
+		<property name="rClass" ref="proposal1" />	
+		<property name="student" ref="student1" />
+	</bean>
+	
+	<!-- Invoices -->
 
+	<bean id="invoice1" class="domain.Invoice">
+		<property name="authoredMoment" value="15/03/2017 16:00" />
+		<property name="vatNumber" value="123456789" />	
+		<property name="information" value="Invoice realizado para el student 1" />		
+		<property name="details" value="No hay detalles importantes que mostrar" />	
+		<property name="total" value="150.0" />	
+		<property name="request" ref="request1"/>
+	</bean>
+	
+	<!-- Finder -->	
+	
+	<bean id="finder1" class="domain.Finder">
+		<property name="city" value="Sevilla" />
+		<property name="minimumPrice" value="10.0" />	
+		<property name="maximumPrice" value="20.0" />
+		<property name="keyword" value="english" />	
+		<property name="matter" value="English" />	
+	</bean>
+	
 	
 	<!-- Other domain beans come here -->	
 	
