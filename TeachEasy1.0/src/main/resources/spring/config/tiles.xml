@@ -32,6 +32,7 @@
 		<value>/views/teacher/tiles.xml</value>
 		<value>/views/student/tiles.xml</value>
 		<value>/views/finder/tiles.xml</value>
+		<value>/views/subjectMatter/tiles.xml</value>
 	</util:list>
 
 </beans>

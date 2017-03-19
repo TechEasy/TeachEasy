@@ -65,6 +65,10 @@
 				</ul>
 			</li>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a href="administrator/subjectMatter/list.do"><spring:message code="master.page.admin.subjectMatter" /></a></li>
+		</security:authorize>
 	</ul>
 </div>
 
