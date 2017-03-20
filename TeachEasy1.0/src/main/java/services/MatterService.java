@@ -41,6 +41,7 @@ public class MatterService {
 	public SubjectMatter create() {
 		SubjectMatter result;
 		result = new SubjectMatter();
+		result.setValidated(false);
 		return result;
 	}
 
@@ -72,6 +73,7 @@ public class MatterService {
 
 		if (subjectMatter.getId() == 0) {
 			result = subjectMatter;
+			result.setValidated(false);
 			this.validator.validate(result, binding);
 
 		} else {
@@ -81,5 +83,12 @@ public class MatterService {
 		}
 
 		return subjectMatter;
+	}
+
+	public Collection<SubjectMatter> findSubjectMatterValidated() {
+		Collection<SubjectMatter> result;
+		result = subjectMatterRepository.findSubjectMatterValidated();
+		;
+		return result;
 	}
 }

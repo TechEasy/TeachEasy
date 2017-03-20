@@ -25,16 +25,16 @@
 	}
 </style>
 
-<security:authorize access="hasRole('ADMIN')">
+<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
 
-	<form:form	action="administrator/subjectMatter/edit.do"	modelAttribute="subjectMatter"> 
+	<form:form	action="subjectMatter/edit.do"	modelAttribute="subjectMatter"> 
 
 			<acme:textbox code="subjectMatter.name" path="name"/>
 			<acme:textbox code="subjectMatter.description" path="description"/>
 
 			
 			<acme:submit name="save" code="subjectMatter.save"/>
-			<acme:cancel code="subjectMatter.cancel" url="subjectMatter/administrator/list.do"/>
+			<acme:cancel code="subjectMatter.cancel" url="subjectMatter/list.do"/>
 		
 	</form:form>
 

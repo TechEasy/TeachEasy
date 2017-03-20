@@ -16,19 +16,31 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table  name="subjectMatters" id="row" requestURI="${requestURI}" class="displaytag">
+<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
+	<display:table  name="subjectMatters" id="row" pagesize="5" requestURI="${requestedURI}" class="displaytag">
 
 			<spring:message code="subjectMatter.name" var="name" />
 			<display:column property="name" title="${name}" sortable="true" />
 			
 			<spring:message code="subjectMatter.description" var="description" />
 			<display:column property="description" title="${description}" sortable="false" />
-	
-</display:table>
-
-<div>
-	<a href="administrator/subjectMatter/create.do">
-		<spring:message	code="subjectMatter.create" />
-	</a>
-</div>
-
+			
+			<security:authorize access="hasRole('ADMIN')">
+				<display:column>
+					<jstl:if test="${!row.validated}">
+						<a href="administrator/subjectMatter/validate.do?subjectMatterId=${row.id}"> <spring:message
+							code="subjectMatter.validate" />
+						</a><br/><br/>
+					</jstl:if>	
+				</display:column>
+			</security:authorize>
+			
+	</display:table>
+</security:authorize>
+<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
+	<div>
+		<a href="subjectMatter/create.do">
+			<spring:message	code="subjectMatter.create" />
+		</a>
+	</div>
+</security:authorize>

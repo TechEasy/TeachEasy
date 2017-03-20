@@ -47,27 +47,51 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="student/display.do"><spring:message code="master.page.student.display" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">
+			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			<li><a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
 			        (<security:authentication property="principal.username" />)
 				</a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 					<li><a href="teacher/display.do"><spring:message code="master.page.teacher.display" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
+
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ACADEMY')">
+			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>	
+			<li><a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>	
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
-			<li><a href="administrator/subjectMatter/list.do"><spring:message code="master.page.admin.subjectMatter" /></a></li>
+			<li><a href="administrator/subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
+						<li><a class="fNiv"> 
+					<spring:message code="master.page.profile" /> 
+			        (<security:authentication property="principal.username" />)
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+				</ul>
+			</li>
 		</security:authorize>
 	</ul>
 </div>
