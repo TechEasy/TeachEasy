@@ -9,6 +9,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -67,7 +68,14 @@ public class AcademyService {
 
 	public Academy save(Academy academy) {
 		Academy result;
+		
+		String password = academy.getUserAccount().getPassword();
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(password, null);
+		academy.getUserAccount().setPassword(md5);
+		
 		result = academyRepository.save(academy);
+		
 		return result;
 
 	}
