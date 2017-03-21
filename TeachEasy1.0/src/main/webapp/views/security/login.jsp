@@ -17,27 +17,45 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <form:form action="j_spring_security_check" modelAttribute="credentials">
-
-	<form:label path="username">
-		<spring:message code="security.username" />
-	</form:label>
-	<form:input path="username" />	
-	<form:errors class="error" path="username" />
-	<br />
-
-	<form:label path="password">
-		<spring:message code="security.password" />
-	</form:label>
-	<form:password path="password" />	
-	<form:errors class="error" path="password" />
-	<br />
-	
-	<jstl:if test="${showError == true}">
-		<div class="error">
-			<spring:message code="security.login.failed" />
+		
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<form:label path="username" >
+						<spring:message code="security.username" />
+					</form:label>
+					<form:input path="username" class="form-control"/>	
+					<form:errors class="error" path="username" />
+				</div>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
-	</jstl:if>
-	
-	<input type="submit" value="<spring:message code="security.login" />" />
-	
-</form:form>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<form:label path="password">
+						<spring:message code="security.password" />
+					</form:label>
+					<form:password path="password" class="form-control" />	
+					<form:errors class="error" path="password" />
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<jstl:if test="${showError == true}">
+			<div class="error">
+				<spring:message code="security.login.failed" />
+			</div>
+		</jstl:if>
+		
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4" >
+				 <button type="submit" class="btn btn-primary btn-block btn-lg" ><spring:message code="security.login" /></button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		
+	</form:form>
