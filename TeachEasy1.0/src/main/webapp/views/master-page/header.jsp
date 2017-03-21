@@ -20,13 +20,15 @@
 <div>
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
+		<security:authorize access="isAuthenticated()">
 			<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
 			<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
 			<li><a class="fNiv" href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			<li><a class="fNiv" href="student/browse.do"><spring:message code="master.page.administrator.student.browse" /></a></li>
 			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
 			<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
-			
+		</security:authorize>	
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
 			<li><a class="fNiv" href="teacher/register.do"><spring:message code="master.page.teacher.register" /></a></li>
