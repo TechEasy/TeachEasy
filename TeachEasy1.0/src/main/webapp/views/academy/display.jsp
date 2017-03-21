@@ -72,7 +72,7 @@
 		 <display:column property="socialNetwork" title="${socialNetworkHeader}" sortable="true"/>
 		 
 		 <spring:message code="socialIdentity.profileURL" var="profileURLHeader" />
-		 <display:column property="profileURL" title="${profileURLHeader}" sortable="false"/>  
+		 <display:column property="profileUrl" title="${profileURLHeader}" sortable="false"/>  
 
 </display:table>
 	
@@ -82,14 +82,14 @@
 	<display:column title="${titleHeader }" property="title"/>
 	
 	<spring:message code="academy.comment.postedMoment" var="postedMomentHeader"/>
-	<display:column title="${postedMomentHeader}" sortable="true"><fmt:formatDate value="${row.postedMoment }" pattern="dd/MM/yyyy HH:mm" /></display:column>
+	<display:column title="${postedMomentHeader}" sortable="true"><fmt:formatDate value="${row.createMoment }" pattern="dd/MM/yyyy HH:mm" /></display:column>
 	
 	<spring:message code="academy.comment.text" var="textHeader"/>
 	<display:column title="${textHeader }" property="text"/>
 	
 	<spring:message code="academy.comment.commentator" var="commentatorHeader"/>
 	<display:column title="${commentatorHeader }">
-			<jstl:out value="${row.commentator.name}"/>
+			<jstl:out value="${row.student.name}"/>
 	</display:column>
 	<spring:message code="academy.comment.stars" var="starsHeader"/>
 	<display:column title="${starsHeader }" property="stars"/>
