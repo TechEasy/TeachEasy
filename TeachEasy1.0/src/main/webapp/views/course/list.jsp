@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table  name="courses" id="courseList" requestURI="${requestURI}" class="displaytag">
+<display:table  name="courses" id="courseList" pagesize="5" requestURI="${requestURI}" class="displaytag">
 	
 	<spring:message code="course.title" var="titleHeader"/>
 	<display:column property="title" title="${titleHeader}"/>

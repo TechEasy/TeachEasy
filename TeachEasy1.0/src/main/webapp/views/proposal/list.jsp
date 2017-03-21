@@ -16,10 +16,10 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table  name="proposals" id="proposalList" requestURI="${requestURI}" class="displaytag">
+<display:table  name="proposals" id="proposalList" pagesize="5" requestURI="${requestURI}" class="displaytag">
 	
 	<spring:message code="proposal.title" var="titleHeader"/>
-	<display:column property="title" title="${titleHeader}"/>
+	<display:column property="title" title="${titleHeader}" sortable="false"/>
 	
 	<spring:message code="proposal.createMoment" var="createMomentHeader"/>
 	<display:column property="createMoment" title="${createMomentHeader}" sortable="true"/>
