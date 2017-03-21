@@ -72,10 +72,10 @@ public class Request extends DomainEntity {
 
 	@Valid
 	@ManyToOne(optional=false)
-	public RClass getRClass(){
+	public RClass getrClass(){
 		return rClass;
 	}
-	public void setRClass(RClass rClass){
+	public void setrClass(RClass rClass){
 		this.rClass = rClass;
 	}
 

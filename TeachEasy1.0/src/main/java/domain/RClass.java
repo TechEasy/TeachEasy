@@ -92,7 +92,7 @@ public class RClass extends DomainEntity {
 
 
 	@Valid
-	@OneToMany(mappedBy = "RClass")
+	@OneToMany(mappedBy = "rClass")
 	public Collection<Request> getRequests() {
 		return requests;
 	}

@@ -61,7 +61,7 @@ public class StudentRequestController extends AbstractController {
 	// Request ----------------------------------------------------------------
 
 	@RequestMapping(value = "/request", method = RequestMethod.GET)
-	public ModelAndView request(@ModelAttribute Request request, @RequestParam int rClassId, BindingResult binding) {
+	public ModelAndView request(@RequestParam int rClassId) {
 		ModelAndView result;
 
 		Request r;
@@ -70,9 +70,9 @@ public class StudentRequestController extends AbstractController {
 		RClass rClass;
 		rClass = rClassService.findOne(rClassId);
 
-		r.setRClass(rClass);
+		r.setrClass(rClass);
 
-		result = new ModelAndView("request/student/request");
+		result = new ModelAndView("request/request");
 		result.addObject("request", r);
 
 		return result;

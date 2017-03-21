@@ -29,12 +29,7 @@
 		
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
-	<spring:message code="request.rClass" var="rClassHeader"/>
-	<display:column title="${rClassHeader}" sortable="true">
-		<jstl:forEach items="${requestList.rClass}" var="rClass">
-    	<ul>${rClass.title}</ul>
-		</jstl:forEach>
-	</display:column>
+	<acme:column code="request.rClass" property="rClass.title" sortable="false"/>
 		<%--
 	<display:column>
 		<jstl:if test="${row.status == 'PENDING'}">
@@ -46,6 +41,7 @@
 	</display:column>	
 		 --%>			
 </display:table>
+
 
 
 
