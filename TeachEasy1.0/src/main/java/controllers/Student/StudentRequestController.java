@@ -1,6 +1,8 @@
 
 package controllers.Student;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import services.StudentService;
 import controllers.AbstractController;
 import domain.RClass;
 import domain.Request;
+import domain.Student;
 
 @Controller
 @RequestMapping("/request/student")
@@ -35,6 +38,24 @@ public class StudentRequestController extends AbstractController {
 
 	public StudentRequestController() {
 		super();
+	}
+
+	// Listing ----------------------------------------------------------------
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Request> requests;
+		Student student;
+		student = studentService.findByPrincipal();
+
+		requests = student.getRequests();
+
+		result = new ModelAndView("request/list");
+		result.addObject("requestURI", "request/student/list.do");
+		result.addObject("requests", requests);
+
+		return result;
 	}
 
 	// Request ----------------------------------------------------------------
@@ -58,7 +79,7 @@ public class StudentRequestController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.POST, params = "save")
-	public ModelAndView request(Request r, BindingResult binding) {
+	public ModelAndView requestC(Request r, BindingResult binding) {
 		ModelAndView result;
 
 		r = requestService.reconstruct(r, binding);

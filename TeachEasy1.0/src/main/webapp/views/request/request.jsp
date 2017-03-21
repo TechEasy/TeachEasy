@@ -27,7 +27,7 @@
 	<fieldset>		
 		<acme:textbox code="request.checkin" path="checkin"/>
 		<acme:textbox code="request.checkout" path="checkout"/>
-		<acme:checkbox code="request.day" path="day"/>
+		<acme:textbox code="request.day" path="day"/>
 		<form:hidden path="status"/>
 	
 	</fieldset>
@@ -46,8 +46,7 @@
 --%>
 	<!-- Buttons -->
 	
-	<input type="submit" name="save"
-		value="<spring:message code="request.save" />" />&nbsp; 
+	<input type="submit" name="save" value="<spring:message code="request.save" />" />&nbsp; 
 	
 	<input type="button" name="cancel" value="<spring:message code="request.cancel" />"
 		onclick="javascript: window.location.replace('proposal/list.do')" />
