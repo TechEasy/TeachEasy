@@ -19,7 +19,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<display:table pagesize="5" class="displaytag" name="requests" requestURI="request/student/list.do" id="row">	
+<display:table pagesize="5" class="displaytag" name="requests" requestURI="request/student/list.do" id="requestList">	
 	
 	<acme:column code="request.checkin" property="checkin" sortable="true"/>
 	
@@ -28,9 +28,13 @@
 	<acme:column code="request.day" property="day" sortable="true"/>
 		
 	<acme:column code="request.status" property="status" sortable="true"/>
-		
-	<acme:column code="request.rClass" property="rClass.title" sortable="true"/>
 	
+	<spring:message code="request.rClass" var="rClassHeader"/>
+	<display:column title="${rClassHeader}" sortable="true">
+		<jstl:forEach items="${requestList.rClass}" var="rClass">
+    	<ul>${rClass.title}</ul>
+		</jstl:forEach>
+	</display:column>
 		<%--
 	<display:column>
 		<jstl:if test="${row.status == 'PENDING'}">
