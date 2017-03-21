@@ -33,7 +33,7 @@
 	
 	<security:authorize access="isAuthenticated()">
 	<display:column titleKey="academy.view">
-		<a href="academy/display.do?academyId=${row.id}">
+		<a href="academy/displayById.do?id=${row.id}">
 		<spring:message code="academy.view"></spring:message></a>	
 	</display:column>
 	</security:authorize>

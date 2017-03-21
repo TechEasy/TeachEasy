@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AcademyService;
+import services.CourseService;
 import domain.Academy;
+import domain.Course;
 import form.AcademyForm;
 
 @Controller
@@ -24,6 +27,9 @@ public class AcademyController extends AbstractController {
 
 	@Autowired
 	private AcademyService	academyService;
+	
+	@Autowired
+	private CourseService	courseService;
 
 
 	// Constructor ---------------------------------------------
@@ -31,7 +37,29 @@ public class AcademyController extends AbstractController {
 	public AcademyController() {
 		super();
 	}
-
+	// Display by Id ------------------------------------------------
+			@RequestMapping(value = "/displayById", method = RequestMethod.GET)
+			public ModelAndView displayById(@RequestParam int id) {
+				ModelAndView result;
+				Academy academy;
+				if(courseService.findOne(id)!=null){
+					Course p=courseService.findOne(id);
+					academy=p.getAcademy();
+					result = new ModelAndView("academy/display");
+					result.addObject("academy", academy);
+					result.addObject("comments", academy.getComments());
+					result.addObject("requestURI", "academy/display.do");
+					result.addObject("socialIdentities", academy.getSocialIdentity());
+				}else{
+					academy=academyService.findOne(id);
+					result = new ModelAndView("academy/display");
+					result.addObject("academy", academy);
+					result.addObject("comments", academy.getComments());
+					result.addObject("requestURI", "academy/display.do");
+					result.addObject("socialIdentities", academy.getSocialIdentity());
+				}
+				return result;
+			}
 	// Display ------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {

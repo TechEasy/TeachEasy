@@ -27,7 +27,7 @@
 	
 	<security:authorize access="isAuthenticated()">
 	<display:column titleKey="teacher.view">
-		<a href="teacher/display.do?teacherId=${teacherList.id}">
+		<a href="teacher/displayById.do?id=${teacherList.id}">
 		<spring:message code="teacher.view"></spring:message></a>	
 	</display:column>
 	</security:authorize>

@@ -54,6 +54,8 @@
 		
 		<security:intercept-url pattern="/student/display.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/teacher/display.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/teacher/displayById.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/academy/displayById.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/academy/display.do" access="isAuthenticated()" /> 
 		
 		

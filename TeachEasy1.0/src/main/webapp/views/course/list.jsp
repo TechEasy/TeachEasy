@@ -39,6 +39,12 @@
 	<spring:message code="course.matter" var="matterHeader"/>
 	<display:column property="subjectMatter.name" title="${matterHeader}" sortable="true"/>
 	
+	<security:authorize access="isAuthenticated()">
+	<display:column titleKey="course.academy">
+		<a href="academy/displayById.do?id=${courseList.academy.id}">
+		<spring:message code="proposal.teacher"></spring:message></a>	
+	</display:column>
+	</security:authorize>
 	<%--
 	<display:column titleKey="proposal.teacher">
 		<a href="teacher/display.do?teacherId=${proposalList.teacher.id}">

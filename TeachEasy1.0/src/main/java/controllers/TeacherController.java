@@ -10,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ProposalService;
 import services.TeacherService;
+import domain.Proposal;
 import domain.Teacher;
 import form.TeacherForm;
 
@@ -24,6 +27,9 @@ public class TeacherController extends AbstractController {
 
 	@Autowired
 	private TeacherService	teacherService;
+	
+	@Autowired
+	private ProposalService	proposalService;
 
 
 	// Constructor ---------------------------------------------
@@ -48,7 +54,31 @@ public class TeacherController extends AbstractController {
 
 		return result;
 	}
-
+	
+	
+	// Display by Id ------------------------------------------------
+		@RequestMapping(value = "/displayById", method = RequestMethod.GET)
+		public ModelAndView displayById(@RequestParam int id) {
+			ModelAndView result;
+			Teacher teacher;
+			if(proposalService.findOne(id)!=null){
+				Proposal p=proposalService.findOne(id);
+				teacher=p.getTeacher();
+				result = new ModelAndView("teacher/display");
+				result.addObject("teacher", teacher);
+				result.addObject("comments", teacher.getComments());
+				result.addObject("requestURI", "teacher/display.do");
+				result.addObject("socialIdentities", teacher.getSocialIdentity());
+			}else{
+				teacher=teacherService.findOne(id);
+				result = new ModelAndView("teacher/display");
+				result.addObject("teacher", teacher);
+				result.addObject("comments", teacher.getComments());
+				result.addObject("requestURI", "teacher/display.do");
+				result.addObject("socialIdentities", teacher.getSocialIdentity());
+			}
+			return result;
+		}
 	// Browse ------------------------------------------------
 	@RequestMapping(value = "/browse", method = RequestMethod.GET)
 	public ModelAndView list() {
