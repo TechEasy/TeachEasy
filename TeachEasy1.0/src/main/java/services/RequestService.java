@@ -7,9 +7,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
 import domain.Request;
+import domain.Student;
 
 @Service
 @Transactional
@@ -20,8 +23,10 @@ public class RequestService {
 	@Autowired
 	RequestRepository	requestRepository;
 
-
 	// Supporting services
+	@Autowired
+	StudentService		studentService;
+
 
 	//Constructors
 	public RequestService() {
@@ -57,5 +62,39 @@ public class RequestService {
 
 	public void delete(Request request) {
 		requestRepository.delete(request);
+	}
+
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Request reconstruct(Request request, BindingResult binding) {
+		Request result;
+
+		if (request.getId() == 0) {
+
+			Student student;
+			student = studentService.findByPrincipal();
+
+			request.setStudent(student);
+			request.setStatus("PENDING");
+
+			result = request;
+			validator.validate(result, binding);
+
+		} else {
+			result = requestRepository.findOne(request.getId());
+			//Diferentes sets
+
+			result.setCheckin(request.getCheckin());
+			result.setCheckout(request.getCheckout());
+			result.setDay(request.getDay());
+			result.setStatus(request.getStatus());
+
+			validator.validate(result, binding);
+		}
+
+		return result;
 	}
 }

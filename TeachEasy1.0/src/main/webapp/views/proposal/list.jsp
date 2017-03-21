@@ -40,4 +40,12 @@
 	</display:column>
 	</security:authorize>
 	
+	<security:authorize access="hasRole('STUDENT')">
+		<display:column title="Request">
+			<a href="request/student/request.do?rClassId=${proposalList.id}">
+				<spring:message	code="request.request" />
+			</a>
+		</display:column>		
+	</security:authorize>
+	
 </display:table>
