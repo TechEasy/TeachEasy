@@ -28,43 +28,54 @@
 
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/" access="permitAll" /> 
-
-		<security:intercept-url pattern="/student/register.do" access="isAnonymous()" /> 
-		<security:intercept-url pattern="/student/display.do" access="permitAll" /> 
-		<security:intercept-url pattern="/teacher/display.do" access="permitAll" /> 
-		<security:intercept-url pattern="/proposal/list.do" access="permitAll" />
-		<security:intercept-url pattern="/course/list.do" access="permitAll" /> 
-		
-		<security:intercept-url pattern="/teacher/register.do" access="isAnonymous()" /> 
-		<security:intercept-url pattern="/teacher/browse.do" access="isAuthenticated()" /> 
-		
 		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
 		<security:intercept-url pattern="/images/**" access="permitAll" /> 
 		<security:intercept-url pattern="/scripts/**" access="permitAll" /> 
 		<security:intercept-url pattern="/styles/**" access="permitAll" /> 
+		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
 		<security:intercept-url pattern="/misc/lopd.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
+		<security:intercept-url pattern="/student/register.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/teacher/register.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/academy/register.do" access="isAnonymous()" /> 
 
-		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
+		<security:intercept-url pattern="/proposal/list.do" access="permitAll" />
+		<security:intercept-url pattern="/course/list.do" access="permitAll" /> 
+		
+		<security:intercept-url pattern="/teacher/browse.do" access="isAuthenticated()" />
+		<security:intercept-url pattern="/student/browse.do" access="isAuthenticated()" />		
+		<security:intercept-url pattern="/academy/browse.do" access="isAuthenticated()" />
+		<security:intercept-url pattern="/subjectMatter/list.do" access="isAuthenticated()" />
+		
+		<security:intercept-url pattern="/student/display.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/teacher/display.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/academy/display.do" access="isAuthenticated()" /> 
+		
+		
+
 		<security:intercept-url pattern="/student/finder/display.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/student/finder/edit.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/student/finder/display2.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/student/finder/edit2.do" access="hasRole('STUDENT')" />
-		<security:intercept-url pattern="/subjectMatter/**" access="hasRole('TEACHER') || hasRole('ACADEMY') || hasRole('ADMIN')" /> 	
-		<security:intercept-url pattern="/administrator/subjectMatter/**" access="hasRole('ADMIN')" /> 		
-		<security:intercept-url pattern="/administrator/action-1.do" access="hasRole('ADMIN')" /> 
-		<security:intercept-url pattern="/administrator/action-2.do" access="hasRole('ADMIN')" /> 
-
-		<security:intercept-url pattern="/customer/action-1.do" access="hasRole('CUSTOMER')" /> 
-		<security:intercept-url pattern="/customer/action-2.do" access="hasRole('CUSTOMER')" /> 
-
+		<security:intercept-url pattern="/student/edit.do" access="hasRole('STUDENT')" />
 		
-		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
-		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/proposal/teacher/list.do" access="hasRole('TEACHER')" />
+		<security:intercept-url pattern="/teacher/edit.do" access="hasRole('TEACHER')" />
+		<security:intercept-url pattern="/curricula/teacher/**" access="hasRole('TEACHER')" />
+		
+		<security:intercept-url pattern="/course/academy/list.do" access="hasRole('ACADEMY')" />
+		<security:intercept-url pattern="/academy/edit.do" access="hasRole('ACADEMY')" />
+		
+		
+		<security:intercept-url pattern="/admin/edit.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="spam/admin/edit.do" access="hasRole('ADMIN')" /> 
+
+
+
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

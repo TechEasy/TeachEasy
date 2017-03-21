@@ -22,7 +22,7 @@
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 			<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
 			<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
-			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
+			<li><a class="fNiv" href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			<li><a class="fNiv" href="student/browse.do"><spring:message code="master.page.administrator.student.browse" /></a></li>
 			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
 			<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
@@ -86,7 +86,6 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
-			<li><a href="administrator/subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			
 			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
 				</a>
