@@ -30,6 +30,7 @@
 		<value>/views/profile/messages</value>
 		
 		<value>/views/teacher/messages</value>
+		<value>/views/request/messages</value>
 		<value>/views/student/messages</value>
 		<value>/views/finder/messages</value>
 		<value>/views/subjectMatter/messages</value>

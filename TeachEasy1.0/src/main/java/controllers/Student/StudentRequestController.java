@@ -58,7 +58,7 @@ public class StudentRequestController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/request", method = RequestMethod.POST, params = "save")
-	public ModelAndView requestBook(Request r, BindingResult binding) {
+	public ModelAndView request(Request r, BindingResult binding) {
 		ModelAndView result;
 
 		r = requestService.reconstruct(r, binding);
@@ -76,7 +76,6 @@ public class StudentRequestController extends AbstractController {
 				result = new ModelAndView("request/student/request");
 				result.addObject("request", r);
 				result.addObject("message", "request.commit.error");
-
 			}
 		}
 

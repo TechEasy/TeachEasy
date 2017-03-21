@@ -25,13 +25,13 @@
 	
 
 	<fieldset>		
-		<acme:textbox code="bookrequest.checkin" path="checkin"/>
-		<acme:textbox code="bookrequest.checkout" path="checkout"/>
-		<acme:checkbox code="bookrequest.day" path="day"/>
+		<acme:textbox code="request.checkin" path="checkin"/>
+		<acme:textbox code="request.checkout" path="checkout"/>
+		<acme:checkbox code="request.day" path="day"/>
 		<form:hidden path="status"/>
 	
 	</fieldset>
-
+<%--
 	<fieldset>
 		<legend><spring:message code="request.creditCard"/></legend>
 		
@@ -43,7 +43,7 @@
 		<acme:textbox code="creditCard.expirationYear" path="creditcard.expirationYear"/>	
 	</fieldset>			
 	<br/>
-	
+--%>
 	<!-- Buttons -->
 	
 	<input type="submit" name="save"

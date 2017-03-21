@@ -28,7 +28,7 @@
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/proposal/tiles.xml</value>
 		<value>/views/course/tiles.xml</value>
-		
+		<value>/views/request/tiles.xml</value>
 		<value>/views/teacher/tiles.xml</value>
 		<value>/views/student/tiles.xml</value>
 		<value>/views/finder/tiles.xml</value>
