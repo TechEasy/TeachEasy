@@ -29,12 +29,22 @@
 		</security:authorize>	
 		
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
-			<li><a class="fNiv" href="teacher/register.do"><spring:message code="master.page.teacher.register" /></a></li>
-			<li><a class="fNiv" href="academy/register.do"><spring:message code="master.page.academy.register" /></a></li>
-			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
-			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
-			<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>			
+			<li><a class="fNiv"><spring:message code="master.page.register.menu" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
+					<li><a href="teacher/register.do"><spring:message code="master.page.teacher.register" /></a></li>
+					<li><a href="academy/register.do"><spring:message code="master.page.academy.register" /></a></li>
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message code="master.page.basic.menu" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
+					<li><a href="course/list.do"><spring:message code="master.page.course" /></a></li>
+				</ul>
+			</li>
+			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>	
 		</security:authorize>
 			
 		<security:authorize access="hasRole('STUDENT')">
