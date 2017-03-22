@@ -29,27 +29,31 @@
 		<tr>
 			<th><spring:message code="teacher.email"/></th>
 			<th><spring:message code="teacher.phone"/></th>
-			<th><spring:message code="teacher.date"/></th>
+			
 		</tr>
 		<tr>
 			<td><jstl:out value="${teacher.email}"/></td>
 			<td><jstl:out value="${teacher.phone}"/></td>
-			<td><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></td>
+			
 		</tr>
 		<tr>
+			<th><spring:message code="teacher.date"/></th>
 			<th><spring:message code="teacher.city"/></th>
-			<th><spring:message code="teacher.address"/></th>
+			
 			
 		</tr>
 		<tr>
 			<td><jstl:out value="${teacher.city}"/></td>
-			<td><jstl:out value="${teacher.address}"/></td>
+			<td><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></td>
+			
 		</tr>
 		<tr>
+			<th><spring:message code="teacher.address"/></th>
 			<th><spring:message code="teacher.avgStars"/></th>			
 		</tr>
 		<tr>
 			<td><jstl:out value="${teacher.avgStars}"/></td>
+			<td><jstl:out value="${teacher.address}"/></td>
 		</tr>
 	</tbody>
 </table>

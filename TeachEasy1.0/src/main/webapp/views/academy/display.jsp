@@ -30,16 +30,20 @@
 		</tr>
 		<tr>
 			<th><spring:message code="academy.description"/></th>
+			<th></th>
 			
 		</tr>
 		<tr>
 			<td><jstl:out value="${academy.description}"/></td>
+			<td></td>
 		</tr>
 		<tr>
-			<th><spring:message code="academy.avgStars"/></th>			
+			<th><spring:message code="academy.avgStars"/></th>	
+			<th></th>			
 		</tr>
 		<tr>
 			<td><jstl:out value="${academy.avgStars}"/></td>
+			<td></td>
 		</tr>
 	</tbody>
 </table>
