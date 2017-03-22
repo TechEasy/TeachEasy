@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repositories.RClassRepository;
+import repositories.RclassRepository;
 import domain.Rclass;
 
 @Service
@@ -18,7 +18,7 @@ public class RClassService {
 	// Managed repository
 
 	@Autowired
-	private RClassRepository	rClassRepository;
+	private RclassRepository	rclassRepository;
 
 
 	// Supporting services
@@ -38,28 +38,28 @@ public class RClassService {
 
 	public Collection<Rclass> findAll() {
 		Collection<Rclass> result;
-		result = rClassRepository.findAll();
+		result = rclassRepository.findAll();
 		return result;
 	}
 
 	public Rclass findOne(int id) {
 		Rclass result;
-		result = rClassRepository.findOne(id);
+		result = rclassRepository.findOne(id);
 		return result;
 	}
 
 	public Rclass save(Rclass rclass) {
 		Rclass result;
-		result = rClassRepository.save(rclass);
+		result = rclassRepository.save(rclass);
 		return result;
 
 	}
 	
 	public Rclass findById(int id){
-		return rClassRepository.findById(id);
+		return rclassRepository.findById(id);
 	}
 
 	public void delete(Rclass rclass) {
-		rClassRepository.delete(rclass);
+		rclassRepository.delete(rclass);
 	}
 }

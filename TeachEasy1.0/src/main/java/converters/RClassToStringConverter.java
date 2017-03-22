@@ -10,7 +10,7 @@ import domain.Rclass;
 
 @Component
 @Transactional
-public class RClassToStringConverter implements Converter<Rclass, String> {
+public class RclassToStringConverter implements Converter<Rclass, String> {
 
 	@Override
 	public String convert(Rclass rclass) {

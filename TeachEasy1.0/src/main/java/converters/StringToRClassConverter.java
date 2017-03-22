@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.RClassRepository;
+import repositories.RclassRepository;
 import domain.Rclass;
 
 @Component
 @Transactional
-public class StringToRClassConverter implements Converter<String, Rclass> {
+public class StringToRclassConverter implements Converter<String, Rclass> {
 
 	@Autowired
-	RClassRepository	rClassRepository;
+	RclassRepository	rclassRepository;
 
 
 	@Override
@@ -31,7 +31,7 @@ public class StringToRClassConverter implements Converter<String, Rclass> {
 				result = null;
 			} else {
 				id = Integer.valueOf(text);
-				result = rClassRepository.findOne(id);
+				result = rclassRepository.findOne(id);
 			}
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);

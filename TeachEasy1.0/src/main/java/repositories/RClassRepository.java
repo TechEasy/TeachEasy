@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import domain.Rclass;
 
 @Repository
-public interface RClassRepository extends JpaRepository<Rclass, Integer> {
-	@Query("select c from RClass c where c.id=?1")
+public interface RclassRepository extends JpaRepository<Rclass, Integer> {
+	@Query("select c from Rclass c where c.id=?1")
 	Rclass findById(int id);
 }
