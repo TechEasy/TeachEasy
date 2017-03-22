@@ -24,9 +24,7 @@
 	<acme:column code="request.checkin" property="checkIn" sortable="true"/>
 	
 	<acme:column code="request.checkout" property="checkOut" sortable="true"/>
-	
-	<acme:column code="request.day" property="day" sortable="true"/>
-		
+			
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
 	<acme:column code="request.rClass" property="rClass.title" sortable="false"/>

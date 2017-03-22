@@ -69,7 +69,7 @@ public class StudentRequestController extends AbstractController {
 			RequestForm requestForm;
 
 			requestForm = requestService.generateForm();
-			requestForm.setRClassId(rClassId);
+			requestForm.setrClassId(rClassId);
 			result = createEditModelAndView(requestForm, null);
 
 			return result;
@@ -95,6 +95,8 @@ public class StudentRequestController extends AbstractController {
 							msgCode = "request.register.badDayDate";
 					}else if (oops.getMessage().equals("badCreditCard")) {
 						msgCode = "request.register.badCreditCard";
+					}else if (oops.getMessage().equals("badRClass")) {
+						msgCode = "request.register.badRClass";
 					}
 					result = createEditModelAndView(requestForm, msgCode);
 				}

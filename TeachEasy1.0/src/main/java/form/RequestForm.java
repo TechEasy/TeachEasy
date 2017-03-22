@@ -26,10 +26,10 @@ public class RequestForm {
 
 	// Getters and Setters ------------------------------------------
 
-	public int getRClassId() {
+	public int getrClassId() {
 		return rClassId;
 	}
-	public void setRClassId(int rClassId) {
+	public void setrClassId(int rClassId) {
 		this.rClassId = rClassId;
 	}
 

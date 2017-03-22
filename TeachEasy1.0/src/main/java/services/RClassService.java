@@ -18,7 +18,7 @@ public class RClassService {
 	// Managed repository
 
 	@Autowired
-	RClassRepository	rClassRepository;
+	private RClassRepository	rClassRepository;
 
 
 	// Supporting services
@@ -53,6 +53,10 @@ public class RClassService {
 		result = rClassRepository.save(rClass);
 		return result;
 
+	}
+	
+	public RClass findById(int id){
+		return rClassRepository.findById(id);
 	}
 
 	public void delete(RClass rClass) {

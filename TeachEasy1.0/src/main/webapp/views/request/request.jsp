@@ -24,24 +24,11 @@
 	<form:hidden path="rClass"/>
 
 	<fieldset>		
-		<acme:textbox code="request.checkin" path="checkin"/>
-		<acme:textbox code="request.checkout" path="checkout"/>
-		<acme:textbox code="request.day" path="day"/>
+		<acme:textbox code="request.checkin" path="checkIn"/>
+		<acme:textbox code="request.checkout" path="checkOut"/>
 		<form:hidden path="status"/>
 	</fieldset>
-<%--
-	<fieldset>
-		<legend><spring:message code="request.creditCard"/></legend>
-		
-		<acme:textbox code="creditCard.number" path="creditcard.number"/>
-		<acme:textbox code="creditCard.holderName" path="creditcard.holderName"/>
-		<acme:textbox code="creditCard.brandName" path="creditcard.brandName"/>
-		<acme:textbox code="creditCard.cvv" path="creditcard.cvv"/>
-		<acme:textbox code="creditCard.expirationMonth" path="creditcard.expirationMonth"/>
-		<acme:textbox code="creditCard.expirationYear" path="creditcard.expirationYear"/>	
-	</fieldset>			
-	<br/>
---%>
+
 	<!-- Buttons -->
 	
 	<input type="submit" name="save" value="<spring:message code="request.save" />" />&nbsp; 
