@@ -28,13 +28,13 @@
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
 	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
-		<security:authorize access="hasRole('TEACHER')">
+	<security:authorize access="hasRole('TEACHER')">
 	<display:column>
-		<jstl:if test="${row.status == 'PENDING'}">
-		<spring:message code="bookrequest.accept" var="accept" />
-		<spring:message code="bookrequest.deny" var="deny" />
-		<input type="button" name="addCategory" value="${accept}" onclick="javascript: window.location.replace('request/lessor/accept.do?bookRequestId=${row.id}')" />
-		<input type="button" name="addCategory" value="${deny}" onclick="javascript: window.location.replace('request/lessor/deny.do?bookRequestId=${row.id}')" />
+		<jstl:if test="${requestList.status == 'PENDING'}">
+		<spring:message code="request.accept" var="accept" />
+		<spring:message code="request.deny" var="deny" />
+		<input type="button" name="accept" value="${accept}" onclick="javascript: window.location.replace('teacher/request/accept.do?requestId=${requestList.id}')" />
+		<input type="button" name="deny" value="${deny}" onclick="javascript: window.location.replace('teacher/request/deny.do?requestId=${requestList.id}')" />
 		</jstl:if>
 	</display:column>	
 		 </security:authorize>
