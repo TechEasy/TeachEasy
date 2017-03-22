@@ -44,11 +44,15 @@
 		</security:authorize>
 			
 		<security:authorize access="hasRole('STUDENT')">
-				<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
-				<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
-				<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
-				<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
 		
+				<li><a class="fNiv"><spring:message code="master.page.student.searchFor" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
+					<li><a href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
+					<li><a href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
+					<li><a href="course/list.do"><spring:message code="master.page.course" /></a></li>
+				</ul>
 				<li><a class="fNiv"><spring:message code="master.page.student.finder" /></a>
 				<ul>
 					<li class="arrow"></li>
