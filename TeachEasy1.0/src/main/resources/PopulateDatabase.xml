@@ -126,6 +126,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="academy3" />
+		<property name="password" value="526c4e886de557da4a11880c41fe3c0f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ACADEMY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- CreditCards -->
 	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Antonio" />
@@ -202,8 +214,8 @@
 	<!-- WorkTimes -->
 	
 	<bean id="workTime1" class="domain.WorkTime">
-		<property name="checkIn" value="10:00" />
-		<property name="checkOut" value="12:00" />
+		<property name="checkIn" value="09:00" />
+		<property name="checkOut" value="11:00" />
 		<property name="available" value="true" />
 	</bean>
 	
@@ -214,8 +226,38 @@
 	</bean>
 	
 	<bean id="workTime3" class="domain.WorkTime">
+		<property name="checkIn" value="17:00" />
+		<property name="checkOut" value="19:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime4" class="domain.WorkTime">
+		<property name="checkIn" value="19:00" />
+		<property name="checkOut" value="21:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime5" class="domain.WorkTime">
 		<property name="checkIn" value="10:00" />
 		<property name="checkOut" value="12:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime6" class="domain.WorkTime">
+		<property name="checkIn" value="12:00" />
+		<property name="checkOut" value="14:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime7" class="domain.WorkTime">
+		<property name="checkIn" value="16:00" />
+		<property name="checkOut" value="18:00" />
+		<property name="available" value="true" />
+	</bean>
+	
+	<bean id="workTime8" class="domain.WorkTime">
+		<property name="checkIn" value="18:00" />
+		<property name="checkOut" value="20:00" />
 		<property name="available" value="true" />
 	</bean>
 	
@@ -236,6 +278,35 @@
 		<property name="workTimes">
 			<list>
 				<ref bean="workTime3"/>
+				<ref bean="workTime4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="day3" class="domain.Day">
+		<property name="name" value="Miercoles" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime5"/>
+				<ref bean="workTime6"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="day4" class="domain.Day">
+		<property name="name" value="Jueves" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime7"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="day5" class="domain.Day">
+		<property name="name" value="Viernes" />
+		<property name="workTimes">
+			<list>
+				<ref bean="workTime8"/>
 			</list>
 		</property>
 	</bean>
@@ -246,6 +317,7 @@
 		<property name="days">
 			<list>
 				<ref bean="day1"/>
+				<ref bean="day3"/>
 			</list>
 		</property>
 	</bean>
@@ -255,6 +327,15 @@
 		<property name="days">
 			<list>
 				<ref bean="day2"/>
+				<ref bean="day4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="timeTable3" class="domain.TimeTable">
+		<property name="days">
+			<list>
+				<ref bean="day5"/>
 			</list>
 		</property>
 	</bean>
@@ -298,6 +379,7 @@
 		<property name="proposals">
 			<list>
 				<ref bean="proposal1" />
+				<ref bean="proposal2" />
 			</list>
 		</property>	
 		<property name="socialIdentity">
@@ -321,7 +403,7 @@
 		<property name="phone" value="609822347" />
 		<property name="picture" value="http://cyrusindia.com/hrpanel/mriAssets2016/me1.png" />
 		<property name="date" value="12/01/1980" />	
-		<property name="city" value="Sevilla" />	
+		<property name="city" value="Granada" />	
 		<property name="address" value="Pablo Picaso Portal 11" />	
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="1000.0" />
@@ -330,7 +412,8 @@
 		<property name="curricula" ref="curricula2" />	
 		<property name="proposals">
 			<list>
-				<ref bean="proposal2" />
+				<ref bean="proposal3" />
+				<ref bean="proposal4" />
 			</list>
 		</property>		
 		<property name="socialIdentity">
@@ -339,6 +422,7 @@
 		</property>
 		<property name="comments">
 			<list>
+			<ref bean="comment2" />
 			</list>
 		</property>
 	</bean>	
@@ -351,14 +435,17 @@
 		<property name="phone" value="645692347" />
 		<property name="picture" value="http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png" />
 		<property name="date" value="12/01/1985" />	
-		<property name="city" value="Granada" />	
+		<property name="city" value="Cadiz" />	
 		<property name="address" value="Álamo del Marques" />	
 		<property name="avgStars" value="3.2" />
 		<property name="feeAmount" value="120.0" />
-		<property name="iban" value="ES9122220418569870012332" />	
+		<property name="iban" value="ES9122220418569870012332" />
+		<property name="timeTable" ref="timeTable3" />
 		<property name="curricula" ref="curricula3" />	
 		<property name="proposals">
 			<list>
+				<ref bean="proposal5" />
+				<ref bean="proposal6" />
 			</list>
 		</property>	
 		<property name="socialIdentity">
@@ -367,6 +454,7 @@
 		</property>
 		<property name="comments">
 			<list>
+			<ref bean="comment6" />
 			</list>
 		</property>
 	</bean>	
@@ -393,6 +481,10 @@
 		<property name="comments">
 			<list>
 				<ref bean="comment1" />
+				<ref bean="comment2" />
+				<ref bean="comment3" />
+				<ref bean="comment6" />
+				<ref bean="comment8" />
 			</list>
 		</property>
 	</bean>	
@@ -414,6 +506,8 @@
 		</property>
 		<property name="comments">
 			<list>
+			<ref bean="comment4" />
+			<ref bean="comment7" />
 			</list>
 		</property>
 	</bean>	
@@ -435,6 +529,7 @@
 		</property>	
 		<property name="comments">
 			<list>
+				<ref bean="comment5" />
 			</list>
 		</property>
 	</bean>	
@@ -443,10 +538,10 @@
 
 	<bean id="academy1" class="domain.Academy">
 		<property name="userAccount" ref="userAccount8" />
-		<property name="name" value="English academy" />
+		<property name="name" value="Academia de los numeros" />
 		<property name="city" value="Sevilla" />
 		<property name="address" value="Calle General Prim" />	
-		<property name="description" value="Somos una academia expecializada en Inglés" />
+		<property name="description" value="Somos una academia especializada en Matematicas" />
 		<property name="cif" value="CIF152" />
 		<property name="avgStars" value="3.0" />
 		<property name="feeAmount" value="200.0" />
@@ -458,17 +553,25 @@
 		</property>
 		<property name="comments">
 			<list>
-				<ref bean="comment1" />
+				<ref bean="comment3" />
+				<ref bean="comment7" />
+				<ref bean="comment8" />
+			</list>
+		</property>
+		<property name="courses">
+			<list>
+				<ref bean="course1" />
+				<ref bean="course2" />
 			</list>
 		</property>	
 	</bean>	
 	
 	<bean id="academy2" class="domain.Academy">
 		<property name="userAccount" ref="userAccount9" />
-		<property name="name" value="ComeToLearn" />
+		<property name="name" value="EzDraw" />
 		<property name="city" value="Granada" />
 		<property name="address" value="Calle Botica" />	
-		<property name="description" value="Academia, con todo tipo de cursos" />
+		<property name="description" value="Academia de dibujo" />
 		<property name="cif" value="CIF45698" />
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="560.0" />
@@ -479,8 +582,41 @@
 		</property>	
 		<property name="comments">
 			<list>
+			<ref bean="comment4" />
 			</list>
 		</property>
+		<property name="courses">
+			<list>
+				<ref bean="course3" />
+			</list>
+		</property>	
+	</bean>	
+	
+	<bean id="academy3" class="domain.Academy">
+		<property name="userAccount" ref="userAccount10" />
+		<property name="name" value="Languages Academy" />
+		<property name="city" value="Cádiz" />
+		<property name="address" value="Calle Maritima" />	
+		<property name="description" value="Academia de idiomas" />
+		<property name="cif" value="CIF55220" />
+		<property name="avgStars" value="4.2" />
+		<property name="feeAmount" value="450.0" />
+		<property name="iban" value="ES6822881722069808677491" />	
+		<property name="socialIdentity">
+			<list>
+			</list>
+		</property>	
+		<property name="comments">
+			<list>
+			<ref bean="comment5" />
+			</list>
+		</property>
+		<property name="courses">
+			<list>
+				<ref bean="course4" />
+				<ref bean="course5" />
+			</list>
+		</property>	
 	</bean>	
 	
 	<!-- Curricula -->
@@ -527,7 +663,7 @@
 	</bean>
 	
 	<bean id="socialIdentity4" class="domain.SocialIdentity">
-		<property name="nick" value="academy1" />
+		<property name="nick" value="academyNumber1" />
 		<property name="socialNetwork" value="Twitter" />	
 		<property name="profileUrl" value="https://twitter.com/academy1" />	
 		<property name="academy" ref="academy1" />	
@@ -537,7 +673,7 @@
 	
 	<bean id="subjectMatter1" class="domain.SubjectMatter">
 		<property name="name" value="Inglés" />
-		<property name="description" value="English Classes" />	
+		<property name="description" value="Clases de Inglés" />	
 		<property name="validated" value="true" />			
 	</bean>
 	
@@ -553,11 +689,53 @@
 		<property name="validated" value="true" />			
 	</bean>
 	
+	<bean id="subjectMatter4" class="domain.SubjectMatter">
+		<property name="name" value="Fisica" />
+		<property name="description" value="Clases de Fisica" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter5" class="domain.SubjectMatter">
+		<property name="name" value="Quimica" />
+		<property name="description" value="Clases de Quimica" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter6" class="domain.SubjectMatter">
+		<property name="name" value="Algebra" />
+		<property name="description" value="Clases de Algebra" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter7" class="domain.SubjectMatter">
+		<property name="name" value="HTMLCSS" />
+		<property name="description" value="Clases de HTML y CSS" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter8" class="domain.SubjectMatter">
+		<property name="name" value="Historia" />
+		<property name="description" value="Clases de Historia" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter9" class="domain.SubjectMatter">
+		<property name="name" value="Dibujo" />
+		<property name="description" value="Clases de Dibujo" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
+	<bean id="subjectMatter10" class="domain.SubjectMatter">
+		<property name="name" value="Matematicas" />
+		<property name="description" value="Clases de Matematicas" />	
+		<property name="validated" value="true" />			
+	</bean>
+	
 	<!-- Proposals -->
 	
 	<bean id="proposal1" class="domain.Proposal">
 		<property name="ticker" value="01" />
-		<property name="title" value="English Classes" />	
+		<property name="title" value="Clases de Inglés" />	
 		<property name="createMoment" value="01/04/2017 20:00" />		
 		<property name="updateMoment" value="01/04/2017 21:00" />	
 		<property name="rate" value="3"/>
@@ -566,61 +744,114 @@
 	</bean>
 	
 	<bean id="proposal2" class="domain.Proposal">
-		<property name="ticker" value="02" />
-		<property name="title" value="English Classes" />	
-		<property name="createMoment" value="03/04/2017 20:00" />		
-		<property name="updateMoment" value="03/04/2017 21:00" />	
-		<property name="rate" value="5"/>
+		<property name="ticker" value="03" />
+		<property name="title" value="Clases de Francés" />	
+		<property name="createMoment" value="12/04/2017 20:00" />		
+		<property name="updateMoment" value="12/04/2017 21:00" />	
+		<property name="rate" value="4"/>
 		<property name="teacher" ref="teacher1"/>
-		<property name="subjectMatter" ref="subjectMatter1"/>
+		<property name="subjectMatter" ref="subjectMatter2"/>
 	</bean>
 	
 	<bean id="proposal3" class="domain.Proposal">
-		<property name="ticker" value="03" />
-		<property name="title" value="French Classes" />	
+		<property name="ticker" value="02" />
+		<property name="title" value="Clases de Programacion" />	
+		<property name="createMoment" value="03/04/2017 20:00" />		
+		<property name="updateMoment" value="03/04/2017 21:00" />	
+		<property name="rate" value="5"/>
+		<property name="teacher" ref="teacher2"/>
+		<property name="subjectMatter" ref="subjectMatter3"/>
+	</bean>
+	
+	<bean id="proposal4" class="domain.Proposal">
+		<property name="ticker" value="04" />
+		<property name="title" value="Clases de HTML y CSS" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
 		<property name="rate" value="4"/>
 		<property name="teacher" ref="teacher2"/>
-		<property name="subjectMatter" ref="subjectMatter1"/>
+		<property name="subjectMatter" ref="subjectMatter7"/>
 	</bean>
 	
+	<bean id="proposal5" class="domain.Proposal">
+		<property name="ticker" value="05" />
+		<property name="title" value="Clases de Fisica" />	
+		<property name="createMoment" value="12/04/2017 20:00" />		
+		<property name="updateMoment" value="12/04/2017 21:00" />	
+		<property name="rate" value="4"/>
+		<property name="teacher" ref="teacher3"/>
+		<property name="subjectMatter" ref="subjectMatter4"/>
+	</bean>
+	
+	<bean id="proposal6" class="domain.Proposal">
+		<property name="ticker" value="06" />
+		<property name="title" value="Clases de Quimica" />	
+		<property name="createMoment" value="12/04/2017 20:00" />		
+		<property name="updateMoment" value="12/04/2017 21:00" />	
+		<property name="rate" value="5"/>
+		<property name="teacher" ref="teacher3"/>
+		<property name="subjectMatter" ref="subjectMatter5"/>
+	</bean>
 	<!-- Course -->
 	
 	<bean id="course1" class="domain.Course">
-		<property name="ticker" value="04" />
+		<property name="ticker" value="07" />
 		<property name="title" value="Matematicas" />	
 		<property name="createMoment" value="10/04/2017 20:00" />		
 		<property name="updateMoment" value="10/04/2017 21:00" />	
 		<property name="rate" value="4"/>
 		<property name="duration" value="2"/>
 		<property name="level" value="4º ESO"/>
-		<property name="academy" ref="academy2"/>
-		<property name="subjectMatter" ref="subjectMatter2"/>
+		<property name="academy" ref="academy1"/>
+		<property name="subjectMatter" ref="subjectMatter10"/>
 	</bean>
 	
 	<bean id="course2" class="domain.Course">
-		<property name="ticker" value="05" />
-		<property name="title" value="Inglés" />	
+		<property name="ticker" value="08" />
+		<property name="title" value="Algebra" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
 		<property name="rate" value="4"/>
 		<property name="duration" value="2"/>
-		<property name="level" value="B1"/>
+		<property name="level" value="Bachillerato"/>
 		<property name="academy" ref="academy1"/>
-		<property name="subjectMatter" ref="subjectMatter1"/>
+		<property name="subjectMatter" ref="subjectMatter6"/>
 	</bean>
 	
 	<bean id="course3" class="domain.Course">
-		<property name="ticker" value="06" />
-		<property name="title" value="Inglés" />	
+		<property name="ticker" value="09" />
+		<property name="title" value="Dibujo" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
 		<property name="rate" value="5"/>
 		<property name="duration" value="3"/>
-		<property name="level" value="C1"/>
-		<property name="academy" ref="academy1"/>
+		<property name="level" value="Bachillerato"/>
+		<property name="academy" ref="academy2"/>
+		<property name="subjectMatter" ref="subjectMatter9"/>
+	</bean>
+	
+	<bean id="course4" class="domain.Course">
+		<property name="ticker" value="10" />
+		<property name="title" value="Ingles" />	
+		<property name="createMoment" value="05/05/2017 20:00" />		
+		<property name="updateMoment" value="05/05/2017 21:00" />	
+		<property name="rate" value="5"/>
+		<property name="duration" value="3"/>
+		<property name="level" value="B2"/>
+		<property name="academy" ref="academy3"/>
 		<property name="subjectMatter" ref="subjectMatter1"/>
+	</bean>
+	
+	<bean id="course5" class="domain.Course">
+		<property name="ticker" value="11" />
+		<property name="title" value="Frances" />	
+		<property name="createMoment" value="05/05/2017 20:00" />		
+		<property name="updateMoment" value="05/05/2017 21:00" />	
+		<property name="rate" value="4"/>
+		<property name="duration" value="4"/>
+		<property name="level" value="B1"/>
+		<property name="academy" ref="academy3"/>
+		<property name="subjectMatter" ref="subjectMatter2"/>
 	</bean>
 	
 	<!-- Requests -->
@@ -670,6 +901,24 @@
 		<property name="student" ref="student2" />
 	</bean>
 	
+	<bean id="request6" class="domain.Request">
+		<property name="status" value="ACCEPTED" />
+		<property name="checkin" value="04/03/2017 15:00" />	
+		<property name="checkout" value="04/03/2017 16:00" />		
+		<property name="day" value="Miercoles" />
+		<property name="rClass" ref="proposal4" />	
+		<property name="student" ref="student1" />
+	</bean>
+	
+	<bean id="request7" class="domain.Request">
+		<property name="status" value="ACCEPTED" />
+		<property name="checkin" value="07/05/2017 15:00" />	
+		<property name="checkout" value="07/05/2017 17:00" />		
+		<property name="day" value="Martes" />
+		<property name="rClass" ref="proposal5" />	
+		<property name="student" ref="student2" />
+	</bean>
+	
 	<!-- Invoices -->
 
 	<bean id="invoice1" class="domain.Invoice">
@@ -697,6 +946,24 @@
 		<property name="details" value="Se ha pagado tarde" />	
 		<property name="total" value="30.0" />	
 		<property name="request" ref="request5"/>
+	</bean>
+	
+	<bean id="invoice4" class="domain.Invoice">
+		<property name="authoredMoment" value="11/10/2016 16:00" />
+		<property name="vatNumber" value="000000111" />	
+		<property name="information" value="Invoice del student 1" />		
+		<property name="details" value="Se ha pagado al completo" />	
+		<property name="total" value="40.0" />	
+		<property name="request" ref="request6"/>
+	</bean>
+	
+	<bean id="invoice5" class="domain.Invoice">
+		<property name="authoredMoment" value="12/10/2016 16:00" />
+		<property name="vatNumber" value="000001011" />	
+		<property name="information" value="Invoice del student 2" />		
+		<property name="details" value="Se ha pagado al completo" />	
+		<property name="total" value="50.0" />	
+		<property name="request" ref="request7"/>
 	</bean>
 	
 	<!-- Finder -->	
@@ -739,15 +1006,50 @@
 	</bean>
 	
 	<bean id="comment4" class="domain.Comment">
-		<property name="title" value="Comentario sobre academy1" />
+		<property name="title" value="Comentario sobre academy2" />
 		<property name="createMoment" value="11/04/2017 20:00" />	
 		<property name="text" value="Gran clase, me sirvió de mucho" />
 		<property name="stars" value="5" />	
 		<property name="student" ref="student2" />	
+		<property name="academy" ref="academy2" />	
+	</bean>
+	
+	<bean id="comment5" class="domain.Comment">
+		<property name="title" value="Comentario sobre academy3" />
+		<property name="createMoment" value="02/04/2017 20:00" />	
+		<property name="text" value="Nice academy. Guess im improving my english level" />
+		<property name="stars" value="5" />	
+		<property name="student" ref="student3" />	
+		<property name="academy" ref="academy3" />	
+	</bean>
+	
+	<bean id="comment6" class="domain.Comment">
+		<property name="title" value="Comentario sobre teacher3" />
+		<property name="createMoment" value="03/04/2017 20:00" />	
+		<property name="text" value="Hola teacher3, gracias por la clase" />
+		<property name="stars" value="4" />	
+		<property name="student" ref="student1" />	
+		<property name="teacher" ref="teacher3" />	
+	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+		<property name="title" value="Comentario sobre academia 1" />
+		<property name="createMoment" value="03/04/2017 20:00" />	
+		<property name="text" value="¿Podrían darme un numero de contacto?" />
+		<property name="stars" value="3" />	
+		<property name="student" ref="student2" />	
 		<property name="academy" ref="academy1" />	
 	</bean>
 	
+	<bean id="comment8" class="domain.Comment">
+		<property name="title" value="Comentario sobre academy1" />
+		<property name="createMoment" value="11/04/2017 20:00" />	
+		<property name="text" value="Muy buena academia de numeros" />
+		<property name="stars" value="5" />	
+		<property name="student" ref="student1" />	
+		<property name="academy" ref="academy1" />	
+	</bean>
 	
-	<!-- Other domain beans come here -->	
+
 	
 </beans>
