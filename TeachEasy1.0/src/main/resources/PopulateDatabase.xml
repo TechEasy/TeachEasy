@@ -858,63 +858,56 @@
 	
 	<bean id="request1" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
-		<property name="checkin" value="04/04/2017 15:00" />	
-		<property name="checkout" value="04/04/2017 16:00" />		
-		<property name="day" value="Lunes" />
+		<property name="checkIn" value="04/04/2017 15:00" />	
+		<property name="checkOut" value="04/04/2017 16:00" />		
 		<property name="rClass" ref="proposal1" />	
 		<property name="student" ref="student1" />
 	</bean>
 	
 	<bean id="request2" class="domain.Request">
 		<property name="status" value="PENDING" />
-		<property name="checkin" value="10/04/2017 15:00" />	
-		<property name="checkout" value="10/04/2017 16:00" />		
-		<property name="day" value="Martes" />
+		<property name="checkIn" value="10/04/2017 15:00" />	
+		<property name="checkOut" value="10/04/2017 16:00" />		
 		<property name="rClass" ref="course1" />	
 		<property name="student" ref="student2" />
 	</bean>
 	
 	<bean id="request3" class="domain.Request">
 		<property name="status" value="DENIED" />
-		<property name="checkin" value="15/03/2017 15:00" />	
-		<property name="checkout" value="15/04/2017 16:00" />		
-		<property name="day" value="Domingo" />
+		<property name="checkIn" value="15/03/2017 15:00" />	
+		<property name="checkOut" value="15/04/2017 16:00" />		
 		<property name="rClass" ref="proposal1" />	
 		<property name="student" ref="student2" />
 	</bean>
 	
 	<bean id="request4" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
-		<property name="checkin" value="05/04/2017 15:00" />	
-		<property name="checkout" value="05/04/2017 16:00" />		
-		<property name="day" value="Lunes" />
+		<property name="checkIn" value="05/04/2017 15:00" />	
+		<property name="checkOut" value="05/04/2017 16:00" />		
 		<property name="rClass" ref="proposal2" />	
 		<property name="student" ref="student1" />
 	</bean>
 	
 	<bean id="request5" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
-		<property name="checkin" value="06/04/2017 15:00" />	
-		<property name="checkout" value="06/04/2017 16:00" />		
-		<property name="day" value="Lunes" />
+		<property name="checkIn" value="06/04/2017 15:00" />	
+		<property name="checkOut" value="06/04/2017 16:00" />		
 		<property name="rClass" ref="proposal3" />	
 		<property name="student" ref="student2" />
 	</bean>
 	
 	<bean id="request6" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
-		<property name="checkin" value="04/03/2017 15:00" />	
-		<property name="checkout" value="04/03/2017 16:00" />		
-		<property name="day" value="Miercoles" />
+		<property name="checkIn" value="04/03/2017 15:00" />	
+		<property name="checkOut" value="04/03/2017 16:00" />		
 		<property name="rClass" ref="proposal4" />	
 		<property name="student" ref="student1" />
 	</bean>
 	
 	<bean id="request7" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
-		<property name="checkin" value="07/05/2017 15:00" />	
-		<property name="checkout" value="07/05/2017 17:00" />		
-		<property name="day" value="Martes" />
+		<property name="checkIn" value="07/05/2017 15:00" />	
+		<property name="checkOut" value="07/05/2017 17:00" />		
 		<property name="rClass" ref="proposal5" />	
 		<property name="student" ref="student2" />
 	</bean>

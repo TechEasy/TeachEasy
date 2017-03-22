@@ -7,12 +7,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
 import domain.Request;
-import domain.Student;
+import form.RequestForm;
 
 @Service
 @Transactional
@@ -21,14 +22,17 @@ public class RequestService {
 	// Managed repository
 
 	@Autowired
-	RequestRepository	requestRepository;
-
-	@Autowired
-	RClassService		rClassService;
+	private RequestRepository	requestRepository;
 
 	// Supporting services
 	@Autowired
-	StudentService		studentService;
+	private RClassService		rClassService;
+
+	@Autowired
+	private Validator validator;
+	
+	@Autowired
+	private StudentService		studentService;
 
 
 	//Constructors
@@ -41,6 +45,10 @@ public class RequestService {
 	public Request create() {
 		Request result;
 		result = new Request();
+		
+		result.setStudent(studentService.findByPrincipal());
+		result.setStatus("PENDING");
+		
 		return result;
 	}
 
@@ -61,21 +69,6 @@ public class RequestService {
 		Request result;
 		result = requestRepository.save(request);
 
-		/***
-		 * Assert.isTrue(book.getCheckin().before(book.getCheckout()));
-		 * 
-		 * CreditCard cc;
-		 * cc = book.getCreditcard();
-		 * LocalDate localDate = new LocalDate(cc.getExpirationYear(), cc.getExpirationMonth(), 1);
-		 * Date ccd = localDate.toDate();
-		 * Date now = new Date();
-		 * long startTime = now.getTime();
-		 * long endTime = ccd.getTime();
-		 * long diffTime = endTime - startTime;
-		 * long diffDays = diffTime / (1000 * 60 * 60 * 24);
-		 * Assert.isTrue(diffDays > 7, "The expired date of Credit Card should be higher than 7 days.");
-		 */
-
 		return result;
 	}
 
@@ -84,36 +77,43 @@ public class RequestService {
 	}
 
 
-	@Autowired
-	private Validator	validator;
+	// Form methods ------------------------------------------------
 
+			public RequestForm generateForm() {
+				RequestForm result;
 
-	public Request reconstruct(Request request, BindingResult binding) {
-		Request result;
+				result = new RequestForm();
+				return result;
+			}
 
-		if (request.getId() == 0) {
+			public Request reconstruct(RequestForm requestForm, BindingResult binding) {
 
-			Student student;
-			student = studentService.findByPrincipal();
+				Request result;
+				
+				Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut())>0, "notBeforeDate");
+				Assert.isTrue(check(requestForm), "badDayDate");
+				
+				result = create();
+				
+				result.setCheckIn(requestForm.getCheckIn());
+				result.setCheckOut(requestForm.getCheckOut());
+				result.setrClass(rClassService.findOne(requestForm.getRClassId()));
+				
+				validator.validate(result, binding);
 
-			request.setStudent(student);
-			request.setStatus("PENDING");
+				return result;
 
-			result = request;
-			validator.validate(result, binding);
-
-		} else {
-			result = requestRepository.findOne(request.getId());
-			//Diferentes sets
-
-			result.setCheckin(request.getCheckin());
-			result.setCheckout(request.getCheckout());
-			result.setDay(request.getDay());
-			result.setStatus(request.getStatus());
-
-			validator.validate(result, binding);
-		}
-
-		return result;
-	}
+			}
+	
+			private boolean check(RequestForm request){
+				String fecha1, fecha2;
+				fecha1 = request.getCheckIn().substring(0, request.getCheckIn().indexOf(" "));
+				fecha2 = request.getCheckOut().substring(0, request.getCheckIn().indexOf(" "));
+				
+				if(fecha1.equals(fecha2)){
+					return true;
+				}else{
+					return false;
+				}
+			}
 }

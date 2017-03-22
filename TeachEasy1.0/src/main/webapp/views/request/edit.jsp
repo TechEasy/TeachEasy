@@ -19,18 +19,15 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<form:form action ="request/student/edit.do" modelAttribute="request">
+<form:form action ="student/request/register.do" modelAttribute="requestForm">
 
-	<form:hidden path="id"/>
-	<form:hidden path="rClass"/>
+	<form:hidden path="rClassId"/>
 	
 	<fieldset>
 			<legend><spring:message code="request.request"/></legend>
 			
-			<acme:textbox code="request.checkin" path="checkin"/>			
-			<acme:textbox code="request.checkout" path="checkout"/>			
-			<acme:checkbox code="request.day" path="day"/>
-			<acme:textbox code="request.status" path="status"/>	
+			<acme:textbox code="request.checkin" path="checkIn"/>			
+			<acme:textbox code="request.checkout" path="checkOut"/>		
 				
 	</fieldset>				
 	<br/>
@@ -38,11 +35,6 @@
 	<!-- Buttons -->
 	
 	<acme:submit name="save" code="request.save"/>	
-	<jstl:if test="${request.id != 0}">
-	
-		<input type="submit" name="delete" value="<spring:message code="request.delete" />"
-			onclick="return confirm('<spring:message code="request.confirm.delete" />')" />&nbsp;
-	</jstl:if>
 	<acme:cancel url="proposal/list.do" code="request.cancel"/>
 	
 </form:form>

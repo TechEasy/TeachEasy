@@ -1,4 +1,3 @@
-
 package controllers.Student;
 
 import java.util.Collection;
@@ -21,9 +20,11 @@ import controllers.AbstractController;
 import domain.RClass;
 import domain.Request;
 import domain.Student;
+import form.RequestForm;
+import form.StudentForm;
 
 @Controller
-@RequestMapping("/request/student")
+@RequestMapping("/student/request")
 public class StudentRequestController extends AbstractController {
 
 	@Autowired
@@ -54,55 +55,62 @@ public class StudentRequestController extends AbstractController {
 		requests = student.getRequests();
 
 		result = new ModelAndView("request/list");
-		result.addObject("requestURI", "request/student/list.do");
+		result.addObject("requestURI", "request/request/list.do");
 		result.addObject("requests", requests);
 
 		return result;
 	}
 
-	// Request ----------------------------------------------------------------
+	// Creation ------------------------------------------------
 
-	@RequestMapping(value = "/request", method = RequestMethod.GET)
-	public ModelAndView request(@Valid Request request, BindingResult binding, @RequestParam(required = true) int rClassId) {
-		ModelAndView result;
+		@RequestMapping(value = "/register", method = RequestMethod.GET)
+		public ModelAndView create(@RequestParam int rClassId) {
+			ModelAndView result;
+			RequestForm requestForm;
 
-		Request r;
-		r = requestService.create();
+			requestForm = requestService.generateForm();
+			requestForm.setRClassId(rClassId);
+			result = createEditModelAndView(requestForm, null);
 
-		RClass rClass;
-		rClass = rClassService.findOne(rClassId);
-
-		r.setrClass(rClass);
-
-		result = new ModelAndView("request/student/request");
-		result.addObject("request", r);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/request", method = RequestMethod.POST, params = "save")
-	public ModelAndView requestBook(@Valid @ModelAttribute Request request, BindingResult binding, Integer rClassId) {
-		ModelAndView result;
-
-		request = requestService.reconstruct(request, binding);
-		if (binding.hasErrors()) {
-			result = new ModelAndView("request/student/request");
-			result.addObject("request", request);
-		} else {
-			try {
-
-				Request res;
-
-				res = requestService.save(request);
-
-				result = new ModelAndView("redirect:/request/student/list.do");
-			} catch (Throwable oops) {
-				result = new ModelAndView("request/student/request");
-				result.addObject("request", request);
-				result.addObject("message", "request.commit.error");
-			}
+			return result;
 		}
 
-		return result;
-	}
+		@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
+		public ModelAndView save(@Valid RequestForm requestForm, BindingResult binding) {
+			ModelAndView result;
+			Request request;
+
+			if (binding.hasErrors()) {
+				result = createEditModelAndView(requestForm, null);
+			} else {
+				try {
+					request = requestService.reconstruct(requestForm, binding);
+					requestService.save(request);
+					result = list();
+				} catch (Throwable oops) {
+					String msgCode = "request.register.error";
+					if (oops.getMessage().equals("notBeforeDate")) {
+						msgCode = "request.register.notBeforeDate";
+					}else if (oops.getMessage().equals("badDayDate")) {
+							msgCode = "request.register.badDayDate";
+					}
+					result = createEditModelAndView(requestForm, msgCode);
+				}
+			}
+
+			return result;
+
+		}
+
+		// Ancillary methods ---------------------------------------------------
+
+		protected ModelAndView createEditModelAndView(RequestForm requestForm, String message) {
+			ModelAndView result;
+
+			result = new ModelAndView("request/register");
+			result.addObject("requestForm", requestForm);
+			result.addObject("message", message);
+
+			return result;
+		}
 }

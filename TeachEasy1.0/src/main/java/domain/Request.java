@@ -25,9 +25,8 @@ public class Request extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 	private String	status;
-	private String	checkin;
-	private String	checkout;
-	private String	day;
+	private String	checkIn;
+	private String	checkOut;
 
 
 	@NotBlank
@@ -41,29 +40,22 @@ public class Request extends DomainEntity {
 
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public String getCheckin() {
-		return checkin;
+	public String getcheckIn() {
+		return checkIn;
 	}
-	public void setCheckin(String checkin) {
-		this.checkin = checkin;
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
 	}
 
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public String getCheckout() {
-		return checkout;
+	public String getCheckOut() {
+		return checkOut;
 	}
-	public void setCheckout(String checkout) {
-		this.checkout = checkout;
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
 	}
 
-	@NotBlank
-	public String getDay() {
-		return day;
-	}
-	public void setDay(String day) {
-		this.day = day;
-	}
 
 
 	// Relationships ----------------------------------------------------------
