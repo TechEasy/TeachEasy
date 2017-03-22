@@ -21,11 +21,7 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
-			<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
 			<li><a class="fNiv" href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
-			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
-			<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
 		</security:authorize>	
 		
 		<security:authorize access="isAnonymous()">
@@ -48,7 +44,12 @@
 		</security:authorize>
 			
 		<security:authorize access="hasRole('STUDENT')">
-			<li><a class="fNiv"><spring:message code="master.page.student.finder" /></a>
+				<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
+				<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
+				<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
+				<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
+		
+				<li><a class="fNiv"><spring:message code="master.page.student.finder" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="student/finder/display.do"><spring:message code="master.page.student.proposal" /></a></li>
@@ -71,7 +72,7 @@
 		
 		
 		<security:authorize access="hasRole('TEACHER')">
-			<li><a class="fNiv" href="proposal/teacher/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
+			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
 			
 			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
 				</a>
