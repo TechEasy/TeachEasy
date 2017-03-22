@@ -78,6 +78,13 @@ public class RequestService {
 		requestRepository.delete(request);
 	}
 
+	public Collection<Request> findByTeacher(int id){
+		return requestRepository.findByTeacher(id);
+	}
+	
+	public Collection<Request> findByAcademy(int id){
+		return requestRepository.findByAcademy(id);
+	}
 
 	// Form methods ------------------------------------------------
 
