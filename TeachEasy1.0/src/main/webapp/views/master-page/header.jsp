@@ -76,7 +76,8 @@
 		
 		
 		<security:authorize access="hasRole('TEACHER')">
-			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
+			<li><a class="fNiv" href="teacher/proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
+			<li><a class="fNiv" href="teacher/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
 			
 			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
 				</a>
