@@ -43,8 +43,9 @@
 			
 		</tr>
 		<tr>
-			<td><jstl:out value="${teacher.city}"/></td>
 			<td><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></td>
+			<td><jstl:out value="${teacher.city}"/></td>
+			
 			
 		</tr>
 		<tr>
@@ -52,8 +53,9 @@
 			<th><spring:message code="teacher.avgStars"/></th>			
 		</tr>
 		<tr>
-			<td><jstl:out value="${teacher.avgStars}"/></td>
 			<td><jstl:out value="${teacher.address}"/></td>
+			<td><jstl:out value="${teacher.avgStars}"/></td>
+			
 		</tr>
 	</tbody>
 </table>
