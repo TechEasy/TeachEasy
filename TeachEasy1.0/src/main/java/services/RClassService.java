@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import repositories.RClassRepository;
-import domain.RClass;
+import domain.Rclass;
 
 @Service
 @Transactional
@@ -30,36 +30,36 @@ public class RClassService {
 	}
 
 	// Simple CRUD methods
-	public RClass create() {
-		RClass result;
-		result = new RClass();
+	public Rclass create() {
+		Rclass result;
+		result = new Rclass();
 		return result;
 	}
 
-	public Collection<RClass> findAll() {
-		Collection<RClass> result;
+	public Collection<Rclass> findAll() {
+		Collection<Rclass> result;
 		result = rClassRepository.findAll();
 		return result;
 	}
 
-	public RClass findOne(int id) {
-		RClass result;
+	public Rclass findOne(int id) {
+		Rclass result;
 		result = rClassRepository.findOne(id);
 		return result;
 	}
 
-	public RClass save(RClass rClass) {
-		RClass result;
-		result = rClassRepository.save(rClass);
+	public Rclass save(Rclass rclass) {
+		Rclass result;
+		result = rClassRepository.save(rclass);
 		return result;
 
 	}
 	
-	public RClass findById(int id){
+	public Rclass findById(int id){
 		return rClassRepository.findById(id);
 	}
 
-	public void delete(RClass rClass) {
-		rClassRepository.delete(rClass);
+	public void delete(Rclass rclass) {
+		rClassRepository.delete(rclass);
 	}
 }

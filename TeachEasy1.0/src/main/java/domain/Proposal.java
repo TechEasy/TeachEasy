@@ -9,7 +9,7 @@ import javax.validation.Valid;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Proposal extends RClass {
+public class Proposal extends Rclass {
 
 	// Constructors -----------------------------------------------------------
 

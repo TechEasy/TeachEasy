@@ -17,7 +17,7 @@ import services.RClassService;
 import services.RequestService;
 import services.StudentService;
 import controllers.AbstractController;
-import domain.RClass;
+import domain.Rclass;
 import domain.Request;
 import domain.Student;
 import form.RequestForm;
@@ -69,7 +69,7 @@ public class StudentRequestController extends AbstractController {
 			RequestForm requestForm;
 
 			requestForm = requestService.generateForm();
-			requestForm.setrClassId(rClassId);
+			requestForm.setRclassId(rClassId);
 			result = createEditModelAndView(requestForm, null);
 
 			return result;

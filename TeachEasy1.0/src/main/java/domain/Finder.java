@@ -70,14 +70,14 @@ public class Finder extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Collection<RClass>	rClasses;
+	private Collection<Rclass>	rClasses;
 
 
 	@OneToMany
-	public Collection<RClass> getResults() {
+	public Collection<Rclass> getResults() {
 		return this.rClasses;
 	}
-	public void setResults(Collection<RClass> rClasses) {
+	public void setResults(Collection<Rclass> rClasses) {
 		this.rClasses = rClasses;
 	}
 }

@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import domain.RClass;
+import domain.Rclass;
 
 @Repository
-public interface RClassRepository extends JpaRepository<RClass, Integer> {
+public interface RClassRepository extends JpaRepository<Rclass, Integer> {
 	@Query("select c from RClass c where c.id=?1")
-	RClass findById(int id);
+	Rclass findById(int id);
 }

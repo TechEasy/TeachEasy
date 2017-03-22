@@ -59,17 +59,17 @@ public class Request extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private RClass	rClass;
+	private Rclass	rclass;
 	private Student	student;
 
 
 	@Valid
-	@ManyToOne()
-	public RClass getrClass() {
-		return rClass;
+	@ManyToOne(optional = false)
+	public Rclass getRclass() {
+		return rclass;
 	}
-	public void setrClass(RClass rClass) {
-		this.rClass = rClass;
+	public void setRclass(Rclass rclass) {
+		this.rclass = rclass;
 	}
 
 	@Valid

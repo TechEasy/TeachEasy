@@ -22,4 +22,5 @@ public interface ProposalRepository extends JpaRepository<Proposal, Integer> {
 	
 	@Query("select distinct p from Proposal p where p.teacher.city=?2 and (p.subjectMatter.name like %?1%) and (p.title like %?3%)")
 	Collection<Proposal> findByMatterAndKey(String matter, String city,String keyword);
+	
 }

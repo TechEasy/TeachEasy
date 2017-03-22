@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Course extends RClass {
+public class Course extends Rclass {
 
 	// Constructors -----------------------------------------------------------
 

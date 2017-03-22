@@ -95,13 +95,13 @@ public class RequestService {
 				Assert.isTrue(checkC(studentService.findByPrincipal().getCreditCard()),"badCreditCard");
 				Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut())<0, "notBeforeDate");
 				Assert.isTrue(check(requestForm), "badDayDate");
-				Assert.notNull(rClassService.findById(requestForm.getrClassId()), "badRClass");
+				Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
 				
 				result = create();
 				
 				result.setCheckIn(requestForm.getCheckIn());
 				result.setCheckOut(requestForm.getCheckOut());
-				result.setrClass(rClassService.findById(requestForm.getrClassId()));
+				result.setRclass(rClassService.findById(requestForm.getRclassId()));
 				
 				validator.validate(result, binding);
 

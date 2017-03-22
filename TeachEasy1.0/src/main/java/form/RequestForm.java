@@ -13,7 +13,7 @@ public class RequestForm {
 
 	// Attributes ----------------------------------------------------
 
-	private int			rClassId;
+	private int			rclassId;
 	private String		checkIn;
 	private String		checkOut;
 
@@ -26,11 +26,11 @@ public class RequestForm {
 
 	// Getters and Setters ------------------------------------------
 
-	public int getrClassId() {
-		return rClassId;
+	public int getRclassId() {
+		return rclassId;
 	}
-	public void setrClassId(int rClassId) {
-		this.rClassId = rClassId;
+	public void setRclassId(int rclassId) {
+		this.rclassId = rclassId;
 	}
 
 	@NotNull

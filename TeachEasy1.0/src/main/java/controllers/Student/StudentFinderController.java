@@ -21,7 +21,7 @@ import controllers.AbstractController;
 import domain.Course;
 import domain.Finder;
 import domain.Proposal;
-import domain.RClass;
+import domain.Rclass;
 import form.FinderForm;
 
 @Controller

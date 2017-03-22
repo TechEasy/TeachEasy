@@ -9,21 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RClassRepository;
-import domain.RClass;
+import domain.Rclass;
 
 @Component
 @Transactional
-public class StringToRClassConverter implements Converter<String, RClass> {
+public class StringToRClassConverter implements Converter<String, Rclass> {
 
 	@Autowired
 	RClassRepository	rClassRepository;
 
 
 	@Override
-	public RClass convert(String text) {
+	public Rclass convert(String text) {
 		Assert.hasText(text);
 
-		RClass result;
+		Rclass result;
 		int id;
 
 		try {
