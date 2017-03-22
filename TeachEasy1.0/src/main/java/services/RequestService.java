@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
+import domain.CreditCard;
 import domain.Request;
 import form.RequestForm;
 
@@ -90,7 +92,8 @@ public class RequestService {
 
 				Request result;
 				
-				Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut())>0, "notBeforeDate");
+				Assert.isTrue(checkC(studentService.findByPrincipal().getCreditCard()),"badCreditCard");
+				Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut())<0, "notBeforeDate");
 				Assert.isTrue(check(requestForm), "badDayDate");
 				
 				result = create();
@@ -115,5 +118,42 @@ public class RequestService {
 				}else{
 					return false;
 				}
+			}
+			
+			public static boolean checkC(CreditCard creditCard) {
+				boolean validador = false;
+				int sum = 0;
+				Calendar fecha = Calendar.getInstance();
+				String numero = creditCard.getNumber();
+				int mes = fecha.get(Calendar.MONTH) + 1;
+				int año = fecha.get(Calendar.YEAR);
+
+				if (creditCard.getExpirationYear() > año) {
+					validador = true;
+				} else if (creditCard.getExpirationYear() == año) {
+					if (creditCard.getExpirationMonth() >= mes) {
+						validador = true;
+					}
+				}
+
+				if (validador) {
+					validador = false;
+					for (int i = numero.length() - 1; i >= 0; i--) {
+						int n = Integer.parseInt(numero.substring(i, i + 1));
+						if (validador) {
+							n *= 2;
+							if (n > 9) {
+								n = (n % 10) + 1;
+							}
+						}
+						sum += n;
+						validador = !validador;
+					}
+					if (sum % 10 == 0) {
+						validador = true;
+					}
+				}
+
+				return validador;
 			}
 }

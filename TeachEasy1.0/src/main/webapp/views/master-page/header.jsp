@@ -24,7 +24,6 @@
 			<li><a class="fNiv" href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
 			<li><a class="fNiv" href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
 			<li><a class="fNiv" href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
-			<li><a class="fNiv" href="student/browse.do"><spring:message code="master.page.administrator.student.browse" /></a></li>
 			<li><a class="fNiv" href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
 			<li><a class="fNiv" href="course/list.do"><spring:message code="master.page.course" /></a></li>
 		</security:authorize>	
@@ -47,7 +46,7 @@
 				</ul>
 			</li>
 			
-			<li><a class="fNiv" href="request/student/list.do"><spring:message code="master.page.student.request" /> </a></li>
+			<li><a class="fNiv" href="student/request/list.do"><spring:message code="master.page.student.request" /> </a></li>
 			
 			<li><a class="fNiv"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />)
 				</a>

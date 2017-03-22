@@ -21,9 +21,9 @@
 
 <display:table pagesize="5" class="displaytag" name="requests" requestURI="request/student/list.do" id="requestList">	
 	
-	<acme:column code="request.checkin" property="checkin" sortable="true"/>
+	<acme:column code="request.checkin" property="checkIn" sortable="true"/>
 	
-	<acme:column code="request.checkout" property="checkout" sortable="true"/>
+	<acme:column code="request.checkout" property="checkOut" sortable="true"/>
 	
 	<acme:column code="request.day" property="day" sortable="true"/>
 		

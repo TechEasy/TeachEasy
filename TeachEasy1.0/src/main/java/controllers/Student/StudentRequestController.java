@@ -93,6 +93,8 @@ public class StudentRequestController extends AbstractController {
 						msgCode = "request.register.notBeforeDate";
 					}else if (oops.getMessage().equals("badDayDate")) {
 							msgCode = "request.register.badDayDate";
+					}else if (oops.getMessage().equals("badCreditCard")) {
+						msgCode = "request.register.badCreditCard";
 					}
 					result = createEditModelAndView(requestForm, msgCode);
 				}
