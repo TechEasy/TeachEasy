@@ -21,7 +21,7 @@
 
 <form:form action ="student/request/register.do" modelAttribute="requestForm">
 
-	<form:hidden path="rClassId"/>
+	<form:hidden path="rclassId"/>
 	
 	<fieldset>
 			<legend><spring:message code="request.request"/></legend>

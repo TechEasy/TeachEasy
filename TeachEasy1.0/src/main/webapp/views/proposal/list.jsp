@@ -45,7 +45,7 @@
 	</display:column>
 	<security:authorize access="hasRole('STUDENT')">
 		<display:column title="Request">
-			<a href="student/request/register.do?rClassId=${proposalList.id}">
+			<a href="student/request/register.do?rClassId=${row.id}">
 				<spring:message	code="request.request" />
 			</a>
 		</display:column>		

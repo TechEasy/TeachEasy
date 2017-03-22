@@ -27,7 +27,7 @@
 			
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
-	<acme:column code="request.rClass" property="rClass.title" sortable="false"/>
+	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
 		<%--
 	<display:column>
 		<jstl:if test="${row.status == 'PENDING'}">
