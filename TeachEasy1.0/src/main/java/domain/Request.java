@@ -41,7 +41,7 @@ public class Request extends DomainEntity {
 
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	public String getCheckin(){
+	public String getCheckin() {
 		return checkin;
 	}
 	public void setCheckin(String checkin) {
@@ -70,18 +70,19 @@ public class Request extends DomainEntity {
 	private RClass	rClass;
 	private Student	student;
 
+
 	@Valid
-	@ManyToOne(optional=false)
-	public RClass getrClass(){
+	@ManyToOne()
+	public RClass getrClass() {
 		return rClass;
 	}
-	public void setrClass(RClass rClass){
+	public void setrClass(RClass rClass) {
 		this.rClass = rClass;
 	}
 
 	@Valid
-	@ManyToOne(optional=false)
-	public Student getStudent(){
+	@ManyToOne(optional = false)
+	public Student getStudent() {
 		return student;
 	}
 	public void setStudent(Student student) {

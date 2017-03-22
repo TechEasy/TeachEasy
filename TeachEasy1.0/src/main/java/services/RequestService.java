@@ -23,6 +23,9 @@ public class RequestService {
 	@Autowired
 	RequestRepository	requestRepository;
 
+	@Autowired
+	RClassService		rClassService;
+
 	// Supporting services
 	@Autowired
 	StudentService		studentService;
@@ -54,10 +57,26 @@ public class RequestService {
 	}
 
 	public Request save(Request request) {
+
 		Request result;
 		result = requestRepository.save(request);
-		return result;
 
+		/***
+		 * Assert.isTrue(book.getCheckin().before(book.getCheckout()));
+		 * 
+		 * CreditCard cc;
+		 * cc = book.getCreditcard();
+		 * LocalDate localDate = new LocalDate(cc.getExpirationYear(), cc.getExpirationMonth(), 1);
+		 * Date ccd = localDate.toDate();
+		 * Date now = new Date();
+		 * long startTime = now.getTime();
+		 * long endTime = ccd.getTime();
+		 * long diffTime = endTime - startTime;
+		 * long diffDays = diffTime / (1000 * 60 * 60 * 24);
+		 * Assert.isTrue(diffDays > 7, "The expired date of Credit Card should be higher than 7 days.");
+		 */
+
+		return result;
 	}
 
 	public void delete(Request request) {

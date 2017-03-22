@@ -1,7 +1,7 @@
 <%--
  * edit.jsp
  *
- * Copyright (C) 2017 Universidad de Sevilla
+ * Copyright (C) 2016 Universidad de Sevilla
  * 
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
@@ -27,21 +27,19 @@
 	<fieldset>
 			<legend><spring:message code="request.request"/></legend>
 			
-			<acme:textbox code="request.checkin" path="checkin"/>
-			
-			<acme:textbox code="request.checkout" path="checkout"/>
-			
+			<acme:textbox code="request.checkin" path="checkin"/>			
+			<acme:textbox code="request.checkout" path="checkout"/>			
 			<acme:checkbox code="request.day" path="day"/>
-			
 			<acme:textbox code="request.status" path="status"/>	
-	</fieldset>
+				
+	</fieldset>				
 	<br/>
-
+	
 	<!-- Buttons -->
 	
-	<acme:submit name="save" code="request.save"/>
+	<acme:submit name="save" code="request.save"/>	
+	<jstl:if test="${request.id != 0}">
 	
-	<jstl:if test="${request.id != 0}">	
 		<input type="submit" name="delete" value="<spring:message code="request.delete" />"
 			onclick="return confirm('<spring:message code="request.confirm.delete" />')" />&nbsp;
 	</jstl:if>

@@ -88,10 +88,9 @@ public class RClass extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 	private Collection<Request>	requests;
-	private SubjectMatter subjectMatter;
+	private SubjectMatter		subjectMatter;
 
 
-	@Valid
 	@OneToMany(mappedBy = "rClass")
 	public Collection<Request> getRequests() {
 		return requests;
@@ -99,13 +98,13 @@ public class RClass extends DomainEntity {
 	public void setRequests(Collection<Request> requests) {
 		this.requests = requests;
 	}
-	
+
 	@Valid
-	@ManyToOne(optional=false)
-	public SubjectMatter getSubjectMatter(){
+	@ManyToOne(optional = false)
+	public SubjectMatter getSubjectMatter() {
 		return subjectMatter;
 	}
-	public void setSubjectMatter(SubjectMatter subjectMatter){
+	public void setSubjectMatter(SubjectMatter subjectMatter) {
 		this.subjectMatter = subjectMatter;
 	}
 

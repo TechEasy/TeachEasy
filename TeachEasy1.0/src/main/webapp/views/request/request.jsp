@@ -22,14 +22,12 @@
 
 	<form:hidden path="id"/>
 	<form:hidden path="rClass"/>
-	
 
 	<fieldset>		
 		<acme:textbox code="request.checkin" path="checkin"/>
 		<acme:textbox code="request.checkout" path="checkout"/>
 		<acme:textbox code="request.day" path="day"/>
 		<form:hidden path="status"/>
-	
 	</fieldset>
 <%--
 	<fieldset>
