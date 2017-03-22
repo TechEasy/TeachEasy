@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import repositories.ProposalRepository;
 import domain.Finder;
 import domain.Proposal;
+import domain.Teacher;
 
 @Service
 @Transactional
@@ -95,5 +96,9 @@ public class ProposalService {
 		}
 		return result;
 
+	}
+	public Collection<Proposal>findByCreator(Teacher teacher){
+		Collection<Proposal>result=proposalRepository.findByCreator(teacher);
+		return result;
 	}
 }
