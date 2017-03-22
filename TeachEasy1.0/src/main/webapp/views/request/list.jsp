@@ -28,7 +28,7 @@
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
 	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
-		<%--
+		<security:authorize access="hasRole('TEACHER')">
 	<display:column>
 		<jstl:if test="${row.status == 'PENDING'}">
 		<spring:message code="bookrequest.accept" var="accept" />
@@ -37,7 +37,7 @@
 		<input type="button" name="addCategory" value="${deny}" onclick="javascript: window.location.replace('request/lessor/deny.do?bookRequestId=${row.id}')" />
 		</jstl:if>
 	</display:column>	
-		 --%>			
+		 </security:authorize>
 </display:table>
 
 
