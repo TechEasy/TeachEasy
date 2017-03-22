@@ -43,7 +43,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="student/finder/display.do"><spring:message code="master.page.student.proposal" /></a></li>
-					<li><a href="student/finder/display2.do"><spring:message code="master.page.student.course" /> </a></li>	
+					<li><a href="student/finder/course/display2.do"><spring:message code="master.page.student.course" /> </a></li>	
 				</ul>
 			</li>
 			

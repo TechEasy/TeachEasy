@@ -31,4 +31,9 @@
 		<put-attribute name="body" value="/views/finder/edit.jsp" />
 	</definition>
 	
+	<definition name="finder/edit2" extends="master.page">	
+		<put-attribute name="title" value="Edit finder" />
+		<put-attribute name="body" value="/views/finder/edit2.jsp" />
+	</definition>
+	
 </tiles-definitions>

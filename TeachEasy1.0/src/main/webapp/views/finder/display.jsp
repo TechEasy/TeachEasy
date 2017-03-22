@@ -52,6 +52,10 @@
 	<!-- Action links -->
 	
 	<!-- Attributes -->
+	
+	<spring:message code="proposal.teacher.picture" var="teacher" />
+		<display:column><img src="${row.teacher.picture}" width="60" height="60" ></display:column>
+	
 	<spring:message code="proposal.teacher" var="teacher" />
 	<display:column property="teacher.name" title="${teacher}" sortable="false" />
 	
@@ -62,10 +66,13 @@
 	<display:column property="title" title="${titleHeader}" sortable="false" />
 
 	<spring:message code="proposal.rate" var="rateHeader" />
-	<display:column property="rate" title="${rateHeader}" sortable="true" />
+	<display:column property="rate" title="${rateHeader}" sortable="false" />
+	
+	<spring:message code="proposal.teacher.avgStars" var="teacher" />
+	<display:column property="teacher.avgStars" title="${teacher}" sortable="false" />
 
 	<display:column>
-		<a href="teacher/display.do?proposalId=${row.id}"><spring:message code="finder.view.teacher" /></a>
+		<a href="teacher/displayById.do?id=${row.id}"><spring:message code="finder.view.teacher" /></a>
 	</display:column>
 	</display:table>
 	

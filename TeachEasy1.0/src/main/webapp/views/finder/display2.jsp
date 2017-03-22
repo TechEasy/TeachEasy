@@ -24,7 +24,7 @@
 	<security:authorize access="hasRole('STUDENT')">
 	
 	<display:column>
-		<a href="student/finder/edit2.do?finderId=${row.id}"><spring:message code="finder.edit" /></a>
+		<a href="student/finder/course/edit2.do?finderId=${row.id}"><spring:message code="finder.edit" /></a>
 	</display:column>			
 	
 					
@@ -53,6 +53,7 @@
 	<!-- Action links -->
 	
 	<!-- Attributes -->
+	
 	<spring:message code="course.academy" var="academy" />
 	<display:column property="academy.name" title="${academy}" sortable="false" />
 	
@@ -62,9 +63,11 @@
 	<spring:message code="course.rate" var="rateHeader" />
 	<display:column property="rate" title="${rateHeader}" sortable="true" />
 
+	<spring:message code="course.avgStars" var="academy" />
+	<display:column property="academy.avgStars" title="${academy}" sortable="false" />
 	
 	<display:column>
-		<a href="academy/display.do?courseId=${row.id}"><spring:message code="finder.view.academy" /></a>
+		<a href="academy/displayById.do?id=${row.id}"><spring:message code="finder.view.academy" /></a>
 	</display:column>
 	
 	

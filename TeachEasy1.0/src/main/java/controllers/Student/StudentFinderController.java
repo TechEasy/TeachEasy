@@ -103,66 +103,7 @@ public class StudentFinderController extends AbstractController{
 			return result;
 		}
 		
-		//Display--------------------------
-
-				@RequestMapping(value = "/display2", method = RequestMethod.GET)
-				public ModelAndView display2() {
-
-					ModelAndView result;
-					Finder finder;
-					
-					finder = finderService.findByPrincipal();
-					result = new ModelAndView("finder/display2");
-					result.addObject("finder", finder);
-					
-					result.addObject("requestURI", "student/finder/display2.do");
-
-					return result;
-				}
-
-				
-
-				//Edition--------------------------
-
-				@RequestMapping(value = "/edit2", method = RequestMethod.GET)
-				public ModelAndView edit2(@RequestParam int finderId) {
-
-					ModelAndView result;
-					Finder finder;
-					
-					finder = finderService.findOne(finderId);
-					FinderForm finderform=finderService.transform(finder);
-					Assert.notNull(finderform);
-					result = createEditModelAndView(finderform);
-
-					return result;
-
-				}
-
-				@RequestMapping(value = "/edit2", method = RequestMethod.POST, params = "save")
-				public ModelAndView save2(@Valid FinderForm finderForm, BindingResult binding) {
-
-					ModelAndView result;
-					Finder finder;
-					if (binding.hasErrors()) {
-						result = createEditModelAndView(finderForm);
-					} else {
-						try {
-							finder=finderService.reconstruct(finderForm, binding);
-							Collection<Course>courses=courseService.findByFinder(finder);
-							finderService.save(finder);
-							result = display2();
-							System.out.println(courses);
-							result.addObject("courses",courses);
-						} catch (Throwable oops) {
-							result = createEditModelAndView(finderForm, "master.page.commit.error");
-					}
-
-					
-					}
-					return result;
-				}
-				
+		
 				
 
 		//Ancillary Methods---------------------------
