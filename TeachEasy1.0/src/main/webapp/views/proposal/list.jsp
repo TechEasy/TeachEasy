@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="proposals" requestURI="${requestURI}" id="row">
+<display:table pagesize="5" class="table" keepStatus="true" name="proposals" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
 	
@@ -50,4 +50,11 @@
 			</a>
 		</display:column>		
 	</security:authorize>
-	</display:table>
+</display:table>
+
+	<div class="row">
+		<div class="col-md-3">
+			<spring:message code="proposal.teacher.picture" var="teacher" />
+			<img src="${row.teacher.picture}" width="300" height="300" >
+		</div>
+	</div>

@@ -13,116 +13,134 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<div>
-	<img src="images/logo.png" alt="TeachEasy Co., Inc." />
+
+<div class="row text-left">
+	<div class="col-md-6 ">
+		<font size="3" color="blue">
+			<a href="?language=en">ENGLISH</a> | <a href="?language=es">ESPAÑOL</a>
+		</font>
+	</div>
+	<div class="col-md-6 text-right">
+		<font size="5" color="blue">
+		    <security:authorize access="isAnonymous()">
+				<a href="security/login.do"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.login" /></a>
+			</security:authorize>
+			<security:authorize access="isAuthenticated()">
+				<a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.logout" /> </a>
+			</security:authorize>
+		</font>
+	</div>
 </div>
 
-<div>
-	<ul id="jMenu">
-		<!-- Do not forget the "fNiv" class for the first level links !! -->
-		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
-		</security:authorize>	
-		
-		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv"><spring:message code="master.page.register.menu" /></a>
-				<ul>
-					<li class="arrow"></li>
+<div class="row text-center">
+	<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<nav class="navbar navbar-inverse ">
+	<div class="container-fluid">
+ 		<div class="navbar-header">
+ 			 <a class="navbar-brand" href="#">
+       			 TeachEasy
+     		 </a>
+    	</div>
+    	<ul class="nav navbar-nav">    	
+    	<security:authorize access="isAnonymous()">
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.register.menu" /> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="student/register.do"><spring:message code="master.page.student.register" /></a></li>
 					<li><a href="teacher/register.do"><spring:message code="master.page.teacher.register" /></a></li>
 					<li><a href="academy/register.do"><spring:message code="master.page.academy.register" /></a></li>
 				</ul>
 			</li>
-			<li><a class="fNiv"><spring:message code="master.page.basic.menu" /></a>
-				<ul>
-					<li class="arrow"></li>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.basic.menu" /> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
 					<li><a href="course/list.do"><spring:message code="master.page.course" /></a></li>
 				</ul>
 			</li>
-			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>	
 		</security:authorize>
-			
-		<security:authorize access="hasRole('STUDENT')">
+    	
+    	<security:authorize access="isAuthenticated()">
+			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
+		</security:authorize>
 		
-				<li><a class="fNiv"><spring:message code="master.page.student.searchFor" /></a>
-				<ul>
-					<li class="arrow"></li>
+		<security:authorize access="hasRole('STUDENT')">
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.student.searchFor" /><span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="teacher/browse.do"><spring:message code="master.page.administrator.teacher.browse" /></a></li>
 					<li><a href="academy/browse.do"><spring:message code="master.page.administrator.academy.browse" /></a></li>
 					<li><a href="proposal/list.do"><spring:message code="master.page.proposal" /></a></li>
 					<li><a href="course/list.do"><spring:message code="master.page.course" /></a></li>
 				</ul>
-				<li><a class="fNiv"><spring:message code="master.page.student.finder" /></a>
-				<ul>
-					<li class="arrow"></li>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.student.finder" /><span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="student/finder/display.do"><spring:message code="master.page.student.proposal" /></a></li>
 					<li><a href="student/finder/course/display2.do"><spring:message code="master.page.student.course" /> </a></li>	
 				</ul>
 			</li>
-			
-			<li><a class="fNiv" href="student/request/list.do"><spring:message code="master.page.student.request" /> </a></li>
-			
-			<li><a class="fNiv"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />)
-				</a>
-					<ul>
-						<li class="arrow"></li>
+			<li><a href="student/request/list.do"><spring:message code="master.page.student.request" /> </a></li>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
+				<span class="caret"></span></a>
+					<ul class="dropdown-menu">
 						<li><a href="student/display.do"><spring:message code="master.page.display" /> </a></li>
 						<li><a href="student/edit.do"><spring:message code="master.page.edit" /> </a></li>
-						<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 					</ul>
 				</li>
 		</security:authorize>
 		
-		
 		<security:authorize access="hasRole('TEACHER')">
-			<li><a class="fNiv" href="teacher/proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
-			<li><a class="fNiv" href="teacher/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
+			<li><a href="teacher/proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
+			<li><a href="teacher/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
 			
-			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
-				</a>
-				<ul>
-					<li class="arrow"></li>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="teacher/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="teacher/edit.do"><spring:message code="master.page.edit" /> </a></li>
 					<li><a href="curricula/teacher/display.do"><spring:message code="master.page.curricula" /> </a></li>
-					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
 		
-		
 		<security:authorize access="hasRole('ACADEMY')">
-			<li><a href="course/academy/list.do"><spring:message code="master.page.academy.course" /></a></li>	
-			
-			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
-				</a>
-				<ul>
-					<li class="arrow"></li>
+			<li><a href="course/academy/list.do"><spring:message code="master.page.academy.course" /></a></li>		
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="academy/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="academy/edit.do"><spring:message code="master.page.edit" /> </a></li>
-					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>	
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
-			
-			<li><a class="fNiv"> <spring:message code="master.page.profile" /> (<security:authentication property="principal.username" />)
-				</a>
-				<ul>
-					<li class="arrow"></li>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
 					<li><a href="admininistrator/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="spam/admin/edit.do"><spring:message code="master.page.spam" /> </a></li>
 					<li><a href="admin/edit.do"><spring:message code="master.page.edit" /> </a></li>
-					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
-	</ul>
+		
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<security:authorize access="isAnonymous()">
+   	   			<li><a href="security/login.do"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.login" /></a></li>
+   	   		</security:authorize>
+   	   		<security:authorize access="isAuthenticated()">
+   	   			<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.logout" /> </a></li>
+   	   		</security:authorize>
+   		</ul>
+
+  		</div>
+</nav>
+</div>
 </div>
 
-<div>
-	<a href="?language=en">en</a> | <a href="?language=es">es</a>
-</div>
+
+
 

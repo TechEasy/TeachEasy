@@ -42,6 +42,11 @@
 
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap -->
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 
@@ -66,26 +71,31 @@
 			window.location.replace(loc);
 		}
 	</script>
+	
+	
+
+	
 </head>
 
 <body>
-
-	<div>
+<div class="container">
+	
 		<tiles:insertAttribute name="header" />
-	</div>
-	<div>
-		<h1>
-			<tiles:insertAttribute name="title" />
-		</h1>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">
+					<tiles:insertAttribute name="title" />
+				</h1>
+			</div>
+		</div>
 		<tiles:insertAttribute name="body" />	
 		<jstl:if test="${message != null}">
 			<br />
 			<span class="message"><spring:message code="${message}" /></span>
 		</jstl:if>	
-	</div>
-	<div>
-		<tiles:insertAttribute name="footer" />
-	</div>
 
+		<tiles:insertAttribute name="footer" />
+</div>
 </body>
 </html>
