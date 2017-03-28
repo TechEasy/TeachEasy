@@ -89,11 +89,13 @@
 				</h1>
 			</div>
 		</div>
+		<div class="row">
 		<tiles:insertAttribute name="body" />	
 		<jstl:if test="${message != null}">
 			<br />
 			<span class="message"><spring:message code="${message}" /></span>
 		</jstl:if>	
+		</div>
 
 		<tiles:insertAttribute name="footer" />
 </div>

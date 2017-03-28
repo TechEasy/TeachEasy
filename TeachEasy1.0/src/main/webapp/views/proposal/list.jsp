@@ -9,7 +9,7 @@
  --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -52,9 +52,31 @@
 	</security:authorize>
 </display:table>
 
-	<div class="row">
-		<div class="col-md-3">
-			<spring:message code="proposal.teacher.picture" var="teacher" />
-			<img src="${row.teacher.picture}" width="300" height="300" >
-		</div>
-	</div>
+<div class="col-md-12">
+		<c:forEach items="${proposals}" var="proposal" >
+			<div class="row panel panel-default">
+				<div class="col-md-3 text-center">	
+					<img src="${proposal.teacher.picture}" width="300" height="300" class="img-responsive">
+				</div>
+				<div class="col-md-9 ">
+					<div class="row">
+						<h1>${proposal.title}</h1>
+					</div>
+					<div class="row">
+						<h2>${proposal.teacher.name} ${proposal.teacher.surname}</h2>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<h3><spring:message code="proposal.rate" />: ${proposal.rate}</h3>
+						</div>
+						<div class="col-md-6">
+							<h3><spring:message code="proposal.teacher.avgStars" />: ${proposal.teacher.avgStars}</h3>
+						</div>
+					</div>
+					<div class="row text-right">
+						<a href="teacher/displayById.do?id=${row.id}"><spring:message code="finder.view.teacher" /></a>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+</div>
