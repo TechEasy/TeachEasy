@@ -27,10 +27,12 @@
 
 <%-- Definition --%>
 
-<div>
-	<form:label path="${path}">
+<div class="form-group">
+	<form:label path="${path}" class="col-sm-2 control-label">
 		<spring:message code="${code}" />
 	</form:label>
-	<form:password path="${path}"/>
+	<div class="col-sm-9">	
+	<form:password path="${path}" class="form-control"/>
+	</div>
 	<form:errors path="${path}" cssClass="error" />
 </div>

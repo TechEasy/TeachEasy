@@ -17,25 +17,33 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${requestURI}" modelAttribute="studentForm">
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-body form-horizontal payment-form">
+<form:form action="${requestURI}" modelAttribute="studentForm" class="form-horizontal">
 	<jstl:if test="${studentForm.id==0 || studentForm.username == pageContext.request.remoteUser}">
 		<form:hidden path="id"/>
 			<fieldset>
 				<legend align="left"><spring:message code="student.account.info"/></legend>
+				
 				<acme:textbox code="student.username" path="username" />
-				<br/>
+
 				<acme:password code="student.password" path="password"/>
-				<br/>
 				<acme:password code="student.password2" path="password2"/>
 			
-				<br/>
-				<form:checkbox path="agreed"/>
-				<form:label path="agreed">
+				<div class="form-group">
+				<div class="col-sm-2"></div>
+
+				<div class="col-sm-10">
+				<form:label path="agreed" >
+					<form:checkbox path="agreed"/>
 					<spring:message code="student.register.agree" />
 					<a href="misc/lopd.do"><spring:message code="student.register.agree.2"/></a>
 				</form:label>
+				</div>
 				<form:errors path="agreed" cssClass="error" />
-				<br/>
+				</div>
+
 			</fieldset>
 			<fieldset>
 				<legend align="left"><spring:message code="student.personal.info"/></legend>
@@ -77,4 +85,7 @@
 	<acme:cancel code="student.cancel" url="welcome/index.do" />
 	</jstl:if>
 </form:form>
+</div>
+</div>
+</div>
 
