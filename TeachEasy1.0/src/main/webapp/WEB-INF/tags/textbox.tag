@@ -34,12 +34,10 @@
 <%-- Definition --%>
 
 <div class="form-group">
-		<form:label path="${path}" class="col-sm-2 control-label">
+		<form:label path="${path}" class="control-label">
 			<spring:message code="${code}" />
 		</form:label>
-		<div class="col-sm-9">	
 		<form:input path="${path}" readonly="${readonly}" class="form-control"/>
-		</div>
 		<form:errors path="${path}" cssClass="error" />
 </div>
 	

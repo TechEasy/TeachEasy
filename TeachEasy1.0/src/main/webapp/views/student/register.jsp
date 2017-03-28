@@ -19,51 +19,72 @@
 
 <div class="col-md-12">
 <div class="panel panel-default">
-<div class="panel-body form-horizontal payment-form">
-<form:form action="${requestURI}" modelAttribute="studentForm" class="form-horizontal">
+<div class="panel-body payment-form">
+<form:form action="${requestURI}" modelAttribute="studentForm">
 	<jstl:if test="${studentForm.id==0 || studentForm.username == pageContext.request.remoteUser}">
 		<form:hidden path="id"/>
-			<fieldset>
-				<legend align="left"><spring:message code="student.account.info"/></legend>
-				
-				<acme:textbox code="student.username" path="username" />
-
-				<acme:password code="student.password" path="password"/>
-				<acme:password code="student.password2" path="password2"/>
-			
-				<div class="form-group">
-				<div class="col-sm-2"></div>
-
-				<div class="col-sm-10">
-				<form:label path="agreed" >
-					<form:checkbox path="agreed"/>
-					<spring:message code="student.register.agree" />
-					<a href="misc/lopd.do"><spring:message code="student.register.agree.2"/></a>
-				</form:label>
+			<div class="row">
+				<div class="col-md-6">
+					<h4><spring:message code="student.account.info"/></h4>
+					<acme:textbox code="student.username" path="username" />
+					<div class="row">
+						<div class="col-md-6">
+							<acme:password code="student.password" path="password"/>
+						</div>
+						<div class="col-md-6">
+							<acme:password code="student.password2" path="password2"/>
+						</div>
+					</div>
 				</div>
-				<form:errors path="agreed" cssClass="error" />
-				</div>
+				<div class="col-md-6">
+					<h4><spring:message code="student.personal.info"/></h4>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="student.name" path="name" />
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="student.surname" path="surname"/>
+						</div>
+					</div>
+					<acme:textbox code="student.email" path="email"/>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="student.phone" path="phone"/>
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="student.date" path="date"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="student.city" path="city"/>		
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="student.address" path="address"/>
+						</div>
+					</div>
+					<acme:textbox code="student.picture" path="picture"/>
+					<div class="checkbox-group checkbox">
+						<form:label path="agreed" class="control-label">
+							<form:checkbox path="agreed"/>
+							<spring:message code="student.register.agree" />
+							<a href="misc/lopd.do"><spring:message code="student.register.agree.2"/></a>
+						</form:label>
+						<form:errors path="agreed" cssClass="error" />
+					</div>
+					
 
-			</fieldset>
-			<fieldset>
-				<legend align="left"><spring:message code="student.personal.info"/></legend>
-				<br/>
-				<acme:textbox code="student.name" path="name" />
-				<br/>
-				<acme:textbox code="student.surname" path="surname"/>
-				<br/>
-				<acme:textbox code="student.email" path="email"/>
-				<br/>
-				<acme:textbox code="student.phone" path="phone"/>
-				<br/>
-				<acme:textbox code="student.picture" path="picture"/>
-				<br/>
-				<acme:textbox code="student.date" path="date"/>
-				<br/>
-				<acme:textbox code="student.city" path="city"/>
-				<br/>
-				<acme:textbox code="student.address" path="address"/>
-				<br/>
+				</div>
+			</div>
+			<div class="row mt-md">
+				<div class="col-md-2">
+					<acme:cancel code="student.cancel" url="welcome/index.do" />
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<acme:submit name="save" code="student.save"/>
+				</div>
+			</div>
 				<fieldset>
 					<legend align="left"><spring:message code="student.creditCard.info"/></legend>
 					<acme:textbox code="student.creditCard.holderName" path="creditCard.holderName"/>
@@ -78,11 +99,7 @@
 					<br/>	
 					<acme:textbox code="student.creditCard.cvv" path="creditCard.cvv"/>
 				</fieldset>
-			</fieldset>
 
-	<br/>
-	<acme:submit name="save" code="student.save"/>
-	<acme:cancel code="student.cancel" url="welcome/index.do" />
 	</jstl:if>
 </form:form>
 </div>

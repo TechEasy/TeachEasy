@@ -19,17 +19,13 @@
 
 <div class="col-md-12">
 		<c:forEach items="${proposals}" var="proposal" >
-			<div class="row panel panel-default">
+			<div class="row">
 				<div class="col-md-3 text-center">	
-					<img src="${proposal.teacher.picture}" width="300" height="300" class="img-responsive">
+					<img src="${proposal.teacher.picture}" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
-					<div class="row">
-						<h1>${proposal.title}</h1>
-					</div>
-					<div class="row">
-						<h2>${proposal.teacher.name} ${proposal.teacher.surname}</h2>
-					</div>
+					<h1>${proposal.title}</h1>
+					<h2>${proposal.teacher.name} ${proposal.teacher.surname}</h2>
 					<div class="row">
 						<div class="col-md-6">
 							<h3><spring:message code="proposal.rate" />: ${proposal.rate}</h3>
@@ -39,9 +35,12 @@
 						</div>
 					</div>
 					<div class="row text-right">
-						<a href="teacher/displayById.do?id=${row.id}"><spring:message code="finder.view.teacher" /></a>
+						<div class="col-md-12 mt-lg pr-xl">
+							<a class="btn btn-primary" href="teacher/displayById.do?id=${row.id}"><spring:message code="finder.view.teacher" /></a>
+						</div>
 					</div>
 				</div>
 			</div>
+			<hr class="divider"/>
 		</c:forEach>
 </div>
