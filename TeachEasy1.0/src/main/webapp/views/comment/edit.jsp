@@ -23,7 +23,9 @@
 	
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="actor"/>
+	<form:hidden path="student"/>
+	<form:hidden path="teacher"/>
+	<form:hidden path="academy"/>
 	<form:hidden path="createMoment"/>
 				
 	<acme:textbox code="comments.title" path="title"/>	

@@ -95,8 +95,8 @@
 	<display:column title="${starsHeader }" property="stars"/>
 </display:table>
 
-<security:authorize access="hasAnyRole('STUDENT')">
+<security:authorize access="hasRole('STUDENT')">
 	<input type="button" name="comment" value="<spring:message code="academy.comment" />"
-			onclick="javascript: window.location.replace('commentator/comment/create.do?commentableId=${academy.id}')" />
+			onclick="javascript: window.location.replace('comment/createA.do?academyId=${academy.id}')" />
 <br/>
 </security:authorize>
