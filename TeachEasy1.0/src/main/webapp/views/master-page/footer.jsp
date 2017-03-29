@@ -14,15 +14,17 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:useBean id="date" class="java.util.Date" />
+<hr/>
+<div class="row">
 
-<hr />
-
-<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> TeachEasy Co., Inc.</b>
-
-<p style="text-align:center"><a href="misc/lopd.do"><spring:message code="master.page.lopd" /></a></p>
-
-<spring:message code='master.page.cookies' var="text" javaScriptEscape="true" />
-
+	<div class="col-md-6">
+		<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> TeachEasy Co., Inc.</b>
+	</div>
+	<div class="col-md-6 text-right">
+		<a href="misc/lopd.do"><spring:message code="master.page.lopd" /></a>
+		<spring:message code='master.page.cookies' var="text" javaScriptEscape="true" />
+	</div>
+</div>
 <script type="text/javascript">
 	function closeCookiesWarning(){
 		localStorage.setItem("cw_Enabled", 'falso');

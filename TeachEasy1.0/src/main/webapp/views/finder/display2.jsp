@@ -47,14 +47,13 @@
 						</div>
 							</div>
 							<div class="row">
-								<div class="col-md-3">
-									<acme:submit name="save" code="finder.edit"/>			
-								</div>
 								<div class="col-md-2">
-									<acme:cancel url="student/finder/course/display2.do" code="finder.cancel"/>			
+									<acme:cancel url="student/finder/course/display2.do" code="finder.cancel"/>						
 								</div>
-								<div class="col-md-3">
-
+								<div class="col-md-6">
+								</div>
+								<div class="col-md-4">
+									<acme:submit name="save" code="finder.edit"/>
 								</div>
 							</div>
 						</form:form>

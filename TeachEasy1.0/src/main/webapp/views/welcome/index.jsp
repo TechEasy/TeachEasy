@@ -17,53 +17,44 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('STUDENT')">
-<div style="text-align:center">
-	<H3><spring:message code="welcome.message"/></H3>
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<H3><spring:message code="welcome.message"/></H3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+		<div class="card-bordered">
+			<h3><spring:message code="welcome.academy"/></h3>
+			<div class="row">
+				<div class="col-md-3">
+					<img src="${academy.picture}" width="100" height="100" class="img-responsive" >
+				</div>
+				<div class="col-md-9">
+					<h4><jstl:out value="${academy.name}"/></h4>
+					<p><jstl:out value="${academy.avgStars}"/></p>
+					<a class="btn btn-primary float-right" href="teacher/displayById.do?id=${teacher.id}"><spring:message code="finder.view.teacher" /></a>
+				</div>
+			</div>
+		</div>	
+		</div>
+		<div class="col-md-6">
+		<div class=" card-bordered">
+			<h3><spring:message code="welcome.teacher"/></h3>
+			<div class="row">
+				<div class="col-md-3">
+					<img src="${teacher.picture}" width="100" height="100" class="img-responsive" >
+				</div>
+				<div class="col-md-9">
+					<h4><jstl:out value="${teacher.name}"/><jstl:out value="${teacher.surname}"/></h4>
+					<p><jstl:out value="${teacher.avgStars}"/></p>
+					<a class="btn btn-primary float-right" href="academy/displayById.do?id=${academy.id}"><spring:message code="finder.view.academy" /></a>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
 </div>
-<table>
-	<tr>
-		<td width="50%">
-		<H2><spring:message code="welcome.academy"/></H2>
-		<table id="row" class="table">
-			<tr>
-				<th style="text-align:center"><spring:message code="welcome.academy.picture"/></th>
-				<th style="text-align:center"><spring:message code="welcome.academy.name"/></th>
-				<th style="text-align:center"><spring:message code="welcome.academy.avgStars"/></th>
-			</tr>
-			<tr>
-				<td style="text-align:center"><img src="${academy.picture}" width="100" height="100" ></td>
-				<td style="text-align:center"><jstl:out value="${academy.name}"/></td>
-				<td style="text-align:center"><jstl:out value="${academy.avgStars}"/></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td style="text-align:center"><input type="button" name="display" value="<spring:message code="welcome.display" />"
-						onclick="javascript: window.location.replace('academy/displayById.do?id=${academy.id}')" /></td>
-				<td></td>
-			</tr>
-		</table>
-		<td width="50%">
-		<h2><spring:message code="welcome.teacher"/></h2>
-		<table id="row" class="table">
-			<tr>
-				<th style="text-align:center"><spring:message code="welcome.teacher.picture"/></th>
-				<th style="text-align:center"><spring:message code="welcome.teacher.name"/></th>
-				<th style="text-align:center"><spring:message code="welcome.teacher.avgStars"/></th>
-			</tr>
-			<tr>
-				<td style="text-align:center"><img src="${teacher.picture}" width="100" height="100" ></td>
-				<td style="text-align:center"><jstl:out value="${teacher.name} ${teacher.surname} "/></td>
-				<td style="text-align:center"><jstl:out value="${teacher.avgStars}"/></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td style="text-align:center"><input type="button" name="display" value="<spring:message code="welcome.display" />"
-						onclick="javascript: window.location.replace('teacher/displayById.do?id=${teacher.id}')" /></td>
-				<td></td>
-			</tr>
-		</table>
-		
-	</td>
-</tr>
-</table>
 </security:authorize>
+

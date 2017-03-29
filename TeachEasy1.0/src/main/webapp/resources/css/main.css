@@ -98,3 +98,13 @@
 .pr-xl {
 	padding-right: 30px;
 }
+
+.float-right{
+	float:right;
+}
+
+.card-bordered {
+    border: solid 1px gray;
+    border-radius: 10px;
+    padding: 20px;
+}
