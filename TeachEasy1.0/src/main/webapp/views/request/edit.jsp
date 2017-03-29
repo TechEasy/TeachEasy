@@ -18,23 +18,39 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<div class="panel panel-default">
+<div class="panel-body payment-form">
 <form:form action ="student/request/register.do" modelAttribute="requestForm">
 
 	<form:hidden path="rclassId"/>
-	
-	<fieldset>
-			<legend><spring:message code="request.request"/></legend>
-			
+	<div class="row">
+		<div class="col-md-12">
 			<acme:textbox code="request.checkin" path="checkIn"/>			
-			<acme:textbox code="request.checkout" path="checkOut"/>		
-				
-	</fieldset>				
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<acme:textbox code="request.checkout" path="checkOut"/>				
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<acme:submit name="save" code="request.save"/>			
+		</div>
+		<div class="col-md-3">
+			<acme:cancel url="proposal/list.do" code="request.cancel"/>			
+		</div>
+		<div class="col-md-3">
+		
+		</div>
+	</div>
 	<br/>
-	
-	<!-- Buttons -->
-	
-	<acme:submit name="save" code="request.save"/>	
-	<acme:cancel url="proposal/list.do" code="request.cancel"/>
-	
+
 </form:form>
+</div>
+</div>
+</div>
+<div class="col-md-3"></div>
