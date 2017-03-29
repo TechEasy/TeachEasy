@@ -30,7 +30,7 @@ public class Request extends DomainEntity {
 
 
 	@NotBlank
-	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$")
+	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$|WAITING$")
 	public String getStatus() {
 		return status;
 	}

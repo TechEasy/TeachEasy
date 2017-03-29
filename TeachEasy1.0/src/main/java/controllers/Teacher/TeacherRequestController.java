@@ -75,7 +75,7 @@ public class TeacherRequestController extends AbstractController {
 	public ModelAndView accept(@RequestParam int requestId) {
 
 		Request request = requestService.findOne(requestId);
-		request.setStatus("ACCEPTED");
+		request.setStatus("WAITING");
 		requestService.save(request);
 		
 		return list();
