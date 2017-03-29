@@ -34,8 +34,7 @@
 <script type="text/javascript" src="scripts/jmenu.js"></script>
 
 <link rel="stylesheet" href="styles/common.css" type="text/css">
-<link rel="stylesheet" href="styles/jmenu.css" media="screen"
-	type="text/css" />
+<link rel="stylesheet" href="styles/jmenu.css" media="screen" type="text/css" />
 <link rel="stylesheet" href="styles/displaytag.css" type="text/css">
 
 <!-- Bootstrap -->
@@ -84,9 +83,9 @@
 	
 		<tiles:insertAttribute name="header" />
 		
-		<div class="row">
+		<div class="row mb-md">
 			<div class="col-md-12">
-				<h1 class="text-center">
+				<h1>
 					<tiles:insertAttribute name="title" />
 				</h1>
 			</div>

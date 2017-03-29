@@ -81,6 +81,7 @@
 				</ul>
 			</li>
 			<li><a href="student/request/list.do"><spring:message code="master.page.student.request" /> </a></li>
+			<li><a href="student/invoice/list.do"><spring:message code="master.page.invoice" /> </a></li>
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
 				<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -88,7 +89,6 @@
 						<li><a href="student/edit.do"><spring:message code="master.page.edit" /> </a></li>
 					</ul>
 				</li>
-			<li><a href="student/invoice/list.do"><spring:message code="master.page.invoice" /> </a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">

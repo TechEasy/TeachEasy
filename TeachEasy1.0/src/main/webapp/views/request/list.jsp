@@ -10,6 +10,7 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -18,37 +19,33 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<div class="col-md-12">
+<spring:message code="request.checkin" var="checkin" />
+<spring:message code="request.checkout" var="checkout" />
+<spring:message code="request.status" var="status" />
+<spring:message code="request.rClass" var="rClass"/>
 
-<display:table pagesize="5" class="displaytag" name="requests" requestURI="request/student/list.do" id="requestList">	
-	
-	<acme:column code="request.checkin" property="checkIn" sortable="true"/>
-	
-	<acme:column code="request.checkout" property="checkOut" sortable="true"/>
-			
-	<acme:column code="request.status" property="status" sortable="true"/>
-	
-	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
-	<security:authorize access="hasRole('TEACHER')">
-	<display:column>
-		<jstl:if test="${requestList.status == 'PENDING'}">
-		<spring:message code="request.accept" var="accept" />
-		<spring:message code="request.deny" var="deny" />
-		<input type="button" name="accept" value="${accept}" onclick="javascript: window.location.replace('teacher/request/accept.do?requestId=${requestList.id}')" />
-		<input type="button" name="deny" value="${deny}" onclick="javascript: window.location.replace('teacher/request/deny.do?requestId=${requestList.id}')" />
-		</jstl:if>
-	</display:column>	
-	</security:authorize>
-	<security:authorize access="hasRole('ACADEMY')">
-	<display:column>
-		<jstl:if test="${requestList.status == 'PENDING'}">
-		<spring:message code="request.accept" var="accept" />
-		<spring:message code="request.deny" var="deny" />
-		<input type="button" name="accept" value="${accept}" onclick="javascript: window.location.replace('academy/request/accept.do?requestId=${requestList.id}')" />
-		<input type="button" name="deny" value="${deny}" onclick="javascript: window.location.replace('academy/request/deny.do?requestId=${requestList.id}')" />
-		</jstl:if>
-	</display:column>	
-	</security:authorize>
-</display:table>
+<table class="table table-striped">
+	<thead>
+      <tr>
+        <th>${checkin}</th>
+        <th>${checkout}</th>
+        <th>${status}</th>
+        <th>${rClass}</th>
+      </tr>
+    </thead>
+    <tbody>
+	<c:forEach items="${requests}" var="request" >
+      <tr>
+        <td>${request.checkIn}</td>
+        <td>${request.checkOut}</td>
+        <td>${request.status}</td>
+        <td>${request.rclass.title}</td>
+      </tr>
+    </c:forEach>
+    </tbody>
+</table>
+</div>
 
 
 
