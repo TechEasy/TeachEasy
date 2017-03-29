@@ -32,6 +32,7 @@
         <th>${checkout}</th>
         <th>${status}</th>
         <th>${rClass}</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -41,14 +42,23 @@
         <td>${request.checkOut}</td>
         <td>${request.status}</td>
         <td>${request.rclass.title}</td>
+        <security:authorize access="hasRole('TEACHER')">
+        <td>
+        	<a class="btn btn-success" href="javascript: window.location.replace('teacher/request/accept.do?requestId=${request.id}')"><spring:message code="request.accept" /></a>
+        	<a class="btn btn-danger" href="javascript: window.location.replace('teacher/request/deny.do?requestId=${request.id}')"><spring:message code="request.deny" /></a>
+        </td>
+        </security:authorize>
+        <security:authorize access="hasRole('ACADEMY')">
+        <td>
+        	<a class="btn btn-success" href="javascript: window.location.replace('academy/request/accept.do?requestId=${request.id}')"><spring:message code="request.accept" /></a>
+        	<a class="btn btn-danger" href="javascript: window.location.replace('academy/request/deny.do?requestId=${request.id}')"><spring:message code="request.deny" /></a>
+        </td>
+        </security:authorize>
       </tr>
     </c:forEach>
     </tbody>
 </table>
 </div>
-
-
-
 
 
 
