@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
@@ -35,14 +34,15 @@ public class Actor extends DomainEntity {
 
 
 	// Attributes -------------------------------------------------------------
-	private String		name;
-	private String		surname;
-	private String		email;
-	private String		phone;
-	private String		picture;
-	private Date		date;
-	private String		city;
-	private String		address;
+	private String	name;
+	private String	surname;
+	private String	email;
+	private String	phone;
+	private Date	date;
+	private String	city;
+	private String	address;
+	private String	picture;
+
 
 	@NotBlank
 	public String getName() {
@@ -77,15 +77,6 @@ public class Actor extends DomainEntity {
 		this.phone = phone;
 	}
 
-	@NotBlank
-	@URL
-	public String getPicture() {
-		return picture;
-	}
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getDate() {
@@ -111,13 +102,23 @@ public class Actor extends DomainEntity {
 		this.address = address;
 	}
 
+	@NotBlank
+	@URL
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+
 	// Relationships ----------------------------------------------------------
 	private Collection<SocialIdentity>	socialIdentity;
 	private UserAccount					userAccount;
 
 
 	@Valid
-	@OneToMany(mappedBy="actor")
+	@OneToMany(mappedBy = "actor")
 	public Collection<SocialIdentity> getSocialIdentity() {
 		return socialIdentity;
 	}

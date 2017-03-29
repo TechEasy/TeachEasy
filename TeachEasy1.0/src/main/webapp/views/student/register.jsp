@@ -85,21 +85,6 @@
 					<acme:submit name="save" code="student.save"/>
 				</div>
 			</div>
-				<fieldset>
-					<legend align="left"><spring:message code="student.creditCard.info"/></legend>
-					<acme:textbox code="student.creditCard.holderName" path="creditCard.holderName"/>
-					<br/>			
-					<acme:textbox code="student.creditCard.brandName" path="creditCard.brandName"/>
-					<br/>		
-					<acme:textbox code="student.creditCard.number" path="creditCard.number"/>
-					<br/>			
-					<acme:textbox code="student.creditCard.expirationMonth" path="creditCard.expirationMonth"/>
-					<br/>			
-					<acme:textbox code="student.creditCard.expirationYear" path="creditCard.expirationYear"/>
-					<br/>	
-					<acme:textbox code="student.creditCard.cvv" path="creditCard.cvv"/>
-				</fieldset>
-
 	</jstl:if>
 </form:form>
 </div>

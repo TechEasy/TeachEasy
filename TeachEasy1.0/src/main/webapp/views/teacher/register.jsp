@@ -17,55 +17,78 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-body payment-form">
 <form:form action="${requestURI}" modelAttribute="teacherForm">
 	<jstl:if test="${teacherForm.id==0 || teacherForm.username == pageContext.request.remoteUser}">
 		<form:hidden path="id"/>
-			<fieldset>
-				<legend align="left"><spring:message code="teacher.account.info"/></legend>
-				<acme:textbox code="teacher.username" path="username" />
-				<br/>
-				<acme:password code="teacher.password" path="password"/>
-				<br/>
-				<acme:password code="teacher.password2" path="password2"/>
-			
-				<br/>
-				<form:checkbox path="agreed"/>
-				<form:label path="agreed">
-					<spring:message code="teacher.register.agree" />
-					<a href="misc/lopd.do"><spring:message code="teacher.register.agree.2"/></a>
-				</form:label>
-				<form:errors path="agreed" cssClass="error" />
-				<br/>
-			</fieldset>
-			<fieldset>
-				<legend align="left"><spring:message code="teacher.personal.info"/></legend>
-				<br/>
-				<acme:textbox code="teacher.name" path="name" />
-				<br/>
-				<acme:textbox code="teacher.surname" path="surname"/>
-				<br/>
-				<acme:textbox code="teacher.email" path="email"/>
-				<br/>
-				<acme:textbox code="teacher.phone" path="phone"/>
-				<br/>
-				<acme:textbox code="teacher.picture" path="picture"/>
-				<br/>
-				<acme:textbox code="teacher.date" path="date"/>
-				<br/>
-				<acme:textbox code="teacher.city" path="city"/>
-				<br/>
-				<acme:textbox code="teacher.address" path="address"/>
-				<br/>
-				<fieldset>
-					<legend align="left"><spring:message code="teacher.iban.info"/></legend>
-					<acme:textbox code="teacher.iban" path="iban"/>
-					<br/>			
-				</fieldset>
-			</fieldset>
+			<div class="row">
+				<div class="col-md-6">
+					<h4><spring:message code="teacher.account.info"/></h4>
+					<acme:textbox code="teacher.username" path="username" />
+					<div class="row">
+						<div class="col-md-6">
+							<acme:password code="teacher.password" path="password"/>
+						</div>
+						<div class="col-md-6">
+							<acme:password code="teacher.password2" path="password2"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h4><spring:message code="teacher.personal.info"/></h4>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.name" path="name" />
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.surname" path="surname"/>
+						</div>
+					</div>
+					<acme:textbox code="teacher.email" path="email"/>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.phone" path="phone"/>
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.date" path="date"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.city" path="city"/>		
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.address" path="address"/>
+						</div>
+					</div>
+					<acme:textbox code="teacher.picture" path="picture"/>
+					<div class="checkbox-group checkbox">
+						<form:label path="agreed" class="control-label">
+							<form:checkbox path="agreed"/>
+							<spring:message code="teacher.register.agree" />
+							<a href="misc/lopd.do"><spring:message code="teacher.register.agree.2"/></a>
+						</form:label>
+						<form:errors path="agreed" cssClass="error" />
+					</div>
+					
 
-	<br/>
-	<acme:submit name="save" code="teacher.save"/>
-	<acme:cancel code="teacher.cancel" url="welcome/index.do" />
-	</jstl:if>
+				</div>
+			</div>
+			<div class="row mt-md">
+				<div class="col-md-2">
+					<acme:cancel code="teacher.cancel" url="welcome/index.do" />
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<acme:submit name="save" code="teacher.save"/>
+				</div>
+			</div>
+		</jstl:if>
 </form:form>
+</div>
+</div>
+</div>
+
 

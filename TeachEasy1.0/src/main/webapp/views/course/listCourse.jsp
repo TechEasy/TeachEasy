@@ -17,31 +17,31 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table  name="courses" id="courseList" pagesize="5" requestURI="course/academy/listCourse.do" class="displaytag">
-	
-	<spring:message code="course.title" var="titleHeader"/>
-	<display:column property="title" title="${titleHeader}"/>
-	
-	<spring:message code="course.createMoment" var="createMomentHeader"/>
-	<display:column property="createMoment" title="${createMomentHeader}" sortable="true"/>
-	
-	<spring:message code="course.updateMoment" var="updateMomentHeader"/>
-	<display:column property="updateMoment" title="${updateMomentHeader}" sortable="true"/>
-	
-	<spring:message code="course.rate" var="rateHeader"/>
-	<display:column property="rate" title="${rateHeader}" sortable="true"/>
-	
-	<spring:message code="course.duration" var="durationHeader"/>
-	<display:column property="duration" title="${durationHeader}" sortable="true"/>
-	
-	<spring:message code="course.level" var="levelHeader"/>
-	<display:column property="level" title="${levelHeader}" sortable="true"/>
-	
-	<spring:message code="course.matter" var="matterHeader"/>
-	<display:column property="subjectMatter.name" title="${matterHeader}" sortable="true"/>
-	
-	<display:column>
-		<a href="course/academy/edit.do?courseId=${courseList.id}"><spring:message	code="course.edit" /></a>
-	</display:column>
-	
-</display:table>
+
+<div class="col-md-12">
+		<c:forEach items="${courses}" var="course" >
+			<div class="row">
+				<div class="col-md-3 text-center">	
+					<img src="${course.academy.picture}" class="img-responsive">
+				</div>
+				<div class="col-md-9 ">
+					<h1>${course.title}</h1>
+					<h2>${course.academy.name}</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<h3><spring:message code="course.rate" />: ${course.rate}</h3>
+						</div>
+						<div class="col-md-6">
+							<h3><spring:message code="course.avgStars" />: ${course.academy.avgStars}</h3>
+						</div>
+					</div>
+					<div class="row text-right">
+						<div class="col-md-12 mt-lg pr-xl">
+							<a class="btn btn-primary" href="academy/course/edit.do?courseId=${course.id}"><spring:message code="course.edit" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="divider"/>
+		</c:forEach>
+</div>

@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 import security.UserAccount;
 
@@ -32,10 +33,11 @@ public class Academy extends DomainEntity {
 	private String	city;
 	private String	address;
 	private String	description;
+	private String	picture;
 	private String	cif;
 	private Double	avgStars;
 	private Double	feeAmount;
-	private String  iban;
+	private String	iban;
 
 
 	@NotBlank
@@ -91,14 +93,23 @@ public class Academy extends DomainEntity {
 	public void setFeeAmount(Double feeAmount) {
 		this.feeAmount = feeAmount;
 	}
-	
+
 	@NotBlank
 	@Pattern(regexp = "^ES\\d{22}$")
-	public String getIban(){
+	public String getIban() {
 		return iban;
 	}
-	public void setIban(String iban){
-		this.iban=iban;
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
+	@NotBlank
+	@URL
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 
@@ -110,7 +121,7 @@ public class Academy extends DomainEntity {
 
 
 	@Valid
-	@OneToMany(mappedBy="academy")
+	@OneToMany(mappedBy = "academy")
 	public Collection<SocialIdentity> getSocialIdentity() {
 		return socialIdentity;
 	}
@@ -145,4 +156,5 @@ public class Academy extends DomainEntity {
 	public void setCourses(Collection<Course> courses) {
 		this.courses = courses;
 	}
+
 }

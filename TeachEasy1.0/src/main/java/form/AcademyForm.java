@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
+import org.hibernate.validator.constraints.URL;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
@@ -18,20 +19,21 @@ public class AcademyForm {
 
 	// Attributes ----------------------------------------------------
 
-	private int			id;
+	private int		id;
 
-	private String		username;
-	private String		password;
+	private String	username;
+	private String	password;
 
-	private String		password2;
-	private boolean		agreed;
+	private String	password2;
+	private boolean	agreed;
 
-	private String		name;
-	private String		city;
-	private String		address;
-	private String		description;
-	private String		cif;
-	private String		iban;
+	private String	name;
+	private String	city;
+	private String	address;
+	private String	description;
+	private String	cif;
+	private String	iban;
+	private String	picture;
 
 
 	// Constructor --------------------------------------------------
@@ -99,7 +101,7 @@ public class AcademyForm {
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getCity() {
@@ -108,7 +110,7 @@ public class AcademyForm {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAddress() {
@@ -117,7 +119,7 @@ public class AcademyForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getDescription() {
@@ -126,7 +128,7 @@ public class AcademyForm {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getCif() {
@@ -135,6 +137,15 @@ public class AcademyForm {
 	public void setCif(String cif) {
 		this.cif = cif;
 	}
-	
+
+	@URL
+	@NotBlank
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 
 }

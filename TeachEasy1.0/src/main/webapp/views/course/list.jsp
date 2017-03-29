@@ -17,38 +17,32 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="courses" requestURI="${requestURI}" id="row">
-	
-	<spring:message code="course.academy.name" var="academy" />
-	<display:column property="academy.name" title="${academy}" sortable="false" />
-	
-	<spring:message code="course.title" var="titleHeader"/>
-	<display:column property="title" title="${titleHeader}"/>
-	
-	<spring:message code="course.rate" var="rateHeader"/>
-	<display:column property="rate" title="${rateHeader}" sortable="true"/>
-	
-	<spring:message code="course.duration" var="durationHeader"/>
-	<display:column property="duration" title="${durationHeader}" sortable="true"/>
-	
-	<spring:message code="course.level" var="levelHeader"/>
-	<display:column property="level" title="${levelHeader}" sortable="true"/>
-	
-	<spring:message code="course.matter" var="matterHeader"/>
-	<display:column property="subjectMatter.name" title="${matterHeader}" sortable="true"/>
-	
-	<spring:message code="course.avgStars" var="academy" />
-	<display:column property="academy.avgStars" title="${academy}" sortable="false" />
-	
-	<security:authorize access="isAuthenticated()">
-	<display:column>
-		<a href="academy/displayById.do?id=${row.id}"><spring:message code="course.academy" /></a>
-	</display:column>
-	</security:authorize>
-	<%--
-	<display:column titleKey="proposal.teacher">
-		<a href="teacher/display.do?teacherId=${proposalList.teacher.id}">
-		<spring:message code="proposal.teacher"></spring:message></a>	
-	</display:column>
-	 --%>
-</display:table>
+<div class="col-md-12">
+		<c:forEach items="${courses}" var="course" >
+			<div class="row">
+				<div class="col-md-3 text-center">	
+					<img src="${course.academy.picture}" class="img-responsive">
+				</div>
+				<div class="col-md-9 ">
+					<h1>${course.title}</h1>
+					<h2>${course.academy.name}</h2>
+					<div class="row">
+						<div class="col-md-6">
+							<h3><spring:message code="course.rate" />: ${course.rate}</h3>
+						</div>
+						<div class="col-md-6">
+							<h3><spring:message code="course.avgStars" />: ${course.academy.avgStars}</h3>
+						</div>
+					</div>
+				</div>
+			<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
+			<div class="row text-right">
+				<div class="col-md-12 mt-lg pr-xl">
+					<a class="btn btn-primary" href="academy/displayById.do?id=${course.academy.id}"><spring:message code="finder.view.academy" /></a>
+				</div>
+			</div>
+			</security:authorize>
+			</div>
+			<hr class="divider"/>
+		</c:forEach>
+</div>

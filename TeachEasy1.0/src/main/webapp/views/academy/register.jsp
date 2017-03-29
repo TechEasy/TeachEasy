@@ -17,50 +17,66 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-body payment-form">
 <form:form action="${requestURI}" modelAttribute="academyForm">
 	<jstl:if test="${academyForm.id==0 || academyForm.username == pageContext.request.remoteUser}">
 		<form:hidden path="id"/>
-			<fieldset>
-				<legend align="left"><spring:message code="academy.account.info"/></legend>
-				<acme:textbox code="academy.username" path="username" />
-				<br/>
-				<acme:password code="academy.password" path="password"/>
-				<br/>
-				<acme:password code="academy.password2" path="password2"/>
-			
-				<br/>
-				<form:checkbox path="agreed"/>
-				<form:label path="agreed">
-					<spring:message code="academy.register.agree" />
-					<a href="misc/lopd.do"><spring:message code="academy.register.agree.2"/></a>
-				</form:label>
-				<form:errors path="agreed" cssClass="error" />
-				<br/>
-			</fieldset>
-			<fieldset>
-				<legend align="left"><spring:message code="academy.personal.info"/></legend>
-				<br/>
-				<acme:textbox code="academy.name" path="name" />
-				<br/>
-				<acme:textbox code="academy.city" path="city"/>
-				<br/>
-				<acme:textbox code="academy.address" path="address"/>
-				<br/>
-				<acme:textbox code="academy.description" path="description"/>
-				<br/>
-				<acme:textbox code="academy.cif" path="cif"/>
-				<br/>
-				
-				<fieldset>
-					<legend align="left"><spring:message code="academy.iban.info"/></legend>
-					<acme:textbox code="academy.iban" path="iban"/>
-					<br/>			
-				</fieldset>
-			</fieldset>
-
-	<br/>
-	<acme:submit name="save" code="academy.save"/>
-	<acme:cancel code="academy.cancel" url="welcome/index.do" />
-	</jstl:if>
+			<div class="row">
+				<div class="col-md-6">
+					<h4><spring:message code="academy.account.info"/></h4>
+					<acme:textbox code="academy.username" path="username" />
+					<div class="row">
+						<div class="col-md-6">
+							<acme:password code="academy.password" path="password"/>
+						</div>
+						<div class="col-md-6">
+							<acme:password code="academy.password2" path="password2"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h4><spring:message code="academy.personal.info"/></h4>
+					<acme:textbox code="academy.name" path="name"/>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="academy.city" path="city" />
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="academy.address" path="address"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="academy.cif" path="cif"/>
+						</div>
+						<div class="col-md-6">
+						</div>
+					</div>
+					<acme:textarea code="academy.description" path="description"/>
+					<acme:textbox code="academy.picture" path="picture"/>
+					<div class="checkbox-group checkbox">
+						<form:label path="agreed" class="control-label">
+							<form:checkbox path="agreed"/>
+							<spring:message code="academy.register.agree" />
+							<a href="misc/lopd.do" target="_blank"><spring:message code="academy.register.agree.2"/></a>
+						</form:label>
+						<form:errors path="agreed" cssClass="error" />
+					</div>
+				</div>
+			</div>
+			<div class="row mt-md">
+				<div class="col-md-2">
+					<acme:cancel code="academy.cancel" url="welcome/index.do" />
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<acme:submit name="save" code="academy.save"/>
+				</div>
+			</div>
+		</jstl:if>
 </form:form>
-
+</div>
+</div>
+</div>

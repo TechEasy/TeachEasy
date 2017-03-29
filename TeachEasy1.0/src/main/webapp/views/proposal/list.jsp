@@ -34,11 +34,13 @@
 							<h3><spring:message code="proposal.teacher.avgStars" />: ${proposal.teacher.avgStars}</h3>
 						</div>
 					</div>
+					<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
-							<a class="btn btn-primary" href="teacher/displayById.do?id=${row.id}"><spring:message code="finder.view.teacher" /></a>
+							<a class="btn btn-primary" href="teacher/displayById.do?id=${proposal.teacher.id}"><spring:message code="finder.view.teacher" /></a>
 						</div>
 					</div>
+					</security:authorize>
 				</div>
 			</div>
 			<hr class="divider"/>

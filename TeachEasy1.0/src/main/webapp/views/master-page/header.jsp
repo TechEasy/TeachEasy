@@ -105,7 +105,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ACADEMY')">
-			<li><a href="course/academy/list.do"><spring:message code="master.page.academy.course" /></a></li>		
+			<li><a href="academy/course/listCourse.do"><spring:message code="master.page.academy.course" /></a></li>		
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu">

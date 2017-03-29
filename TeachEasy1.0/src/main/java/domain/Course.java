@@ -44,10 +44,11 @@ public class Course extends Rclass {
 
 
 	// Relationships ----------------------------------------------------------
-	private Academy				academy;
+	private Academy	academy;
+
 
 	@Valid
-	@ManyToOne(optional=false)
+	@ManyToOne(optional = false)
 	public Academy getAcademy() {
 		return academy;
 	}
