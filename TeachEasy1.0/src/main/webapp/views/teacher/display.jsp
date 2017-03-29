@@ -115,6 +115,25 @@
 
 </display:table>
 	
+
+<table id="row" class="table">
+<jstl:forEach items="${teacher.timeTable.days}" var="day">
+	<tr>
+		<th><jstl:out value="${day.name}" /></th>
+		<jstl:forEach items="${day.workTimes}" var="work">
+			<tr>
+				<td>
+					<jstl:out value="${work.checkIn}-${work.checkOut}" />
+					<br>
+					<jstl:out value="${work.available}" />
+				</td>
+			</tr>
+		</jstl:forEach>
+	</tr>
+</jstl:forEach>
+</table>
+		
+	
 	
 <display:table pagesize="10" class="displaytag" keepStatus="true" name="comments" id="row" requestURI="${requestURI}">	
 	<spring:message code="teacher.comment.title" var="titleHeader"/>
