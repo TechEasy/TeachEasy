@@ -20,7 +20,7 @@ import domain.Course;
 import domain.Request;
 
 @Controller
-@RequestMapping("/teacher/request")
+@RequestMapping("/academy/request")
 public class AcademyRequestController extends AbstractController {
 
 	@Autowired

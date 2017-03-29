@@ -42,6 +42,9 @@
 				</div>
 			</div>
 			</security:authorize>
+			<security:authorize access="hasRole('STUDENT')">
+				<a class="btn btn-primary" href="student/request/register.do?rClassId=${proposal.id}"><spring:message	code="request.request" /></a>
+			</security:authorize>
 			</div>
 			<hr class="divider"/>
 		</c:forEach>
