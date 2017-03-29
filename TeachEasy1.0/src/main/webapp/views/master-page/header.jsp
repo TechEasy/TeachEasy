@@ -20,16 +20,6 @@
 			<a href="?language=en">ENGLISH</a> | <a href="?language=es">ESPAÑOL</a>
 		</font>
 	</div>
-	<div class="col-md-6 text-right">
-		<font size="5" color="blue">
-		    <security:authorize access="isAnonymous()">
-				<a href="security/login.do"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.login" /></a>
-			</security:authorize>
-			<security:authorize access="isAuthenticated()">
-				<a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.logout" /> </a>
-			</security:authorize>
-		</font>
-	</div>
 </div>
 
 <div class="row text-center">
