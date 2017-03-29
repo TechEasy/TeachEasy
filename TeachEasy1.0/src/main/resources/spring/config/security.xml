@@ -67,6 +67,7 @@
 		<security:intercept-url pattern="/student/finder/course/edit2.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/student/edit.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/request/student/**" access="hasRole('STUDENT')" />
+		<security:intercept-url pattern="/comment/edit.do" access="hasRole('STUDENT')" />
 		
 		<security:intercept-url pattern="/teacher/proposal/list.do" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/teacher/request/list.do" access="hasRole('TEACHER')" />
