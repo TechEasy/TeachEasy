@@ -35,16 +35,17 @@
 						</div>
 					</div>
 				</div>
-			<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
+			
 			<div class="row text-right">
 				<div class="col-md-12 mt-lg pr-xl">
+				<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 					<a class="btn btn-primary" href="academy/displayById.do?id=${course.academy.id}"><spring:message code="finder.view.academy" /></a>
+				</security:authorize>
+				<security:authorize access="hasRole('STUDENT')">
+					<a class="btn btn-primary" href="student/request/register.do?rClassId=${course.id}"><spring:message	code="request.request" /></a>
+				</security:authorize>
 				</div>
 			</div>
-			</security:authorize>
-			<security:authorize access="hasRole('STUDENT')">
-				<a class="btn btn-primary" href="student/request/register.do?rClassId=${proposal.id}"><spring:message	code="request.request" /></a>
-			</security:authorize>
 			</div>
 			<hr class="divider"/>
 		</c:forEach>

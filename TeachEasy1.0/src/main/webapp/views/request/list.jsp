@@ -28,7 +28,7 @@
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
 	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
-	<security:authorize access="hasRole('TEACHER')">
+	<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
 	<display:column>
 		<jstl:if test="${requestList.status == 'PENDING'}">
 		<spring:message code="request.accept" var="accept" />
