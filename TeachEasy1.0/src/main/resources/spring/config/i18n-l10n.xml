@@ -36,6 +36,7 @@
 		<value>/views/finder/messages</value>
 		<value>/views/subjectMatter/messages</value>
 		<value>/views/academy/messages</value>
+		<value>/views/invoice/messages</value>
 		
 	</util:list>
 

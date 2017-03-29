@@ -25,5 +25,5 @@
 	<context:component-scan base-package="repositories" />
 	<context:component-scan base-package="security" />
 	<context:component-scan base-package="services" />
-
+	
 </beans>

@@ -82,14 +82,5 @@ public class Invoice extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	private Request	request;
-
-	@Valid
-	@OneToOne(optional = false)
-	public Request getRequest() {
-		return request;
-	}
-	public void setRequest(Request request) {
-		this.request = request;
-	}
+	
 }

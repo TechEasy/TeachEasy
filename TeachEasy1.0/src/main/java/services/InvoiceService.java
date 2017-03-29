@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import repositories.InvoiceRepository;
 import domain.Invoice;
+import domain.Student;
 
 @Service
 @Transactional
@@ -58,4 +59,5 @@ public class InvoiceService {
 	public void delete(Invoice invoice) {
 		invoiceRepository.delete(invoice);
 	}
+	
 }

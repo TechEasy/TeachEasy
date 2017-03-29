@@ -789,6 +789,7 @@
 		<property name="checkOut" value="04/04/2017 16:00" />		
 		<property name="rclass" ref="proposal1" />	
 		<property name="student" ref="student1" />
+		<property name="invoice" ref="invoice1"/>
 	</bean>
 	
 	<bean id="request2" class="domain.Request">
@@ -813,6 +814,7 @@
 		<property name="checkOut" value="05/04/2017 16:00" />		
 		<property name="rclass" ref="proposal2" />	
 		<property name="student" ref="student1" />
+		<property name="invoice" ref="invoice2" />
 	</bean>
 	
 	<bean id="request5" class="domain.Request">
@@ -821,6 +823,7 @@
 		<property name="checkOut" value="06/04/2017 16:00" />		
 		<property name="rclass" ref="proposal3" />	
 		<property name="student" ref="student2" />
+		<property name="invoice" ref="invoice3" />
 	</bean>
 	
 	<bean id="request6" class="domain.Request">
@@ -829,6 +832,7 @@
 		<property name="checkOut" value="04/03/2017 16:00" />		
 		<property name="rclass" ref="proposal4" />	
 		<property name="student" ref="student1" />
+		<property name="invoice" ref="invoice4" />
 	</bean>
 	
 	<bean id="request7" class="domain.Request">
@@ -837,6 +841,7 @@
 		<property name="checkOut" value="07/05/2017 17:00" />		
 		<property name="rclass" ref="proposal5" />	
 		<property name="student" ref="student2" />
+		<property name="invoice" ref="invoice5" />
 	</bean>
 	
 	<!-- Invoices -->
@@ -847,7 +852,6 @@
 		<property name="information" value="Invoice realizado para el student 1" />		
 		<property name="details" value="No hay detalles importantes que mostrar" />	
 		<property name="total" value="150.0" />	
-		<property name="request" ref="request1"/>
 	</bean>
 
 	<bean id="invoice2" class="domain.Invoice">
@@ -856,7 +860,7 @@
 		<property name="information" value="Segundo invoice realizado para el student 1" />		
 		<property name="details" value="Se ha pagado al completo" />	
 		<property name="total" value="15.0" />	
-		<property name="request" ref="request4"/>
+	
 	</bean>
 	
 	<bean id="invoice3" class="domain.Invoice">
@@ -865,7 +869,6 @@
 		<property name="information" value="Invoice del student 2" />		
 		<property name="details" value="Se ha pagado tarde" />	
 		<property name="total" value="30.0" />	
-		<property name="request" ref="request5"/>
 	</bean>
 	
 	<bean id="invoice4" class="domain.Invoice">
@@ -874,7 +877,7 @@
 		<property name="information" value="Invoice del student 1" />		
 		<property name="details" value="Se ha pagado al completo" />	
 		<property name="total" value="40.0" />	
-		<property name="request" ref="request6"/>
+	
 	</bean>
 	
 	<bean id="invoice5" class="domain.Invoice">
@@ -883,7 +886,7 @@
 		<property name="information" value="Invoice del student 2" />		
 		<property name="details" value="Se ha pagado al completo" />	
 		<property name="total" value="50.0" />	
-		<property name="request" ref="request7"/>
+		
 	</bean>
 	
 	<!-- Finder -->	
