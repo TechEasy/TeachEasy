@@ -58,7 +58,22 @@
         	</jstl:if>
         </td>
         </security:authorize>
-      </tr>
+        
+        <security:authorize access="hasRole('STUDENT')">
+	       <jstl:if test="${request.status eq 'WAITING'}">
+	        <td>
+	         <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+			   <input type="hidden" name="cmd" value="_xclick">
+			   <input type="hidden" name="business" value="SimonEgeaTE@gmail.com">
+			   <input type="hidden" name="currency_code" value="EUR">
+			   <input type="hidden" name="item_name" value="Clase">
+			   <input type="hidden" name="amount" value="${amount[request.id]}">
+			   <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
+			 </form>
+	        </td>
+	        </jstl:if>
+	    </security:authorize>
+	      </tr>
     </c:forEach>
     </tbody>
 </table>

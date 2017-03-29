@@ -1,6 +1,11 @@
 package controllers.Student;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -45,18 +50,35 @@ public class StudentRequestController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list() throws ParseException {
 		ModelAndView result;
 		Collection<Request> requests;
+		Map<Integer,Double> amount = new HashMap<Integer,Double>();
 		Student student;
 		student = studentService.findByPrincipal();
 
 		requests = student.getRequests();
 
+		for(Request r : requests){
+			
+			Date sI, sO;
+			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			
+			sI = fecha.parse(r.getcheckIn());
+			sO = fecha.parse(r.getCheckOut());
+			
+			Double valor = (double) (sO.getHours()-sI.getHours()+((sO.getMinutes()-sI.getMinutes())/60));
+			Double value = valor*r.getRclass().getRate();
+			
+			amount.put(r.getId(), value);
+		}
+		
 		result = new ModelAndView("request/list");
 		result.addObject("requestURI", "request/request/list.do");
 		result.addObject("requests", requests);
+		result.addObject("amount", amount);
 
 		return result;
 	}
