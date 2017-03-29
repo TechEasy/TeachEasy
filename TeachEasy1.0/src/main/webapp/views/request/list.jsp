@@ -28,7 +28,7 @@
 	<acme:column code="request.status" property="status" sortable="true"/>
 	
 	<acme:column code="request.rClass" property="rclass.title" sortable="false"/>
-	<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
+	<security:authorize access="hasRole('TEACHER')">
 	<display:column>
 		<jstl:if test="${requestList.status == 'PENDING'}">
 		<spring:message code="request.accept" var="accept" />
@@ -37,7 +37,17 @@
 		<input type="button" name="deny" value="${deny}" onclick="javascript: window.location.replace('teacher/request/deny.do?requestId=${requestList.id}')" />
 		</jstl:if>
 	</display:column>	
-		 </security:authorize>
+	</security:authorize>
+	<security:authorize access="hasRole('ACADEMY')">
+	<display:column>
+		<jstl:if test="${requestList.status == 'PENDING'}">
+		<spring:message code="request.accept" var="accept" />
+		<spring:message code="request.deny" var="deny" />
+		<input type="button" name="accept" value="${accept}" onclick="javascript: window.location.replace('academy/request/accept.do?requestId=${requestList.id}')" />
+		<input type="button" name="deny" value="${deny}" onclick="javascript: window.location.replace('academy/request/deny.do?requestId=${requestList.id}')" />
+		</jstl:if>
+	</display:column>	
+	</security:authorize>
 </display:table>
 
 
