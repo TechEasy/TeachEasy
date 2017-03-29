@@ -88,6 +88,7 @@
 						<li><a href="student/edit.do"><spring:message code="master.page.edit" /> </a></li>
 					</ul>
 				</li>
+			<li><a href="student/invoice/list.do"><spring:message code="master.page.invoice" /> </a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">

@@ -5,6 +5,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -61,8 +62,16 @@ public class Request extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 	private Rclass	rclass;
 	private Student	student;
+	private Invoice invoice;
 
-
+	@Valid
+	@OneToOne
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
 	@Valid
 	@ManyToOne(optional = false)
 	public Rclass getRclass() {
