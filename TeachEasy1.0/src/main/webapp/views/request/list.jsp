@@ -44,14 +44,18 @@
         <td>${request.rclass.title}</td>
         <security:authorize access="hasRole('TEACHER')">
         <td>
+        	<jstl:if test="${request.status eq 'PENDING' }">
         	<a class="btn btn-success" href="javascript: window.location.replace('teacher/request/accept.do?requestId=${request.id}')"><spring:message code="request.accept" /></a>
         	<a class="btn btn-danger" href="javascript: window.location.replace('teacher/request/deny.do?requestId=${request.id}')"><spring:message code="request.deny" /></a>
-        </td>
+       		</jstl:if>
+		</td>
         </security:authorize>
         <security:authorize access="hasRole('ACADEMY')">
         <td>
+       		<jstl:if test="${request.status eq 'PENDING' }">
         	<a class="btn btn-success" href="javascript: window.location.replace('academy/request/accept.do?requestId=${request.id}')"><spring:message code="request.accept" /></a>
         	<a class="btn btn-danger" href="javascript: window.location.replace('academy/request/deny.do?requestId=${request.id}')"><spring:message code="request.deny" /></a>
+        	</jstl:if>
         </td>
         </security:authorize>
       </tr>
