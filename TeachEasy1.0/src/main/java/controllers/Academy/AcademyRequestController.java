@@ -50,13 +50,11 @@ public class AcademyRequestController extends AbstractController {
 		academy = academyService.findByPrincipal();
 
 		Collection<Course> courses = courseService.findByCreator(academy);
-		for (Course c : courses) {
-			for (Request r : c.getRequests()) {
+		for (Course c : courses)
+			for (Request r : c.getRequests())
 				requests.add(r);
-			}
-		}
 		result = new ModelAndView("request/list");
-		result.addObject("requestURI", "request/request/list.do");
+		result.addObject("requestURI", "academy/request/list.do");
 		result.addObject("requests", requests);
 
 		return result;

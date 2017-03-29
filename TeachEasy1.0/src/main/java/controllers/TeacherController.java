@@ -27,7 +27,7 @@ public class TeacherController extends AbstractController {
 
 	@Autowired
 	private TeacherService	teacherService;
-	
+
 	@Autowired
 	private ProposalService	proposalService;
 
@@ -45,7 +45,6 @@ public class TeacherController extends AbstractController {
 		Teacher teacher;
 
 		teacher = teacherService.findByPrincipal();
-		teacher = teacherService.encryptCreditCard(teacher);
 		result = new ModelAndView("teacher/display");
 		result.addObject("teacher", teacher);
 		result.addObject("comments", teacher.getComments());
@@ -54,31 +53,30 @@ public class TeacherController extends AbstractController {
 
 		return result;
 	}
-	
-	
+
 	// Display by Id ------------------------------------------------
-		@RequestMapping(value = "/displayById", method = RequestMethod.GET)
-		public ModelAndView displayById(@RequestParam int id) {
-			ModelAndView result;
-			Teacher teacher;
-			if(proposalService.findOne(id)!=null){
-				Proposal p=proposalService.findOne(id);
-				teacher=p.getTeacher();
-				result = new ModelAndView("teacher/display");
-				result.addObject("teacher", teacher);
-				result.addObject("comments", teacher.getComments());
-				result.addObject("requestURI", "teacher/display.do");
-				result.addObject("socialIdentities", teacher.getSocialIdentity());
-			}else{
-				teacher=teacherService.findOne(id);
-				result = new ModelAndView("teacher/display");
-				result.addObject("teacher", teacher);
-				result.addObject("comments", teacher.getComments());
-				result.addObject("requestURI", "teacher/display.do");
-				result.addObject("socialIdentities", teacher.getSocialIdentity());
-			}
-			return result;
+	@RequestMapping(value = "/displayById", method = RequestMethod.GET)
+	public ModelAndView displayById(@RequestParam int id) {
+		ModelAndView result;
+		Teacher teacher;
+		if (proposalService.findOne(id) != null) {
+			Proposal p = proposalService.findOne(id);
+			teacher = p.getTeacher();
+			result = new ModelAndView("teacher/display");
+			result.addObject("teacher", teacher);
+			result.addObject("comments", teacher.getComments());
+			result.addObject("requestURI", "teacher/display.do");
+			result.addObject("socialIdentities", teacher.getSocialIdentity());
+		} else {
+			teacher = teacherService.findOne(id);
+			result = new ModelAndView("teacher/display");
+			result.addObject("teacher", teacher);
+			result.addObject("comments", teacher.getComments());
+			result.addObject("requestURI", "teacher/display.do");
+			result.addObject("socialIdentities", teacher.getSocialIdentity());
 		}
+		return result;
+	}
 	// Browse ------------------------------------------------
 	@RequestMapping(value = "/browse", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -109,26 +107,22 @@ public class TeacherController extends AbstractController {
 		ModelAndView result;
 		Teacher teacher;
 
-		if (binding.hasErrors()) {
+		if (binding.hasErrors())
 			result = createEditModelAndView(teacherForm, null);
-		} else {
+		else
 			try {
 				teacher = teacherService.reconstruct(teacherForm, binding);
 				teacherService.save(teacher);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (Throwable oops) {
 				String msgCode = "teacher.register.error";
-				if (oops.getMessage().equals("notEqualPassword")) {
+				if (oops.getMessage().equals("notEqualPassword"))
 					msgCode = "teacher.register.notEqualPassword";
-				} else if (oops.getMessage().equals("agreedNotAccepted")) {
+				else if (oops.getMessage().equals("agreedNotAccepted"))
 					msgCode = "teacher.register.agreedNotAccepted";
-				}
-				if (oops.getMessage().equals("badIban")) {
-					msgCode = "teacher.badIban";
-				}
+
 				result = createEditModelAndView(teacherForm, msgCode);
 			}
-		}
 
 		return result;
 

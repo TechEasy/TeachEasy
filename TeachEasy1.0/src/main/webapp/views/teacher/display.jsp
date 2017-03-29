@@ -91,10 +91,6 @@
 	<table id="row" class="table">
 		<tbody>
 			<tr>
-				<th><spring:message code="teacher.iban"/></th>
-				<td><jstl:out value="${teacher.iban}"/></td>
-			</tr>
-			<tr>
 				<th><spring:message code="teacher.feeAmount"/></th>
 				<td><jstl:out value="${teacher.feeAmount}"/></td>
 			</tr>

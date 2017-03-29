@@ -25,24 +25,24 @@ public class TeacherForm {
 
 	// Attributes ----------------------------------------------------
 
-	private int			id;
+	private int		id;
 
-	private String		username;
-	private String		password;
+	private String	username;
+	private String	password;
 
-	private String		password2;
-	private boolean		agreed;
+	private String	password2;
+	private boolean	agreed;
 
-	private String		name;
-	private String		surname;
-	private String		email;
-	private String		phone;
-	private String		picture;
-	private Date		date;
-	private String		city;
-	private String		address;
+	private String	name;
+	private String	surname;
+	private String	email;
+	private String	phone;
+	private String	picture;
+	private Date	date;
+	private String	city;
+	private String	address;
 
-	private String	iban;
+	private String	paypalMail;
 
 
 	// Constructor --------------------------------------------------
@@ -141,15 +141,16 @@ public class TeacherForm {
 		this.picture = picture;
 	}
 
+	@Email
 	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}")
-	public String getIban() {
-		return iban;
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getPaypalMail() {
+		return paypalMail;
 	}
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setPaypalMail(String paypalMail) {
+		this.paypalMail = paypalMail;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getCity() {
@@ -158,7 +159,7 @@ public class TeacherForm {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAddress() {
@@ -167,14 +168,14 @@ public class TeacherForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	public Date getDate(){
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date){
-		this.date=date;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

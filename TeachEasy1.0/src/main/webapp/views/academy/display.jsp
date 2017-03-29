@@ -52,10 +52,6 @@
 	<table id="row" class="table">
 		<tbody>
 			<tr>
-				<th><spring:message code="academy.iban"/></th>
-				<td><jstl:out value="${academy.iban}"/></td>
-			</tr>
-			<tr>
 				<th><spring:message code="academy.feeAmount"/></th>
 				<td><jstl:out value="${academy.feeAmount}"/></td>
 			</tr>

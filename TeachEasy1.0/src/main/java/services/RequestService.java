@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.Calendar;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -13,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
-import domain.CreditCard;
 import domain.Request;
 import form.RequestForm;
 
@@ -31,8 +29,8 @@ public class RequestService {
 	private RClassService		rClassService;
 
 	@Autowired
-	private Validator validator;
-	
+	private Validator			validator;
+
 	@Autowired
 	private StudentService		studentService;
 
@@ -47,10 +45,10 @@ public class RequestService {
 	public Request create() {
 		Request result;
 		result = new Request();
-		
+
 		result.setStudent(studentService.findByPrincipal());
 		result.setStatus("PENDING");
-		
+
 		return result;
 	}
 
@@ -78,90 +76,52 @@ public class RequestService {
 		requestRepository.delete(request);
 	}
 
-	public Collection<Request> findByTeacher(int id){
+	public Collection<Request> findByTeacher(int id) {
 		return requestRepository.findByTeacher(id);
 	}
-	
-	public Collection<Request> findByAcademy(int id){
+
+	public Collection<Request> findByAcademy(int id) {
 		return requestRepository.findByAcademy(id);
 	}
 
 	// Form methods ------------------------------------------------
 
-			public RequestForm generateForm() {
-				RequestForm result;
+	public RequestForm generateForm() {
+		RequestForm result;
 
-				result = new RequestForm();
-				return result;
-			}
+		result = new RequestForm();
+		return result;
+	}
 
-			public Request reconstruct(RequestForm requestForm, BindingResult binding) {
+	public Request reconstruct(RequestForm requestForm, BindingResult binding) {
 
-				Request result;
-				
-				Assert.isTrue(checkC(studentService.findByPrincipal().getCreditCard()),"badCreditCard");
-				Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut())<0, "notBeforeDate");
-				Assert.isTrue(check(requestForm), "badDayDate");
-				Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
-				
-				result = create();
-				
-				result.setCheckIn(requestForm.getCheckIn());
-				result.setCheckOut(requestForm.getCheckOut());
-				result.setRclass(rClassService.findById(requestForm.getRclassId()));
-				
-				validator.validate(result, binding);
+		Request result;
 
-				return result;
+		Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
+		Assert.isTrue(check(requestForm), "badDayDate");
+		Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
 
-			}
-	
-			private boolean check(RequestForm request){
-				String fecha1, fecha2;
-				fecha1 = request.getCheckIn().substring(0, request.getCheckIn().indexOf(" "));
-				fecha2 = request.getCheckOut().substring(0, request.getCheckIn().indexOf(" "));
-				
-				if(fecha1.equals(fecha2)){
-					return true;
-				}else{
-					return false;
-				}
-			}
-			
-			public static boolean checkC(CreditCard creditCard) {
-				boolean validador = false;
-				int sum = 0;
-				Calendar fecha = Calendar.getInstance();
-				String numero = creditCard.getNumber();
-				int mes = fecha.get(Calendar.MONTH) + 1;
-				int año = fecha.get(Calendar.YEAR);
+		result = create();
 
-				if (creditCard.getExpirationYear() > año) {
-					validador = true;
-				} else if (creditCard.getExpirationYear() == año) {
-					if (creditCard.getExpirationMonth() >= mes) {
-						validador = true;
-					}
-				}
+		result.setCheckIn(requestForm.getCheckIn());
+		result.setCheckOut(requestForm.getCheckOut());
+		result.setRclass(rClassService.findById(requestForm.getRclassId()));
 
-				if (validador) {
-					validador = false;
-					for (int i = numero.length() - 1; i >= 0; i--) {
-						int n = Integer.parseInt(numero.substring(i, i + 1));
-						if (validador) {
-							n *= 2;
-							if (n > 9) {
-								n = (n % 10) + 1;
-							}
-						}
-						sum += n;
-						validador = !validador;
-					}
-					if (sum % 10 == 0) {
-						validador = true;
-					}
-				}
+		validator.validate(result, binding);
 
-				return validador;
-			}
+		return result;
+
+	}
+
+	private boolean check(RequestForm request) {
+		String fecha1, fecha2;
+		fecha1 = request.getCheckIn().substring(0, request.getCheckIn().indexOf(" "));
+		fecha2 = request.getCheckOut().substring(0, request.getCheckIn().indexOf(" "));
+
+		if (fecha1.equals(fecha2))
+			return true;
+		else
+			return false;
+	}
+
 }

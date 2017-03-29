@@ -5,9 +5,9 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
@@ -32,7 +32,7 @@ public class AcademyForm {
 	private String	address;
 	private String	description;
 	private String	cif;
-	private String	iban;
+	private String	paypalMail;
 	private String	picture;
 
 
@@ -93,13 +93,14 @@ public class AcademyForm {
 		this.name = name;
 	}
 
+	@Email
 	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}")
-	public String getIban() {
-		return iban;
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getPaypalMail() {
+		return paypalMail;
 	}
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setPaypalMail(String paypalMail) {
+		this.paypalMail = paypalMail;
 	}
 
 	@NotBlank

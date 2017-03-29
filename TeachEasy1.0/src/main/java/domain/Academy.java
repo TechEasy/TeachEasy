@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
@@ -37,7 +37,7 @@ public class Academy extends DomainEntity {
 	private String	cif;
 	private Double	avgStars;
 	private Double	feeAmount;
-	private String	iban;
+	private String	paypalMail;
 
 
 	@NotBlank
@@ -94,13 +94,12 @@ public class Academy extends DomainEntity {
 		this.feeAmount = feeAmount;
 	}
 
-	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}$")
-	public String getIban() {
-		return iban;
+	@Email
+	public String getPaypalMail() {
+		return paypalMail;
 	}
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setPaypalMail(String paypalMail) {
+		this.paypalMail = paypalMail;
 	}
 
 	@NotBlank

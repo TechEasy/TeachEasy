@@ -1,10 +1,7 @@
 
 package services;
 
-import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -32,14 +29,14 @@ public class TeacherService {
 	@Autowired
 	private TeacherRepository	teacherRepository;
 
-
 	// Supporting services
 
 	@Autowired
-	private Validator	validator;
+	private Validator			validator;
 
 	@Autowired
 	private CurriculaService	curriculaService;
+
 
 	//Constructors
 	public TeacherService() {
@@ -53,7 +50,7 @@ public class TeacherService {
 		Curricula curricula = curriculaService.create();
 		curricula = curriculaService.save(curricula);
 		result = new Teacher();
-		
+
 		result.setCurricula(curricula);
 		result.setAvgStars(0.0);
 		result.setFeeAmount(0.0);
@@ -74,12 +71,12 @@ public class TeacherService {
 
 	public Teacher save(Teacher teacher) {
 		Teacher result;
-		
+
 		String password = teacher.getUserAccount().getPassword();
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		String md5 = encoder.encodePassword(password, null);
 		teacher.getUserAccount().setPassword(md5);
-		
+
 		result = teacherRepository.save(teacher);
 		return result;
 
@@ -88,7 +85,7 @@ public class TeacherService {
 	public void delete(Teacher teacher) {
 		teacherRepository.delete(teacher);
 	}
-	
+
 	// Form methods ------------------------------------------------
 
 	public TeacherForm generateForm() {
@@ -112,7 +109,7 @@ public class TeacherService {
 		result.setSurname(teacher.getSurname());
 		result.setPhone(teacher.getPhone());
 		result.setPicture(teacher.getPicture());
-		result.setIban(teacher.getIban());
+		result.setPaypalMail(teacher.getPaypalMail());
 		result.setEmail(teacher.getEmail());
 		result.setDate(teacher.getDate());
 		result.setCity(teacher.getCity());
@@ -130,13 +127,11 @@ public class TeacherService {
 
 		Assert.isTrue(teacherForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(teacherForm.getAgreed(), "agreedNotAccepted");
-		Assert.isTrue(validarCuentaBancaria(teacherForm.getIban()), "badIban");
 
-		if(teacherForm.getId()==0){
+		if (teacherForm.getId() == 0)
 			result = create();
-		}else{
+		else
 			result = teacherRepository.findOne(teacherForm.getId());
-		}
 		UserAccount userAccount;
 		userAccount = new UserAccount();
 		userAccount.setUsername(teacherForm.getUsername());
@@ -153,7 +148,7 @@ public class TeacherService {
 		result.setEmail(teacherForm.getEmail());
 		result.setPhone(teacherForm.getPhone());
 		result.setPicture(teacherForm.getPicture());
-		result.setIban(teacherForm.getIban());
+		result.setPaypalMail(teacherForm.getPaypalMail());
 		result.setCity(teacherForm.getCity());
 		result.setAddress(teacherForm.getAddress());
 		result.setDate(teacherForm.getDate());
@@ -163,33 +158,33 @@ public class TeacherService {
 		return result;
 
 	}
-	
 
-	public static Boolean validarCuentaBancaria(String cuenta){
-		 
-		String A = cuenta.substring(0, 1);
-		String B = cuenta.substring(1, 2);
-		
-		List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-		Integer primero = 10+letras.indexOf(A);
-		Integer segundo = 10+letras.indexOf(B);
-		
-		cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
-		cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
-	
-		BigInteger numero = new BigInteger(cuenta);
-		BigInteger v = new BigInteger("97");
-		BigInteger s = new BigInteger("1");
-		BigInteger validador = numero.mod(v);
-		
-	    if (validador.compareTo(s)==0){
-	        return true;
-	    }else{
-	        return false;
-	    }
-		
-	}
-	
+	/*
+	 * public static Boolean validarCuentaBancaria(String cuenta){
+	 * 
+	 * String A = cuenta.substring(0, 1);
+	 * String B = cuenta.substring(1, 2);
+	 * 
+	 * List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+	 * Integer primero = 10+letras.indexOf(A);
+	 * Integer segundo = 10+letras.indexOf(B);
+	 * 
+	 * cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
+	 * cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
+	 * 
+	 * BigInteger numero = new BigInteger(cuenta);
+	 * BigInteger v = new BigInteger("97");
+	 * BigInteger s = new BigInteger("1");
+	 * BigInteger validador = numero.mod(v);
+	 * 
+	 * if (validador.compareTo(s)==0){
+	 * return true;
+	 * }else{
+	 * return false;
+	 * }
+	 * 
+	 * }
+	 */
 
 	public Teacher findByPrincipal() {
 		Teacher result;
@@ -200,38 +195,16 @@ public class TeacherService {
 
 		return result;
 	}
-	
-	public Double findAvgStars(Teacher teacher){
+
+	public Double findAvgStars(Teacher teacher) {
 		Double result;
 		result = teacherRepository.fingAvgStars(teacher);
 		return result;
 	}
-	
-	public void updateAvgStars(Teacher teacher){
+
+	public void updateAvgStars(Teacher teacher) {
 		teacher.setAvgStars(teacherRepository.fingAvgStars(teacher));
 		save(teacher);
 	}
-	
-	public Teacher encryptCreditCard(Teacher teacher) {
-		Teacher result = new Teacher();
-		
-		result.setId(teacher.getId());
-		result.setUserAccount(teacher.getUserAccount());
-		result.setComments(teacher.getComments());
-		result.setEmail(teacher.getEmail());
-		result.setName(teacher.getName());
-		result.setSurname(teacher.getSurname());
-		result.setPhone(teacher.getPhone());
-		result.setPicture(teacher.getPicture());
-		result.setSocialIdentity(teacher.getSocialIdentity());
-		result.setCity(teacher.getCity());
-		result.setAddress(teacher.getAddress());
-		result.setDate(teacher.getDate());
-		result.setIban("****************" + teacher.getIban().substring(16));
-		result.setCurricula(teacher.getCurricula());
-		result.setAvgStars(teacher.getAvgStars());
-		result.setFeeAmount(teacher.getFeeAmount());
-		
-		return result;
-	}
+
 }

@@ -138,79 +138,6 @@
 		</property>
 	</bean>
 	
-	<!-- CreditCards -->
-	<bean id="creditCard1" class="domain.CreditCard">
-		<property name="holderName" value="Antonio" />
-		<property name="brandName" value="Visa" />
-		<property name="number" value="4556314032839099" />
-		<property name="expirationMonth" value="06" />
-		<property name="expirationYear" value="2017" />
-		<property name="cvv" value="452" />
-	</bean>
-
-	<bean id="creditCard2" class="domain.CreditCard">
-		<property name="holderName" value="Juan" />
-		<property name="brandName" value="MasterCard" />
-		<property name="number" value="5462093507285125" />
-		<property name="expirationMonth" value="12" />
-		<property name="expirationYear" value="2020" />
-		<property name="cvv" value="743" />
-	</bean>
-	
-	<bean id="creditCard3" class="domain.CreditCard">
-		<property name="holderName" value="Francisco" />
-		<property name="brandName" value="Discover" />
-		<property name="number" value="4532870675086719" />
-		<property name="expirationMonth" value="01" />
-		<property name="expirationYear" value="2028" />
-		<property name="cvv" value="823" />
-	</bean>
-	
-	<bean id="creditCard4" class="domain.CreditCard">
-		<property name="holderName" value="Rafael" />
-		<property name="brandName" value="MasterCard" />
-		<property name="number" value="5550642130319173" />
-		<property name="expirationMonth" value="10" />
-		<property name="expirationYear" value="2020" />
-		<property name="cvv" value="720" />
-	</bean>
-
-	<bean id="creditCard5" class="domain.CreditCard">
-		<property name="holderName" value="Nicolas" />
-		<property name="brandName" value="Discover" />
-		<property name="number" value="6011635376489313" />
-		<property name="expirationMonth" value="03" />
-		<property name="expirationYear" value="2028" />
-		<property name="cvv" value="320" />
-	</bean>
-
-	<bean id="creditCard6" class="domain.CreditCard">
-		<property name="holderName" value="Alejandro" />
-		<property name="brandName" value="Discover" />
-		<property name="number" value="6011096186968527" />
-		<property name="expirationMonth" value="01" />
-		<property name="expirationYear" value="2024" />
-		<property name="cvv" value="820" />
-	</bean>
-
-	<bean id="creditCard7" class="domain.CreditCard">
-		<property name="holderName" value="Rubén" />
-		<property name="brandName" value="MasterCard" />
-		<property name="number" value="5197293153245827" />
-		<property name="expirationMonth" value="01" />
-		<property name="expirationYear" value="2018" />
-		<property name="cvv" value="820" />
-	</bean>
-
-	<bean id="creditCard8" class="domain.CreditCard">
-		<property name="holderName" value="Fran" />
-		<property name="brandName" value="Discover" />
-		<property name="number" value="6011824468295339" />
-		<property name="expirationMonth" value="01" />
-		<property name="expirationYear" value="2028" />
-		<property name="cvv" value="823" />
-	</bean>
-	
 	<!-- WorkTimes -->
 	
 	<bean id="workTime1" class="domain.WorkTime">
@@ -373,7 +300,7 @@
 		<property name="address" value="Calle Saenz de Tejada" />	
 		<property name="avgStars" value="2.0" />
 		<property name="feeAmount" value="200.0" />
-		<property name="iban" value="ES9121000418450200051332" />	
+		<property name="paypalMail" value="albcabcan@gmail.com" />	
 		<property name="timeTable" ref="timeTable1" />		
 		<property name="curricula" ref="curricula1" />	
 		<property name="proposals">
@@ -407,7 +334,7 @@
 		<property name="address" value="Pablo Picaso Portal 11" />	
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="1000.0" />
-		<property name="iban" value="ES9122220418569870051332" />
+		<property name="paypalMail" value="joschaech@gmail.com" />
 		<property name="timeTable" ref="timeTable2" />
 		<property name="curricula" ref="curricula2" />	
 		<property name="proposals">
@@ -439,7 +366,7 @@
 		<property name="address" value="Álamo del Marques" />	
 		<property name="avgStars" value="3.2" />
 		<property name="feeAmount" value="120.0" />
-		<property name="iban" value="ES9122220418569870012332" />
+		<property name="paypalMail" value="rauescdon@gmail.com" />
 		<property name="timeTable" ref="timeTable3" />
 		<property name="curricula" ref="curricula3" />	
 		<property name="proposals">
@@ -471,7 +398,6 @@
 		<property name="date" value="12/01/1994" />	
 		<property name="city" value="Sevilla" />	
 		<property name="address" value="Calle Silos" />	
-		<property name="creditCard" ref="creditCard1" />
 		<property name="finder" ref="finder1" />
 		<property name="socialIdentity">
 			<list>
@@ -498,8 +424,7 @@
 		<property name="picture" value="https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png" />
 		<property name="date" value="21/03/1999" />	
 		<property name="city" value="Málaga" />	
-		<property name="address" value="Marqués de Valdecañas" />	
-		<property name="creditCard" ref="creditCard2" />	
+		<property name="address" value="Marqués de Valdecañas" />
 		<property name="socialIdentity">
 			<list>
 			</list>
@@ -522,7 +447,6 @@
 		<property name="date" value="28/03/1997" />	
 		<property name="city" value="Sevilla" />	
 		<property name="address" value="Calle Malasmañanas" />	
-		<property name="creditCard" ref="creditCard3" />
 		<property name="socialIdentity">
 			<list>
 			</list>
@@ -546,7 +470,7 @@
 		<property name="cif" value="CIF152" />
 		<property name="avgStars" value="3.0" />
 		<property name="feeAmount" value="200.0" />
-		<property name="iban" value="ES1800491500042710151321" />	
+		<property name="paypalMail" value="academiaNumeros@gmail.com" />	
 		<property name="socialIdentity">
 			<list>
 				<ref bean="socialIdentity4" />
@@ -577,7 +501,7 @@
 		<property name="cif" value="CIF45698" />
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="560.0" />
-		<property name="iban" value="ES3320852066640300082802" />	
+		<property name="paypalMail" value="ezdraw@gmail.com" />	
 		<property name="socialIdentity">
 			<list>
 			</list>
@@ -604,7 +528,7 @@
 		<property name="cif" value="CIF55220" />
 		<property name="avgStars" value="4.2" />
 		<property name="feeAmount" value="450.0" />
-		<property name="iban" value="ES6822881722069808677491" />	
+		<property name="paypalMail" value="academiaidiomas@gmail.com" />	
 		<property name="socialIdentity">
 			<list>
 			</list>

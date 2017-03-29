@@ -27,7 +27,7 @@ public class AcademyController extends AbstractController {
 
 	@Autowired
 	private AcademyService	academyService;
-	
+
 	@Autowired
 	private CourseService	courseService;
 
@@ -38,28 +38,28 @@ public class AcademyController extends AbstractController {
 		super();
 	}
 	// Display by Id ------------------------------------------------
-			@RequestMapping(value = "/displayById", method = RequestMethod.GET)
-			public ModelAndView displayById(@RequestParam int id) {
-				ModelAndView result;
-				Academy academy;
-				if(courseService.findOne(id)!=null){
-					Course p=courseService.findOne(id);
-					academy=p.getAcademy();
-					result = new ModelAndView("academy/display");
-					result.addObject("academy", academy);
-					result.addObject("comments", academy.getComments());
-					result.addObject("requestURI", "academy/display.do");
-					result.addObject("socialIdentities", academy.getSocialIdentity());
-				}else{
-					academy=academyService.findOne(id);
-					result = new ModelAndView("academy/display");
-					result.addObject("academy", academy);
-					result.addObject("comments", academy.getComments());
-					result.addObject("requestURI", "academy/display.do");
-					result.addObject("socialIdentities", academy.getSocialIdentity());
-				}
-				return result;
-			}
+	@RequestMapping(value = "/displayById", method = RequestMethod.GET)
+	public ModelAndView displayById(@RequestParam int id) {
+		ModelAndView result;
+		Academy academy;
+		if (courseService.findOne(id) != null) {
+			Course p = courseService.findOne(id);
+			academy = p.getAcademy();
+			result = new ModelAndView("academy/display");
+			result.addObject("academy", academy);
+			result.addObject("comments", academy.getComments());
+			result.addObject("requestURI", "academy/display.do");
+			result.addObject("socialIdentities", academy.getSocialIdentity());
+		} else {
+			academy = academyService.findOne(id);
+			result = new ModelAndView("academy/display");
+			result.addObject("academy", academy);
+			result.addObject("comments", academy.getComments());
+			result.addObject("requestURI", "academy/display.do");
+			result.addObject("socialIdentities", academy.getSocialIdentity());
+		}
+		return result;
+	}
 	// Display ------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
@@ -67,7 +67,6 @@ public class AcademyController extends AbstractController {
 		Academy academy;
 
 		academy = academyService.findByPrincipal();
-		academy = academyService.encryptCreditCard(academy);
 		result = new ModelAndView("academy/display");
 		result.addObject("academy", academy);
 		result.addObject("comments", academy.getComments());
@@ -108,26 +107,22 @@ public class AcademyController extends AbstractController {
 		ModelAndView result;
 		Academy academy;
 
-		if (binding.hasErrors()) {
+		if (binding.hasErrors())
 			result = createEditModelAndView(academyForm, null);
-		} else {
+		else
 			try {
 				academy = academyService.reconstruct(academyForm, binding);
 				academyService.save(academy);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (Throwable oops) {
 				String msgCode = "academy.register.error";
-				if (oops.getMessage().equals("notEqualPassword")) {
+				if (oops.getMessage().equals("notEqualPassword"))
 					msgCode = "academy.register.notEqualPassword";
-				} else if (oops.getMessage().equals("agreedNotAccepted")) {
+				else if (oops.getMessage().equals("agreedNotAccepted"))
 					msgCode = "academy.register.agreedNotAccepted";
-				}
-				if (oops.getMessage().equals("badIban")) {
-					msgCode = "academy.badIban";
-				}
+
 				result = createEditModelAndView(academyForm, msgCode);
 			}
-		}
 
 		return result;
 

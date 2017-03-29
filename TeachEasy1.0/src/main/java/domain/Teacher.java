@@ -10,9 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -28,7 +27,7 @@ public class Teacher extends Actor {
 	// Attributes -------------------------------------------------------------
 	private Double	avgStars;
 	private Double	feeAmount;
-	private String 	iban;
+	private String	paypalMail;
 
 
 	public Double getAvgStars() {
@@ -47,20 +46,21 @@ public class Teacher extends Actor {
 		this.feeAmount = feeAmount;
 	}
 
-	@NotBlank
-	@Pattern(regexp = "^ES\\d{22}")
-	public String getIban(){
-		return iban;
+	@Email
+	public String getPaypalMail() {
+		return paypalMail;
 	}
-	public void setIban(String iban){
-		this.iban=iban;
+	public void setPaypalMail(String paypalMail) {
+		this.paypalMail = paypalMail;
 	}
 
+
 	// Relationships ----------------------------------------------------------
-	private Curricula			curricula;
-	private Collection<Comment>	comments;
-	private TimeTable			timeTable;
-	private Collection<Proposal> proposals;
+	private Curricula				curricula;
+	private Collection<Comment>		comments;
+	private TimeTable				timeTable;
+	private Collection<Proposal>	proposals;
+
 
 	@Valid
 	@OneToMany(mappedBy = "teacher")
@@ -91,7 +91,7 @@ public class Teacher extends Actor {
 	public void setCurricula(Curricula curricula) {
 		this.curricula = curricula;
 	}
-	
+
 	@Valid
 	@OneToMany(mappedBy = "teacher")
 	public Collection<Proposal> getProposals() {

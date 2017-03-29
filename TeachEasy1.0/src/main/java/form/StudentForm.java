@@ -8,7 +8,6 @@ import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,32 +19,28 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import domain.CreditCard;
-
 @Embeddable
 @Access(AccessType.PROPERTY)
 public class StudentForm {
 
 	// Attributes ----------------------------------------------------
 
-	private int			id;
+	private int		id;
 
-	private String		username;
-	private String		password;
+	private String	username;
+	private String	password;
 
-	private String		password2;
-	private boolean		agreed;
+	private String	password2;
+	private boolean	agreed;
 
-	private String		name;
-	private String		surname;
-	private String		email;
-	private String		phone;
-	private String		picture;
-	private Date		date;
-	private String		city;
-	private String		address;
-
-	private CreditCard	creditCard;
+	private String	name;
+	private String	surname;
+	private String	email;
+	private String	phone;
+	private String	picture;
+	private Date	date;
+	private String	city;
+	private String	address;
 
 
 	// Constructor --------------------------------------------------
@@ -144,15 +139,6 @@ public class StudentForm {
 		this.picture = picture;
 	}
 
-	@Valid
-	@NotNull
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-	
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getCity() {
@@ -161,7 +147,7 @@ public class StudentForm {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAddress() {
@@ -170,14 +156,14 @@ public class StudentForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	public Date getDate(){
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date){
-		this.date=date;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }
