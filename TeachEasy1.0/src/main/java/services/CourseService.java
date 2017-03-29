@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import repositories.CourseRepository;
+import domain.Academy;
 import domain.Course;
 import domain.Finder;
 
@@ -63,14 +64,14 @@ public class CourseService {
 	public Collection<Course> findByFinder(Finder finder) {
 		Collection<Course> result = new ArrayList<Course>();
 		Collection<Course> aux;
-		if (finder.getKeyword() == null && finder.getMatter()==null) {
+		if (finder.getKeyword() == null && finder.getMatter() == null) {
 			aux = courseRepository.findByCity(finder.getCity());
-		} else if(finder.getMatter()==null){
+		} else if (finder.getMatter() == null) {
 			aux = courseRepository.findByKey(finder.getKeyword(), finder.getCity());
-		}else if(finder.getKeyword()==null){
+		} else if (finder.getKeyword() == null) {
 			aux = courseRepository.findByMatter(finder.getMatter(), finder.getCity());
-		}else{
-			aux = courseRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(),finder.getKeyword());
+		} else {
+			aux = courseRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(), finder.getKeyword());
 		}
 		if (finder.getMinimumPrice() == null && finder.getMaximumPrice() == null) {
 			result = aux;
@@ -95,5 +96,10 @@ public class CourseService {
 		}
 		return result;
 
+	}
+
+	public Collection<Course> findByCreator(Academy academy) {
+		Collection<Course> result = courseRepository.findByCreator(academy);
+		return result;
 	}
 }
