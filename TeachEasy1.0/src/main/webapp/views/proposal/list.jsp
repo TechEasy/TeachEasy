@@ -34,13 +34,16 @@
 							<h3><spring:message code="proposal.teacher.avgStars" />: ${proposal.teacher.avgStars}</h3>
 						</div>
 					</div>
-					<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
-							<a class="btn btn-primary" href="teacher/displayById.do?id=${proposal.teacher.id}"><spring:message code="finder.view.teacher" /></a>
+							<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
+								<a class="btn btn-primary" href="teacher/displayById.do?id=${proposal.teacher.id}"><spring:message code="finder.view.teacher" /></a>
+							</security:authorize>
+							<security:authorize access="hasRole('STUDENT')">
+							<a class="btn btn-primary" href="student/request/register.do?rClassId=${proposal.id}"><spring:message	code="request.request" /></a>
+							</security:authorize>
 						</div>
 					</div>
-					</security:authorize>
 				</div>
 			</div>
 			<hr class="divider"/>
