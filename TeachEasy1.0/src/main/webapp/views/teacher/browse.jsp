@@ -24,7 +24,7 @@
 				</div>
 				<div class="col-md-9 ">
 					<h1>${teacher.name} ${teacher.surname}</h1>
-					<h3>Fecha de nacimiento: ${teacher.date}</h3>
+					<h3><spring:message code="teacher.date" />: ${teacher.date}</h3>
 					<div class="row">
 						<div class="col-md-6">
 							<h3><spring:message code="teacher.city" />: ${teacher.city}</h3>
@@ -46,21 +46,3 @@
 			<hr class="divider"/>
 		</c:forEach>
 </div>
-
-<display:table  name="teachers" id="teacherList" requestURI="${requestURI}" class="displaytag">
-	
-	<spring:message code="teacher.name" var="nameHeader"/>
-	<display:column property="name" title="${nameHeader}"/>
-	
-	<spring:message code="teacher.surname" var="surnameHeader"/>
-	<display:column property="surname" title="${surnameHeader}" sortable="true"/>
-	
-	
-	<security:authorize access="isAuthenticated()">
-	<display:column titleKey="teacher.view">
-		<a href="teacher/displayById.do?id=${teacherList.id}">
-		<spring:message code="teacher.view"></spring:message></a>	
-	</display:column>
-	</security:authorize>
-	
-</display:table>
