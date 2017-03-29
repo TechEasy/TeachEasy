@@ -34,11 +34,9 @@
 		<value>/views/finder/tiles.xml</value>
 		<value>/views/subjectMatter/tiles.xml</value>
 		<value>/views/academy/tiles.xml</value>
-<<<<<<< HEAD
 		<value>/views/comment/tiles.xml</value>
-=======
+
 		<value>/views/invoice/tiles.xml</value>
->>>>>>> 3bb6bf297dc1e1098d49681fc0979e6bfc753d08
 		
 	</util:list>
 
