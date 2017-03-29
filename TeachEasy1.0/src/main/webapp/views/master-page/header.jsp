@@ -119,9 +119,9 @@
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="admininistrator/display.do"><spring:message code="master.page.display" /> </a></li>
+					<li><a href="administrator/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="spam/admin/edit.do"><spring:message code="master.page.spam" /> </a></li>
-					<li><a href="admin/edit.do"><spring:message code="master.page.edit" /> </a></li>
+					<li><a href="administrator/edit.do"><spring:message code="master.page.edit" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
