@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
 
@@ -194,6 +195,17 @@ public class AcademyService {
 	public void updateAvgStars(Academy academy) {
 		academy.setAvgStars(academyRepository.fingAvgStars(academy));
 		save(academy);
+	}
+
+	public Academy findRandom() {
+		Academy a = new Academy();
+		Object[] as = findAll().toArray();
+		int min = 0;
+		int max = as.length;
+		int randomNum = ThreadLocalRandom.current().nextInt(min, max);
+		a = (Academy) as[randomNum];
+
+		return a;
 	}
 
 }

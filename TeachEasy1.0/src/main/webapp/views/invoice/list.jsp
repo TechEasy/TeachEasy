@@ -38,6 +38,6 @@
 	<display:column property="total" title="${total}" sortable="false" />
 	
 	<display:column>
-		<a href="student/invoice/invoiceId.do?id=${row.id}"><spring:message code="invoice.display" /></a>
+		<a href="student/invoice/display.do?invoiceId=${row.id}"><spring:message code="invoice.display" /></a>
 	</display:column>
 	</display:table>

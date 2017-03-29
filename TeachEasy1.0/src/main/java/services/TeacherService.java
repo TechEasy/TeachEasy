@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
 
@@ -205,6 +206,17 @@ public class TeacherService {
 	public void updateAvgStars(Teacher teacher) {
 		teacher.setAvgStars(teacherRepository.fingAvgStars(teacher));
 		save(teacher);
+	}
+
+	public Teacher findRandom() {
+		Teacher t = new Teacher();
+		Object[] ts = findAll().toArray();
+		int min = 0;
+		int max = ts.length;
+		int randomNum = ThreadLocalRandom.current().nextInt(min, max);
+		t = (Teacher) ts[randomNum];
+
+		return t;
 	}
 
 }
