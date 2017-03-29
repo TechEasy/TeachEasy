@@ -115,7 +115,7 @@
 
 </display:table>
 	
-
+<jstl:if test="${teacher.timeTable != null}">
 <table id="row" class="table">
 <jstl:forEach items="${teacher.timeTable.days}" var="day">
 	<tr>
@@ -132,8 +132,7 @@
 	</tr>
 </jstl:forEach>
 </table>
-		
-	
+</jstl:if>
 	
 <display:table pagesize="10" class="displaytag" keepStatus="true" name="comments" id="row" requestURI="${requestURI}">	
 	<spring:message code="teacher.comment.title" var="titleHeader"/>
