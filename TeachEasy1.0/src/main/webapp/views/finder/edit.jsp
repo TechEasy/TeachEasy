@@ -47,7 +47,7 @@
 	<acme:textbox code="finder.keyword" path="keyword"/>
 	<div class="row">
 		<div class="col-md-6">
-			<acme:submit name="save" code="finder.save"/>			
+			<acme:submit name="save" code="finder.edit"/>			
 		</div>
 		<div class="col-md-3">
 			<acme:cancel url="student/finder/display.do" code="finder.cancel"/>			

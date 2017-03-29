@@ -1,3 +1,4 @@
+
 package controllers.Student;
 
 import java.util.Collection;
@@ -17,119 +18,111 @@ import services.CourseService;
 import services.FinderService;
 import services.ProposalService;
 
-import controllers.AbstractController;
-import domain.Course;
+import controllers.AbstractController;import domain.Course;
+
 import domain.Finder;
-import domain.Proposal;
-import domain.Rclass;
+import domain.Proposal;import domain.Rclass;
+
 import form.FinderForm;
 
 @Controller
 @RequestMapping("/student/finder")
-public class StudentFinderController extends AbstractController{
+public class StudentFinderController extends AbstractController {
+
 	//Services-------------------------
 
-		@Autowired
-		private FinderService	finderService;
-		
-		@Autowired
-		private ProposalService	proposalService;
-		
-		@Autowired
-		private CourseService courseService;
-		
+	@Autowired
+	private FinderService	finderService;
+
+	@Autowired
+	private ProposalService	proposalService;
+
+	@Autowired
+	private CourseService	courseService;
+
+
 	//Constructor----------------------
 
-		public StudentFinderController() {
-			super();
-		}
-		//Display--------------------------
+	public StudentFinderController() {
+		super();
+	}
+	//Display--------------------------
 
-		@RequestMapping(value = "/display", method = RequestMethod.GET)
-		public ModelAndView display() {
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display() {
 
-			ModelAndView result;
-			Finder finder;
-			
-			finder = finderService.findByPrincipal();
-			result = new ModelAndView("finder/display");
-			result.addObject("finder", finder);
-			
-			result.addObject("requestURI", "student/finder/display.do");
+		ModelAndView result;
+		Finder finder;
 
-			return result;
-		}
+		finder = finderService.findByPrincipal();
+		result = new ModelAndView("finder/display");
+		result.addObject("finder", finder);
 
-		
+		result.addObject("requestURI", "student/finder/display.do");
 
-		//Edition--------------------------
+		return result;
+	}
 
-		@RequestMapping(value = "/edit", method = RequestMethod.GET)
-		public ModelAndView edit(@RequestParam int finderId) {
+	//Edition--------------------------
 
-			ModelAndView result;
-			Finder finder;
-			
-			finder = finderService.findOne(finderId);
-			FinderForm finderform=finderService.transform(finder);
-			Assert.notNull(finderform);
-			result = createEditModelAndView(finderform);
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam int finderId) {
 
-			return result;
+		ModelAndView result;
+		Finder finder;
 
-		}
+		finder = finderService.findOne(finderId);
+		FinderForm finderform = finderService.transform(finder);
+		Assert.notNull(finderform);
+		result = createEditModelAndView(finderform);
 
-		@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-		public ModelAndView save(@Valid FinderForm finderForm, BindingResult binding) {
-
-			ModelAndView result;
-			Finder finder;
-			if (binding.hasErrors()) {
-				result = createEditModelAndView(finderForm);
-			} else {
-				try {
-					finder=finderService.reconstruct(finderForm, binding);
-					Collection<Proposal>proposals=proposalService.findByFinder(finder);
-					finderService.save(finder);
-					result = display();
-					System.out.println(proposals);
-					result.addObject("proposals",proposals);
-				} catch (Throwable oops) {
-					result = createEditModelAndView(finderForm, "master.page.commit.error");
-			}
-
-			
-			}
-			return result;
-		}
-		
-		
-				
-
-		//Ancillary Methods---------------------------
-
-		protected ModelAndView createEditModelAndView(FinderForm finderForm) {
-
-			ModelAndView result;
-
-			result = createEditModelAndView(finderForm, null);
-
-			return result;
-		}
-
-		protected ModelAndView createEditModelAndView(FinderForm finderForm, String message) {
-			ModelAndView result;
-
-			result = new ModelAndView("finder/edit");
-			result.addObject("finder", finderForm);
-
-			result.addObject("message", message);
-
-			return result;
-
-		}
+		return result;
 
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid FinderForm finderForm, BindingResult binding) {
 
+		ModelAndView result;
+		Finder finder;
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(finderForm);
+		} else {
+			try {
+				finder = finderService.reconstruct(finderForm, binding);
+				Collection<Proposal> proposals = proposalService.findByFinder(finder);
+				finderService.save(finder);
+				result = display();
+				result.addObject("proposals", proposals);
+			} catch (Throwable oops) {
+				result = createEditModelAndView(finderForm, "master.page.commit.error");
+			}
 
+		}
+		return result;
+	}
+
+	//Ancillary Methods---------------------------
+
+	protected ModelAndView createEditModelAndView(FinderForm finderForm) {
+
+		ModelAndView result;
+
+		result = createEditModelAndView(finderForm, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(FinderForm finderForm, String message) {
+		ModelAndView result;
+
+		result = new ModelAndView("finder/edit");
+		result.addObject("finder", finderForm);
+
+		result.addObject("message", message);
+
+		return result;
+
+	}
+
+}
