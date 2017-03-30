@@ -69,14 +69,14 @@ public class StudentRequestController extends AbstractController {
 			sI = fecha.parse(r.getcheckIn());
 			sO = fecha.parse(r.getCheckOut());
 			
-			int minutos;
-			int horas;
+			Integer minutos;
+			Integer horas;
 			
-			if(sO.getMinutes()>sI.getMinutes()){
+			if(sO.getMinutes()>sI.getMinutes()||sO.getMinutes()==sI.getMinutes()){
 				minutos = sO.getMinutes()-sI.getMinutes();
 				horas = sO.getHours()-sI.getHours();
 			}else{
-				minutos = sI.getMinutes()-sO.getMinutes()+60;
+				minutos = 60+sI.getMinutes()-sO.getMinutes();
 				horas = sO.getHours()-sI.getHours()-1;
 			}
 			
