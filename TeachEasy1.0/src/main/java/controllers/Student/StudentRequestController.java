@@ -76,7 +76,7 @@ public class StudentRequestController extends AbstractController {
 				minutos = sO.getMinutes()-sI.getMinutes();
 				horas = sO.getHours()-sI.getHours();
 			}else{
-				minutos = 60+sI.getMinutes()-sO.getMinutes();
+				minutos = 60+sO.getMinutes()-sI.getMinutes();
 				horas = sO.getHours()-sI.getHours()-1;
 			}
 			
