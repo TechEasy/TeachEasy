@@ -64,7 +64,7 @@
 	        <td>
 	         <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 			   <input type="hidden" name="cmd" value="_xclick">
-			   <input type="hidden" name="business" value="SimonEgeaTE@gmail.com">
+			   <input type="hidden" name="business" value="TeachEasy@gmail.com">
 			   <input type="hidden" name="currency_code" value="EUR">
 			   <input type="hidden" name="item_name" value="Clase">
 			   <input type="hidden" name="amount" value="${amount[request.id]}">

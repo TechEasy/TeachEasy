@@ -69,7 +69,18 @@ public class StudentRequestController extends AbstractController {
 			sI = fecha.parse(r.getcheckIn());
 			sO = fecha.parse(r.getCheckOut());
 			
-			Double valor = (double) (sO.getHours()-sI.getHours()+((sO.getMinutes()-sI.getMinutes())/60));
+			int minutos;
+			int horas;
+			
+			if(sO.getMinutes()>sI.getMinutes()){
+				minutos = sO.getMinutes()-sI.getMinutes();
+				horas = sO.getHours()-sI.getHours();
+			}else{
+				minutos = sI.getMinutes()-sO.getMinutes()+60;
+				horas = sO.getHours()-sI.getHours()-1;
+			}
+			
+			Double valor = (horas+(1.0*(minutos)/60));
 			Double value = valor*r.getRclass().getRate();
 			
 			amount.put(r.getId(), value);
