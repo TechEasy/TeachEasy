@@ -34,7 +34,8 @@
 				<div class="col-md-9">
 					<h4><jstl:out value="${academy.name}"/></h4>
 					<p><jstl:out value="${academy.avgStars}"/></p>
-					<a class="btn btn-primary float-right" href="teacher/displayById.do?id=${teacher.id}"><spring:message code="finder.view.teacher" /></a>
+					<a class="btn btn-primary float-right" href="academy/displayById.do?id=${academy.id}"><spring:message code="finder.view.academy" /></a>
+					
 				</div>
 			</div>
 		</div>	
@@ -49,7 +50,8 @@
 				<div class="col-md-9">
 					<h4><jstl:out value="${teacher.name}"/><jstl:out value="${teacher.surname}"/></h4>
 					<p><jstl:out value="${teacher.avgStars}"/></p>
-					<a class="btn btn-primary float-right" href="academy/displayById.do?id=${academy.id}"><spring:message code="finder.view.academy" /></a>
+					
+					<a class="btn btn-primary float-right" href="teacher/displayById.do?id=${teacher.id}"><spring:message code="finder.view.teacher" /></a>
 				</div>
 			</div>
 		</div>

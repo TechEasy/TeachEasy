@@ -150,4 +150,17 @@ public class StudentRequestController extends AbstractController {
 
 			return result;
 		}
+		
+		// Paid ----------------------------------------------------------
+		
+		@RequestMapping(value = "/paid", method = RequestMethod.GET)
+		public ModelAndView paid(@RequestParam int requestId) throws ParseException {
+
+			Request request = requestService.findOne(requestId);
+			request.setStatus("ACCEPTED");
+			requestService.save(request);
+
+			return list();
+		}
+
 }
