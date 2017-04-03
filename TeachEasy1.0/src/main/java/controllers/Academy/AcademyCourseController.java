@@ -22,7 +22,7 @@ import domain.Academy;
 import domain.Course;
 
 @Controller
-@RequestMapping("/academy/course")
+@RequestMapping("/course/academy")
 public class AcademyCourseController extends AbstractController {
 
 	//Services-------------------------

@@ -37,11 +37,18 @@
 					</div>
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
-							<a class="btn btn-primary" href="academy/course/edit.do?courseId=${course.id}"><spring:message code="course.edit" /></a>
+							<a class="btn btn-primary" href="course/academy/edit.do?courseId=${course.id}"><spring:message code="course.edit" /></a>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- Create course -->
+			<security:authorize access="hasRole('ACADEMY')">
+				<div>
+					<a href="course/academy/create.do" class="enlaceboton">
+					<spring:message code="course.create" /></a>
+				</div>
+			</security:authorize>
 			<hr class="divider"/>
 		</c:forEach>
 </div>
