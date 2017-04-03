@@ -48,4 +48,12 @@
 			</div>
 			<hr class="divider"/>
 		</c:forEach>
+		
+		<!-- Create course -->
+		<security:authorize access="hasRole('TEACHER')">
+			<div>
+				<a href="proposal/teacher/create.do" class="enlaceboton">
+				<spring:message code="proposal.create" /></a>
+			</div>
+		</security:authorize>
 </div>

@@ -82,7 +82,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">
-			<li><a href="teacher/proposal/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
+			<li><a href="proposal/teacher/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
 			<li><a href="teacher/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
 			
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />

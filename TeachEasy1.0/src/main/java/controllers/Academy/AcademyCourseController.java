@@ -128,6 +128,7 @@ public class AcademyCourseController extends AbstractController {
 
 	public ModelAndView createEditModelAndView(Course course) {
 		ModelAndView result;
+
 		result = createEditModelAndView(course, null);
 
 		return result;
@@ -138,16 +139,18 @@ public class AcademyCourseController extends AbstractController {
 		result = new ModelAndView("course/edit");
 		result.addObject("course", course);
 		result.addObject("message", message);
-		result.addObject("subjectMatter", getMatters());
+		result.addObject("matters", getMatters());
+
 		return result;
 	}
 
 	private Map<String, String> getMatters() {
-		Collection<SubjectMatter> cm;
-		cm = matterService.findAll();
+		Collection<SubjectMatter> cs;
+		cs = matterService.findAll();
+
 		Map<String, String> matters = new LinkedHashMap<String, String>();
-		for (SubjectMatter c : cm) {
-			matters.put(String.valueOf(c.getId()), c.getName());
+		for (SubjectMatter s : cs) {
+			matters.put(String.valueOf(s.getId()), s.getName());
 		}
 		return matters;
 	}

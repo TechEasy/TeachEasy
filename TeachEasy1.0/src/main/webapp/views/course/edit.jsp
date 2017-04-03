@@ -16,7 +16,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+     
+    	    
+    	
 <form:form action = "course/academy/edit.do" modelAttribute="course">
 
 	<form:hidden path="id"/>
@@ -77,14 +79,18 @@
 		
 		 
 		<div>
-			<form:label path="subjectMatter">
+			
+		<form:label path="subjectMatter">
 				<spring:message code="course.matter" />:
-			</form:label>
-			<select name="subjectMatter">
-    			<c:forEach items="${getMatters}" var="subjectMatter">
-       				<option value="${subjectMatter.id}" ${course.subjectMatter == subjectMatter.id ? 'selected' : ''}>${subjectMatter.name}</option>
-    			</c:forEach>
-			</select>
+		</form:label>
+		
+		<form:select path="subjectMatter">
+			<form:option label="-----" value="0" />
+			<form:options items="${matters}" />
+		</form:select>
+		<form:errors cssClass="error" path="subjectMatter" />
+		<br/>
+ 	
 		</div>
 	</fieldset>
 	
