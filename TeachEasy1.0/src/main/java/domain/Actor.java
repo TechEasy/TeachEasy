@@ -24,7 +24,7 @@ import security.UserAccount;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Actor extends DomainEntity {
+public class Actor extends Commentable {
 
 	// Constructors -----------------------------------------------------------
 

@@ -47,14 +47,14 @@ public class AcademyController extends AbstractController {
 			academy = p.getAcademy();
 			result = new ModelAndView("academy/display");
 			result.addObject("academy", academy);
-			result.addObject("comments", academy.getComments());
+			result.addObject("commentable", academy.getComments());
 			result.addObject("requestURI", "academy/display.do");
 			result.addObject("socialIdentities", academy.getSocialIdentity());
 		} else {
 			academy = academyService.findOne(id);
 			result = new ModelAndView("academy/display");
 			result.addObject("academy", academy);
-			result.addObject("comments", academy.getComments());
+			result.addObject("commentable", academy.getComments());
 			result.addObject("requestURI", "academy/display.do");
 			result.addObject("socialIdentities", academy.getSocialIdentity());
 		}
@@ -69,7 +69,7 @@ public class AcademyController extends AbstractController {
 		academy = academyService.findByPrincipal();
 		result = new ModelAndView("academy/display");
 		result.addObject("academy", academy);
-		result.addObject("comments", academy.getComments());
+		result.addObject("commentable", academy.getComments());
 		result.addObject("requestURI", "academy/display.do");
 		result.addObject("socialIdentities", academy.getSocialIdentity());
 

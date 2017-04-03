@@ -24,9 +24,8 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="student"/>
-	<form:hidden path="teacher"/>
-	<form:hidden path="academy"/>
 	<form:hidden path="createMoment"/>
+	<form:hidden path="commentable"/>
 				
 	<acme:textbox code="comments.title" path="title"/>	
 	<acme:textbox code="comments.text" path="text"/>

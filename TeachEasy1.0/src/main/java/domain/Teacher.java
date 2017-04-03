@@ -57,20 +57,9 @@ public class Teacher extends Actor {
 
 	// Relationships ----------------------------------------------------------
 	private Curricula				curricula;
-	private Collection<Comment>		comments;
 	private TimeTable				timeTable;
 	private Collection<Proposal>	proposals;
 
-
-	@Valid
-	@OneToMany(mappedBy = "teacher")
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
-	}
 
 	@Valid
 	@OneToOne(optional = true, cascade = CascadeType.ALL)

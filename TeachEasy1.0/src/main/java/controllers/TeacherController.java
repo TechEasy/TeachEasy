@@ -47,7 +47,7 @@ public class TeacherController extends AbstractController {
 		teacher = teacherService.findByPrincipal();
 		result = new ModelAndView("teacher/display");
 		result.addObject("teacher", teacher);
-		result.addObject("comments", teacher.getComments());
+		result.addObject("commentable", teacher.getComments());
 		result.addObject("requestURI", "teacher/display.do");
 		result.addObject("socialIdentities", teacher.getSocialIdentity());
 
@@ -64,14 +64,14 @@ public class TeacherController extends AbstractController {
 			teacher = p.getTeacher();
 			result = new ModelAndView("teacher/display");
 			result.addObject("teacher", teacher);
-			result.addObject("comments", teacher.getComments());
+			result.addObject("commentable", teacher.getComments());
 			result.addObject("requestURI", "teacher/display.do");
 			result.addObject("socialIdentities", teacher.getSocialIdentity());
 		} else {
 			teacher = teacherService.findOne(id);
 			result = new ModelAndView("teacher/display");
 			result.addObject("teacher", teacher);
-			result.addObject("comments", teacher.getComments());
+			result.addObject("commentable", teacher.getComments());
 			result.addObject("requestURI", "teacher/display.do");
 			result.addObject("socialIdentities", teacher.getSocialIdentity());
 		}

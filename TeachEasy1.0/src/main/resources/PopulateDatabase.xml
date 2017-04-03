@@ -313,13 +313,7 @@
 			<list>
 				<ref bean="socialIdentity2" />
 			</list>
-		</property>
-		<property name="comments">
-			<list>
-				<ref bean="comment1" />
-			</list>
-		</property>
-		
+		</property>		
 	</bean>	
 	
 	<bean id="teacher2" class="domain.Teacher">
@@ -345,11 +339,6 @@
 		</property>		
 		<property name="socialIdentity">
 			<list>
-			</list>
-		</property>
-		<property name="comments">
-			<list>
-			<ref bean="comment2" />
 			</list>
 		</property>
 	</bean>	
@@ -379,11 +368,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="comments">
-			<list>
-			<ref bean="comment6" />
-			</list>
-		</property>
 	</bean>	
 	
 	<!-- Student -->
@@ -404,15 +388,6 @@
 				<ref bean="socialIdentity3" />
 			</list>
 		</property>
-		<property name="comments">
-			<list>
-				<ref bean="comment1" />
-				<ref bean="comment2" />
-				<ref bean="comment3" />
-				<ref bean="comment6" />
-				<ref bean="comment8" />
-			</list>
-		</property>
 	</bean>	
 	
 	<bean id="student2" class="domain.Student">
@@ -427,12 +402,6 @@
 		<property name="address" value="Marqués de Valdecañas" />
 		<property name="socialIdentity">
 			<list>
-			</list>
-		</property>
-		<property name="comments">
-			<list>
-			<ref bean="comment4" />
-			<ref bean="comment7" />
 			</list>
 		</property>
 	</bean>	
@@ -451,11 +420,6 @@
 			<list>
 			</list>
 		</property>	
-		<property name="comments">
-			<list>
-				<ref bean="comment5" />
-			</list>
-		</property>
 	</bean>	
 	
 	<!-- Academy -->
@@ -474,13 +438,6 @@
 		<property name="socialIdentity">
 			<list>
 				<ref bean="socialIdentity4" />
-			</list>
-		</property>
-		<property name="comments">
-			<list>
-				<ref bean="comment3" />
-				<ref bean="comment7" />
-				<ref bean="comment8" />
 			</list>
 		</property>
 		<property name="courses">
@@ -506,11 +463,6 @@
 			<list>
 			</list>
 		</property>	
-		<property name="comments">
-			<list>
-			<ref bean="comment4" />
-			</list>
-		</property>
 		<property name="courses">
 			<list>
 				<ref bean="course3" />
@@ -533,11 +485,6 @@
 			<list>
 			</list>
 		</property>	
-		<property name="comments">
-			<list>
-			<ref bean="comment5" />
-			</list>
-		</property>
 		<property name="courses">
 			<list>
 				<ref bean="course4" />
@@ -907,7 +854,7 @@
 		<property name="text" value="Podría asistir a otra hora?" />
 		<property name="stars" value="3" />	
 		<property name="student" ref="student1" />	
-		<property name="teacher" ref="teacher1" />	
+		<property name="commentable" ref="teacher1" />	
 	</bean>
 	
 	<bean id="comment2" class="domain.Comment">
@@ -916,7 +863,7 @@
 		<property name="text" value="Hola teacher2" />
 		<property name="stars" value="3" />	
 		<property name="student" ref="student1" />	
-		<property name="teacher" ref="teacher2" />	
+		<property name="commentable" ref="teacher2" />	
 	</bean>
 	
 	<bean id="comment3" class="domain.Comment">
@@ -925,7 +872,7 @@
 		<property name="text" value="¿Podrían darme un numero de contacto?" />
 		<property name="stars" value="3" />	
 		<property name="student" ref="student1" />	
-		<property name="academy" ref="academy1" />	
+		<property name="commentable" ref="academy1" />	
 	</bean>
 	
 	<bean id="comment4" class="domain.Comment">
@@ -934,7 +881,7 @@
 		<property name="text" value="Gran clase, me sirvió de mucho" />
 		<property name="stars" value="5" />	
 		<property name="student" ref="student2" />	
-		<property name="academy" ref="academy2" />	
+		<property name="commentable" ref="academy2" />	
 	</bean>
 	
 	<bean id="comment5" class="domain.Comment">
@@ -943,7 +890,7 @@
 		<property name="text" value="Nice academy. Guess im improving my english level" />
 		<property name="stars" value="5" />	
 		<property name="student" ref="student3" />	
-		<property name="academy" ref="academy3" />	
+		<property name="commentable" ref="academy3" />	
 	</bean>
 	
 	<bean id="comment6" class="domain.Comment">
@@ -952,7 +899,7 @@
 		<property name="text" value="Hola teacher3, gracias por la clase" />
 		<property name="stars" value="4" />	
 		<property name="student" ref="student1" />	
-		<property name="teacher" ref="teacher3" />	
+		<property name="commentable" ref="teacher3" />	
 	</bean>
 	
 	<bean id="comment7" class="domain.Comment">
@@ -961,7 +908,7 @@
 		<property name="text" value="¿Podrían darme un numero de contacto?" />
 		<property name="stars" value="3" />	
 		<property name="student" ref="student2" />	
-		<property name="academy" ref="academy1" />	
+		<property name="commentable" ref="academy1" />	
 	</bean>
 	
 	<bean id="comment8" class="domain.Comment">
@@ -970,7 +917,7 @@
 		<property name="text" value="Muy buena academia de numeros" />
 		<property name="stars" value="5" />	
 		<property name="student" ref="student1" />	
-		<property name="academy" ref="academy1" />	
+		<property name="commentable" ref="academy1" />	
 	</bean>
 	
 

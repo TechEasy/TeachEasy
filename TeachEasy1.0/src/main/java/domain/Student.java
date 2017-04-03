@@ -26,7 +26,6 @@ public class Student extends Actor {
 	// Relationships ----------------------------------------------------------
 	private Finder				finder;
 	private Collection<Request>	requests;
-	private Collection<Comment>	comments;
 
 
 	@Valid
@@ -47,15 +46,4 @@ public class Student extends Actor {
 	public void setRequests(Collection<Request> requests) {
 		this.requests = requests;
 	}
-
-	@Valid
-	@OneToMany(mappedBy = "student")
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
-	}
-
 }

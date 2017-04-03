@@ -19,7 +19,7 @@ import security.UserAccount;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Academy extends DomainEntity {
+public class Academy extends Commentable {
 
 	// Constructors -----------------------------------------------------------
 
@@ -115,7 +115,6 @@ public class Academy extends DomainEntity {
 	// Relationships ----------------------------------------------------------
 	private Collection<SocialIdentity>	socialIdentity;
 	private UserAccount					userAccount;
-	private Collection<Comment>			comments;
 	private Collection<Course>			courses;
 
 
@@ -135,15 +134,6 @@ public class Academy extends DomainEntity {
 	}
 	public void setUserAccount(UserAccount userAccount) {
 		this.userAccount = userAccount;
-	}
-
-	@Valid
-	@OneToMany(mappedBy = "academy")
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
 	}
 
 	@Valid

@@ -24,6 +24,7 @@
 		<bean class="converters.AdministratorToStringConverter" /> 
 		<bean class="converters.RclassToStringConverter" /> 
 		<bean class="converters.CommentToStringConverter" />
+		<bean class="converters.CommentableToStringConverter" /> 
 		<bean class="converters.CourseToStringConverter" /> 
 		<bean class="converters.CurriculaToStringConverter" /> 
 		<bean class="converters.DayToStringConverter" /> 
@@ -43,6 +44,7 @@
 		<bean class="converters.StringToAdministratorConverter" />
 		<bean class="converters.StringToRclassConverter" />
 		<bean class="converters.StringToCommentConverter" />
+		<bean class="converters.StringToCommentableConverter" />
 		<bean class="converters.StringToCourseConverter" />
 		<bean class="converters.StringToCurriculaConverter" />
 		<bean class="converters.StringToDayConverter" />

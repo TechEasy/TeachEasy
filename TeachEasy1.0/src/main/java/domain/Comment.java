@@ -74,13 +74,12 @@ public class Comment extends DomainEntity {
 
 
 	// Relationships ----------------------------------------------------------
-	private Student	student;
-	private Teacher	teacher;
-	private Academy	academy;
+	private Student		student;
+	private Commentable	commentable;
 
 
 	@Valid
-	@ManyToOne(optional=false)
+	@ManyToOne(optional = false)
 	public Student getStudent() {
 		return student;
 	}
@@ -89,24 +88,14 @@ public class Comment extends DomainEntity {
 		this.student = student;
 	}
 
+	@NotNull
 	@Valid
-	@ManyToOne(optional=true)
-	public Teacher getTeacher() {
-		return teacher;
+	@ManyToOne
+	public Commentable getCommentable() {
+		return this.commentable;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setCommentable(final Commentable commentable) {
+		this.commentable = commentable;
 	}
-
-	@Valid
-	@ManyToOne(optional=true)
-	public Academy getAcademy() {
-		return academy;
-	}
-
-	public void setAcademy(Academy academy) {
-		this.academy = academy;
-	}
-
 }

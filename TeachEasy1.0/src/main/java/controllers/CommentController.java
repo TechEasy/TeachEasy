@@ -1,6 +1,7 @@
 
 package controllers;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -13,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.AcademyService;
 import services.CommentService;
+import services.CommentableService;
 import services.StudentService;
-import services.TeacherService;
-import domain.Academy;
 import domain.Comment;
-import domain.Teacher;
+import domain.Commentable;
 
 @Controller
 @RequestMapping("/comment")
@@ -28,16 +27,13 @@ public class CommentController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private TeacherService	teacherService;
+	private CommentService		commentService;
 
 	@Autowired
-	private AcademyService	academyService;
+	private StudentService		studentService;
 
 	@Autowired
-	private CommentService	commentService;
-
-	@Autowired
-	private StudentService	studentService;
+	private CommentableService	commentableService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -45,44 +41,47 @@ public class CommentController extends AbstractController {
 	public CommentController() {
 		super();
 	}
+
 	// Creation ---------------------------------------------------------------
 
-	@RequestMapping("/createT")
-	public ModelAndView createCommentTeacher(@RequestParam int teacherId) {
+	@RequestMapping("/create")
+	public ModelAndView create(@RequestParam int idEntity) {
 		ModelAndView result;
-		Teacher teacher;
+
 		Comment comment;
+		Commentable commentable;
 
 		comment = commentService.create();
-		teacher = teacherService.findOne(teacherId);
+		commentable = commentableService.findOne(idEntity);
 
 		comment.setStudent(studentService.findByPrincipal());
-		comment.setTeacher(teacher);
-		comment.setCreateMoment(new Date(System.currentTimeMillis() - 1000));
+		comment.setCommentable(commentable);
+		comment.setCreateMoment(new Date());
 
 		result = createEditModelAndView(comment);
 
 		return result;
 	}
 
-	@RequestMapping("/createA")
-	public ModelAndView createCommentAcademy(@RequestParam int academyId) {
-		ModelAndView result;
-		Academy academy;
-		Comment comment;
-
-		comment = commentService.create();
-		academy = academyService.findOne(academyId);
-
-		comment.setStudent(studentService.findByPrincipal());
-		comment.setAcademy(academy);
-		comment.setCreateMoment(new Date(System.currentTimeMillis() - 1000));
-
-		result = createEditModelAndView(comment);
-
-		return result;
-	}
 	// Listing ----------------------------------------------------------------
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam int idEntity) {
+		ModelAndView result;
+		Commentable commentable;
+		Collection<Comment> comments;
+
+		commentable = commentableService.findOne(idEntity);
+
+		comments = commentable.getComments();
+
+		result = new ModelAndView("comment/list");
+
+		result.addObject("requestURI", "comment/list.do");
+		result.addObject("comments", comments);
+
+		return result;
+	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Comment comment, BindingResult bindingResult) {
@@ -94,7 +93,7 @@ public class CommentController extends AbstractController {
 		} else {
 			try {
 				commentService.save(comment);
-				result = new ModelAndView("redirect:index.do");
+				result = new ModelAndView("redirect:../welcome/index.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, "comment.commit.error");
 			}
@@ -103,7 +102,9 @@ public class CommentController extends AbstractController {
 	}
 
 	protected ModelAndView createEditModelAndView(Comment comment) {
+
 		ModelAndView result;
+
 		result = createEditModelAndView(comment, null);
 
 		return result;

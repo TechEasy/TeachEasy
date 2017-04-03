@@ -61,7 +61,6 @@ public class StudentService {
 		Finder f2 = finderService.save2(finder);
 		result.setRequests(requests);
 		result.setSocialIdentity(socialIdentity);
-		result.setComments(comments);
 		result.setFinder(f2);
 		return result;
 	}

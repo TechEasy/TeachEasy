@@ -77,7 +77,7 @@
 </display:table>
 	
 	
-<display:table pagesize="10" class="displaytag" keepStatus="true" name="comments" id="row" requestURI="${requestURI}">	
+<display:table pagesize="10" class="displaytag" keepStatus="true" name="commentable" id="row" requestURI="${requestURI}">	
 	<spring:message code="academy.comment.title" var="titleHeader"/>
 	<display:column title="${titleHeader }" property="title"/>
 	
@@ -97,6 +97,6 @@
 
 <security:authorize access="hasRole('STUDENT')">
 	<input type="button" name="comment" value="<spring:message code="academy.comment" />"
-			onclick="javascript: window.location.replace('comment/createA.do?academyId=${academy.id}')" />
+			onclick="javascript: window.location.replace('comment/create.do?idEntity=${row.commentable.id}')" />
 <br/>
 </security:authorize>
