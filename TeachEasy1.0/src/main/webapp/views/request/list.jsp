@@ -63,6 +63,7 @@
          <td>
 	       <jstl:if test="${request.status eq 'WAITING'}">
 	       
+	        <td>
 	         <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 			   <input type="hidden" name="cmd" value="_xclick">
 			   <input type="hidden" name="business" value="TeachEasy@gmail.com">
@@ -72,8 +73,25 @@
 			   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/student/request/paid.do?requestId=${request.id}">
 			   <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
 			 </form>
+	        </td>
+	        	<td>
+        			<a class="btn btn-danger" href="javascript: window.location.replace('student/request/cancel.do?requestId=${request.id}')"><spring:message code="request.cancel" /></a>
+        		</td>
 	        </jstl:if>
 	         </td>
+	        
+       		<jstl:if test="${request.status eq 'ACCEPTED' }">
+       			<jstl:if test="${oneDay[request.id] == true}">
+	       			<td>
+	        			<a class="btn btn-danger" href="javascript: window.location.replace('student/request/cancel.do?requestId=${request.id}')"><spring:message code="request.cancel" /></a>
+	        		</td>
+	        	</jstl:if>
+        	</jstl:if>
+        	<jstl:if test="${request.status eq 'PENDING' }">
+     			<td>
+        			<a class="btn btn-danger" href="javascript: window.location.replace('student/request/cancel.do?requestId=${request.id}')"><spring:message code="request.cancel" /></a>
+        		</td>
+        	</jstl:if>
 	    </security:authorize>
 	      </tr>
     </c:forEach>

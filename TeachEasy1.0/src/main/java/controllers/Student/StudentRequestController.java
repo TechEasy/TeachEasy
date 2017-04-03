@@ -1,3 +1,4 @@
+
 package controllers.Student;
 
 import java.text.ParseException;
@@ -12,7 +13,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +22,9 @@ import services.RClassService;
 import services.RequestService;
 import services.StudentService;
 import controllers.AbstractController;
-import domain.Rclass;
 import domain.Request;
 import domain.Student;
 import form.RequestForm;
-import form.StudentForm;
 
 @Controller
 @RequestMapping("/student/request")
@@ -55,112 +53,126 @@ public class StudentRequestController extends AbstractController {
 	public ModelAndView list() throws ParseException {
 		ModelAndView result;
 		Collection<Request> requests;
-		Map<Integer,Double> amount = new HashMap<Integer,Double>();
+		Map<Integer, Double> amount = new HashMap<Integer, Double>();
+		Map<Integer, Boolean> oneDay = new HashMap<Integer, Boolean>();
 		Student student;
 		student = studentService.findByPrincipal();
 
 		requests = student.getRequests();
 
-		for(Request r : requests){
-			
+		for (Request raux : requests) {
+			Boolean b;
+			Date d = new Date(), d2 = new Date();
+			Integer actualDate, requestDate;
+			actualDate = (int) (d.getTime() / 86400000);
+			SimpleDateFormat fecha2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			d2 = fecha2.parse(raux.getcheckIn());
+			requestDate = (int) (d2.getTime() / 86400000);
+			if ((actualDate - requestDate) < 0)
+				b = true;
+			else
+				b = false;
+			oneDay.put(raux.getId(), b);
+		}
+
+		for (Request r : requests) {
+
 			Date sI, sO;
 			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			
+
 			sI = fecha.parse(r.getcheckIn());
 			sO = fecha.parse(r.getCheckOut());
-			
+
 			Integer minutos;
 			Integer horas;
-			
-			if(sO.getMinutes()>sI.getMinutes()||sO.getMinutes()==sI.getMinutes()){
-				minutos = sO.getMinutes()-sI.getMinutes();
-				horas = sO.getHours()-sI.getHours();
-			}else{
-				minutos = 60+sO.getMinutes()-sI.getMinutes();
-				horas = sO.getHours()-sI.getHours()-1;
+
+			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+				minutos = sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours();
+			} else {
+				minutos = 60 + sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours() - 1;
 			}
-			
-			Double valor = (horas+(1.0*(minutos)/60));
-			Double value = valor*r.getRclass().getRate();
-			
+
+			Double valor = (horas + (1.0 * (minutos) / 60));
+			Double value = valor * r.getRclass().getRate();
+
 			amount.put(r.getId(), value);
 		}
-		
+
 		result = new ModelAndView("request/list");
 		result.addObject("requestURI", "request/request/list.do");
 		result.addObject("requests", requests);
 		result.addObject("amount", amount);
+		result.addObject("oneDay", oneDay);
 
 		return result;
 	}
 
 	// Creation ------------------------------------------------
 
-		@RequestMapping(value = "/register", method = RequestMethod.GET)
-		public ModelAndView create(@RequestParam int rClassId) {
-			ModelAndView result;
-			RequestForm requestForm;
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView create(@RequestParam int rClassId) {
+		ModelAndView result;
+		RequestForm requestForm;
 
-			requestForm = requestService.generateForm();
-			requestForm.setRclassId(rClassId);
+		requestForm = requestService.generateForm();
+		requestForm.setRclassId(rClassId);
+		result = createEditModelAndView(requestForm, null);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid RequestForm requestForm, BindingResult binding) {
+		ModelAndView result;
+		Request request;
+
+		if (binding.hasErrors())
 			result = createEditModelAndView(requestForm, null);
-
-			return result;
-		}
-
-		@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-		public ModelAndView save(@Valid RequestForm requestForm, BindingResult binding) {
-			ModelAndView result;
-			Request request;
-
-			if (binding.hasErrors()) {
-				result = createEditModelAndView(requestForm, null);
-			} else {
-				try {
-					request = requestService.reconstruct(requestForm, binding);
-					requestService.save(request);
-					result = list();
-				} catch (Throwable oops) {
-					String msgCode = "request.register.error";
-					if (oops.getMessage().equals("notBeforeDate")) {
-						msgCode = "request.register.notBeforeDate";
-					}else if (oops.getMessage().equals("badDayDate")) {
-							msgCode = "request.register.badDayDate";
-					}else if (oops.getMessage().equals("badCreditCard")) {
-						msgCode = "request.register.badCreditCard";
-					}else if (oops.getMessage().equals("badRClass")) {
-						msgCode = "request.register.badRClass";
-					}
-					result = createEditModelAndView(requestForm, msgCode);
-				}
+		else
+			try {
+				request = requestService.reconstruct(requestForm, binding);
+				requestService.save(request);
+				result = list();
+			} catch (Throwable oops) {
+				String msgCode = "request.register.error";
+				if (oops.getMessage().equals("notBeforeDate"))
+					msgCode = "request.register.notBeforeDate";
+				else if (oops.getMessage().equals("badDayDate"))
+					msgCode = "request.register.badDayDate";
+				else if (oops.getMessage().equals("badCreditCard"))
+					msgCode = "request.register.badCreditCard";
+				else if (oops.getMessage().equals("badRClass"))
+					msgCode = "request.register.badRClass";
+				result = createEditModelAndView(requestForm, msgCode);
 			}
 
-			return result;
+		return result;
 
-		}
+	}
 
-		// Ancillary methods ---------------------------------------------------
+	// Cancel -----------------------------------------------------------
 
-		protected ModelAndView createEditModelAndView(RequestForm requestForm, String message) {
-			ModelAndView result;
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public ModelAndView cancel(@RequestParam int requestId) throws ParseException {
 
-			result = new ModelAndView("request/register");
-			result.addObject("requestForm", requestForm);
-			result.addObject("message", message);
+		Request request = requestService.findOne(requestId);
+		request.setStatus("DENIED");
+		requestService.save(request);
 
-			return result;
-		}
-		
-		// Paid ----------------------------------------------------------
-		
-		@RequestMapping(value = "/paid", method = RequestMethod.GET)
-		public ModelAndView paid(@RequestParam int requestId) throws ParseException {
+		return list();
+	}
 
-			Request request = requestService.findOne(requestId);
-			request.setStatus("ACCEPTED");
-			requestService.save(request);
+	// Ancillary methods ---------------------------------------------------
 
-			return list();
-		}
+	protected ModelAndView createEditModelAndView(RequestForm requestForm, String message) {
+		ModelAndView result;
 
+		result = new ModelAndView("request/register");
+		result.addObject("requestForm", requestForm);
+		result.addObject("message", message);
+
+		return result;
+	}
 }
