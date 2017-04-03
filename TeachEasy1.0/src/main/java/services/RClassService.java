@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +34,8 @@ public class RClassService {
 	public Rclass create() {
 		Rclass result;
 		result = new Rclass();
+		result.setCreateMoment(new Date());
+		result.setUpdateMoment(new Date());
 		return result;
 	}
 
@@ -50,12 +53,15 @@ public class RClassService {
 
 	public Rclass save(Rclass rclass) {
 		Rclass result;
+		result = rclass;
+		Date date = new Date(System.currentTimeMillis() - 1000);
+		result.setUpdateMoment(date);
 		result = rclassRepository.save(rclass);
 		return result;
 
 	}
-	
-	public Rclass findById(int id){
+
+	public Rclass findById(int id) {
 		return rclassRepository.findById(id);
 	}
 

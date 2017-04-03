@@ -20,16 +20,13 @@
 <form:form action = "course/academy/edit.do" modelAttribute="course">
 
 	<form:hidden path="id"/>
+	<form:hidden path="version"/>
+	<form:hidden path="requests"/>
+	<form:hidden path="subjectMatter"/>
+	<form:hidden path="academy"/>
+	
 	
 	<fieldset>
-		<div>	
-			<form:label path="ticker">
-				<spring:message code="course.ticker" />:
-			</form:label>
-			<form:input readonly="true" path="ticker" />
-			<form:errors cssClass="error" path="ticker" />
-		</div>	
-		
 		<div>
 			<form:label path="title">
 				<spring:message code="course.title" />:
@@ -78,12 +75,16 @@
 			<form:errors cssClass="error" path="level" />
 		</div>
 		
+		 
 		<div>
 			<form:label path="subjectMatter">
 				<spring:message code="course.matter" />:
 			</form:label>
-			<form:input path="subjectMatter.name" />
-			<form:errors cssClass="error" path="subjectMatter" />
+			<select name="subjectMatter">
+    			<c:forEach items="${getMatters}" var="subjectMatter">
+       				<option value="${subjectMatter.id}" ${course.subjectMatter == subjectMatter.id ? 'selected' : ''}>${subjectMatter.name}</option>
+    			</c:forEach>
+			</select>
 		</div>
 	</fieldset>
 	
@@ -94,11 +95,6 @@
 	<input type="submit" name="save"
 		value="<spring:message code="course.save" />" />&nbsp; 
 	
-	<jstl:if test="${course.id != 0}">
-	
-		<input type="submit" name="delete" value="<spring:message code="course.delete" />"
-			onclick="return confirm('<spring:message code="course.confirm.delete" />')" />&nbsp;
-	</jstl:if>
 	
 	<input type="button" name="cancel" value="<spring:message code="course.cancel" />"
 		onclick="javascript: window.location.replace('course/academy/listCourse.do')" />

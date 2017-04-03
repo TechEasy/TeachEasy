@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -36,6 +37,8 @@ public class CourseService {
 	public Course create() {
 		Course result;
 		result = new Course();
+		result.setCreateMoment(new Date());
+		result.setUpdateMoment(new Date());
 		return result;
 	}
 
@@ -53,6 +56,9 @@ public class CourseService {
 
 	public Course save(Course course) {
 		Course result;
+		result = new Course();
+		Date date = new Date(System.currentTimeMillis() - 1000);
+		result.setUpdateMoment(date);
 		result = courseRepository.save(course);
 		return result;
 

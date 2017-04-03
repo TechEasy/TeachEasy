@@ -2,6 +2,8 @@
 package controllers.Academy;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -17,9 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AcademyService;
 import services.CourseService;
+import services.MatterService;
 import controllers.AbstractController;
 import domain.Academy;
 import domain.Course;
+import domain.SubjectMatter;
 
 @Controller
 @RequestMapping("/course/academy")
@@ -32,6 +36,9 @@ public class AcademyCourseController extends AbstractController {
 
 	@Autowired
 	private CourseService	courseService;
+
+	@Autowired
+	private MatterService	matterService;
 
 
 	//Constructor----------------------
@@ -131,6 +138,18 @@ public class AcademyCourseController extends AbstractController {
 		result = new ModelAndView("course/edit");
 		result.addObject("course", course);
 		result.addObject("message", message);
+		result.addObject("subjectMatter", getMatters());
 		return result;
 	}
+
+	private Map<String, String> getMatters() {
+		Collection<SubjectMatter> cm;
+		cm = matterService.findAll();
+		Map<String, String> matters = new LinkedHashMap<String, String>();
+		for (SubjectMatter c : cm) {
+			matters.put(String.valueOf(c.getId()), c.getName());
+		}
+		return matters;
+	}
+
 }

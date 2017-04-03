@@ -42,13 +42,13 @@
 					</div>
 				</div>
 			</div>
-			<!-- Create course -->
-			<security:authorize access="hasRole('ACADEMY')">
-				<div>
-					<a href="course/academy/create.do" class="enlaceboton">
-					<spring:message code="course.create" /></a>
-				</div>
-			</security:authorize>
 			<hr class="divider"/>
 		</c:forEach>
+		<!-- Create course -->
+		<security:authorize access="hasRole('ACADEMY')">
+			<div>
+				<a href="course/academy/create.do" class="enlaceboton">
+				<spring:message code="course.create" /></a>
+			</div>
+		</security:authorize>
 </div>
