@@ -19,7 +19,7 @@
      
     	    
     	
-<form:form action = "course/academy/edit.do" modelAttribute="proposal">
+<form:form action = "proposal/teacher/edit.do" modelAttribute="proposal">
 
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>

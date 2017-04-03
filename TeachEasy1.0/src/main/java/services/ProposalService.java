@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -36,6 +37,8 @@ public class ProposalService {
 	public Proposal create() {
 		Proposal result;
 		result = new Proposal();
+		result.setCreateMoment(new Date());
+		result.setUpdateMoment(new Date());
 		return result;
 	}
 
@@ -53,6 +56,9 @@ public class ProposalService {
 
 	public Proposal save(Proposal proposal) {
 		Proposal result;
+		result = new Proposal();
+		Date date = new Date(System.currentTimeMillis() - 1000);
+		result.setUpdateMoment(date);
 		result = proposalRepository.save(proposal);
 		return result;
 
@@ -64,14 +70,14 @@ public class ProposalService {
 	public Collection<Proposal> findByFinder(Finder finder) {
 		Collection<Proposal> result = new ArrayList<Proposal>();
 		Collection<Proposal> aux;
-		if (finder.getKeyword() == null && finder.getMatter()==null) {
+		if (finder.getKeyword() == null && finder.getMatter() == null) {
 			aux = proposalRepository.findByCity(finder.getCity());
-		} else if(finder.getMatter()==null){
+		} else if (finder.getMatter() == null) {
 			aux = proposalRepository.findByKey(finder.getKeyword(), finder.getCity());
-		}else if(finder.getKeyword()==null){
+		} else if (finder.getKeyword() == null) {
 			aux = proposalRepository.findByMatter(finder.getMatter(), finder.getCity());
-		}else{
-			aux = proposalRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(),finder.getKeyword());
+		} else {
+			aux = proposalRepository.findByMatterAndKey(finder.getMatter(), finder.getCity(), finder.getKeyword());
 		}
 		if (finder.getMinimumPrice() == null && finder.getMaximumPrice() == null) {
 			result = aux;
@@ -97,8 +103,8 @@ public class ProposalService {
 		return result;
 
 	}
-	public Collection<Proposal>findByCreator(Teacher teacher){
-		Collection<Proposal>result=proposalRepository.findByCreator(teacher);
+	public Collection<Proposal> findByCreator(Teacher teacher) {
+		Collection<Proposal> result = proposalRepository.findByCreator(teacher);
 		return result;
 	}
 }
