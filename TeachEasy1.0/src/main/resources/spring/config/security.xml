@@ -82,6 +82,7 @@
 		<security:intercept-url pattern="/course/academy/**" access="hasRole('ACADEMY')" />
 		<security:intercept-url pattern="/academy/edit.do" access="hasRole('ACADEMY')" />
 		<security:intercept-url pattern="/academy/request/list.do" access="hasRole('ACADEMY')" />
+		<security:intercept-url pattern="/student/request/paid.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/academy/request/accept.do" access="hasRole('ACADEMY')" />
 		<security:intercept-url pattern="/academy/request/deny.do" access="hasRole('ACADEMY')" />
 		
