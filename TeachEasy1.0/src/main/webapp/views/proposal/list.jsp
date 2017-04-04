@@ -36,7 +36,7 @@
 					</div>
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
-							<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
+							<security:authorize access="hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 								<a class="btn btn-primary" href="teacher/displayById.do?id=${proposal.teacher.id}"><spring:message code="finder.view.teacher" /></a>
 							</security:authorize>
 							<security:authorize access="hasRole('STUDENT')">
