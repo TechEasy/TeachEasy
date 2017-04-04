@@ -71,6 +71,7 @@
 			   <input type="hidden" name="item_name" value="Clase">
 			   <input type="hidden" name="amount" value="${amount[request.id]}">
 			   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/student/request/paid.do?requestId=${request.id}">
+			   <input type='hidden' name='cancel' value="http://localhost:8080/TeachEasy/student/request/list.do">
 			   <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
 			 </form>
 	        </td>
