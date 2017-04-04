@@ -21,7 +21,7 @@
 		<c:forEach items="${proposals}" var="proposal" >
 			<div class="row">
 				<div class="col-md-3 text-center">	
-					<img src="${proposal.teacher.picture}" class="img-responsive">
+					<img src="${proposal.teacher.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
 					<h1>${proposal.title}</h1>
@@ -31,7 +31,7 @@
 							<h3><spring:message code="proposal.rate" />: ${proposal.rate}</h3>
 						</div>
 						<div class="col-md-6">
-							<h3><spring:message code="proposal.teacher.avgStars" />: ${proposal.teacher.avgStars}</h3>
+							<input id="star-teacher-${proposal.teacher.id}" name="star-teacher-${proposal.teacher.id}" value="${proposal.teacher.avgStars}" class="rating-loading" data-size="sm">
 						</div>
 					</div>
 					<div class="row text-right">
@@ -57,3 +57,9 @@
 			</div>
 		</security:authorize>
 </div>
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>

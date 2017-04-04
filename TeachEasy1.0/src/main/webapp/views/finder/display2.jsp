@@ -66,17 +66,17 @@
 		<c:forEach items="${courses}" var="course" >
 			<div class="row">
 				<div class="col-md-3 text-center">	
-					<img src="${course.academy.picture}" class="img-responsive">
+					<img src="${course.academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
 					<h1>${course.title}</h1>
 					<h2>${course.academy.name}</h2>
 					<div class="row">
 						<div class="col-md-6">
-							<h3><spring:message code="course.rate" />: ${course.rate}</h3>
+							<h3><spring:message code="course.rate" />: ${course.rate} $</h3>
 						</div>
 						<div class="col-md-6">
-							<h3><spring:message code="course.avgStars" />: ${course.academy.avgStars}</h3>
+							<input id="star-academy-${course.academy.id}" name="star-academy-${course.academy.id}" value="${course.academy.avgStars}" class="rating-loading" data-size="sm">
 						</div>
 					</div>
 					<div class="row text-right">
@@ -95,3 +95,9 @@
 </div>
 
 </security:authorize>
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-academy-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>
