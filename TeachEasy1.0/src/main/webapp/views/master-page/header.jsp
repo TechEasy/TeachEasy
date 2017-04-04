@@ -53,7 +53,7 @@
 		</security:authorize>
     	
     	<security:authorize access="isAuthenticated()">
-			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
+			
 		</security:authorize>
 		
 		<security:authorize access="hasRole('STUDENT')">
@@ -82,6 +82,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">
+			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			<li><a href="proposal/teacher/list.do"><spring:message code="master.page.teacher.proposal" /> </a></li>
 			<li><a href="teacher/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
 			
@@ -96,6 +97,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ACADEMY')">
+			<li><a href="subjectMatter/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
 			<li><a href="course/academy/listCourse.do"><spring:message code="master.page.academy.course" /></a></li>		
 			<li><a href="academy/request/list.do"><spring:message code="master.page.teacher.request" /> </a></li>
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
