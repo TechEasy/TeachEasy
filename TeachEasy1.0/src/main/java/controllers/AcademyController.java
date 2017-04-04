@@ -128,12 +128,50 @@ public class AcademyController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		AcademyForm a = academyService.generateFormE(academyService.findByPrincipal());
+		result = createEditModelAndView(a);
+		result.addObject("requestURI", "academy/edit.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveE(@Valid AcademyForm academyForm, BindingResult binding) {
+		ModelAndView result;
+		Academy academy;
+
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(academyForm, "academy.error");
+
+		} else {
+			try {
+				academy = academyService.reconstructE(academyForm, binding);
+				academyService.save(academy);
+				result = new ModelAndView("redirect:academy/display.do");
+				result.addObject("action", "academy.ok");
+			} catch (Throwable oops) {
+				result = createEditModelAndView(academyForm, oops.getMessage());
+			}
+		}
+
+		return result;
+	}
+
 	// Ancillary methods ---------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(AcademyForm academyForm, String message) {
+	public ModelAndView createEditModelAndView(AcademyForm academyForm) {
+		ModelAndView result;
+		result = createEditModelAndView(academyForm, null);
+
+		return result;
+	}
+
+	public ModelAndView createEditModelAndView(AcademyForm academyForm, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("academy/register");
+		result = new ModelAndView("academy/edit");
 		result.addObject("academyForm", academyForm);
 		result.addObject("message", message);
 

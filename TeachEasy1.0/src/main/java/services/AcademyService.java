@@ -90,27 +90,28 @@ public class AcademyService {
 		result = new AcademyForm();
 		return result;
 	}
-	/*
-	 * public AcademyForm generateForm(Academy academy) {
-	 * AcademyForm result;
-	 * 
-	 * result = new AcademyForm();
-	 * 
-	 * result.setId(academy.getId());
-	 * result.setUsername(academy.getUserAccount().getUsername());
-	 * result.setPassword(academy.getUserAccount().getPassword());
-	 * result.setPassword2(academy.getUserAccount().getPassword());
-	 * result.setName(academy.getName());
-	 * result.setAgreed(true);
-	 * result.setIban(academy.getIban());
-	 * result.setCity(academy.getCity());
-	 * result.setAddress(academy.getAddress());
-	 * result.setDescription(academy.getDescription());
-	 * result.set
-	 * 
-	 * return result;
-	 * }
-	 */
+
+	public AcademyForm generateFormE(Academy academy) {
+		AcademyForm result;
+
+		result = new AcademyForm();
+
+		result.setId(academy.getId());
+		result.setUsername(academy.getUserAccount().getUsername());
+		result.setPassword(academy.getUserAccount().getPassword());
+		result.setPassword2(academy.getUserAccount().getPassword());
+		result.setName(academy.getName());
+		result.setAgreed(true);
+		result.setCity(academy.getCity());
+		result.setAddress(academy.getAddress());
+		result.setDescription(academy.getDescription());
+		result.setCif(academy.getCif());
+		result.setPicture(academy.getPicture());
+		result.setPaypalMail(academy.getPaypalMail());
+
+		return result;
+	}
+
 	public Academy reconstruct(AcademyForm academyForm, BindingResult binding) {
 
 		Academy result;
@@ -120,6 +121,43 @@ public class AcademyService {
 
 		Assert.isTrue(academyForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(academyForm.getAgreed(), "agreedNotAccepted");
+
+		if (academyForm.getId() == 0)
+			result = create();
+		else
+			result = academyRepository.findOne(academyForm.getId());
+		UserAccount userAccount;
+		userAccount = new UserAccount();
+		userAccount.setUsername(academyForm.getUsername());
+		userAccount.setPassword(password);
+
+		Authority authority;
+		authority = new Authority();
+		authority.setAuthority(Authority.ACADEMY);
+		userAccount.addAuthority(authority);
+		result.setUserAccount(userAccount);
+
+		result.setName(academyForm.getName());
+		result.setCity(academyForm.getCity());
+		result.setAddress(academyForm.getAddress());
+		result.setPaypalMail(academyForm.getPaypalMail());
+		result.setDescription(academyForm.getDescription());
+		result.setCif(academyForm.getCif());
+
+		validator.validate(result, binding);
+
+		return result;
+
+	}
+
+	public Academy reconstructE(AcademyForm academyForm, BindingResult binding) {
+
+		Academy result;
+
+		String password;
+		password = academyForm.getPassword();
+
+		Assert.isTrue(academyForm.getPassword2().equals(password), "notEqualPassword");
 
 		if (academyForm.getId() == 0)
 			result = create();
