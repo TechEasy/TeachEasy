@@ -20,7 +20,7 @@
 		<c:forEach items="${academies}" var="academy" >
 			<div class="row">
 				<div class="col-md-3 text-center">	
-					<img src="${academy.picture}" class="img-responsive">
+					<img src="${academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
 					<h1>${academy.name}</h1>

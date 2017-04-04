@@ -21,7 +21,7 @@
 		<c:forEach items="${teachers}" var="teacher" >
 			<div class="row">
 				<div class="col-md-3 text-center">	
-					<img src="${teacher.picture}" class="img-responsive">
+					<img src="${teacher.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
 					<h1>${teacher.name} ${teacher.surname}</h1>
