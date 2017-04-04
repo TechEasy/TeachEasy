@@ -81,7 +81,7 @@
 		<security:intercept-url pattern="/teacher/request/accept.do" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/teacher/request/deny.do" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/teacher/edit.do" access="hasRole('TEACHER')" />
-		<security:intercept-url pattern="/curricula/teacher/**" access="hasRole('TEACHER')" />
+		<security:intercept-url pattern="/teacher/curricula/**" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/proposal/teacher/**" access="hasRole('TEACHER')" />
 		
 		

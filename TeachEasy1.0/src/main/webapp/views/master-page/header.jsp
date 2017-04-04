@@ -91,7 +91,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="teacher/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="teacher/edit.do"><spring:message code="master.page.edit" /> </a></li>
-					<li><a href="curricula/teacher/display.do"><spring:message code="master.page.curricula" /> </a></li>
+					<li><a href="teacher/curricula/edit.do"><spring:message code="master.page.curricula" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>

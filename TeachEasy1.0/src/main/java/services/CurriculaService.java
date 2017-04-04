@@ -7,9 +7,15 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.CurriculaRepository;
+import security.LoginService;
+import security.UserAccount;
 import domain.Curricula;
+import domain.Teacher;
+import form.CurriculaForm;
 
 @Service
 @Transactional
@@ -18,10 +24,16 @@ public class CurriculaService {
 	// Managed repository
 
 	@Autowired
-	CurriculaRepository	curriculaRepository;
-
+	CurriculaRepository		curriculaRepository;
 
 	// Supporting services
+
+	@Autowired
+	private TeacherService	teacherService;
+
+	@Autowired
+	private Validator		validator;
+
 
 	//Constructors
 	public CurriculaService() {
@@ -60,5 +72,42 @@ public class CurriculaService {
 
 	public void delete(Curricula curricula) {
 		curriculaRepository.delete(curricula);
+	}
+
+	public CurriculaForm generateForm() {
+		CurriculaForm result;
+
+		result = new CurriculaForm();
+		return result;
+	}
+
+	public Curricula reconstruct(CurriculaForm curriculaForm, BindingResult binding) {
+		Teacher teacher = teacherService.findByPrincipal();
+
+		Curricula result = teacher.getCurricula();
+		result.setEducationSection(curriculaForm.getEducationSection());
+		result.setExperienceSection(curriculaForm.getExperienceSection());
+		result.setHobbiesSection(curriculaForm.getHobbiesSection());
+		validator.validate(result, binding);
+
+		return result;
+	}
+
+	public CurriculaForm transform(Curricula curricula) {
+		CurriculaForm result = generateForm();
+		result.setEducationSection(curricula.getEducationSection());
+		result.setExperienceSection(curricula.getExperienceSection());
+		result.setHobbiesSection(curricula.getHobbiesSection());
+		return result;
+	}
+
+	public Curricula findByPrincipal() {
+		Curricula result;
+		UserAccount userAccount;
+
+		userAccount = LoginService.getPrincipal();
+		result = curriculaRepository.findByUserAccount(userAccount);
+
+		return result;
 	}
 }

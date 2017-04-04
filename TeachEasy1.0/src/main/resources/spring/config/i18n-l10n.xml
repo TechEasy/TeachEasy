@@ -29,7 +29,7 @@
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
 		<value>/views/comment/messages</value>
-		
+		<value>/views/curricula/messages</value>
 		<value>/views/teacher/messages</value>
 		<value>/views/request/messages</value>
 		<value>/views/student/messages</value>
