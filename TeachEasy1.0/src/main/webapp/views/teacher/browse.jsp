@@ -16,7 +16,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="col-md-12">
 		<c:forEach items="${teachers}" var="teacher" >
 			<div class="row">
@@ -25,7 +25,7 @@
 				</div>
 				<div class="col-md-9 ">
 					<h1>${teacher.name} ${teacher.surname}</h1>
-					<h3><spring:message code="teacher.date" />: ${teacher.date}</h3>
+					<h3><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></h3>
 					<div class="row">
 						<div class="col-md-6">
 							<h3><spring:message code="teacher.city" />: ${teacher.city}</h3>
