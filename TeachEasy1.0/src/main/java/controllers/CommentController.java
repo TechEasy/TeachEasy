@@ -105,12 +105,15 @@ public class CommentController extends AbstractController {
 				if(teacherService.findOne(comment.getCommentable().getId())!=null){
 					teacher=teacherService.findOne(comment.getCommentable().getId());
 					teacherService.updateAvgStars(teacher);
+					result = new ModelAndView("redirect:../teacher/displayById.do?id=" + teacher.getId());
+					
 				}else{
 					academy=academyService.findOne(comment.getCommentable().getId());
 					academyService.updateAvgStars(academy);
+					result = new ModelAndView("redirect:../academy/displayById.do?id=" + academy.getId());
 				}
 				
-				result = new ModelAndView("redirect:../welcome/index.do");
+				
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, "comment.commit.error");
 			}
