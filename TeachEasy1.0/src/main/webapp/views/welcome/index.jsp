@@ -33,9 +33,14 @@
 				</div>
 				<div class="col-md-9">
 					<h4><jstl:out value="${academy.name}"/></h4>
-					<p><jstl:out value="${academy.avgStars}"/></p>
+					<table>
+					  <tr>
+					    <td>
+					      <input id="star-teacher-${academy.id}" name="star-teacher-${academy.id}" value="${academy.avgStars}" class="rating-loading" data-size="xs">
+					    </td>
+					  </tr>
+					</table>
 					<a class="btn btn-primary float-right" href="academy/displayById.do?id=${academy.id}"><spring:message code="finder.view.academy" /></a>
-					
 				</div>
 			</div>
 		</div>	
@@ -49,8 +54,13 @@
 				</div>
 				<div class="col-md-9">
 					<h4><jstl:out value="${teacher.name}"/><jstl:out value="${teacher.surname}"/></h4>
-					<p><jstl:out value="${teacher.avgStars}"/></p>
-					
+					<table>
+					  <tr>
+					    <td>
+					      <input id="star-teacher-${teacher.id}" name="star-teacher-${teacher.id}" value="${teacher.avgStars}" class="rating-loading" data-size="xs">
+					    </td>
+					  </tr>
+					</table>
 					<a class="btn btn-primary float-right" href="teacher/displayById.do?id=${teacher.id}"><spring:message code="finder.view.teacher" /></a>
 				</div>
 			</div>
@@ -60,3 +70,9 @@
 </div>
 </security:authorize>
 
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>

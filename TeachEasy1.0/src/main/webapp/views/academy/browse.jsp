@@ -32,7 +32,11 @@
 							<h3><spring:message code="academy.address" />: ${academy.address}</h3>
 						</div>
 					</div>
-					<h3><spring:message code="academy.avgStars" />: ${academy.avgStars}</h3>
+					<div class="row mt-md">
+						<div class="col-md-12">
+							<input id="star-academy-${academy.id}" name="star-academy-${academy.id}" value="${academy.avgStars}" class="rating-loading" data-size="sm">
+						</div>
+					</div>
 					<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
@@ -45,3 +49,9 @@
 			<hr class="divider"/>
 		</c:forEach>
 </div>
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-academy-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>

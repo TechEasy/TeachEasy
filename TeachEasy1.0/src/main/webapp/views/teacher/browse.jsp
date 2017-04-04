@@ -34,14 +34,11 @@
 							<h3><spring:message code="teacher.address" />: ${teacher.address}</h3>
 						</div>
 					</div>
-					<table>
-					  <tr>
-					    <td>
-					      <input id="star-teacher-${teacher.id}" name="star-teacher-${teacher.id}" value="${teacher.avgStars}" class="rating-loading" data-size="xs">
-					    </td>
-					  </tr>
-					</table>
-					
+					<div class="row mt-md">
+						<div class="col-md-12">
+							<input id="star-teacher-${teacher.id}" name="star-teacher-${teacher.id}" value="${teacher.avgStars}" class="rating-loading" data-size="sm">
+						</div>
+					</div>
 					<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
@@ -59,6 +56,4 @@
 	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
 	;
 	});
-	
-	
 </script>

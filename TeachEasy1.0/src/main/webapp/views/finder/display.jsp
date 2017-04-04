@@ -74,10 +74,10 @@
 					<h2>${proposal.teacher.name} ${proposal.teacher.surname}</h2>
 					<div class="row">
 						<div class="col-md-6">
-							<h3><spring:message code="proposal.rate" />: ${proposal.rate}</h3>
+							<h3><spring:message code="proposal.rate" />: ${proposal.rate} $</h3>
 						</div>
 						<div class="col-md-6">
-							<h3><spring:message code="proposal.teacher.avgStars" />: ${proposal.teacher.avgStars}</h3>
+							<input id="star-teacher-${proposal.teacher.id}" name="star-teacher-${proposal.teacher.id}" value="${proposal.teacher.avgStars}" class="rating-loading" data-size="sm">
 						</div>
 					</div>
 					<div class="row text-right">
@@ -99,3 +99,9 @@
 </div>
 
 </security:authorize>
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>
