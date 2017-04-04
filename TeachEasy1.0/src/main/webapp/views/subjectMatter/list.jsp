@@ -28,10 +28,14 @@
 			<security:authorize access="hasRole('ADMIN')">
 				<display:column>
 					<jstl:if test="${!row.validated}">
-						<a href="administrator/subjectMatter/validate.do?subjectMatterId=${row.id}"> <spring:message
-							code="subjectMatter.validate" />
-						</a><br/><br/>
-					</jstl:if>	
+						<a href="subjectMatter/administrator/accept.do?subjectMatterId=${row.id}"> 
+						<spring:message code="subjectMatter.accept" />
+						</a><br/>
+						
+						<a href="subjectMatter/administrator/deny.do?subjectMatterId=${row.id}"> 
+						<spring:message code="subjectMatter.deny" />
+						</a><br/>
+					</jstl:if>
 				</display:column>
 			</security:authorize>
 			

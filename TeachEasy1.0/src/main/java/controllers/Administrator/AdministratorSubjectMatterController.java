@@ -15,17 +15,16 @@ import services.AdministratorService;
 import services.MatterService;
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Administrator;
 import domain.SubjectMatter;
 
 @Controller
-@RequestMapping("/administrator/subjectMatter")
+@RequestMapping("/subjectMatter/administrator")
 public class AdministratorSubjectMatterController extends AbstractController {
 
 	//Services-------------------------
 
 	@Autowired
-	private MatterService			subjectMatterService;
+	private MatterService			matterService;
 
 	@Autowired
 	private AdministratorService	administratorService;
@@ -45,58 +44,81 @@ public class AdministratorSubjectMatterController extends AbstractController {
 		Actor actor;
 
 		actor = this.administratorService.findByPrincipal();
-		subjectMatters = this.subjectMatterService.findAll();
+		subjectMatters = this.matterService.findAll();
 		result = new ModelAndView("subjectMatter/list");
-		result.addObject("requestedURI", "administrator/subjectMatter/list.do");
+		result.addObject("requestedURI", "subjectMatter/administrator/list.do");
 		result.addObject("subjectMatters", subjectMatters);
 		result.addObject("principal", actor);
 
 		return result;
 	}
+	/***
+	 * @RequestMapping(value = "/validate", method = RequestMethod.GET)
+	 *                       public ModelAndView validate(@RequestParam final int subjectMatterId) {
+	 *                       ModelAndView result;
+	 *                       SubjectMatter subjectMatter;
+	 *                       Administrator admin;
+	 * 
+	 *                       try {
+	 *                       admin = this.administratorService.findByPrincipal();
+	 *                       subjectMatter = this.subjectMatterService.findOne(subjectMatterId);
+	 *                       subjectMatter.setValidated(true);
+	 *                       this.subjectMatterService.save(subjectMatter);
+	 *                       result = new ModelAndView("redirect:/subjectMatter/administrator/list.do");
+	 * 
+	 *                       } catch (final Throwable oops) {
+	 *                       subjectMatter = this.subjectMatterService.findOne(subjectMatterId);
+	 *                       result = createEditModelAndView(subjectMatter, "subjectMatter.error.editable");
+	 *                       }
+	 * 
+	 *                       return result;
+	 *                       }
+	 */
+	// Accept -----------------------------------------------------------
 
-	@RequestMapping(value = "/validate", method = RequestMethod.GET)
-	public ModelAndView validate(@RequestParam final int subjectMatterId) {
-		ModelAndView result;
-		SubjectMatter subjectMatter;
-		Administrator admin;
+	@RequestMapping(value = "/accept", method = RequestMethod.GET)
+	public ModelAndView accept(@RequestParam int subjectMatterId) {
 
-		try {
-			admin = this.administratorService.findByPrincipal();
-			subjectMatter = this.subjectMatterService.findOne(subjectMatterId);
-			subjectMatter.setValidated(true);
-			this.subjectMatterService.save(subjectMatter);
-			result = new ModelAndView("redirect:/subjectMatter/list.do");
+		SubjectMatter subjectMatter = matterService.findOne(subjectMatterId);
+		subjectMatter.setValidated(true);
+		matterService.save(subjectMatter);
 
-		} catch (final Throwable oops) {
-			subjectMatter = this.subjectMatterService.findOne(subjectMatterId);
-			result = this.createEditModelAndView(subjectMatter);
-			result.addObject("message", "subjectMatter.error.editable");
-		}
+		return list();
+	}
 
-		return result;
+	// Deny -----------------------------------------------------------
+
+	@RequestMapping(value = "/deny", method = RequestMethod.GET)
+	public ModelAndView deny(@RequestParam int subjectMatterId) {
+
+		SubjectMatter subjectMatter = matterService.findOne(subjectMatterId);
+		subjectMatter.setValidated(false);
+		matterService.delete(subjectMatter);
+
+		return list();
 	}
 
 	//Ancillary Methods---------------------------
-
-	protected ModelAndView createEditModelAndView(SubjectMatter subjectMatter) {
-
-		ModelAndView result;
-
-		result = createEditModelAndView(subjectMatter, null);
-
-		return result;
-	}
-
-	protected ModelAndView createEditModelAndView(SubjectMatter subjectMatter, String message) {
-		ModelAndView result;
-
-		result = new ModelAndView("subjectMatter/edit");
-		result.addObject("subjectMatter", subjectMatter);
-
-		result.addObject("message", message);
-
-		return result;
-
-	}
-
+	/***
+	 * protected ModelAndView createEditModelAndView(SubjectMatter subjectMatter) {
+	 * 
+	 * ModelAndView result;
+	 * 
+	 * result = createEditModelAndView(subjectMatter, null);
+	 * 
+	 * return result;
+	 * }
+	 * 
+	 * protected ModelAndView createEditModelAndView(SubjectMatter subjectMatter, String message) {
+	 * ModelAndView result;
+	 * 
+	 * result = new ModelAndView("subjectMatter/edit");
+	 * result.addObject("subjectMatter", subjectMatter);
+	 * 
+	 * result.addObject("message", message);
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 */
 }
