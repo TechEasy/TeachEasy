@@ -108,3 +108,12 @@
     border-radius: 10px;
     padding: 20px;
 }
+
+.border-bottom {
+	border-bottom: solid 1px gray;
+}
+
+.border-bottom-section{
+	border-bottom: solid 1px gray;
+	padding:20px;
+}

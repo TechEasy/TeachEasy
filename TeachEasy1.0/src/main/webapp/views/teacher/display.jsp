@@ -8,165 +8,187 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<table id="row" class="table">
-	<tbody>
-		<tr>
-			<td>
-				<img src="${teacher.picture}" width="100" height="100" >
-				
-			</td>
-		</tr>
-		<tr>
-			<th><spring:message code="teacher.name"/></th>
-			<th><spring:message code="teacher.surname"/></th>
-			
-		</tr>
-		<tr>
-			<td><jstl:out value="${teacher.name}"/></td>
-			<td><jstl:out value="${teacher.surname}"/></td>
-		</tr>
-		<tr>
-			<th><spring:message code="teacher.email"/></th>
-			<th><spring:message code="teacher.phone"/></th>
-			
-		</tr>
-		<tr>
-			<td><jstl:out value="${teacher.email}"/></td>
-			<td><jstl:out value="${teacher.phone}"/></td>
-			
-		</tr>
-		<tr>
-			<th><spring:message code="teacher.date"/></th>
-			<th><spring:message code="teacher.city"/></th>
-			
-			
-		</tr>
-		<tr>
-			<td><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></td>
-			<td><jstl:out value="${teacher.city}"/></td>
-			
-			
-		</tr>
-		<tr>
-			<th><spring:message code="teacher.address"/></th>
-			<th><spring:message code="teacher.avgStars"/></th>			
-		</tr>
-		<tr>
-			<td><jstl:out value="${teacher.address}"/></td>
-			<td><jstl:out value="${teacher.avgStars}"/></td>
-			
-		</tr>
-	</tbody>
-</table>
-<jstl:if test="${teacher.userAccount.username == pageContext.request.remoteUser}">
-	<table id="row" class="table">
-		<tbody>
-			<tr>
-				<th><spring:message code="teacher.paypalMail"/></th>
-			</tr>
-			<tr>
-				<td><jstl:out value="${teacher.paypalMail}"/></td>
-			</tr>
-	</table>
-</jstl:if>	
-			
+<div class="col-md-12">
+	<h2><strong><spring:message code="teacher.info"/></strong></h2>
+	<div class="row border-bottom-section">
+		<div class="col-md-1"></div>
+		<div class="col-md-4 mt-md">
+			<img src="${teacher.picture}" width="250" height="250" >
+		</div>
+		<div class="col-md-6">
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.name"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.name}</h4>
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.surname"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.surname}</h4>
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.email"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.email}</h4>
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.phone"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.phone}</h4>
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.date"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4><fmt:formatDate value="${teacher.date }" pattern="dd/MM/yyyy" /></h4>
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.city"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.city}</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.address"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>${teacher.address}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>	
+	</div>
+	<h2><strong><spring:message code="teacher.aditionalinfo"/></strong></h2>
+	<div class="row border-bottom-section">
+		<div class="col-md-12">
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.curricula.educationSection"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right mt-sm">
+					${teacher.curricula.educationSection}
+				</div>
+			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.curricula.experienceSection"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right mt-sm">
+					${teacher.curricula.experienceSection}
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-4">
+					<h4><strong><spring:message code="teacher.curricula.hobbiesSection"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 text-right mt-sm">
+					${teacher.curricula.hobbiesSection}
+				</div>
+			</div>
+		</div>
+	</div>
+	<jstl:if test="${not empty socialIdentities}">
+	<h2><strong><spring:message code="socialIdentity.info"/></strong></h2>
+	<div class="row mt-md mb-md border-bottom-section">
+		<div class="col-md-12">
+			<div class="row text-center">
+				<div class="col-md-4"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
+				<div class="col-md-4"><strong><spring:message code="socialIdentity.nick"/></strong></div>
+				<div class="col-md-4"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
+			</div>
+			<c:forEach items="${socialIdentities}" var="socialIdentity" >
+				<div class="row mt-md text-center">
+					<div class="col-md-4">${socialIdentity.socialNetwork}</div>
+					<div class="col-md-4">${socialIdentity.nick}</div>
+					<div class="col-md-4">${socialIdentity.profileUrl}</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	</jstl:if>
+	<h2><strong><spring:message code="schedule.info"/></strong></h2>
+	<div class="row mt-md mb-md border-bottom-section">
+		<div class="col-md-12">
+			<jstl:if test="${teacher.timeTable != null}">
+			<table id="row" class="table">
+			<jstl:forEach items="${teacher.timeTable.days}" var="day">
+				<tr>
+					<th><jstl:out value="${day.name}" /></th>
+					<jstl:forEach items="${day.workTimes}" var="work">
+						<tr>
+							<td>
+								<jstl:out value="${work.checkIn}-${work.checkOut}" />
 
-
-<jstl:if test="${teacher.curricula != null}">
-	<table id="row" class="table">
-		<tbody>
-			<tr>
-				<th><spring:message code="teacher.curricula.educationSection"/></th>
-				
-			</tr>
-			<tr>
-				<td><jstl:out value="${teacher.curricula.educationSection}"/></td>
-			</tr>
-			<tr>
-				<th><spring:message code="teacher.curricula.experienceSection"/></th>
-			</tr>
-			<tr>
-				<td><jstl:out value="${teacher.curricula.experienceSection}"/></td>
-			</tr>
-			<tr>
-				<th><spring:message code="teacher.curricula.hobbiesSection"/></th>
-			</tr>
-			<tr>
-				<td><jstl:out value="${teacher.curricula.hobbiesSection}"/></td>
-	
-			</tr>
-		</tbody>
-	</table>
-</jstl:if>	
-
-<jstl:if test="${teacher.userAccount.username == pageContext.request.remoteUser}">
-	<table id="row" class="table">
-		<tbody>
-			<tr>
-				<th><spring:message code="teacher.feeAmount"/></th>
-				<td><jstl:out value="${teacher.feeAmount}"/></td>
-			</tr>
-	</table>
-</jstl:if>	
-			
-	
-	<display:table name="socialIdentities"
-		 id="row"
-		 class="displaytag"
-		 pagesize="10" 
-		 requestURI="${requestURI}">
-		 		      
-		 <spring:message code="socialIdentity.nick" var="nickHeader" />
-		 <display:column property="nick" title="${nickHeader}" sortable="true"/>
-		 
-		 <spring:message code="socialIdentity.socialNetwork" var="socialNetworkHeader" />
-		 <display:column property="socialNetwork" title="${socialNetworkHeader}" sortable="true"/>
-		 
-		 <spring:message code="socialIdentity.profileURL" var="profileURLHeader" />
-		 <display:column property="profileUrl" title="${profileURLHeader}" sortable="false"/>  
-
-</display:table>
-	
-<jstl:if test="${teacher.timeTable != null}">
-<table id="row" class="table">
-<jstl:forEach items="${teacher.timeTable.days}" var="day">
-	<tr>
-		<th><jstl:out value="${day.name}" /></th>
-		<jstl:forEach items="${day.workTimes}" var="work">
-			<tr>
-				<td>
-					<jstl:out value="${work.checkIn}-${work.checkOut}" />
-					<br>
-					<jstl:out value="${work.available}" />
-				</td>
-			</tr>
-		</jstl:forEach>
-	</tr>
-</jstl:forEach>
-</table>
-</jstl:if>
-	
-<display:table pagesize="10" class="displaytag" keepStatus="true" name="commentable" id="row" requestURI="${requestURI}">	
-	<spring:message code="teacher.comment.title" var="titleHeader"/>
-	<display:column title="${titleHeader }" property="title"/>
-	
-	<spring:message code="teacher.comment.postedMoment" var="postedMomentHeader"/>
-	<display:column title="${postedMomentHeader}" sortable="true"><fmt:formatDate value="${row.createMoment }" pattern="dd/MM/yyyy HH:mm" /></display:column>
-	
-	<spring:message code="teacher.comment.text" var="textHeader"/>
-	<display:column title="${textHeader }" property="text"/>
-	
-	<spring:message code="teacher.comment.commentator" var="commentatorHeader"/>
-	<display:column title="${commentatorHeader }">
-			<jstl:out value="${row.student.name}"/>
-	</display:column>
-	<spring:message code="teacher.comment.stars" var="starsHeader"/>
-	<display:column title="${starsHeader }" property="stars"/>
-</display:table>
-
-<security:authorize access="hasRole('STUDENT')">
+							</td>
+						</tr>
+					</jstl:forEach>
+				</tr>
+			</jstl:forEach>
+			</table>
+			</jstl:if>
+		</div>
+	</div>
+	<h2><strong><spring:message code="comment.info"/></strong></h2>
+	<jstl:if test="${not empty commentable}">
+	<div class="row mt-md mb-md ">
+		<div class="col-md-12">
+			<c:forEach items="${commentable}" var="comment" >
+				<div class="row mt-md border-bottom">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-12">
+								<h3>${comment.title}</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h4>${comment.student.name} ${comment.student.surname}</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<p>${comment.text}</p>
+							</div>
+						</div>
+						<div class="row mb-md">
+							<div class="col-md-12">
+								<input id="star-comment-${comment.id}" name="star-comment-${comment.id}" value="${comment.stars}" class="rating-loading" data-size="sm">
+							</div>
+						</div>
+					</div>		
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	</jstl:if>
+	<security:authorize access="hasRole('STUDENT')">
 	<input type="button" name="comment" value="<spring:message code="teacher.comment" />"
-			onclick="javascript: window.location.replace('comment/create.do?idEntity=${row.commentable.id}')" />
-<br/>
-</security:authorize>
+			onclick="javascript: window.location.replace('comment/create.do?idEntity=${teacher.id}')" />
+	</security:authorize>
+</div>
+
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-comment-"]').rating({displayOnly: true, step: 0.5});
+	;
+	});
+</script>
