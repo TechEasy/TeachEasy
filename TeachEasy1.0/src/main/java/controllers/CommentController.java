@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AcademyService;
 import services.CommentService;
 import services.CommentableService;
 import services.StudentService;
+import services.TeacherService;
+import domain.Academy;
 import domain.Comment;
 import domain.Commentable;
+import domain.Teacher;
 
 @Controller
 @RequestMapping("/comment")
@@ -28,14 +32,17 @@ public class CommentController extends AbstractController {
 
 	@Autowired
 	private CommentService		commentService;
-
+	
+	@Autowired
+	private TeacherService teacherService;
 	@Autowired
 	private StudentService		studentService;
 
 	@Autowired
 	private CommentableService	commentableService;
 
-
+	@Autowired
+	private AcademyService academyService;
 	// Constructors -----------------------------------------------------------
 
 	public CommentController() {
@@ -93,6 +100,16 @@ public class CommentController extends AbstractController {
 		} else {
 			try {
 				commentService.save(comment);
+				Teacher teacher;
+				Academy academy;
+				if(teacherService.findOne(comment.getCommentable().getId())!=null){
+					teacher=teacherService.findOne(comment.getCommentable().getId());
+					teacherService.updateAvgStars(teacher);
+				}else{
+					academy=academyService.findOne(comment.getCommentable().getId());
+					academyService.updateAvgStars(academy);
+				}
+				
 				result = new ModelAndView("redirect:../welcome/index.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, "comment.commit.error");
