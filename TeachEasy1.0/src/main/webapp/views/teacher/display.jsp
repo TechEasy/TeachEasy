@@ -59,6 +59,19 @@
 		</tr>
 	</tbody>
 </table>
+<jstl:if test="${teacher.userAccount.username == pageContext.request.remoteUser}">
+	<table id="row" class="table">
+		<tbody>
+			<tr>
+				<th><spring:message code="teacher.paypalMail"/></th>
+			</tr>
+			<tr>
+				<td><jstl:out value="${teacher.paypalMail}"/></td>
+			</tr>
+	</table>
+</jstl:if>	
+			
+
 
 <jstl:if test="${teacher.curricula != null}">
 	<table id="row" class="table">

@@ -21,7 +21,7 @@
 
 <form:form action="teacher/edit.do" modelAttribute="teacherForm">
 
-	<form:hidden path="teacher.id" />
+	<form:hidden path="teacherForm.id" />
 
 	<fieldset>
 		<legend>
@@ -57,6 +57,8 @@
 		<acme:textbox code="teacher.address" path="teacher.address" />
 		<acme:textbox code="teacher.city" path="teacher.city" />
 		<acme:textbox code="teacher.picture" path="teacher.picture" />
+		<acme:textbox code="teacher.paypalMail" path="teacher.paypalMail" />
+		
 		
 		<form:hidden path="teacher.comments" />
 	</fieldset>

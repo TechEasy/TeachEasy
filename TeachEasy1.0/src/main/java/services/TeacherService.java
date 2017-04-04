@@ -129,21 +129,22 @@ public class TeacherService {
 		Assert.isTrue(teacherForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(teacherForm.getAgreed(), "agreedNotAccepted");
 
-		if (teacherForm.getId() == 0)
+		if (teacherForm.getId() == 0){
 			result = create();
-		else
+			UserAccount userAccount;
+			userAccount = new UserAccount();
+			userAccount.setUsername(teacherForm.getUsername());
+			userAccount.setPassword(password);
+
+			Authority authority;
+			authority = new Authority();
+			authority.setAuthority(Authority.TEACHER);
+			userAccount.addAuthority(authority);
+			result.setUserAccount(userAccount);
+		}else{
 			result = teacherRepository.findOne(teacherForm.getId());
-		UserAccount userAccount;
-		userAccount = new UserAccount();
-		userAccount.setUsername(teacherForm.getUsername());
-		userAccount.setPassword(password);
-
-		Authority authority;
-		authority = new Authority();
-		authority.setAuthority(Authority.TEACHER);
-		userAccount.addAuthority(authority);
-		result.setUserAccount(userAccount);
-
+		}
+		
 		result.setName(teacherForm.getName());
 		result.setSurname(teacherForm.getSurname());
 		result.setEmail(teacherForm.getEmail());

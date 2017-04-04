@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,19 +102,35 @@ public class TeacherController extends AbstractController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		TeacherForm teacherForm;
+
+		teacherForm = teacherService.generateForm(teacherService.findByPrincipal());
+		result = createEditModelAndView(teacherForm, null);
+
+		return result;
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid TeacherForm teacherForm, BindingResult binding) {
 		ModelAndView result;
-		Teacher teacher;
+		Teacher teacher, saved;
 
 		if (binding.hasErrors())
 			result = createEditModelAndView(teacherForm, null);
 		else
 			try {
 				teacher = teacherService.reconstruct(teacherForm, binding);
-				teacherService.save(teacher);
-				result = new ModelAndView("redirect:../security/login.do");
+				saved = teacherService.save(teacher);
+				if(teacher.getId()==0){
+					result = new ModelAndView("redirect:../security/login.do");
+				}else{
+					result = display();
+				}
+				
 			} catch (Throwable oops) {
 				String msgCode = "teacher.register.error";
 				if (oops.getMessage().equals("notEqualPassword"))

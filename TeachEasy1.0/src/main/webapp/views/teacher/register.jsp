@@ -20,10 +20,16 @@
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
-<form:form action="${requestURI}" modelAttribute="teacherForm">
-	<jstl:if test="${teacherForm.id==0 || teacherForm.username == pageContext.request.remoteUser}">
+<form:form action="teacher/register.do" modelAttribute="teacherForm">
 		<form:hidden path="id"/>
 			<div class="row">
+			<jstl:if test="${teacherForm.id!=0}">
+				<form:hidden path="username"/>
+				<form:hidden path="password"/>
+				<form:hidden path="password2"/>
+				<form:hidden path="agreed"/>
+			</jstl:if>
+			<jstl:if test="${teacherForm.id==0}">
 				<div class="col-md-6">
 					<h4><spring:message code="teacher.account.info"/></h4>
 					<acme:textbox code="teacher.username" path="username" />
@@ -36,6 +42,7 @@
 						</div>
 					</div>
 				</div>
+			</jstl:if>
 				<div class="col-md-6">
 					<h4><spring:message code="teacher.personal.info"/></h4>
 					<div class="row">
@@ -64,28 +71,30 @@
 						</div>
 					</div>
 					<acme:textbox code="teacher.picture" path="picture"/>
-					<div class="checkbox-group checkbox">
-						<form:label path="agreed" class="control-label">
-							<form:checkbox path="agreed"/>
-							<spring:message code="teacher.register.agree" />
-							<a href="misc/lopd.do"><spring:message code="teacher.register.agree.2"/></a>
-						</form:label>
-						<form:errors path="agreed" cssClass="error" />
-					</div>
-					
-
+					<acme:textbox code="teacher.paypalMail" path="paypalMail" />
+					<jstl:if test="${teacherForm.id==0}">
+						<div class="checkbox-group checkbox">
+							<form:label path="agreed" class="control-label">
+								<form:checkbox path="agreed"/>
+								<spring:message code="teacher.register.agree" />
+								<a href="misc/lopd.do"><spring:message code="teacher.register.agree.2"/></a>
+							</form:label>
+							<form:errors path="agreed" cssClass="error" />
+						</div>
+					</jstl:if>
 				</div>
 			</div>
 			<div class="row mt-md">
 				<div class="col-md-2">
 					<acme:cancel code="teacher.cancel" url="welcome/index.do" />
 				</div>
-				<div class="col-md-4"></div>
+				<jstl:if test="teacher.id!=0">
+					<div class="col-md-4"></div>
+				</jstl:if>
 				<div class="col-md-6">
 					<acme:submit name="save" code="teacher.save"/>
 				</div>
 			</div>
-		</jstl:if>
 </form:form>
 </div>
 </div>
