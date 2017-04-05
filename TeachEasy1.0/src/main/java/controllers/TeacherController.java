@@ -117,17 +117,19 @@ public class TeacherController extends AbstractController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid TeacherForm teacherForm, BindingResult binding) {
 		ModelAndView result;
-		Teacher teacher, saved;
+		Teacher teacher;
 
 		if (binding.hasErrors())
 			result = createEditModelAndView(teacherForm, null);
 		else
 			try {
 				teacher = teacherService.reconstruct(teacherForm, binding);
-				saved = teacherService.save(teacher);
+				
 				if(teacher.getId()==0){
+					teacherService.save(teacher);
 					result = new ModelAndView("redirect:../security/login.do");
 				}else{
+					teacherService.save2(teacher);
 					result = display();
 				}
 				

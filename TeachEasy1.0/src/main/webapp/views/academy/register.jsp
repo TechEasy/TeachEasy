@@ -20,22 +20,29 @@
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
-<form:form action="${requestURI}" modelAttribute="academyForm">
-	<jstl:if test="${academyForm.id==0 || academyForm.username == pageContext.request.remoteUser}">
+<form:form action="academy/register.do" modelAttribute="academyForm">
+		<jstl:if test="${teacherForm.id!=0}">
+				<form:hidden path="username"/>
+				<form:hidden path="password"/>
+				<form:hidden path="password2"/>
+				<form:hidden path="agreed"/>
+		</jstl:if>
 		<form:hidden path="id"/>
 			<div class="row">
-				<div class="col-md-6">
-					<h4><spring:message code="academy.account.info"/></h4>
-					<acme:textbox code="academy.username" path="username" />
-					<div class="row">
-						<div class="col-md-6">
-							<acme:password code="academy.password" path="password"/>
-						</div>
-						<div class="col-md-6">
-							<acme:password code="academy.password2" path="password2"/>
+				<jstl:if test="${academyForm.id==0}">
+					<div class="col-md-6">
+						<h4><spring:message code="academy.account.info"/></h4>
+						<acme:textbox code="academy.username" path="username" />
+						<div class="row">
+							<div class="col-md-6">
+								<acme:password code="academy.password" path="password"/>
+							</div>
+							<div class="col-md-6">
+								<acme:password code="academy.password2" path="password2"/>
+							</div>
 						</div>
 					</div>
-				</div>
+				</jstl:if>
 				<div class="col-md-6">
 					<h4><spring:message code="academy.personal.info"/></h4>
 					<acme:textbox code="academy.name" path="name"/>
@@ -56,6 +63,9 @@
 					</div>
 					<acme:textarea code="academy.description" path="description"/>
 					<acme:textbox code="academy.picture" path="picture"/>
+					<acme:textbox code="academy.paypalMail" path="paypalMail" />
+					
+					<jstl:if test="${academyForm.id==0}">
 					<div class="checkbox-group checkbox">
 						<form:label path="agreed" class="control-label">
 							<form:checkbox path="agreed"/>
@@ -64,6 +74,7 @@
 						</form:label>
 						<form:errors path="agreed" cssClass="error" />
 					</div>
+					</jstl:if>
 				</div>
 			</div>
 			<div class="row mt-md">
@@ -75,7 +86,6 @@
 					<acme:submit name="save" code="academy.save"/>
 				</div>
 			</div>
-		</jstl:if>
 </form:form>
 </div>
 </div>

@@ -82,6 +82,14 @@ public class TeacherService {
 		return result;
 
 	}
+	
+	public Teacher save2(Teacher teacher) {
+		Teacher result;
+
+		result = teacherRepository.save(teacher);
+		return result;
+
+	}
 
 	public void delete(Teacher teacher) {
 		teacherRepository.delete(teacher);

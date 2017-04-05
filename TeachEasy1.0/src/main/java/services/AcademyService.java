@@ -77,6 +77,15 @@ public class AcademyService {
 		return result;
 
 	}
+	
+	public Academy save2(Academy academy) {
+		Academy result;
+		
+		result = academyRepository.save(academy);
+
+		return result;
+
+	}
 
 	public void delete(Academy academy) {
 		academyRepository.delete(academy);
@@ -91,7 +100,7 @@ public class AcademyService {
 		return result;
 	}
 
-	public AcademyForm generateFormE(Academy academy) {
+	public AcademyForm generateForm(Academy academy) {
 		AcademyForm result;
 
 		result = new AcademyForm();
@@ -122,21 +131,23 @@ public class AcademyService {
 		Assert.isTrue(academyForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(academyForm.getAgreed(), "agreedNotAccepted");
 
-		if (academyForm.getId() == 0)
+		if (academyForm.getId() == 0){
 			result = create();
-		else
+			UserAccount userAccount;
+			userAccount = new UserAccount();
+			userAccount.setUsername(academyForm.getUsername());
+			userAccount.setPassword(password);
+
+			Authority authority;
+			authority = new Authority();
+			authority.setAuthority(Authority.ACADEMY);
+			userAccount.addAuthority(authority);
+			result.setUserAccount(userAccount);
+
+		}else{
 			result = academyRepository.findOne(academyForm.getId());
-		UserAccount userAccount;
-		userAccount = new UserAccount();
-		userAccount.setUsername(academyForm.getUsername());
-		userAccount.setPassword(password);
-
-		Authority authority;
-		authority = new Authority();
-		authority.setAuthority(Authority.ACADEMY);
-		userAccount.addAuthority(authority);
-		result.setUserAccount(userAccount);
-
+		}
+		
 		result.setName(academyForm.getName());
 		result.setCity(academyForm.getCity());
 		result.setAddress(academyForm.getAddress());
