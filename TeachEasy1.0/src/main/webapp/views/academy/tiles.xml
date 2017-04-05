@@ -33,6 +33,6 @@
 	
 	<definition name="academy/edit" extends="master.page">	
 		<put-attribute name="title" value="Edit profile" />
-		<put-attribute name="body" value="/views/academy/edit.jsp" />
+		<put-attribute name="body" value="/views/academy/register.jsp" />
 	</definition>
 </tiles-definitions>

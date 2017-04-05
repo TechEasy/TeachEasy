@@ -21,7 +21,7 @@
 <div class="panel panel-default">
 <div class="panel-body payment-form">
 <form:form action="academy/register.do" modelAttribute="academyForm">
-		<jstl:if test="${teacherForm.id!=0}">
+		<jstl:if test="${academyForm.id!=0}">
 				<form:hidden path="username"/>
 				<form:hidden path="password"/>
 				<form:hidden path="password2"/>

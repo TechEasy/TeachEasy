@@ -110,7 +110,8 @@ public class AcademyController extends AbstractController {
 			AcademyForm academyForm;
 
 			academyForm = academyService.generateForm(academyService.findByPrincipal());
-			result = createEditModelAndView(academyForm, null);
+			result = new ModelAndView("academy/edit");
+			result.addObject("academyForm", academyForm);
 
 			return result;
 		}

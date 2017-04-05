@@ -154,43 +154,7 @@ public class AcademyService {
 		result.setPaypalMail(academyForm.getPaypalMail());
 		result.setDescription(academyForm.getDescription());
 		result.setCif(academyForm.getCif());
-
-		validator.validate(result, binding);
-
-		return result;
-
-	}
-
-	public Academy reconstructE(AcademyForm academyForm, BindingResult binding) {
-
-		Academy result;
-
-		String password;
-		password = academyForm.getPassword();
-
-		Assert.isTrue(academyForm.getPassword2().equals(password), "notEqualPassword");
-
-		if (academyForm.getId() == 0)
-			result = create();
-		else
-			result = academyRepository.findOne(academyForm.getId());
-		UserAccount userAccount;
-		userAccount = new UserAccount();
-		userAccount.setUsername(academyForm.getUsername());
-		userAccount.setPassword(password);
-
-		Authority authority;
-		authority = new Authority();
-		authority.setAuthority(Authority.ACADEMY);
-		userAccount.addAuthority(authority);
-		result.setUserAccount(userAccount);
-
-		result.setName(academyForm.getName());
-		result.setCity(academyForm.getCity());
-		result.setAddress(academyForm.getAddress());
-		result.setPaypalMail(academyForm.getPaypalMail());
-		result.setDescription(academyForm.getDescription());
-		result.setCif(academyForm.getCif());
+		result.setPicture(academyForm.getPicture());
 
 		validator.validate(result, binding);
 
