@@ -109,7 +109,8 @@ public class TeacherController extends AbstractController {
 		TeacherForm teacherForm;
 
 		teacherForm = teacherService.generateForm(teacherService.findByPrincipal());
-		result = createEditModelAndView(teacherForm, null);
+		result = new ModelAndView("teacher/edit");
+		result.addObject("teacherForm", teacherForm);
 
 		return result;
 	}
