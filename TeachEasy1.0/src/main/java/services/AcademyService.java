@@ -207,7 +207,7 @@ public class AcademyService {
 
 	public void updateAvgStars(Academy academy) {
 		academy.setAvgStars(academyRepository.fingAvgStars(academy));
-		save(academy);
+		save2(academy);
 	}
 
 	public Academy findRandom() {

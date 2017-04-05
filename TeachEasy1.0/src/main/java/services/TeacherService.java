@@ -214,7 +214,7 @@ public class TeacherService {
 
 	public void updateAvgStars(Teacher teacher) {
 		teacher.setAvgStars(teacherRepository.fingAvgStars(teacher));
-		save(teacher);
+		save2(teacher);
 	}
 
 	public Teacher findRandom() {
