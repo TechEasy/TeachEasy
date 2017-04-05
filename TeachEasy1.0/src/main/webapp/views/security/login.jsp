@@ -15,7 +15,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<div class="col-md-12">
 <form:form action="j_spring_security_check" modelAttribute="credentials">
 		
 		<div class="row">
@@ -59,3 +59,4 @@
 		</div>
 		
 	</form:form>
+</div>

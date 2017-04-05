@@ -23,7 +23,9 @@
 </div>
 
 <div class="row text-center">
-	<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
+	<div class="col-md-12">
+		<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
+	</div>
 </div>
 
 <div class="row">
