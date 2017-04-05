@@ -15,7 +15,8 @@
 	<div class="row border-bottom-section">
 		<div class="col-md-1"></div>
 		<div class="col-md-4 mt-md">
-			<img src="${teacher.picture}" width="250" height="250" >
+			<img src="${teacher.picture}" width="250" height="250" class="mb-md">
+			<input id="star-teacher-${teacher.id}" name="star-teacher-${teacher.id}" value="${teacher.avgStars}" class="rating-loading" data-size="xs">
 		</div>
 		<div class="col-md-6">
 			<div class="row border-bottom">
@@ -189,6 +190,8 @@
 <script>
 	$(document).ready(function(){
 	    $('[id^="star-comment-"]').rating({displayOnly: true, step: 0.5});
+	;
+  	 	 $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
 	;
 	});
 </script>
