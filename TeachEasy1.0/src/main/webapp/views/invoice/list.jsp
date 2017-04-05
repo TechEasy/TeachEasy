@@ -29,12 +29,15 @@
     </thead>
     <tbody>
 	<c:forEach items="${invoices}" var="invoice" >
+      <jstl:if test="${invoice.id != null}">
       <tr>
+      
         <td>${invoice.authoredMoment}</td>
         <td>${invoice.vatNumber}</td>
         <td>${invoice.total}</td>
-        <td><a href="student/invoice/display.do?invoiceId=${invoice.id}"><spring:message code="invoice.display" /></a></td>
+       	<td><a href="student/invoice/display.do?invoiceId=${invoice.id}"><spring:message code="invoice.display" /></a></td>
       </tr>
+      </jstl:if>
     </c:forEach>
     </tbody>
 </table>

@@ -59,28 +59,42 @@ public class StudentController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		StudentForm studentForm;
+
+		studentForm = studentService.generateForm(studentService.findByPrincipal());
+		result = createEditModelAndView(studentForm, null);
+
+		return result;
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid StudentForm studentForm, BindingResult binding) {
 		ModelAndView result;
 		Student student;
 
-		if (binding.hasErrors())
+		if (binding.hasErrors()) {
 			result = createEditModelAndView(studentForm, null);
-		else
+		} else {
 			try {
 				student = studentService.reconstruct(studentForm, binding);
 				studentService.save(student);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (Throwable oops) {
 				String msgCode = "student.register.error";
-				if (oops.getMessage().equals("notEqualPassword"))
+				if (oops.getMessage().equals("notEqualPassword")) {
 					msgCode = "student.register.notEqualPassword";
-				else if (oops.getMessage().equals("agreedNotAccepted"))
+				} else if (oops.getMessage().equals("agreedNotAccepted")) {
 					msgCode = "student.register.agreedNotAccepted";
-				if (oops.getMessage().equals("badCreditCard"))
+				}
+				if (oops.getMessage().equals("badCreditCard")) {
 					msgCode = "student.badCreditCard";
+				}
 				result = createEditModelAndView(studentForm, msgCode);
 			}
+		}
 
 		return result;
 

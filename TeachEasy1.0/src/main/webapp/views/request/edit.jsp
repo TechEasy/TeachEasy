@@ -27,13 +27,13 @@
 	<form:hidden path="rclassId"/>
 	<div class="row">
 		<div class="col-md-12">
-			<acme:textbox code="request.checkin" path="checkIn"/>			
+			<acme:textbox code="request.checkinp" path="checkIn"/>		
 		</div>
 
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<acme:textbox code="request.checkout" path="checkOut"/>				
+			<acme:textbox code="request.checkoutp" path="checkOut"/>				
 		</div>
 	</div>
 	<div class="row">
