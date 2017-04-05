@@ -10,41 +10,56 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
-	<display:table  name="subjectMatters" id="row" pagesize="5" requestURI="${requestedURI}" class="displaytag">
-
-			<spring:message code="subjectMatter.name" var="name" />
-			<display:column property="name" title="${name}" sortable="true" />
-			
-			<spring:message code="subjectMatter.description" var="description" />
-			<display:column property="description" title="${description}" sortable="false" />
-			
-			<security:authorize access="hasRole('ADMIN')">
-				<display:column>
-					<jstl:if test="${!row.validated}">
-						<a href="subjectMatter/administrator/accept.do?subjectMatterId=${row.id}"> 
-						<spring:message code="subjectMatter.accept" />
-						</a><br/>
-						
-						<a href="subjectMatter/administrator/deny.do?subjectMatterId=${row.id}"> 
-						<spring:message code="subjectMatter.deny" />
-						</a><br/>
-					</jstl:if>
-				</display:column>
-			</security:authorize>
-			
-	</display:table>
-</security:authorize>
-<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
-	<div>
-		<a href="subjectMatter/create.do">
-			<spring:message	code="subjectMatter.create" />
-		</a>
+<div class="col-md-12">
+	<div class="row">
+		<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
+		<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+		      <tr>
+		        <th><spring:message code="subjectMatter.name"/></th>
+		        <th><spring:message code="subjectMatter.description"/></th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+			<c:forEach items="${subjectMatters}" var="subjectMatter" >
+		      <tr>
+		        <td>${subjectMatter.name}</td>
+		        <td>${subjectMatter.description}</td>
+		        <td>
+		        <security:authorize access="hasRole('ADMIN')">
+							<jstl:if test="${!subjectMatter.validated}">
+								<a class="btn btn-success" href="javascript: window.location.replace('subjectMatter/administrator/accept.do?subjectMatterId=${subjectMatter.id}')"><spring:message code="subjectMatter.accept" /></a>
+								<br/>
+								
+								<a class="btn btn-danger" href="javascript: window.location.replace('subjectMatter/administrator/deny.do?subjectMatterId=${subjectMatter.id}')"><spring:message code="subjectMatter.deny" /></a>
+								<br/>
+							</jstl:if>
+					</security:authorize>
+		        </td>
+		      </tr>
+		    </c:forEach>
+		    </tbody>
+		</table>
+		</div>
+		</security:authorize>
 	</div>
-</security:authorize>
+	<div class="row">
+		<div class="col-md-12">
+		<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
+			<div>
+				<a class="btn btn-primary" href="javascript: window.location.replace('subjectMatter/create.do')"><spring:message code="subjectMatter.create" /></a>
+			</div>
+		</security:authorize>
+		</div>
+	</div>
+</div>
+

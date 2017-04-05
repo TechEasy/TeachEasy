@@ -18,19 +18,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <div class="col-md-12">
-
-<spring:message code="invoice.authoredMoment" var="authoredMoment" />
-<spring:message code="invoice.vatNumber" var="vatNumber" />
-<spring:message code="invoice.information" var="information" />
-<spring:message code="invoice.details" var="details"/>
-<spring:message code="invoice.total" var="total" />
-
 <table class="table table-striped">
 	<thead>
       <tr>
-        <th>${authoredMoment}</th>
-        <th>${vatNumber}</th>
-        <th>${total}</th>
+        <th><spring:message code="invoice.authoredMoment"/></th>
+        <th><spring:message code="invoice.vatNumber"/></th>
+        <th><spring:message code="invoice.total"/></th>
         <th><spring:message code="invoice.display" /></th>
       </tr>
     </thead>
