@@ -28,7 +28,7 @@
 
 <div class="row">
 <div class="col-md-12">
-<nav class="navbar navbar-inverse ">
+<nav class="navbar navbar-light" style="background-color: #000000;" id="menu-superior">
 	<div class="container-fluid">
  		<div class="navbar-header">
  			 <a class="navbar-brand" href="#">
@@ -124,10 +124,10 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<security:authorize access="isAnonymous()">
-   	   			<li><a href="security/login.do"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.login" /></a></li>
+   	   			<li><a href="security/login.do"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;<spring:message code="master.page.login" /></a></li>
    	   		</security:authorize>
    	   		<security:authorize access="isAuthenticated()">
-   	   			<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.logout" /> </a></li>
+   	   			<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;<spring:message code="master.page.logout" /> </a></li>
    	   		</security:authorize>
    		</ul>
 

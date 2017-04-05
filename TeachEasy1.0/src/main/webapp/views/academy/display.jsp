@@ -10,98 +10,6 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<table id="row" class="table">
-	<tbody>
-		<tr>
-			<th><spring:message code="academy.name"/></th>
-			<th><spring:message code="academy.city"/></th>
-			
-		</tr>
-		<tr>
-			<td><jstl:out value="${academy.name}"/></td>
-			<td><jstl:out value="${academy.city}"/></td>
-		</tr>
-		<tr>
-			<th><spring:message code="academy.address"/></th>
-			<th><spring:message code="academy.cif"/></th>
-		</tr>
-		<tr>
-			<td><jstl:out value="${academy.address}"/></td>
-			<td><jstl:out value="${academy.cif}"/></td>
-		</tr>
-		<tr>
-			<th><spring:message code="academy.description"/></th>
-			<th></th>
-			
-		</tr>
-		<tr>
-			<td><jstl:out value="${academy.description}"/></td>
-			<td></td>
-		</tr>
-		<tr>
-			<th><spring:message code="academy.avgStars"/></th>	
-			<th></th>			
-		</tr>
-		<tr>
-			<td><jstl:out value="${academy.avgStars}"/></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
-
-<jstl:if test="${academy.userAccount.username == pageContext.request.remoteUser}">
-	<table id="row" class="table">
-		<tbody>
-			<tr>
-				<th><spring:message code="academy.feeAmount"/></th>
-				<td><jstl:out value="${academy.feeAmount}"/></td>
-			</tr>
-	</table>
-</jstl:if>	
-			
-	
-	<display:table name="socialIdentities"
-		 id="row"
-		 class="displaytag"
-		 pagesize="10" 
-		 requestURI="${requestURI}">
-		 		      
-		 <spring:message code="socialIdentity.nick" var="nickHeader" />
-		 <display:column property="nick" title="${nickHeader}" sortable="true"/>
-		 
-		 <spring:message code="socialIdentity.socialNetwork" var="socialNetworkHeader" />
-		 <display:column property="socialNetwork" title="${socialNetworkHeader}" sortable="true"/>
-		 
-		 <spring:message code="socialIdentity.profileURL" var="profileURLHeader" />
-		 <display:column property="profileUrl" title="${profileURLHeader}" sortable="false"/>  
-
-</display:table>
-	
-	
-<display:table pagesize="10" class="displaytag" keepStatus="true" name="commentable" id="row" requestURI="${requestURI}">	
-	<spring:message code="academy.comment.title" var="titleHeader"/>
-	<display:column title="${titleHeader }" property="title"/>
-	
-	<spring:message code="academy.comment.postedMoment" var="postedMomentHeader"/>
-	<display:column title="${postedMomentHeader}" sortable="true"><fmt:formatDate value="${row.createMoment }" pattern="dd/MM/yyyy HH:mm" /></display:column>
-	
-	<spring:message code="academy.comment.text" var="textHeader"/>
-	<display:column title="${textHeader }" property="text"/>
-	
-	<spring:message code="academy.comment.commentator" var="commentatorHeader"/>
-	<display:column title="${commentatorHeader }">
-			<jstl:out value="${row.student.name}"/>
-	</display:column>
-	<spring:message code="academy.comment.stars" var="starsHeader"/>
-	<display:column title="${starsHeader }" property="stars"/>
-</display:table>
-
-<security:authorize access="hasRole('STUDENT')">
-	<input type="button" name="comment" value="<spring:message code="academy.comment" />"
-			onclick="javascript: window.location.replace('comment/create.do?idEntity=${row.commentable.id}')" />
-<br/>
-</security:authorize>
-
 <div class="col-md-12">
 	<h2><strong><spring:message code="academy.info"/></strong></h2>
 	<div class="row border-bottom-section">
@@ -167,10 +75,10 @@
 	</jstl:if>
 	<h2><strong><spring:message code="comment.info"/></strong></h2>
 	<jstl:if test="${not empty commentable}">
-	<div class="row mt-md mb-md ">
+	<div class="row">
 		<div class="col-md-12">
 			<c:forEach items="${commentable}" var="comment" >
-				<div class="row mt-md border-bottom">
+				<div class="row border-bottom">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
@@ -199,8 +107,12 @@
 	</div>
 	</jstl:if>
 	<security:authorize access="hasRole('STUDENT')">
-	<input type="button" name="comment" value="<spring:message code="academy.comment" />"
-			onclick="javascript: window.location.replace('comment/create.do?idEntity=${academy.id}')" />
+	<div class="row mt-md">
+		<div class="col-md-12">
+			<a class="btn btn-primary" href="javascript: window.location.replace('comment/create.do?idEntity=${academy.id}')"><spring:message code="academy.comment" /></a>
+		</div>
+	</div>
+
 	</security:authorize>
 </div>
 

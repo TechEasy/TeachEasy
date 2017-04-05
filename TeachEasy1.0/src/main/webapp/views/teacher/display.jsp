@@ -150,10 +150,10 @@
 	</div>
 	<h2><strong><spring:message code="comment.info"/></strong></h2>
 	<jstl:if test="${not empty commentable}">
-	<div class="row mt-md mb-md ">
+	<div class="row">
 		<div class="col-md-12">
 			<c:forEach items="${commentable}" var="comment" >
-				<div class="row mt-md border-bottom">
+				<div class="row border-bottom">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
@@ -182,8 +182,11 @@
 	</div>
 	</jstl:if>
 	<security:authorize access="hasRole('STUDENT')">
-	<input type="button" name="comment" value="<spring:message code="teacher.comment" />"
-			onclick="javascript: window.location.replace('comment/create.do?idEntity=${teacher.id}')" />
+		<div class="row mt-md">
+		<div class="col-md-12">
+			<a class="btn btn-primary" href="javascript: window.location.replace('comment/create.do?idEntity=${teacher.id}')"><spring:message code="teacher.comment" /></a>
+		</div>
+	</div>
 	</security:authorize>
 </div>
 
