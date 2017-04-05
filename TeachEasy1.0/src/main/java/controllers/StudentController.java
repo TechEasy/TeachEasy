@@ -80,8 +80,15 @@ public class StudentController extends AbstractController {
 		} else {
 			try {
 				student = studentService.reconstruct(studentForm, binding);
-				studentService.save(student);
-				result = new ModelAndView("redirect:../security/login.do");
+
+				if (student.getId() == 0) {
+					studentService.save(student);
+					result = new ModelAndView("redirect:../security/login.do");
+				} else {
+					studentService.save2(student);
+					result = display();
+				}
+
 			} catch (Throwable oops) {
 				String msgCode = "student.register.error";
 				if (oops.getMessage().equals("notEqualPassword")) {

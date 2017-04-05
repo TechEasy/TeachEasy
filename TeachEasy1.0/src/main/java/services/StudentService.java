@@ -90,6 +90,14 @@ public class StudentService {
 
 	}
 
+	public Student save2(Student student) {
+		Student result;
+
+		result = studentRepository.save(student);
+		return result;
+
+	}
+
 	public void delete(Student student) {
 		studentRepository.delete(student);
 	}
@@ -135,20 +143,21 @@ public class StudentService {
 		Assert.isTrue(studentForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(studentForm.getAgreed(), "agreedNotAccepted");
 
-		if (studentForm.getId() == 0)
+		if (studentForm.getId() == 0) {
 			result = create();
-		else
-			result = studentRepository.findOne(studentForm.getId());
-		UserAccount userAccount;
-		userAccount = new UserAccount();
-		userAccount.setUsername(studentForm.getUsername());
-		userAccount.setPassword(password);
+			UserAccount userAccount;
+			userAccount = new UserAccount();
+			userAccount.setUsername(studentForm.getUsername());
+			userAccount.setPassword(password);
 
-		Authority authority;
-		authority = new Authority();
-		authority.setAuthority(Authority.STUDENT);
-		userAccount.addAuthority(authority);
-		result.setUserAccount(userAccount);
+			Authority authority;
+			authority = new Authority();
+			authority.setAuthority(Authority.STUDENT);
+			userAccount.addAuthority(authority);
+			result.setUserAccount(userAccount);
+		} else {
+			result = studentRepository.findOne(studentForm.getId());
+		}
 
 		result.setName(studentForm.getName());
 		result.setSurname(studentForm.getSurname());

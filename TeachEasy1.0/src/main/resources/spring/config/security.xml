@@ -40,7 +40,7 @@
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
-		<security:intercept-url pattern="/student/register.do" access="isAnonymous()" /> 
+		<security:intercept-url pattern="/student/register.do" access="isAnonymous() || hasRole('STUDENT')" /> 
 		<security:intercept-url pattern="/teacher/register.do" access="isAnonymous() || hasRole('TEACHER')" /> 
 		<security:intercept-url pattern="/academy/register.do" access="isAnonymous()" /> 
 

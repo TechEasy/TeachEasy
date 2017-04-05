@@ -20,10 +20,17 @@
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
-<form:form action="${requestURI}" modelAttribute="studentForm">
-	<jstl:if test="${studentForm.id==0 || studentForm.username == pageContext.request.remoteUser}">
+<form:form action="student/register.do" modelAttribute="studentForm">
+	<!--<jstl:if test="${studentForm.id==0 || studentForm.username == pageContext.request.remoteUser}">-->
 		<form:hidden path="id"/>
 			<div class="row">
+			<jstl:if test="${studentForm.id!=0}">
+				<form:hidden path="username"/>
+				<form:hidden path="password"/>
+				<form:hidden path="password2"/>
+				<form:hidden path="agreed"/>
+			</jstl:if>
+			<jstl:if test="${studentForm.id==0}">
 				<div class="col-md-6">
 					<h4><spring:message code="student.account.info"/></h4>
 					<acme:textbox code="student.username" path="username" />
@@ -36,6 +43,7 @@
 						</div>
 					</div>
 				</div>
+				</jstl:if>
 				<div class="col-md-6">
 					<h4><spring:message code="student.personal.info"/></h4>
 					<div class="row">
