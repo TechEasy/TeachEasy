@@ -13,11 +13,11 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-
+<img src="images/es.jpg" alt="Español" >
 <div class="row text-left">
 	<div class="col-md-6 ">
 		<font size="3" color="blue">
-			<a href="?language=en">ENGLISH</a> | <a href="?language=es">ESPAÑOL</a>
+			<a href="?language=en"><img src="images/ing.png" alt="Ingles" ></a> | <a href="?language=es"><img src="images/es.jpg" alt="Español" ></a>
 		</font>
 	</div>
 </div>

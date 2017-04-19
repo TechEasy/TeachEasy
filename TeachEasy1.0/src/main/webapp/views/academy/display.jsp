@@ -12,7 +12,10 @@
 
 <div class="col-md-12">
 	<h2><strong><spring:message code="academy.info"/></strong></h2>
-	<div class="row border-bottom-section">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="card-bordered">
+	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-4 mt-md align-center">
 			<img src="${academy.picture}" width="250" height="250" class="mb-md" >
@@ -54,23 +57,28 @@
 		</div>
 		<div class="col-md-1"></div>	
 	</div>
+	</div>
+	</div>
+	</div>
+	
 	<jstl:if test="${not empty socialIdentities}">
 	<h2><strong><spring:message code="socialIdentity.info"/></strong></h2>
-	<div class="row mt-md mb-md border-bottom-section">
-		<div class="col-md-12">
-			<div class="row text-center">
-				<div class="col-md-4"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
-				<div class="col-md-4"><strong><spring:message code="socialIdentity.nick"/></strong></div>
-				<div class="col-md-4"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
-			</div>
+	<div class="row">
+	<div class="col-md-12">
+	<div class="card-bordered">
+	<div class="row">
+				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
+				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.nick"/></strong></div>
+				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
+			
 			<c:forEach items="${socialIdentities}" var="socialIdentity" >
-				<div class="row mt-md text-center">
-					<div class="col-md-4">${socialIdentity.socialNetwork}</div>
-					<div class="col-md-4">${socialIdentity.nick}</div>
-					<div class="col-md-4">${socialIdentity.profileUrl}</div>
-				</div>
+					<div class="col-md-4 col-xs-4">${socialIdentity.socialNetwork}</div>
+					<div class="col-md-4 col-xs-4">${socialIdentity.nick}</div>
+					<div class="col-md-4 col-xs-4">${socialIdentity.profileUrl}</div>
 			</c:forEach>
-		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	</jstl:if>
 	<h2><strong><spring:message code="comment.info"/></strong></h2>

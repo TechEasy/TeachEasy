@@ -17,6 +17,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<div class="col-md-12 mb-md">
+	<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
+		<div>
+			<a class="btn btn-primary" href="javascript: window.location.replace('subjectMatter/create.do')"><spring:message code="subjectMatter.create" /></a>
+		</div>
+	</security:authorize>
+</div>
+
 <div class="col-md-12">
 	<div class="row">
 		<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
@@ -52,14 +60,6 @@
 		</div>
 		</security:authorize>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-		<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
-			<div>
-				<a class="btn btn-primary" href="javascript: window.location.replace('subjectMatter/create.do')"><spring:message code="subjectMatter.create" /></a>
-			</div>
-		</security:authorize>
-		</div>
-	</div>
+	
 </div>
 

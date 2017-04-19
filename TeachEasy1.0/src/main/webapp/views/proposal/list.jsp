@@ -17,6 +17,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+
+	<!-- Create proposal -->
+<security:authorize access="hasRole('TEACHER')">
+	<div class="col-md-12 mt-xs mb-md">
+			<a class="btn btn-primary " href="proposal/teacher/create.do"><spring:message code="proposal.create" /></a>
+	</div>
+</security:authorize>
+
 <div class="col-md-12">
 		<c:forEach items="${proposals}" var="proposal" >
 		<div class="row">
@@ -54,13 +62,7 @@
 		</div>
 		</c:forEach>
 		
-		<!-- Create course -->
-		<security:authorize access="hasRole('TEACHER')">
-			<div>
-				<a href="proposal/teacher/create.do" class="enlaceboton">
-				<spring:message code="proposal.create" /></a>
-			</div>
-		</security:authorize>
+
 </div>
 <script>
 	$(document).ready(function(){
