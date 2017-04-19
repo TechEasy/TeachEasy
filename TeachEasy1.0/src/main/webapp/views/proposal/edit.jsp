@@ -18,7 +18,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
      
     	    
-    	
+<div class="col-md-3"></div>    
+<div class="col-md-6">	
 <form:form action = "proposal/teacher/edit.do" modelAttribute="proposal">
 
 	<form:hidden path="id"/>
@@ -26,68 +27,73 @@
 	<form:hidden path="requests"/>
 	<form:hidden path="teacher"/>
 	
-	
-	<fieldset>
-		<div>
-			<form:label path="title">
+		<div class="form-group">
+			<form:label path="title" class="control-label">
 				<spring:message code="proposal.title" />:
 			</form:label>
-			<form:input path="title" />
+			<form:input path="title" class="form-control" />
 			<form:errors cssClass="error" path="title" />
 		</div>
 		
-		<div>
-			<form:label path="createMoment">
+		<div class="row">
+		<div class="col-md-6">
+		<div class="form-group">
+			<form:label path="createMoment" class="control-label">
 				<spring:message code="proposal.createMoment" />:
 			</form:label>
-			<form:input readonly="true" path="createMoment" />
+			<form:input readonly="true" path="createMoment" class="form-control"/>
 			<form:errors cssClass="error" path="createMoment" />
 		</div>
-		
-		<div>
-			<form:label path="updateMoment">
+		</div>
+		<div class="col-md-6">
+		<div class="form-group">
+			<form:label path="updateMoment" class="control-label">
 				<spring:message code="proposal.updateMoment" />:
 			</form:label>
-			<form:input readonly="true"  path="updateMoment" />
+			<form:input readonly="true"  path="updateMoment" class="form-control"/>
 			<form:errors cssClass="error" path="updateMoment" />
 		</div>
-		
-		<div>
-			<form:label path="rate">
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-6">
+		<div class="form-group">
+			<form:label path="rate"  class="control-label">
 				<spring:message code="proposal.rate" />:
 			</form:label>
-			<form:input path="rate" />
+			<form:input path="rate" class="form-control"/>
 			<form:errors cssClass="error" path="rate" />
-		</div>		
-		 
-		<div>
+		</div>
+		</div>
 			
-		<form:label path="subjectMatter">
+		<div class="col-md-6">
+		<div class="form-group">
+		<form:label path="subjectMatter" class="control-label">
 				<spring:message code="proposal.matter" />:
 		</form:label>
 		
-		<form:select path="subjectMatter">
+		<form:select path="subjectMatter" class="form-control">
 			<form:option label="-----" value="0" />
 			<form:options items="${matters}" />
 		</form:select>
 		<form:errors cssClass="error" path="subjectMatter" />
-		<br/>
- 	
 		</div>
-	</fieldset>
-	
+		</div>
+		</div>
 	
 		
 	<!-- Buttons -->
 	
-	<input type="submit" name="save"
-		value="<spring:message code="proposal.save" />" />&nbsp; 
-	
-	
-	<input type="button" name="cancel" value="<spring:message code="proposal.cancel" />"
-		onclick="javascript: window.location.replace('proposal/teacher/list.do')" />
-	<br />
-	<br />
-	
+	<div class="row">
+	<div class="col-md-6 ">
+		<input class="btn btn-success btn-block" type="submit" name="save" value="<spring:message code="proposal.save" />">
+	</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-3">
+		<input class="btn btn-default btn-block" type="button" value="<spring:message code="proposal.cancel"/>" onclick="javascript: relativeRedir('proposal/teacher/list.do')"/>
+	</div>
+	<div class="col-md-3"></div>
+	</div>
 	
 </form:form>
+</div>

@@ -23,34 +23,34 @@
 		</div>
 		<div class="col-md-6">
 			<div class="row border-bottom">
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.name"/>: </strong></h4>
 				</div>
-				<div class="col-md-8 text-right">
+				<div class="col-md-8 col-xs-8 text-right">
 					<h4>${academy.name}</h4>
 				</div>
 			</div>
 			<div class="row border-bottom">
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.city"/>: </strong></h4>
 				</div>
-				<div class="col-md-8 text-right">
+				<div class="col-md-8 col-xs-8 text-right">
 					<h4>${academy.city}</h4>
 				</div>
 			</div>
 			<div class="row border-bottom">
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.cif"/>: </strong></h4>
 				</div>
-				<div class="col-md-8 text-right">
+				<div class="col-md-8 col-xs-8 text-right">
 					<h4>${academy.cif}</h4>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.description"/>: </strong></h4>
 				</div>
-				<div class="col-md-8 text-right">
+				<div class="col-md-8 col-xs-8 text-right">
 					<h4>${academy.description}</h4>
 				</div>
 			</div>	
@@ -67,22 +67,26 @@
 	<div class="col-md-12">
 	<div class="card-bordered">
 	<div class="row">
-				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
-				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.nick"/></strong></div>
-				<div class="col-md-4 col-xs-4"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
-			
+				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
+				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.nick"/></strong></div>
+				<div class="col-md-6 col-xs-6"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
+	</div>	
 			<c:forEach items="${socialIdentities}" var="socialIdentity" >
-					<div class="col-md-4 col-xs-4">${socialIdentity.socialNetwork}</div>
-					<div class="col-md-4 col-xs-4">${socialIdentity.nick}</div>
-					<div class="col-md-4 col-xs-4">${socialIdentity.profileUrl}</div>
+			<div class="row">
+					<div class="col-md-3 col-xs-3">${socialIdentity.socialNetwork}</div>
+					<div class="col-md-3 col-xs-3">${socialIdentity.nick}</div>
+					<div class="col-md-6 col-xs-6">${socialIdentity.profileUrl}</div>
+			</div>
 			</c:forEach>
-	</div>
 	</div>
 	</div>
 	</div>
 	</jstl:if>
 	<h2><strong><spring:message code="comment.info"/></strong></h2>
 	<jstl:if test="${not empty commentable}">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="card-bordered">
 	<div class="row">
 		<div class="col-md-12">
 			<c:forEach items="${commentable}" var="comment" >
@@ -112,6 +116,9 @@
 				</div>
 			</c:forEach>
 		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	</jstl:if>
 	<security:authorize access="hasRole('STUDENT')">

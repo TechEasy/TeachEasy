@@ -80,19 +80,22 @@
         		</td>
 	        </jstl:if>
 	         </td>
-	        
+	        <td>
        		<jstl:if test="${request.status eq 'ACCEPTED' }">
        			<jstl:if test="${oneDay[request.id] == true}">
-	       			<td>
+	       			
 	        			<a class="btn btn-danger" href="javascript: window.location.replace('student/request/cancel.do?requestId=${request.id}')"><spring:message code="request.cancel" /></a>
-	        		</td>
+	        		
 	        	</jstl:if>
         	</jstl:if>
+        	</td>
+        	<td>
         	<jstl:if test="${request.status eq 'PENDING' }">
-     			<td>
+     			
         			<a class="btn btn-danger" href="javascript: window.location.replace('student/request/cancel.do?requestId=${request.id}')"><spring:message code="request.cancel" /></a>
-        		</td>
+        		
         	</jstl:if>
+        	</td>
 	    </security:authorize>
 	      </tr>
     </c:forEach>
