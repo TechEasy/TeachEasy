@@ -24,8 +24,11 @@ public class ProposalService {
 	@Autowired
 	ProposalRepository	proposalRepository;
 
-
 	// Supporting services
+
+	@Autowired
+	TeacherService		teacherService;
+
 
 	//Constructors
 	public ProposalService() {
@@ -36,7 +39,9 @@ public class ProposalService {
 	// Simple CRUD methods
 	public Proposal create() {
 		Proposal result;
+		Teacher t = teacherService.findByPrincipal();
 		result = new Proposal();
+		result.setTeacher(t);
 		result.setCreateMoment(new Date());
 		result.setUpdateMoment(new Date());
 		return result;

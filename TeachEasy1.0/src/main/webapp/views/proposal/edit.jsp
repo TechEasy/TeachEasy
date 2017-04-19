@@ -24,7 +24,6 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="requests"/>
-	<form:hidden path="subjectMatter"/>
 	<form:hidden path="teacher"/>
 	
 	
@@ -68,7 +67,6 @@
 		</form:label>
 		
 		<form:select path="subjectMatter">
-			<form:option label="-----" value="0" />
 			<form:options items="${matters}" />
 		</form:select>
 		<form:errors cssClass="error" path="subjectMatter" />

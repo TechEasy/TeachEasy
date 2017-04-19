@@ -2,7 +2,7 @@
 package controllers.Teacher;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -92,9 +92,9 @@ public class TeacherProposalController extends AbstractController {
 		} else {
 
 			try {
-				Proposal p;
-				p = proposalService.save(proposal);
-				result = new ModelAndView("redirect:edit.do?proposalId=" + p.getId());
+
+				proposalService.save(proposal);
+				result = new ModelAndView("redirect:list.do");
 
 			} catch (Throwable oops) {
 				result = createEditModelAndView(proposal, "proposal.commit.error");
@@ -136,14 +136,20 @@ public class TeacherProposalController extends AbstractController {
 		return result;
 	}
 
-	private Map<String, String> getMatters() {
+	private Map<Integer, String> getMatters() {
 		Collection<SubjectMatter> cs;
 		cs = matterService.findAll();
 
-		Map<String, String> matters = new LinkedHashMap<String, String>();
+		Map<Integer, String> matters = new HashMap<Integer, String>();
 		for (SubjectMatter s : cs) {
-			matters.put(String.valueOf(s.getId()), s.getName());
+			matters.put(s.getId(), s.getName());
 		}
 		return matters;
+	}
+
+	private Collection<SubjectMatter> getMatters2() {
+		Collection<SubjectMatter> cs;
+		cs = matterService.findAll();
+		return cs;
 	}
 }

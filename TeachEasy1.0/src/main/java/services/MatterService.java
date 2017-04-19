@@ -88,7 +88,7 @@ public class MatterService {
 	public Collection<SubjectMatter> findSubjectMatterValidated() {
 		Collection<SubjectMatter> result;
 		result = subjectMatterRepository.findSubjectMatterValidated();
-		;
+
 		return result;
 	}
 }

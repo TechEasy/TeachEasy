@@ -608,7 +608,6 @@
 	<!-- Proposals -->
 	
 	<bean id="proposal1" class="domain.Proposal">
-		<property name="ticker" value="01" />
 		<property name="title" value="Clases de Inglés" />	
 		<property name="createMoment" value="01/04/2017 20:00" />		
 		<property name="updateMoment" value="01/04/2017 21:00" />	
@@ -618,7 +617,6 @@
 	</bean>
 	
 	<bean id="proposal2" class="domain.Proposal">
-		<property name="ticker" value="03" />
 		<property name="title" value="Clases de Francés" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
@@ -628,7 +626,6 @@
 	</bean>
 	
 	<bean id="proposal3" class="domain.Proposal">
-		<property name="ticker" value="02" />
 		<property name="title" value="Clases de Programacion" />	
 		<property name="createMoment" value="03/04/2017 20:00" />		
 		<property name="updateMoment" value="03/04/2017 21:00" />	
@@ -638,7 +635,6 @@
 	</bean>
 	
 	<bean id="proposal4" class="domain.Proposal">
-		<property name="ticker" value="04" />
 		<property name="title" value="Clases de HTML y CSS" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
@@ -648,7 +644,6 @@
 	</bean>
 	
 	<bean id="proposal5" class="domain.Proposal">
-		<property name="ticker" value="05" />
 		<property name="title" value="Clases de Fisica" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
@@ -658,7 +653,6 @@
 	</bean>
 	
 	<bean id="proposal6" class="domain.Proposal">
-		<property name="ticker" value="06" />
 		<property name="title" value="Clases de Quimica" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
@@ -669,7 +663,6 @@
 	<!-- Course -->
 	
 	<bean id="course1" class="domain.Course">
-		<property name="ticker" value="07" />
 		<property name="title" value="Matematicas" />	
 		<property name="createMoment" value="10/04/2017 20:00" />		
 		<property name="updateMoment" value="10/04/2017 21:00" />	
@@ -681,7 +674,6 @@
 	</bean>
 	
 	<bean id="course2" class="domain.Course">
-		<property name="ticker" value="08" />
 		<property name="title" value="Algebra" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
@@ -693,7 +685,6 @@
 	</bean>
 	
 	<bean id="course3" class="domain.Course">
-		<property name="ticker" value="09" />
 		<property name="title" value="Dibujo" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
@@ -705,7 +696,6 @@
 	</bean>
 	
 	<bean id="course4" class="domain.Course">
-		<property name="ticker" value="10" />
 		<property name="title" value="Ingles" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
@@ -717,7 +707,6 @@
 	</bean>
 	
 	<bean id="course5" class="domain.Course">
-		<property name="ticker" value="11" />
 		<property name="title" value="Frances" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	

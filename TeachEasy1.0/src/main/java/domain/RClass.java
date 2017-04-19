@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,22 +30,11 @@ public class Rclass extends DomainEntity {
 
 
 	// Attributes -------------------------------------------------------------
-	private String	ticker;
 	private String	title;
 	private Date	createMoment;
 	private Date	updateMoment;
 	private Double	rate;
 
-
-	@NotBlank
-	@Column(unique = true)
-	public String getTicker() {
-		return ticker;
-	}
-
-	public void setTicker(String ticker) {
-		this.ticker = ticker;
-	}
 
 	@NotBlank
 	public String getTitle() {
