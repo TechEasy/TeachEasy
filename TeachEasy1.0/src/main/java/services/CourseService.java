@@ -24,8 +24,11 @@ public class CourseService {
 	@Autowired
 	CourseRepository	courseRepository;
 
-
 	// Supporting services
+
+	@Autowired
+	AcademyService		academyService;
+
 
 	//Constructors
 	public CourseService() {
@@ -36,7 +39,9 @@ public class CourseService {
 	// Simple CRUD methods
 	public Course create() {
 		Course result;
+		Academy a = academyService.findByPrincipal();
 		result = new Course();
+		result.setAcademy(a);
 		result.setCreateMoment(new Date());
 		result.setUpdateMoment(new Date());
 		return result;

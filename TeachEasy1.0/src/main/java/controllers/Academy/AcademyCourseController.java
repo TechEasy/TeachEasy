@@ -2,7 +2,7 @@
 package controllers.Academy;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -102,7 +102,7 @@ public class AcademyCourseController extends AbstractController {
 			try {
 				Course c;
 				c = courseService.save(course);
-				result = new ModelAndView("redirect:edit.do?courseId=" + c.getId());
+				result = new ModelAndView("redirect:listCourse.do");
 
 			} catch (Throwable oops) {
 				result = createEditModelAndView(course, "course.commit.error");
@@ -144,13 +144,13 @@ public class AcademyCourseController extends AbstractController {
 		return result;
 	}
 
-	private Map<String, String> getMatters() {
+	private Map<Integer, String> getMatters() {
 		Collection<SubjectMatter> cs;
 		cs = matterService.findAll();
 
-		Map<String, String> matters = new LinkedHashMap<String, String>();
+		Map<Integer, String> matters = new HashMap<Integer, String>();
 		for (SubjectMatter s : cs) {
-			matters.put(String.valueOf(s.getId()), s.getName());
+			matters.put(s.getId(), s.getName());
 		}
 		return matters;
 	}

@@ -67,6 +67,7 @@
 		</form:label>
 		
 		<form:select path="subjectMatter">
+			<form:option label="-----" value="0" />
 			<form:options items="${matters}" />
 		</form:select>
 		<form:errors cssClass="error" path="subjectMatter" />

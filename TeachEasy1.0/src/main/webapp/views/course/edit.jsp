@@ -24,7 +24,6 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<form:hidden path="requests"/>
-	<form:hidden path="subjectMatter"/>
 	<form:hidden path="academy"/>
 	
 	
