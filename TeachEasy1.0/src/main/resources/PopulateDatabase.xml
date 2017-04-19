@@ -784,43 +784,43 @@
 
 	<bean id="invoice1" class="domain.Invoice">
 		<property name="authoredMoment" value="15/03/2016 16:00" />
-		<property name="vatNumber" value="000000001" />	
-		<property name="information" value="Invoice realizado para el student 1" />		
-		<property name="details" value="No hay detalles importantes que mostrar" />	
+		<property name="vatNumber" value="ES-78451578" />	
+		<property name="information" value="Factura de Antonio Iñigo Jaén" />		
+		<property name="details" value="Factura de la clase: Clases de Inglés" />	
 		<property name="total" value="150.0" />	
 	</bean>
 
 	<bean id="invoice2" class="domain.Invoice">
 		<property name="authoredMoment" value="12/12/2016 16:00" />
-		<property name="vatNumber" value="000000010" />	
-		<property name="information" value="Segundo invoice realizado para el student 1" />		
-		<property name="details" value="Se ha pagado al completo" />	
+		<property name="vatNumber" value="ES-78451578" />	
+		<property name="information" value="Factura de Antonio Iñigo Jaén" />		
+		<property name="details" value="Factura de la clase: Clases de Francés" />	
 		<property name="total" value="15.0" />	
 	
 	</bean>
 	
 	<bean id="invoice3" class="domain.Invoice">
 		<property name="authoredMoment" value="10/10/2016 16:00" />
-		<property name="vatNumber" value="000000011" />	
-		<property name="information" value="Invoice del student 2" />		
-		<property name="details" value="Se ha pagado tarde" />	
+		<property name="vatNumber" value="ES-78451578" />	
+		<property name="information" value="Factura de Juan Mendizábal Millán" />		
+		<property name="details" value="Factura de la clase: Clases de Programacion" />	
 		<property name="total" value="30.0" />	
 	</bean>
 	
 	<bean id="invoice4" class="domain.Invoice">
 		<property name="authoredMoment" value="11/10/2016 16:00" />
-		<property name="vatNumber" value="000000111" />	
-		<property name="information" value="Invoice del student 1" />		
-		<property name="details" value="Se ha pagado al completo" />	
+		<property name="vatNumber" value="ES-78451578" />	
+		<property name="information" value="Factura de Antonio Iñigo Jaén" />		
+		<property name="details" value="Factura de la clase: Clases de HTML y CSS" />	
 		<property name="total" value="40.0" />	
 	
 	</bean>
 	
 	<bean id="invoice5" class="domain.Invoice">
 		<property name="authoredMoment" value="12/10/2016 16:00" />
-		<property name="vatNumber" value="000001011" />	
-		<property name="information" value="Invoice del student 2" />		
-		<property name="details" value="Se ha pagado al completo" />	
+		<property name="vatNumber" value="ES-78451578" />	
+		<property name="information" value="Factura de Juan Mendizábal Millán" />		
+		<property name="details" value="Factura de la clase: Clases de Fisica" />	
 		<property name="total" value="50.0" />	
 		
 	</bean>

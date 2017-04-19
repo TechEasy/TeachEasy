@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.InvoiceService;
 import services.RClassService;
 import services.RequestService;
 import services.StudentService;
 import controllers.AbstractController;
+import domain.Invoice;
 import domain.Request;
 import domain.Student;
 import form.RequestForm;
@@ -35,6 +37,9 @@ public class StudentRequestController extends AbstractController {
 
 	@Autowired
 	private StudentService	studentService;
+
+	@Autowired
+	private InvoiceService	invoiceService;
 
 	@Autowired
 	private RClassService	rClassService;
@@ -155,12 +160,13 @@ public class StudentRequestController extends AbstractController {
 	public ModelAndView paid(@RequestParam int requestId) throws ParseException {
 
 		Request request = requestService.findOne(requestId);
+		Invoice invoice = invoiceService.generateInvoice(requestId);
 		request.setStatus("ACCEPTED");
+		request.setInvoice(invoice);
 		requestService.save(request);
 
 		return list();
 	}
-
 	// Cancel -----------------------------------------------------------
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)

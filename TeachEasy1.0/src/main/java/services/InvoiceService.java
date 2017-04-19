@@ -1,7 +1,10 @@
 
 package services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import repositories.InvoiceRepository;
 import domain.Invoice;
-import domain.Student;
+import domain.Request;
 
 @Service
 @Transactional
@@ -21,8 +24,11 @@ public class InvoiceService {
 	@Autowired
 	InvoiceRepository	invoiceRepository;
 
-
 	// Supporting services
+
+	@Autowired
+	RequestService		requestService;
+
 
 	//Constructors
 	public InvoiceService() {
@@ -59,5 +65,45 @@ public class InvoiceService {
 	public void delete(Invoice invoice) {
 		invoiceRepository.delete(invoice);
 	}
-	
+
+	@SuppressWarnings("deprecation")
+	public Invoice generateInvoice(int requestId) throws ParseException {
+
+		Invoice result;
+		Request request = requestService.findOne(requestId);
+		String details = "Factura de la clase: " + request.getRclass().getTitle() + ".";
+		String tenantInfo = "Factura de : " + request.getStudent().getName() + " " + request.getStudent().getSurname();
+		Date date = new Date(System.currentTimeMillis() - 1);
+
+		Date sI, sO;
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		sI = fecha.parse(request.getcheckIn());
+		sO = fecha.parse(request.getCheckOut());
+
+		Integer minutos;
+		Integer horas;
+
+		if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+			minutos = sO.getMinutes() - sI.getMinutes();
+			horas = sO.getHours() - sI.getHours();
+		} else {
+			minutos = 60 + sO.getMinutes() - sI.getMinutes();
+			horas = sO.getHours() - sI.getHours() - 1;
+		}
+
+		Double valor = (horas + (1.0 * (minutos) / 60));
+		Double value = valor * request.getRclass().getRate();
+
+		result = create();
+		result.setVatNumber("ES-78451578");
+		result.setDetails(details);
+		result.setInformation(tenantInfo);
+		result.setAuthoredMoment(date);
+		result.setTotal(value);
+
+		return save(result);
+
+	}
+
 }

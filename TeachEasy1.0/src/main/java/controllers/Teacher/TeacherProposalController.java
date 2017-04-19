@@ -147,9 +147,4 @@ public class TeacherProposalController extends AbstractController {
 		return matters;
 	}
 
-	private Collection<SubjectMatter> getMatters2() {
-		Collection<SubjectMatter> cs;
-		cs = matterService.findAll();
-		return cs;
-	}
 }
