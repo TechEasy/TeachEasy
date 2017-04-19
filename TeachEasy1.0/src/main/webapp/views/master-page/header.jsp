@@ -13,11 +13,10 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<img src="images/es.jpg" alt="Español" >
 <div class="row text-left">
 	<div class="col-md-6 ">
 		<font size="3" color="blue">
-			<a href="?language=en"><img src="images/ing.png" alt="Ingles" ></a> | <a href="?language=es"><img src="images/es.jpg" alt="Español" ></a>
+			<a href="?language=en"><img src="images/ing.png" width="50" height="50" alt="Ingles" /></a> | <a href="?language=es"><img src="images/es.jpg" width="50" height="50" alt="Español" /></a>
 		</font>
 	</div>
 </div>
@@ -33,7 +32,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Teach Easy </a>
+            <a class="navbar-brand " href="#"><img src="images/logo3.png" width="120" height="30" alt="Ingles" /></a>
         </div>
     	<div id="navbar" class="navbar-collapse collapse">
     	<ul class="nav navbar-nav">    	
