@@ -26,7 +26,7 @@
 	href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" href="favicon.ico"/> 
 
 
@@ -92,8 +92,8 @@
 			<br />
 			<span class="message"><spring:message code="${message}" /></span>
 		</jstl:if>	
-		</div>
 
+		</div>
 		<tiles:insertAttribute name="footer" />
 </div>
 </body>

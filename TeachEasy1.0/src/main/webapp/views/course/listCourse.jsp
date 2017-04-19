@@ -20,8 +20,11 @@
 
 <div class="col-md-12">
 		<c:forEach items="${courses}" var="course" >
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card-bordered">
 			<div class="row">
-				<div class="col-md-3 text-center">	
+				<div class="col-md-3">	
 					<img src="${course.academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
@@ -42,7 +45,9 @@
 					</div>
 				</div>
 			</div>
-			<hr class="divider"/>
+		</div>
+		</div>
+		</div>
 		</c:forEach>
 		<!-- Create course -->
 		<security:authorize access="hasRole('ACADEMY')">

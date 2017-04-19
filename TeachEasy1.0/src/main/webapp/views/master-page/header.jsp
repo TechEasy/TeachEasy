@@ -22,21 +22,20 @@
 	</div>
 </div>
 
-<div class="row text-center">
-	<div class="col-md-12">
-		<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
-	</div>
-</div>
-
 <div class="row">
 <div class="col-md-12">
-<nav class="navbar navbar-light" style="background-color: #000000;" id="menu-superior">
+<nav class="navbar navbar-default" style="background-color: #000000;" id="menu-superior">
 	<div class="container-fluid">
- 		<div class="navbar-header">
- 			 <a class="navbar-brand" href="#">
-       			 TeachEasy
-     		 </a>
-    	</div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Teach Easy</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Teach Easy </a>
+        </div>
+    	<div id="navbar" class="navbar-collapse collapse">
     	<ul class="nav navbar-nav">    	
     	<security:authorize access="isAnonymous()">
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.register.menu" /> <span class="caret"></span></a>
@@ -132,11 +131,18 @@
    	   			<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;<spring:message code="master.page.logout" /> </a></li>
    	   		</security:authorize>
    		</ul>
-
-  		</div>
+		</div>
+  	</div>
 </nav>
 </div>
 </div>
+
+<div class="row text-center">
+	<div class="col-md-12">
+		<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
+	</div>
+</div>
+
 
 
 

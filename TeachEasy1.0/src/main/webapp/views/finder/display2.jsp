@@ -64,7 +64,7 @@
 	<div class="row">
 		<div class="col-md-12">
 		<c:forEach items="${courses}" var="course" >
-			<div class="row">
+			<div class="row card-bordered">
 				<div class="col-md-3 text-center">	
 					<img src="${course.academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
@@ -88,7 +88,6 @@
 					</div>
 				</div>
 			</div>
-			<hr class="divider"/>
 		</c:forEach>
 		</div>
 	</div>

@@ -12,7 +12,7 @@
 
 <div class="col-md-12">
 	<h2><strong><spring:message code="teacher.info"/></strong></h2>
-	<div class="row border-bottom-section">
+	<div class="row  card-bordered">
 		<div class="col-md-1"></div>
 		<div class="col-md-4 mt-md">
 			<img src="${teacher.picture}" width="250" height="250" class="mb-md">
@@ -79,7 +79,7 @@
 		<div class="col-md-1"></div>	
 	</div>
 	<h2><strong><spring:message code="teacher.aditionalinfo"/></strong></h2>
-	<div class="row border-bottom-section">
+	<div class="row  card-bordered">
 		<div class="col-md-12">
 			<div class="row border-bottom">
 				<div class="col-md-4">
@@ -109,7 +109,7 @@
 	</div>
 	<jstl:if test="${not empty socialIdentities}">
 	<h2><strong><spring:message code="socialIdentity.info"/></strong></h2>
-	<div class="row mt-md mb-md border-bottom-section">
+	<div class="row mt-md mb-md card-bordered">
 		<div class="col-md-12">
 			<div class="row text-center">
 				<div class="col-md-4"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
@@ -127,7 +127,7 @@
 	</div>
 	</jstl:if>
 	<h2><strong><spring:message code="schedule.info"/></strong></h2>
-	<div class="row mt-md mb-md border-bottom-section">
+	<div class="row mt-md mb-md border-bottom-section card-bordered">
 		<div class="col-md-12">
 			<jstl:if test="${teacher.timeTable != null}">
 			<table id="row" class="table">
@@ -150,7 +150,7 @@
 	</div>
 	<h2><strong><spring:message code="comment.info"/></strong></h2>
 	<jstl:if test="${not empty commentable}">
-	<div class="row">
+	<div class="row card-bordered">
 		<div class="col-md-12">
 			<c:forEach items="${commentable}" var="comment" >
 				<div class="row border-bottom">

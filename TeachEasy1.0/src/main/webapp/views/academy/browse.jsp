@@ -18,8 +18,11 @@
 
 <div class="col-md-12">
 		<c:forEach items="${academies}" var="academy" >
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card-bordered">
 			<div class="row">
-				<div class="col-md-3 text-center">	
+				<div class="col-md-3">
 					<img src="${academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
 				<div class="col-md-9 ">
@@ -46,7 +49,9 @@
 					</security:authorize>
 				</div>
 			</div>
-			<hr class="divider"/>
+			</div>
+			</div>
+			</div>
 		</c:forEach>
 </div>
 <script>
