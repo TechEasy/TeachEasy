@@ -17,10 +17,10 @@
 <hr/>
 <div class="row">
 
-	<div class="col-md-6">
+	<div class="col-md-6 col-xs-6">
 		<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> TeachEasy Co., Inc.</b>
 	</div>
-	<div class="col-md-6 text-right">
+	<div class="col-md-6 col-xs-6 text-right">
 		<a href="misc/lopd.do"><spring:message code="master.page.lopd" /></a>
 		<spring:message code='master.page.cookies' var="text" javaScriptEscape="true" />
 	</div>

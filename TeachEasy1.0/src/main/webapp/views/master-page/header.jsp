@@ -14,11 +14,18 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div class="row text-left">
-	<div class="col-md-6 ">
+	<div class="col-md-6 col-xs-6">
 		<font size="3" color="blue">
 			<a href="?language=en"><img src="images/ing.png" width="50" height="50" alt="Ingles" /></a> | <a href="?language=es"><img src="images/es.jpg" width="50" height="50" alt="Español" /></a>
 		</font>
 	</div>
+	<security:authorize access="isAuthenticated()">
+	<div class="col-xs-6 text-right">
+		<font size="3" color="blue">
+			<img src="images/logo4.png" width="45" height="45" alt="Logo" />
+		</font>
+	</div>
+	</security:authorize>
 </div>
 
 <div class="row">
@@ -135,13 +142,6 @@
 </nav>
 </div>
 </div>
-
-<div class="row text-center">
-	<div class="col-md-12">
-		<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
-	</div>
-</div>
-
 
 
 

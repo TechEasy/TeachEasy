@@ -88,9 +88,7 @@
 				<div class="col-md-2">
 					<acme:cancel code="teacher.cancel" url="welcome/index.do" />
 				</div>
-				<jstl:if test="teacher.id!=0">
 					<div class="col-md-4"></div>
-				</jstl:if>
 				<div class="col-md-6">
 					<acme:submit name="save" code="teacher.save"/>
 				</div>

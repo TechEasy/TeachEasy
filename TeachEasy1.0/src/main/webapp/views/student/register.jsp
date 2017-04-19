@@ -43,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-			</jstl:if>
+				</jstl:if>
 				<div class="col-md-6">
 					<h4><spring:message code="student.personal.info"/></h4>
 					<div class="row">

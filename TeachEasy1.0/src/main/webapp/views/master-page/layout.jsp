@@ -79,7 +79,13 @@
 	
 		<tiles:insertAttribute name="header" />
 		
-
+		<div class="row mb-md">
+			<div class="col-md-12">
+				<h1 align="center">
+					<tiles:insertAttribute name="title" />
+				</h1>
+			</div>
+		</div>
 		<div class="row">
 		<tiles:insertAttribute name="body" />	
 		<jstl:if test="${message != null}">

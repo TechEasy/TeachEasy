@@ -16,6 +16,22 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<security:authorize access="isAnonymous() || hasRole('TEACHER') || hasRole('ADMIN')">
+<div class="row text-center hidden-lg">
+	<div class="col-md-12 ">
+		<img src="images/logo.png" alt="TeachEasy Co., Inc." width="300" height="250" />
+	</div>
+</div>
+</security:authorize>
+
+<security:authorize access="isAnonymous() || hasRole('TEACHER') || hasRole('ADMIN')">
+<div class="row text-center hidden-xs">
+	<div class="col-md-12 ">
+		<img src="images/banner.png" alt="TeachEasy Co., Inc." width="1000" height="563" />
+	</div>
+</div>
+</security:authorize>
+
 <security:authorize access="hasRole('STUDENT')">
 <div class="col-md-12">
 	<div class="row">
