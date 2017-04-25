@@ -186,6 +186,7 @@ public class StudentRequestController extends AbstractController {
 		Invoice invoice = invoiceService.generateInvoice(requestId);
 		request.setStatus("ACCEPTED");
 		request.setInvoice(invoice);
+		request.setPaid(true);
 		requestService.save(request);
 		
 		// Calculo del amount que obtendra el profesor

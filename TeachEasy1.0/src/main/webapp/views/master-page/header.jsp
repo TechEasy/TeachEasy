@@ -121,6 +121,7 @@
 		
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a href="subjectMatter/administrator/list.do"><spring:message code="master.page.list.subjectMatter" /></a></li>
+			<li><a href="administrator/request/list.do"><spring:message code="master.page.list.requestCanceled" /></a></li>
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu">

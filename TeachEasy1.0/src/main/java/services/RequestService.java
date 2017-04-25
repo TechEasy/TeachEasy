@@ -122,5 +122,10 @@ public class RequestService {
 		else
 			return false;
 	}
+	public Collection<Request> findCanceledAndPaid(){
+		Collection<Request> requests;
+		requests=requestRepository.findRequestCanceledAndPaid();
+		return requests;
+	}
 
 }
