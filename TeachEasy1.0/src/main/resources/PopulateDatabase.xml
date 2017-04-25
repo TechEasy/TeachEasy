@@ -611,7 +611,7 @@
 		<property name="title" value="Clases de Inglés" />	
 		<property name="createMoment" value="01/04/2017 20:00" />		
 		<property name="updateMoment" value="01/04/2017 21:00" />	
-		<property name="rate" value="3"/>
+		<property name="rate" value="8"/>
 		<property name="teacher" ref="teacher1"/>
 		<property name="subjectMatter" ref="subjectMatter1"/>
 	</bean>
@@ -620,7 +620,7 @@
 		<property name="title" value="Clases de Francés" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="10"/>
 		<property name="teacher" ref="teacher1"/>
 		<property name="subjectMatter" ref="subjectMatter2"/>
 	</bean>
@@ -629,7 +629,7 @@
 		<property name="title" value="Clases de Programacion" />	
 		<property name="createMoment" value="03/04/2017 20:00" />		
 		<property name="updateMoment" value="03/04/2017 21:00" />	
-		<property name="rate" value="5"/>
+		<property name="rate" value="6"/>
 		<property name="teacher" ref="teacher2"/>
 		<property name="subjectMatter" ref="subjectMatter3"/>
 	</bean>
@@ -638,7 +638,7 @@
 		<property name="title" value="Clases de HTML y CSS" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="12"/>
 		<property name="teacher" ref="teacher2"/>
 		<property name="subjectMatter" ref="subjectMatter7"/>
 	</bean>
@@ -647,7 +647,7 @@
 		<property name="title" value="Clases de Fisica" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="10"/>
 		<property name="teacher" ref="teacher3"/>
 		<property name="subjectMatter" ref="subjectMatter4"/>
 	</bean>
@@ -656,7 +656,7 @@
 		<property name="title" value="Clases de Quimica" />	
 		<property name="createMoment" value="12/04/2017 20:00" />		
 		<property name="updateMoment" value="12/04/2017 21:00" />	
-		<property name="rate" value="5"/>
+		<property name="rate" value="11"/>
 		<property name="teacher" ref="teacher3"/>
 		<property name="subjectMatter" ref="subjectMatter5"/>
 	</bean>
@@ -666,7 +666,7 @@
 		<property name="title" value="Matematicas" />	
 		<property name="createMoment" value="10/04/2017 20:00" />		
 		<property name="updateMoment" value="10/04/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="120"/>
 		<property name="duration" value="2"/>
 		<property name="level" value="4º ESO"/>
 		<property name="academy" ref="academy1"/>
@@ -677,7 +677,7 @@
 		<property name="title" value="Algebra" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="160"/>
 		<property name="duration" value="2"/>
 		<property name="level" value="Bachillerato"/>
 		<property name="academy" ref="academy1"/>
@@ -688,7 +688,7 @@
 		<property name="title" value="Dibujo" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
-		<property name="rate" value="5"/>
+		<property name="rate" value="200"/>
 		<property name="duration" value="3"/>
 		<property name="level" value="Bachillerato"/>
 		<property name="academy" ref="academy2"/>
@@ -699,7 +699,7 @@
 		<property name="title" value="Ingles" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
-		<property name="rate" value="5"/>
+		<property name="rate" value="250"/>
 		<property name="duration" value="3"/>
 		<property name="level" value="B2"/>
 		<property name="academy" ref="academy3"/>
@@ -710,7 +710,7 @@
 		<property name="title" value="Frances" />	
 		<property name="createMoment" value="05/05/2017 20:00" />		
 		<property name="updateMoment" value="05/05/2017 21:00" />	
-		<property name="rate" value="4"/>
+		<property name="rate" value="300"/>
 		<property name="duration" value="4"/>
 		<property name="level" value="B1"/>
 		<property name="academy" ref="academy3"/>
@@ -912,7 +912,10 @@
 	<!-- Fee -->	
 	
 	<bean id="fee" class="domain.Fee">
-		<property name="value" value="7.0" />	
+		<property name="valueTeacher" value="8.5" />
+		<property name="valueAcademy" value="7.5" />
+		<property name="valueStudent" value="3.4" />
+		<property name="valueStandard" value="0.35" />	
 	</bean>
 	
 

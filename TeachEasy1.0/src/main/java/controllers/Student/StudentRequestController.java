@@ -209,13 +209,13 @@ public class StudentRequestController extends AbstractController {
 		if(proposalService.findOne(request.getRclass().getId())!=null){
 			teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
 			Double feeAmount = teacher.getFeeAmount();
-			feeAmount += value-(value*(feeService.find().getValue()/100)); 
+			feeAmount += value-(value*(feeService.find().getValueTeacher()/100)); 
 			teacher.setFeeAmount(feeAmount);
 			teacherService.save2(teacher);
 		}else{
 			academy = courseService.findOne(request.getRclass().getId()).getAcademy();
 			Double feeAmount = academy.getFeeAmount();
-			feeAmount += value-(value*(feeService.find().getValue()/100)); 
+			feeAmount += value-(value*(feeService.find().getValueAcademy()/100)); 
 			academy.setFeeAmount(feeAmount);
 			academyService.save2(academy);
 		}
