@@ -25,7 +25,7 @@
 </security:authorize>
 
 <security:authorize access="isAnonymous() || hasRole('TEACHER') || hasRole('ADMIN')">
-<div class="row text-center hidden-xs">
+<div class="row text-center visible-lg">
 	<div class="col-md-12 ">
 		<img src="images/banner.png" alt="TeachEasy Co., Inc." width="1000" height="563" />
 	</div>
