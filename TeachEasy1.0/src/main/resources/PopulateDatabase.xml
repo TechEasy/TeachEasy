@@ -921,8 +921,6 @@
 	<bean id="fee" class="domain.Fee">
 		<property name="valueTeacher" value="8.5" />
 		<property name="valueAcademy" value="7.5" />
-		<property name="valueStudent" value="3.4" />
-		<property name="valueStandard" value="0.35" />	
 	</bean>
 	
 

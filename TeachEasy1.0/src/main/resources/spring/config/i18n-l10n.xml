@@ -38,7 +38,7 @@
 		<value>/views/academy/messages</value>
 		<value>/views/invoice/messages</value>
 		<value>/views/socialIdentity/messages</value>
-		<value>/views/fee/tiles.xml</value>
+		<value>/views/fee/messages</value>
 		
 	</util:list>
 

@@ -4,7 +4,9 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -20,10 +22,10 @@ public class Fee extends DomainEntity {
 	// Attributes -------------------------------------------------------------
 	private Double	valueTeacher;
 	private Double	valueAcademy;
-	private Double	valueStudent;
-	private Double	valueStandard;
 	
+	@NotNull
 	@Min(0)
+	@Digits(fraction=2,integer=3)
 	public Double getValueTeacher() {
 		return valueTeacher;
 	}
@@ -31,28 +33,14 @@ public class Fee extends DomainEntity {
 		this.valueTeacher = valueTeacher;
 	}
 	
+	@NotNull
 	@Min(0)
+	@Digits(fraction=2,integer=3)
 	public Double getValueAcademy() {
 		return valueAcademy;
 	}
 	public void setValueAcademy(Double valueAcademy) {
 		this.valueAcademy = valueAcademy;
-	}
-	
-	@Min(0)
-	public Double getValueStudent() {
-		return valueStudent;
-	}
-	public void setValueStudent(Double valueStudent) {
-		this.valueStudent = valueStudent;
-	}
-	
-	@Min(0)
-	public Double getValueStandard() {
-		return valueStandard;
-	}
-	public void setValueStandard(Double valueStandard) {
-		this.valueStandard = valueStandard;
 	}
 
 

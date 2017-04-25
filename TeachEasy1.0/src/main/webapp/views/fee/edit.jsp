@@ -20,7 +20,8 @@
 
 
 <form:form action = "administrator/fee/edit.do" modelAttribute="fee">
-				
+	<form:hidden path="id"/>
+	<form:hidden path="version"/>
 	<acme:textbox code="fee.teacher" path="valueTeacher"/>	
 	<acme:textbox code="fee.academy" path="valueAcademy"/>
 			
