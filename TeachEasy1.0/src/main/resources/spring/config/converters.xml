@@ -38,6 +38,7 @@
 		<bean class="converters.TeacherToStringConverter" /> 
 		<bean class="converters.TimeTableToStringConverter" /> 
 		<bean class="converters.WorkTimeToStringConverter" /> 
+		<bean class="converters.FeeToStringConverter" /> 
 		
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAcademyConverter" />
@@ -58,6 +59,7 @@
 		<bean class="converters.StringToTeacherConverter" />
 		<bean class="converters.StringToTimeTableConverter" />
 		<bean class="converters.StringToWorkTimeConverter" />
+		<bean class="converters.StringToFeeConverter" />
 	</util:list>
 	
 </beans>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CurriculaService;
-import services.TeacherService;
 import controllers.AbstractController;
 import domain.Curricula;
 import form.CurriculaForm;
@@ -19,9 +18,6 @@ import form.CurriculaForm;
 @Controller
 @RequestMapping("/teacher/curricula")
 public class TeacherCurriculaController extends AbstractController {
-
-	@Autowired
-	private TeacherService		teacherService;
 
 	@Autowired
 	private CurriculaService	curriculaService;
