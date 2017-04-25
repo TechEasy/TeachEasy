@@ -1,7 +1,10 @@
 
 package services;
 
+import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
@@ -169,32 +172,32 @@ public class TeacherService {
 
 	}
 
-	/*
-	 * public static Boolean validarCuentaBancaria(String cuenta){
-	 * 
-	 * String A = cuenta.substring(0, 1);
-	 * String B = cuenta.substring(1, 2);
-	 * 
-	 * List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-	 * Integer primero = 10+letras.indexOf(A);
-	 * Integer segundo = 10+letras.indexOf(B);
-	 * 
-	 * cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
-	 * cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
-	 * 
-	 * BigInteger numero = new BigInteger(cuenta);
-	 * BigInteger v = new BigInteger("97");
-	 * BigInteger s = new BigInteger("1");
-	 * BigInteger validador = numero.mod(v);
-	 * 
-	 * if (validador.compareTo(s)==0){
-	 * return true;
-	 * }else{
-	 * return false;
-	 * }
-	 * 
-	 * }
-	 */
+	
+	  public static Boolean validarCuentaBancaria(String cuenta){
+	  
+	  String A = cuenta.substring(0, 1);
+	  String B = cuenta.substring(1, 2);
+	  
+	  List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+	  Integer primero = 10+letras.indexOf(A);
+	  Integer segundo = 10+letras.indexOf(B);
+	  
+	  cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
+	  cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
+	  
+	  BigInteger numero = new BigInteger(cuenta);
+	  BigInteger v = new BigInteger("97");
+	  BigInteger s = new BigInteger("1");
+	  BigInteger validador = numero.mod(v);
+	  
+	  if (validador.compareTo(s)==0){
+	  return true;
+	  }else{
+	  return false;
+	  }
+	  
+	  }
+	 
 
 	public Teacher findByPrincipal() {
 		Teacher result;
