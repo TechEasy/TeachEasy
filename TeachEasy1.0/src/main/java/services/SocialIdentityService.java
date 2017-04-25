@@ -7,8 +7,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.SocialIdentityRepository;
+import domain.Actor;
 import domain.SocialIdentity;
 
 @Service
@@ -20,8 +23,10 @@ public class SocialIdentityService {
 	@Autowired
 	SocialIdentityRepository	socialIdentityRepository;
 
-
 	// Supporting services
+	@Autowired
+	ActorService				actorService;
+
 
 	//Constructors
 	public SocialIdentityService() {
@@ -58,4 +63,30 @@ public class SocialIdentityService {
 	public void delete(SocialIdentity socialIdentity) {
 		socialIdentityRepository.delete(socialIdentity);
 	}
+
+
+	@Autowired
+	private Validator	validator;
+
+
+	public SocialIdentity reconstruct(SocialIdentity socialIdentity, BindingResult binding) {
+
+		if (socialIdentity.getId() == 0) {
+			Actor principal;
+
+			principal = actorService.findByPrincipal();
+			socialIdentity.setActor(principal);
+
+			validator.validate(socialIdentity, binding);
+		} else {
+			SocialIdentity aux = socialIdentityRepository.findOne(socialIdentity.getId());
+			socialIdentity.setId(aux.getId());
+			socialIdentity.setVersion(aux.getVersion());
+			socialIdentity.setActor(aux.getActor());
+			validator.validate(socialIdentity, binding);
+		}
+
+		return socialIdentity;
+	}
+
 }
