@@ -45,10 +45,9 @@ public class RequestService {
 	public Request create() {
 		Request result;
 		result = new Request();
-
+		result.setPaid(false);
 		result.setStudent(studentService.findByPrincipal());
 		result.setStatus("PENDING");
-
 		return result;
 	}
 

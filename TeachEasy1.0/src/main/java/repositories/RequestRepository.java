@@ -17,4 +17,7 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 	
 	@Query("select c.requests from Rclass c where c.academy.id = ?1")
 	Collection<Request> findByAcademy(int id);
+	
+	@Query("select r from Request r where r.status='DENIED' and r.paid=true")
+	Collection<Request> findRequestCanceledAndPaid();
 }

@@ -28,8 +28,15 @@ public class Request extends DomainEntity {
 	private String	status;
 	private String	checkIn;
 	private String	checkOut;
+	private Boolean paid;
 
-
+	
+	public Boolean getPaid() {
+		return paid;
+	}
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
 	@NotBlank
 	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$|WAITING$")
 	public String getStatus() {

@@ -721,6 +721,7 @@
 	
 	<bean id="request1" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
+		<property name="paid" value="true"/>
 		<property name="checkIn" value="04/04/2017 15:00" />	
 		<property name="checkOut" value="04/04/2017 16:00" />		
 		<property name="rclass" ref="proposal1" />	
@@ -730,6 +731,7 @@
 	
 	<bean id="request2" class="domain.Request">
 		<property name="status" value="PENDING" />
+		<property name="paid" value="false"/>
 		<property name="checkIn" value="10/04/2017 15:00" />	
 		<property name="checkOut" value="10/04/2017 16:00" />		
 		<property name="rclass" ref="course1" />	
@@ -738,6 +740,7 @@
 	
 	<bean id="request3" class="domain.Request">
 		<property name="status" value="DENIED" />
+		<property name="paid" value="false"/>
 		<property name="checkIn" value="15/03/2017 15:00" />	
 		<property name="checkOut" value="15/04/2017 16:00" />		
 		<property name="rclass" ref="proposal1" />	
@@ -746,6 +749,7 @@
 	
 	<bean id="request4" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
+		<property name="paid" value="true"/>
 		<property name="checkIn" value="05/04/2017 15:00" />	
 		<property name="checkOut" value="05/04/2017 16:00" />		
 		<property name="rclass" ref="proposal2" />	
@@ -755,6 +759,7 @@
 	
 	<bean id="request5" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
+		<property name="paid" value="true"/>
 		<property name="checkIn" value="06/04/2017 15:00" />	
 		<property name="checkOut" value="06/04/2017 16:00" />		
 		<property name="rclass" ref="proposal3" />	
@@ -764,6 +769,7 @@
 	
 	<bean id="request6" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
+		<property name="paid" value="true"/>
 		<property name="checkIn" value="04/03/2017 15:00" />	
 		<property name="checkOut" value="04/03/2017 16:00" />		
 		<property name="rclass" ref="proposal4" />	
@@ -773,6 +779,7 @@
 	
 	<bean id="request7" class="domain.Request">
 		<property name="status" value="ACCEPTED" />
+		<property name="paid" value="true"/>
 		<property name="checkIn" value="07/05/2017 15:00" />	
 		<property name="checkOut" value="07/05/2017 17:00" />		
 		<property name="rclass" ref="proposal5" />	
