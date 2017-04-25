@@ -11,6 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.SocialIdentityRepository;
+import security.Authority;
+import security.LoginService;
+import domain.Academy;
 import domain.Actor;
 import domain.SocialIdentity;
 
@@ -26,6 +29,9 @@ public class SocialIdentityService {
 	// Supporting services
 	@Autowired
 	ActorService				actorService;
+
+	@Autowired
+	AcademyService				academyService;
 
 
 	//Constructors
@@ -73,16 +79,48 @@ public class SocialIdentityService {
 
 		if (socialIdentity.getId() == 0) {
 			Actor principal;
-
+			Academy academy;
+			academy = academyService.findByPrincipal();
 			principal = actorService.findByPrincipal();
-			socialIdentity.setActor(principal);
+
+			Authority au = new Authority();
+			au.setAuthority(Authority.STUDENT);
+
+			Authority au1 = new Authority();
+			au1.setAuthority(Authority.TEACHER);
+
+			Authority au2 = new Authority();
+			au2.setAuthority(Authority.ACADEMY);
+
+			if (LoginService.getPrincipal().getAuthorities().contains(au) || LoginService.getPrincipal().getAuthorities().contains(au1)) {
+				socialIdentity.setActor(principal);
+
+			} else if (LoginService.getPrincipal().getAuthorities().contains(au2)) {
+				socialIdentity.setAcademy(academy);
+			}
 
 			validator.validate(socialIdentity, binding);
 		} else {
 			SocialIdentity aux = socialIdentityRepository.findOne(socialIdentity.getId());
 			socialIdentity.setId(aux.getId());
 			socialIdentity.setVersion(aux.getVersion());
-			socialIdentity.setActor(aux.getActor());
+
+			Authority au = new Authority();
+			au.setAuthority(Authority.STUDENT);
+
+			Authority au1 = new Authority();
+			au1.setAuthority(Authority.TEACHER);
+
+			Authority au2 = new Authority();
+			au2.setAuthority(Authority.ACADEMY);
+
+			if (LoginService.getPrincipal().getAuthorities().contains(au) || LoginService.getPrincipal().getAuthorities().contains(au1)) {
+				socialIdentity.setActor(aux.getActor());
+
+			} else if (LoginService.getPrincipal().getAuthorities().contains(au2)) {
+				socialIdentity.setAcademy(aux.getAcademy());
+			}
+
 			validator.validate(socialIdentity, binding);
 		}
 

@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import security.LoginService;
+import services.AcademyService;
 import services.ActorService;
 import services.SocialIdentityService;
+import domain.Academy;
 import domain.Actor;
 import domain.SocialIdentity;
 
@@ -26,19 +30,39 @@ public class SocialIdentityController extends AbstractController {
 	@Autowired
 	ActorService			actorService;
 
+	@Autowired
+	AcademyService			academyService;
+
 
 	@RequestMapping("/list")
 	public ModelAndView list() {
 		ModelAndView result;
 
 		Collection<SocialIdentity> socialIdentity;
+
 		Actor actor;
 		actor = actorService.findByPrincipal();
-		socialIdentity = actor.getSocialIdentity();
+		Academy academy;
+		academy = academyService.findByPrincipal();
+
+		Authority au = new Authority();
+		au.setAuthority(Authority.STUDENT);
+
+		Authority au1 = new Authority();
+		au1.setAuthority(Authority.TEACHER);
+
+		Authority au2 = new Authority();
+		au2.setAuthority(Authority.ACADEMY);
 
 		result = new ModelAndView("socialIdentity/list");
-		result.addObject("socialIdentity", socialIdentity);
+		if (LoginService.getPrincipal().getAuthorities().contains(au) || LoginService.getPrincipal().getAuthorities().contains(au1)) {
+			socialIdentity = actor.getSocialIdentity();
+			result.addObject("socialIdentity", socialIdentity);
 
+		} else if (LoginService.getPrincipal().getAuthorities().contains(au2)) {
+			socialIdentity = academy.getSocialIdentity();
+			result.addObject("socialIdentity", socialIdentity);
+		}
 		return result;
 	}
 
