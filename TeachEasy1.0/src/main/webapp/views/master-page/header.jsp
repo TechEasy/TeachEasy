@@ -84,6 +84,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="student/display.do"><spring:message code="master.page.display" /> </a></li>
 						<li><a href="student/edit.do"><spring:message code="master.page.edit" /> </a></li>
+						<li><a href="socialIdentity/list.do"><spring:message code="master.page.socialIdentity" /> </a></li>
 					</ul>
 				</li>
 		</security:authorize>
@@ -99,6 +100,7 @@
 					<li><a href="teacher/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="teacher/edit.do"><spring:message code="master.page.edit" /> </a></li>
 					<li><a href="teacher/curricula/edit.do"><spring:message code="master.page.curricula" /> </a></li>
+					<li><a href="socialIdentity/list.do"><spring:message code="master.page.socialIdentity" /> </a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -112,6 +114,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="academy/display.do"><spring:message code="master.page.display" /> </a></li>
 					<li><a href="academy/edit.do"><spring:message code="master.page.edit" /> </a></li>
+					<li><a href="socialIdentity/list.do"><spring:message code="master.page.socialIdentity" /> </a></li>
 				</ul>
 			</li>	
 		</security:authorize>

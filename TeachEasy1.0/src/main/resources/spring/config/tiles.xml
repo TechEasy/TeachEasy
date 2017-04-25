@@ -37,6 +37,7 @@
 		<value>/views/comment/tiles.xml</value>
 		<value>/views/curricula/tiles.xml</value>
 		<value>/views/invoice/tiles.xml</value>
+		<value>/views/socialIdentity/tiles.xml</value>
 		
 	</util:list>
 
