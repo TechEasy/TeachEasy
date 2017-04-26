@@ -40,17 +40,18 @@
 					</div>
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
+							<jstl:if test="${course.available == false}">
+								<a class="btn btn-primary" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.enable" /></a>
+							</jstl:if>
+							<jstl:if test="${course.available == true}">
+								<a class="btn btn-danger" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.disable" /></a>
+							</jstl:if>
 							<a class="btn btn-primary" href="course/academy/edit.do?courseId=${course.id}"><spring:message code="course.edit" /></a>
 						</div>
 					</div>
 					<security:authorize access="hasRole('ACADEMY')">
 					
-							<jstl:if test="${course.available == false}">
-								<a class="btn btn-primary" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.enable" /></a>
-							</jstl:if>
-							<jstl:if test="${course.available == true}">
-								<a class="btn btn-primary" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.disable" /></a>
-							</jstl:if>
+
 						
 					</security:authorize>
 				</div>
@@ -62,8 +63,7 @@
 		<!-- Create course -->
 		<security:authorize access="hasRole('ACADEMY')">
 			<div>
-				<a href="course/academy/create.do" class="enlaceboton">
-				<spring:message code="course.create" /></a>
+				<a class="btn btn-primary" href="course/academy/create.do"><spring:message code="course.create" /></a>
 			</div>
 		</security:authorize>
 </div>

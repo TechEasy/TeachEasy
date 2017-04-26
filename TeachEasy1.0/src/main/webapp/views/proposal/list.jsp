@@ -47,27 +47,30 @@
 					</div>
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
+
 							<security:authorize access="hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
 								<a class="btn btn-primary" href="teacher/displayById.do?id=${proposal.teacher.id}"><spring:message code="finder.view.teacher" /></a>
 							</security:authorize>
 							<security:authorize access="hasRole('STUDENT')">
-							<a class="btn btn-primary" href="student/request/register.do?rClassId=${proposal.id}"><spring:message	code="request.request" /></a>
+								<a class="btn btn-primary" href="student/request/register.do?rClassId=${proposal.id}"><spring:message	code="request.request" /></a>
 							</security:authorize>
 						</div>
 					</div>
-					<security:authorize access="hasRole('TEACHER')">
+					<div class="row text-right">
+
+						<div class="col-md-12 mt-lg pr-xl">
+							<security:authorize access="hasRole('TEACHER')">
 					
 							<jstl:if test="${proposal.available == false}">
 								<a class="btn btn-primary" href="proposal/teacher/enableDisable.do?proposalId=${proposal.id}"><spring:message code="proposal.enable" /></a>
 							</jstl:if>
 							<jstl:if test="${proposal.available == true}">
-								<a class="btn btn-primary" href="proposal/teacher/enableDisable.do?proposalId=${proposal.id}"><spring:message code="proposal.disable" /></a>
+								<a class="btn btn-danger" href="proposal/teacher/enableDisable.do?proposalId=${proposal.id}"><spring:message code="proposal.disable" /></a>
 							</jstl:if>
 						
-					</security:authorize>
-					<div class="row text-right">
-						<div class="col-md-12 mt-lg pr-xl">
+							
 							<a class="btn btn-primary" href="proposal/teacher/edit.do?proposalId=${proposal.id}"><spring:message code="proposal.edit" /></a>
+							</security:authorize>
 						</div>
 					</div>
 					
