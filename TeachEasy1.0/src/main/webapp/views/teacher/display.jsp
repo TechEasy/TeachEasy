@@ -70,7 +70,7 @@
 					<h4>${teacher.city}</h4>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row border-bottom">
 				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="teacher.address"/>: </strong></h4>
 				</div>
@@ -78,6 +78,27 @@
 					<h4>${teacher.address}</h4>
 				</div>
 			</div>
+			<security:authorize access="hasRole('TEACHER')">
+			<jstl:if test="${pageContext.request.userPrincipal.name==teacher.userAccount.username }">
+			<div class="row border-bottom">
+				<div class="col-md-4 col-xs-4">
+					<h4><strong><spring:message code="teacher.paypalMail"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 col-xs-8 text-right">
+					<h4>${teacher.paypalMail}</h4>
+				</div>
+			</div>	
+			
+			<div class="row">
+				<div class="col-md-4 col-xs-4">
+					<h4><strong><spring:message code="teacher.feeAmount"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 col-xs-8 text-right">
+					<h4>${teacher.feeAmount}</h4>
+				</div>
+			</div>	
+			</jstl:if>
+			</security:authorize>
 		</div>
 		<div class="col-md-1"></div>	
 	</div>

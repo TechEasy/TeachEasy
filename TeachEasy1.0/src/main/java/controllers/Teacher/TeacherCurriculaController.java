@@ -33,8 +33,11 @@ public class TeacherCurriculaController extends AbstractController {
 	public ModelAndView edit() {
 		ModelAndView result;
 		CurriculaForm curriculaForm;
-
+		Curricula curricula = curriculaService.findByPrincipal();
 		curriculaForm = curriculaService.generateForm();
+		curriculaForm.setEducationSection(curricula.getEducationSection());
+		curriculaForm.setExperienceSection(curricula.getExperienceSection());
+		curriculaForm.setHobbiesSection(curricula.getHobbiesSection());
 		result = createEditModelAndView(curriculaForm, null);
 
 		return result;
