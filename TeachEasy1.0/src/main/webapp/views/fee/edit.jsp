@@ -18,7 +18,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-
+<div class="col-md-3"></div>
+<div class="col-md-6">
 <form:form action = "administrator/fee/edit.do" modelAttribute="fee">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
@@ -36,3 +37,5 @@
 	<br/>
 
 </form:form>
+</div>
+<div class="col-md-3"></div>
