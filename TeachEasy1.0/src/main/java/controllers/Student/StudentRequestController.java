@@ -168,6 +168,8 @@ public class StudentRequestController extends AbstractController {
 					msgCode = "request.register.badCreditCard";
 				else if (oops.getMessage().equals("badRClass"))
 					msgCode = "request.register.badRClass";
+				else if(oops.getMessage().equals("classMustBeFuture"))
+					msgCode = "request.register.classFuture";
 				result = createEditModelAndView(requestForm, msgCode);
 			}
 
