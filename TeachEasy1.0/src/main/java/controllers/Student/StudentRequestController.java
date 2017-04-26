@@ -28,6 +28,7 @@ import services.StudentService;
 import services.TeacherService;
 import controllers.AbstractController;
 import domain.Academy;
+import domain.Course;
 import domain.Invoice;
 import domain.Request;
 import domain.Student;
@@ -238,9 +239,7 @@ public class StudentRequestController extends AbstractController {
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/paid", method = RequestMethod.GET)
 	public ModelAndView paid(@RequestParam int requestId) throws ParseException {
-
-		Date sI, sO;
-		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
 		Request request = requestService.findOne(requestId);
 		Teacher teacher;
 		Academy academy;
@@ -250,34 +249,39 @@ public class StudentRequestController extends AbstractController {
 		request.setPaid(true);
 		requestService.save(request);
 
-		// Calculo del amount que obtendra el profesor
-		sI = fecha.parse(request.getcheckIn());
-		sO = fecha.parse(request.getCheckOut());
 
-		Integer minutos;
-		Integer horas;
-
-		if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
-			minutos = sO.getMinutes() - sI.getMinutes();
-			horas = sO.getHours() - sI.getHours();
-		} else {
-			minutos = 60 + sO.getMinutes() - sI.getMinutes();
-			horas = sO.getHours() - sI.getHours() - 1;
-		}
-
-		Double valor = (horas + (1.0 * (minutos) / 60));
-		Double value = valor * request.getRclass().getRate();
-
-		if (proposalService.findOne(request.getRclass().getId()) != null) {
+		if(proposalService.findOne(request.getRclass().getId())!=null){
+			Date sI, sO;
+			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			
+			// Calculo del amount que obtendra el profesor
+			sI = fecha.parse(request.getcheckIn());
+			sO = fecha.parse(request.getCheckOut());
+	
+			Integer minutos;
+			Integer horas;
+	
+			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+				minutos = sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours();
+			} else {
+				minutos = 60 + sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours() - 1;
+			}
+	
+			Double valor = (horas + (1.0 * (minutos) / 60));
+			Double value = valor * request.getRclass().getRate();
+			
 			teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
 			Double feeAmount = teacher.getFeeAmount();
 			feeAmount += value - (value * (feeService.find().getValueTeacher() / 100));
 			teacher.setFeeAmount(feeAmount);
 			teacherService.save2(teacher);
-		} else {
-			academy = courseService.findOne(request.getRclass().getId()).getAcademy();
+		}else {
+			Course c = courseService.findOne(request.getRclass().getId());
+			academy = c.getAcademy();
 			Double feeAmount = academy.getFeeAmount();
-			feeAmount += value - (value * (feeService.find().getValueAcademy() / 100));
+			feeAmount += c.getRate() - (c.getRate() * (feeService.find().getValueAcademy() / 100));
 			academy.setFeeAmount(feeAmount);
 			academyService.save2(academy);
 		}
