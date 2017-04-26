@@ -1,7 +1,10 @@
 
 package services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -92,14 +95,17 @@ public class RequestService {
 		return result;
 	}
 
-	public Request reconstruct(RequestForm requestForm, BindingResult binding) {
+	public Request reconstruct(RequestForm requestForm, BindingResult binding) throws ParseException {
 
 		Request result;
-
+		Date sI,act;
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		sI = fecha.parse(requestForm.getCheckIn());
+		act=new Date(System.currentTimeMillis()-1000);
 		Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
 		Assert.isTrue(check(requestForm), "badDayDate");
 		Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
-
+		Assert.isTrue(sI.after(act),"classMustBeFuture");
 		result = create();
 
 		result.setCheckIn(requestForm.getCheckIn());
