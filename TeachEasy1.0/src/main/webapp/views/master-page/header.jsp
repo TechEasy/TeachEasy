@@ -124,13 +124,7 @@
 			<li><a href="administrator/request/list.do"><spring:message code="master.page.list.requestCanceled" /></a></li>
 			<li><a href="administrator/fee/edit.do"><spring:message code="master.page.fee" /> </a></li>
 			<li><a href="administrator/listToPay.do"><spring:message code="master.page.pays" /> </a></li>
-			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="master.page.profile" /> <security:authentication property="principal.username" />
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="administrator/display.do"><spring:message code="master.page.display" /> </a></li>
-					<li><a href="administrator/edit.do"><spring:message code="master.page.edit" /> </a></li>
-				</ul>
-			</li>
+			
 		</security:authorize>
 		
 		</ul>
