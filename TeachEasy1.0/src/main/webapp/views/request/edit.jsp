@@ -26,6 +26,7 @@
 	
 	
 	<form:hidden path="rclassId"/>
+	<jstl:if test="${tipo!='course'}">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="form-group">
@@ -53,6 +54,7 @@
             </div>				
 		</div>
 	</div>
+	</jstl:if>
 	<div class="row">
 		<div class="col-md-6">
 			<acme:submit name="save" code="request.save"/>			

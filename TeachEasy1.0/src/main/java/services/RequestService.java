@@ -36,6 +36,11 @@ public class RequestService {
 
 	@Autowired
 	private StudentService		studentService;
+	
+	@Autowired
+	private CourseService		courseService;
+	
+	
 
 
 	//Constructors
@@ -96,20 +101,30 @@ public class RequestService {
 	}
 
 	public Request reconstruct(RequestForm requestForm, BindingResult binding) throws ParseException {
-
 		Request result;
-		Date sI,act;
 		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		sI = fecha.parse(requestForm.getCheckIn());
-		act=new Date(System.currentTimeMillis()-1000);
-		Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
-		Assert.isTrue(check(requestForm), "badDayDate");
-		Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
-		Assert.isTrue(sI.after(act),"classMustBeFuture");
-		result = create();
-
-		result.setCheckIn(requestForm.getCheckIn());
-		result.setCheckOut(requestForm.getCheckOut());
+		if(courseService.findOne(requestForm.getRclassId())==null){
+			
+			Date sI,act;
+			sI = fecha.parse(requestForm.getCheckIn());
+			act=new Date(System.currentTimeMillis()-1000);
+			Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
+			Assert.isTrue(check(requestForm), "badDayDate");
+			Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
+			Assert.isTrue(sI.after(act),"classMustBeFuture");
+			result = create();
+	
+			result.setCheckIn(requestForm.getCheckIn());
+			result.setCheckOut(requestForm.getCheckOut());
+		}else{
+			Date act=new Date(System.currentTimeMillis()-1000);
+			result = create();
+			result.setCheckIn(null);
+			result.setCheckOut(null);
+			//result.setCheckIn(fecha.format(act));
+			//result.setCheckOut(fecha.format(act));
+		}
+			
 		result.setRclass(rClassService.findById(requestForm.getRclassId()));
 
 		validator.validate(result, binding);

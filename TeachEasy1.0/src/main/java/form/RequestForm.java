@@ -3,6 +3,7 @@ package form;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,6 +34,7 @@ public class RequestForm {
 		this.rclassId = rclassId;
 	}
 
+	@Column(nullable=true)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckIn() {
 		return checkIn;
@@ -41,6 +43,7 @@ public class RequestForm {
 		this.checkIn = checkIn;
 	}
 
+	@Column(nullable=true)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckOut() {
 		return checkOut;

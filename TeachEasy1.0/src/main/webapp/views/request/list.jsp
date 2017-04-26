@@ -47,8 +47,13 @@
     <tbody>
 	<c:forEach items="${requests}" var="request" >
       <tr>
+      <jstl:if test="${request.checkIn == null}">
+     	 <td></td><td></td>
+      </jstl:if>
+      <jstl:if test="${request.checkIn != null}">
         <td>${request.checkIn}</td>
         <td>${request.checkOut}</td>
+      </jstl:if>
         <td>${request.status}</td>
         <td>${request.rclass.title}</td>
         <td>${request.student.name}</td>

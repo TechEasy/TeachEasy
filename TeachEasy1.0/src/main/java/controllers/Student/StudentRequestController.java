@@ -84,43 +84,52 @@ public class StudentRequestController extends AbstractController {
 		requests = student.getRequests();
 
 		for (Request raux : requests) {
-			Boolean b;
-			Date d = new Date(), d2 = new Date();
-			Integer actualDate, requestDate;
-			actualDate = (int) (d.getTime() / 86400000);
-			SimpleDateFormat fecha2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			d2 = fecha2.parse(raux.getcheckIn());
-			requestDate = (int) (d2.getTime() / 86400000);
-			if ((actualDate - requestDate) < 0)
-				b = true;
-			else
-				b = false;
+			if(raux.getcheckIn()!=null){
+				Boolean b;
+				Date d = new Date(), d2 = new Date();
+				Integer actualDate, requestDate;
+				actualDate = (int) (d.getTime() / 86400000);
+				SimpleDateFormat fecha2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+				d2 = fecha2.parse(raux.getcheckIn());
+				requestDate = (int) (d2.getTime() / 86400000);
+				if ((actualDate - requestDate) < 0)
+					b = true;
+				else
+					b = false;
+			
 			oneDay.put(raux.getId(), b);
+			}else{
+				oneDay.put(raux.getId(), false);
+			}
 		}
 
 		for (Request r : requests) {
-
-			Date sI, sO;
-			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-			sI = fecha.parse(r.getcheckIn());
-			sO = fecha.parse(r.getCheckOut());
-
-			Integer minutos;
-			Integer horas;
-
-			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
-				minutos = sO.getMinutes() - sI.getMinutes();
-				horas = sO.getHours() - sI.getHours();
-			} else {
-				minutos = 60 + sO.getMinutes() - sI.getMinutes();
-				horas = sO.getHours() - sI.getHours() - 1;
+			if(r.getcheckIn()!=null){
+				
+				Date sI, sO;
+				SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
+				sI = fecha.parse(r.getcheckIn());
+				sO = fecha.parse(r.getCheckOut());
+	
+				Integer minutos;
+				Integer horas;
+	
+				if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+					minutos = sO.getMinutes() - sI.getMinutes();
+					horas = sO.getHours() - sI.getHours();
+				} else {
+					minutos = 60 + sO.getMinutes() - sI.getMinutes();
+					horas = sO.getHours() - sI.getHours() - 1;
+				}
+	
+				Double valor = (horas + (1.0 * (minutos) / 60));
+				Double value = valor * r.getRclass().getRate();
+	
+				amount.put(r.getId(), value);
+			}else{
+				amount.put(r.getId(), courseService.findOne(r.getRclass().getId()).getRate());
 			}
-
-			Double valor = (horas + (1.0 * (minutos) / 60));
-			Double value = valor * r.getRclass().getRate();
-
-			amount.put(r.getId(), value);
 		}
 
 		result = new ModelAndView("request/list");
@@ -141,8 +150,16 @@ public class StudentRequestController extends AbstractController {
 
 		requestForm = requestService.generateForm();
 		requestForm.setRclassId(rClassId);
-		result = createEditModelAndView(requestForm, null);
-
+		if(proposalService.findOne(rClassId)!=null){
+			result = new ModelAndView("request/register");
+			result.addObject("requestForm", requestForm);
+			result.addObject("tipo","proposal");
+		}else{
+			result = new ModelAndView("request/register");
+			result.addObject("requestForm", requestForm);
+			result.addObject("tipo","course");
+		}
+		
 		return result;
 	}
 
