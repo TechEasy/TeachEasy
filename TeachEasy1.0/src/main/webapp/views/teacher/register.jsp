@@ -17,19 +17,15 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<jstl:if test="${studentForm.id==0}">
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
+
 <form:form action="teacher/register.do" modelAttribute="teacherForm">
 		<form:hidden path="id"/>
 			<div class="row">
-			<jstl:if test="${teacherForm.id!=0}">
-				<form:hidden path="username"/>
-				<form:hidden path="password"/>
-				<form:hidden path="password2"/>
-				<form:hidden path="agreed"/>
-			</jstl:if>
-			<jstl:if test="${teacherForm.id==0}">
+			
 				<div class="col-md-6">
 					<h4><spring:message code="teacher.account.info"/></h4>
 					<acme:textbox code="teacher.username" path="username" />
@@ -42,7 +38,7 @@
 						</div>
 					</div>
 				</div>
-			</jstl:if>
+				
 				<div class="col-md-6">
 					<h4><spring:message code="teacher.personal.info"/></h4>
 					<div class="row">
@@ -72,7 +68,6 @@
 					</div>
 					<acme:textbox code="teacher.picture" path="picture"/>
 					<acme:textbox code="teacher.paypalMail" path="paypalMail" />
-					<jstl:if test="${teacherForm.id==0}">
 						<div class="checkbox-group checkbox">
 							<form:label path="agreed" class="control-label">
 								<form:checkbox path="agreed"/>
@@ -81,7 +76,6 @@
 							</form:label>
 							<form:errors path="agreed" cssClass="error" />
 						</div>
-					</jstl:if>
 				</div>
 			</div>
 			<div class="row mt-md">
@@ -97,5 +91,63 @@
 </div>
 </div>
 </div>
+</jstl:if>
 
+<jstl:if test="${studentForm.id!=0}">
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-body payment-form">
+
+<form:form action="teacher/register.do" modelAttribute="teacherForm">
+		<form:hidden path="id"/>
+			<div class="row">
+				<form:hidden path="username"/>
+				<form:hidden path="password"/>
+				<form:hidden path="password2"/>
+				<form:hidden path="agreed"/>
+				<div class="col-md-12">
+					<h4><spring:message code="teacher.personal.info"/></h4>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.name" path="name" />
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.surname" path="surname"/>
+						</div>
+					</div>
+					<acme:textbox code="teacher.email" path="email"/>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.phone" path="phone"/>
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.date" path="date"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.city" path="city"/>		
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.address" path="address"/>
+						</div>
+					</div>
+					<acme:textbox code="teacher.picture" path="picture"/>
+					<acme:textbox code="teacher.paypalMail" path="paypalMail" />
+				</div>
+			</div>
+			<div class="row mt-md">
+				<div class="col-md-2">
+					<acme:cancel code="teacher.cancel" url="welcome/index.do" />
+				</div>
+					<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<acme:submit name="save" code="teacher.save"/>
+				</div>
+			</div>
+</form:form>
+</div>
+</div>
+</div>
+</jstl:if>
 
