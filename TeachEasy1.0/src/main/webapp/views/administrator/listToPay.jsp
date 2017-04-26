@@ -18,69 +18,91 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<display:table name="teachers"
-	id="row"
-	class="displaytag"
-	pagesize="5"
-	requestURI="${requestURI}" >
-	
-	<spring:message code="teacher.name" var="nameHeader" />
-	<display:column title="${nameHeader}" property="name"/>
-	
-	<spring:message code="teacher.surname" var="surnameHeader" />
-	<display:column title="${surnameHeader}" property="surname"/>
-	
-	<spring:message code="teacher.paypalMail" var="emailHeader" />
-	<display:column title="${emailHeader}" property="paypalMail"/>
-	
-	<spring:message code="teacher.feeAmount" var="amountHeader" />
-	<display:column title="${amountHeader}" property="feeAmount"/>
-	
-	<display:column>
-	<form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<div class="col-md-12">
+<div class="row">
+<div class="col-md-12">
+<h3><spring:message code="teachers"/></h3>
+<table class="table table-striped">
+	<thead>
+      <tr>
+        <th><spring:message code="teacher.name"/></th>
+        <th><spring:message code="teacher.surname"/></th>
+        <th><spring:message code="teacher.paypalMail"/></th>
+        <th><spring:message code="teacher.feeAmount" /></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+	<c:forEach items="${teachers}" var="teacher" >
+      <jstl:if test="${teacher.id != null}">
+      <tr>
+      
+        <td>${teacher.name}</td>
+        <td>${teacher.surname}</td>
+        <td>${teacher.paypalMail}</td>
+       	<td>${teacher.feeAmount}</td>
+       	<td>
+       	<form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 	   <input type="hidden" name="cmd" value="_xclick">
-	   <input type="hidden" name="business" value="${row.paypalMail}">
+	   <input type="hidden" name="business" value="${teacher.paypalMail}">
 	   <input type="hidden" name="currency_code" value="EUR">
 	   <input type="hidden" name="item_name" value="Clase">
-	   <input type="hidden" name="amount" value="${row.feeAmount}">
+	   <input type="hidden" name="amount" value="${teacher.feeAmount}">
 	   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/administrator/teacherPay.do?teacherId=${row.id}">
 	   <input type='hidden' name='cancel' value="http://localhost:8080/TeachEasy/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>
-	</display:column>
-</display:table>
+       	</td>
+      </tr>
+      </jstl:if>
+    </c:forEach>
+    </tbody>
+</table>
+</div>
+</div>
 
-<display:table name="academies"
-	id="row"
-	class="displaytag"
-	pagesize="5"
-	requestURI="${requestURI}" >
-	
-	<spring:message code="academy.name" var="nameHeader" />
-	<display:column title="${nameHeader}" property="name"/>
-	
-	<spring:message code="academy.cif" var="cifHeader" />
-	<display:column title="${cifHeader}" property="cif"/>
-	
-	<spring:message code="academy.paypalMail" var="emailHeader" />
-	<display:column title="${emailHeader}" property="paypalMail"/>
-	
-	<spring:message code="academy.feeAmount" var="amountHeader" />
-	<display:column title="${amountHeader}" property="feeAmount"/>
-	
-	<display:column>
-	<form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<div class="row">
+<div class="col-md-12">
+<h3><spring:message code="academies"/></h3>
+<table class="table table-striped">
+	<thead>
+      <tr>
+        <th><spring:message code="academy.name"/></th>
+        <th><spring:message code="academy.cif"/></th>
+        <th><spring:message code="academy.paypalMail"/></th>
+        <th><spring:message code="academy.feeAmount" /></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+	<c:forEach items="${academies}" var="academy" >
+      <jstl:if test="${academy.id != null}">
+      <tr>
+      
+        <td>${academy.name}</td>
+        <td>${academy.cif}</td>
+        <td>${academy.paypalMail}</td>
+       	<td>${academy.feeAmount}</td>
+       	<td>
+       	<form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 	   <input type="hidden" name="cmd" value="_xclick">
-	   <input type="hidden" name="business" value="${row.paypalMail}">
+	   <input type="hidden" name="business" value="${academy.paypalMail}">
 	   <input type="hidden" name="currency_code" value="EUR">
 	   <input type="hidden" name="item_name" value="Clase">
-	   <input type="hidden" name="amount" value="${row.feeAmount}">
-	   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/administrator/academyPay.do?academyId=${row.id}">
+	   <input type="hidden" name="amount" value="${academy.feeAmount}">
+	   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/administrator/teacherPay.do?teacherId=${row.id}">
 	   <input type='hidden' name='cancel' value="http://localhost:8080/TeachEasy/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>
-	</display:column>	
-	
-</display:table>
+       	</td>
+      </tr>
+      </jstl:if>
+    </c:forEach>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
