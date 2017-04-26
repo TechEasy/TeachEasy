@@ -17,29 +17,37 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <div class="col-md-12">
-<table class="table table-striped">
-	<thead>
-      <tr>
-        <th><spring:message code="RegisterSocialIdentity.nickHeader"/></th>
-        <th><spring:message code="RegisterSocialIdentity.socialNetworkHeader"/></th>
-        <th><spring:message code="RegisterSocialIdentity.profileUrl"/></th>
-        <th><spring:message code="RegisterSocialIdentity.Edit" /></th>
-      </tr>
-    </thead>
-    <tbody>
-	<c:forEach items="${socialIdentity}" var="socialIdentity" >
-      <jstl:if test="${socialIdentity.id != null}">
-      <tr>    
-        <td>${socialIdentity.nick}</td>
-        <td>${socialIdentity.socialNetwork}</td>
-        <td>${socialIdentity.profileUrl}</td>
-       	<td><a href="socialIdentity/edit.do?socialIdentityId=${socialIdentity.id}"><spring:message code="RegisterSocialIdentity.Edit" /></a>
-      </tr>
-      </jstl:if>
-    </c:forEach>
-    </tbody>
-</table>
+<div class="row">
+	<div class="col-md-12">
+	<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+	      <tr>
+	        <th><spring:message code="RegisterSocialIdentity.nickHeader"/></th>
+	        <th><spring:message code="RegisterSocialIdentity.socialNetworkHeader"/></th>
+	        <th><spring:message code="RegisterSocialIdentity.profileUrl"/></th>
+	        <th><spring:message code="RegisterSocialIdentity.Edit" /></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		<c:forEach items="${socialIdentity}" var="socialIdentity" >
+	      <jstl:if test="${socialIdentity.id != null}">
+	      <tr>    
+	        <td>${socialIdentity.nick}</td>
+	        <td>${socialIdentity.socialNetwork}</td>
+	        <td>${socialIdentity.profileUrl}</td>
+	       	<td><a class="btn btn-primary" href="socialIdentity/edit.do?socialIdentityId=${socialIdentity.id}"><spring:message code="RegisterSocialIdentity.Edit" /></a></td>
+	      </tr>
+	      </jstl:if>
+	    </c:forEach>
+	    </tbody>
+	</table>
+	</div>
+	</div>
 </div>
-
-
-<p><a href="socialIdentity/create.do"><spring:message code="RegisterSocialIdentity.Create" /></a></p>
+<div class="row">
+	<div class="col-md-12">
+		<a class="btn btn-primary" href="socialIdentity/create.do"><spring:message code="RegisterSocialIdentity.Create" /></a>
+	</div>
+</div>
+</div>
