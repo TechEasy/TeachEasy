@@ -65,6 +65,11 @@
 							</jstl:if>
 						
 					</security:authorize>
+					<div class="row text-right">
+						<div class="col-md-12 mt-lg pr-xl">
+							<a class="btn btn-primary" href="proposal/teacher/edit.do?proposalId=${proposal.id}"><spring:message code="proposal.edit" /></a>
+						</div>
+					</div>
 					
 				</div>
 			</div>
