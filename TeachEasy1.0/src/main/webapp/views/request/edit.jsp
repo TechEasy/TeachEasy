@@ -23,17 +23,34 @@
 <div class="panel panel-default">
 <div class="panel-body payment-form">
 <form:form action ="student/request/register.do" modelAttribute="requestForm">
-
+	
+	
 	<form:hidden path="rclassId"/>
 	<div class="row">
 		<div class="col-md-12">
-			<acme:textbox code="request.checkinp" path="checkIn"/>		
+			<div class="form-group">
+				<label class="control-label" ><spring:message code="request.checkin"/></label>
+                <div class='input-group date input-datetimepicker'>                	
+                    <form:input type='text' class="form-control" path="checkIn"/> 
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>		
 		</div>
 
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<acme:textbox code="request.checkoutp" path="checkOut"/>				
+			<div class="form-group">
+			<label class="control-label" ><spring:message code="request.checkout"/></label>
+			   <div class='input-group date input-datetimepicker'>
+                    <form:input type='text' class="form-control" path="checkOut"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>				
 		</div>
 	</div>
 	<div class="row">
@@ -54,3 +71,11 @@
 </div>
 </div>
 <div class="col-md-3"></div>
+
+<script type="text/javascript">
+            $(function () {
+                $('.input-datetimepicker').datetimepicker({
+                		format: "DD/MM/YYYY HH:mm"
+                });
+            });
+        </script>

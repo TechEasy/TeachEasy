@@ -38,11 +38,14 @@
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/star-rating.min.css" />" rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/datetimepicker.css" />" rel="stylesheet">
 
 <script src="<c:url value="/resources/js/jquery-3.2.0.min.js" />"></script>
 <script type="text/javascript" src="scripts/jquery-ui.js"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/js/star-rating.min.js" />" type="text/javascript"></script>
+<script src="<c:url value="/resources/js/moment.js" />"></script>
+<script src="<c:url value="/resources/js/datetimepicker.js" />"></script>
 
 
 

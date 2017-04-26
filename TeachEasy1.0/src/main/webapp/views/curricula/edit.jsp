@@ -18,21 +18,27 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<div class="col-md-12">
 
 <form:form action = "teacher/curricula/edit.do" modelAttribute="curricula">
-				
-	<acme:textbox code="curricula.educationSection" path="educationSection"/>	
+		
+	<acme:textbox code="curricula.educationSection" path="educationSection"/>
 	<acme:textbox code="curricula.experienceSection" path="experienceSection"/>
 	<acme:textbox code="curricula.hobbiesSection" path="hobbiesSection"/>
 			
 	<br/>
 
 	<!-- Buttons -->
-	<acme:submit name="save" code="curricula.save"/>
-	&nbsp; 
-	<acme:cancel url="welcome/index.do" code="curricula.cancel"/>
-		
-	<br/>
-	<br/>
+	<div class="row">
+		<div class="col-md-3">
+			<acme:cancel url="welcome/index.do" code="curricula.cancel"/>
+		</div>
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<acme:submit name="save" code="curricula.save"/>
+		</div>
+	</div>
 
 </form:form>
+
+</div>
