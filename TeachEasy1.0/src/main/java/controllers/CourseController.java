@@ -29,7 +29,7 @@ public class CourseController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Course> courses;
-		courses = courseService.findAll();
+		courses = courseService.findAvailable();
 		result = new ModelAndView("course/list");
 		result.addObject("courses", courses);
 

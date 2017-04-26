@@ -25,6 +25,7 @@
 	<form:hidden path="version"/>
 	<form:hidden path="requests"/>
 	<form:hidden path="academy"/>
+	<form:hidden path="available"/>
 	
 	
 	<fieldset>

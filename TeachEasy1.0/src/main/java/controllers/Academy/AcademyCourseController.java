@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AcademyService;
 import services.CourseService;
 import services.MatterService;
+import services.RClassService;
 import controllers.AbstractController;
 import domain.Academy;
 import domain.Course;
@@ -33,6 +34,9 @@ public class AcademyCourseController extends AbstractController {
 
 	@Autowired
 	private AcademyService	academyService;
+
+	@Autowired
+	private RClassService	rClassService;
 
 	@Autowired
 	private CourseService	courseService;
@@ -121,6 +125,21 @@ public class AcademyCourseController extends AbstractController {
 			result = new ModelAndView("redirect:listCourse.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(course, "course.commit.error");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/enableDisable", method = RequestMethod.GET)
+	public ModelAndView enableDisable(@RequestParam int courseId) {
+		ModelAndView result;
+		Course c = courseService.findOne(courseId);
+		try {
+			rClassService.enableDisable(c);
+			result = listCourse();
+		} catch (Throwable oops) {
+			result = listCourse();
+			result.addObject("message", "proposal.commit.error");
 		}
 
 		return result;

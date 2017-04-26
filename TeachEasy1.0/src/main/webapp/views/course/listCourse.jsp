@@ -43,6 +43,16 @@
 							<a class="btn btn-primary" href="course/academy/edit.do?courseId=${course.id}"><spring:message code="course.edit" /></a>
 						</div>
 					</div>
+					<security:authorize access="hasRole('ACADEMY')">
+					
+							<jstl:if test="${course.available == false}">
+								<a class="btn btn-primary" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.enable" /></a>
+							</jstl:if>
+							<jstl:if test="${course.available == true}">
+								<a class="btn btn-primary" href="course/academy/enableDisable.do?courseId=${course.id}"><spring:message code="proposal.disable" /></a>
+							</jstl:if>
+						
+					</security:authorize>
 				</div>
 			</div>
 		</div>
