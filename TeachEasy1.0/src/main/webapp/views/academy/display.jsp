@@ -46,6 +46,14 @@
 					<h4>${academy.cif}</h4>
 				</div>
 			</div>
+			<div class="row border-bottom">
+				<div class="col-md-4 col-xs-4">
+					<h4><strong><spring:message code="academy.address"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 col-xs-8 text-right">
+					<h4>${academy.address}</h4>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.description"/>: </strong></h4>

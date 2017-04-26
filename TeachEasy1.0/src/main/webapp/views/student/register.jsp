@@ -136,16 +136,7 @@
 						</div>
 					</div>
 					<acme:textbox code="student.picture" path="picture"/>
-					<div class="checkbox-group checkbox">
-						<form:label path="agreed" class="control-label">
-							<form:checkbox path="agreed"/>
-							<spring:message code="student.register.agree" />
-							<a href="misc/lopd.do"><spring:message code="student.register.agree.2"/></a>
-						</form:label>
-						<form:errors path="agreed" cssClass="error" />
-					</div>
 					
-
 				</div>
 			</div>
 			<div class="row mt-md">

@@ -17,7 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<jstl:if test="${studentForm.id==0}">
+<jstl:if test="${teacherForm.id==0}">
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
@@ -132,8 +132,14 @@
 							<acme:textbox code="teacher.address" path="address"/>
 						</div>
 					</div>
-					<acme:textbox code="teacher.picture" path="picture"/>
-					<acme:textbox code="teacher.paypalMail" path="paypalMail" />
+					<div class="row">
+						<div class="col-md-6">
+							<acme:textbox code="teacher.picture" path="picture"/>	
+						</div>
+						<div class="col-md-6">
+							<acme:textbox code="teacher.paypalMail" path="paypalMail" />
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row mt-md">
