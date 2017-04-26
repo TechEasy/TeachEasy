@@ -2,6 +2,7 @@ package controllers.Administrator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.RClassService;
 import services.RequestService;
 
 import controllers.AbstractController;
 
+import domain.Rclass;
 import domain.Request;
 
 @Controller
@@ -25,6 +29,8 @@ public class AdministratorRequestController extends AbstractController{
 	@Autowired
 	private RequestService	requestService;
 	
+	@Autowired
+	private RClassService	rclassService;
 	public AdministratorRequestController(){
 		super();
 	}
@@ -34,12 +40,19 @@ public class AdministratorRequestController extends AbstractController{
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
 		public ModelAndView list() throws ParseException {
 			ModelAndView result;
-			Collection<Request> requests;
+			Collection<Request> requests=new ArrayList<Request>();
 			Map<Integer, Double> amount = new HashMap<Integer, Double>();
 			Map<Integer, Boolean> oneDay = new HashMap<Integer, Boolean>();
 			
-
-			requests = requestService.findCanceledAndPaid();
+			Collection<Rclass>aux=rclassService.findAll();
+			for(Rclass r:aux){
+				for(Request req:r.getRequests()){
+					if(req.getStatus().equals("DENIED") && req.getPaid()){
+						requests.add(req);
+					}
+				}
+			}
+			
 
 			for (Request raux : requests) {
 				Boolean b;
@@ -89,4 +102,14 @@ public class AdministratorRequestController extends AbstractController{
 
 			return result;
 		}
+		@RequestMapping(value = "/manage", method = RequestMethod.GET)
+		public ModelAndView manage(@RequestParam int requestId) throws ParseException {
+
+			Request request = requestService.findOne(requestId);
+			request.setPaid(false);
+			requestService.save(request);
+
+			return list();
+		}
+
 }

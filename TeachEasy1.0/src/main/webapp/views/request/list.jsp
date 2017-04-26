@@ -24,6 +24,10 @@
 <spring:message code="request.checkout" var="checkout" />
 <spring:message code="request.status" var="status" />
 <spring:message code="request.rClass" var="rClass"/>
+<spring:message code="request.amount" var="amountH" />
+<spring:message code="request.name" var="nameH" />
+<spring:message code="request.surname" var="surnameH" />
+
 
 <div class="table-responsive">
 <table class="table table-striped">
@@ -33,6 +37,10 @@
         <th>${checkout}</th>
         <th>${status}</th>
         <th>${rClass}</th>
+        <th>${amountH}</th>
+        <th>${nameH}</th>
+        <th>${surnameH}</th>
+       
         <th></th>
       </tr>
     </thead>
@@ -43,6 +51,16 @@
         <td>${request.checkOut}</td>
         <td>${request.status}</td>
         <td>${request.rclass.title}</td>
+        <td>${request.student.name}</td>
+         <td>${request.student.surname}</td>
+      	<td><jstl:out value="${amount[request.id]}"/></td>
+        <security:authorize access="hasRole('ADMIN')">
+        <td>
+        	<jstl:if test="${request.status eq 'DENIED' }">
+        	<a class="btn btn-success" href="javascript: window.location.replace('administrator/request/manage.do?requestId=${request.id}')"><spring:message code="request.manage" /></a>
+       		</jstl:if>
+		</td>
+        </security:authorize>
         <security:authorize access="hasRole('TEACHER')">
         <td>
         	<jstl:if test="${request.status eq 'PENDING' }">
