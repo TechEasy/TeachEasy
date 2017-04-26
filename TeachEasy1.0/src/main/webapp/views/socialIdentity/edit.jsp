@@ -27,14 +27,7 @@
 	
 	
 	<acme:submit name="save" code="RegisterSocialIdentity.save"/>
-	<jstl:if test="${socialIdentity.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="RegisterSocialIdentity.delete" />"
-			onclick="return confirm('<spring:message code="RegisterSocialIdentity.confirm.delete" />')" />&nbsp;
-	</jstl:if>
-
 	<acme:cancel url="socialIdentity/list.do" code="RegisterSocialIdentity.cancel"/>
-	
 	<br/>
 
 </form:form>
