@@ -4,7 +4,7 @@ package form;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Embeddable
@@ -13,9 +13,9 @@ public class RequestForm {
 
 	// Attributes ----------------------------------------------------
 
-	private int			rclassId;
-	private String		checkIn;
-	private String		checkOut;
+	private int		rclassId;
+	private String	checkIn;
+	private String	checkOut;
 
 
 	// Constructor --------------------------------------------------
@@ -33,7 +33,6 @@ public class RequestForm {
 		this.rclassId = rclassId;
 	}
 
-	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckIn() {
 		return checkIn;
@@ -42,7 +41,6 @@ public class RequestForm {
 		this.checkIn = checkIn;
 	}
 
-	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckOut() {
 		return checkOut;

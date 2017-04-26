@@ -46,21 +46,21 @@ public class StudentRequestController extends AbstractController {
 
 	@Autowired
 	private InvoiceService	invoiceService;
-	
+
 	@Autowired
-	private TeacherService  teacherService;
-	
+	private TeacherService	teacherService;
+
 	@Autowired
-	private AcademyService  academyService;
-	
+	private AcademyService	academyService;
+
 	@Autowired
-	private FeeService 		feeService;
-	
+	private FeeService		feeService;
+
 	@Autowired
-	private ProposalService  proposalService;
-	
+	private ProposalService	proposalService;
+
 	@Autowired
-	private CourseService  courseService;
+	private CourseService	courseService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -174,6 +174,48 @@ public class StudentRequestController extends AbstractController {
 		return result;
 
 	}
+
+	@RequestMapping(value = "/registerCourse", method = RequestMethod.GET)
+	public ModelAndView createC(@RequestParam int rClassId) {
+		ModelAndView result;
+		RequestForm requestForm;
+
+		requestForm = requestService.generateForm();
+		requestForm.setRclassId(rClassId);
+		result = createEditModelAndView(requestForm, null);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/registerCourse", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveC(@Valid RequestForm requestForm, BindingResult binding) {
+		ModelAndView result;
+		Request request;
+
+		if (binding.hasErrors())
+			result = createEditModelAndView(requestForm, null);
+		else
+			try {
+				request = requestService.reconstruct(requestForm, binding);
+				requestService.save(request);
+				result = list();
+			} catch (Throwable oops) {
+				String msgCode = "request.register.error";
+				if (oops.getMessage().equals("notBeforeDate"))
+					msgCode = "request.register.notBeforeDate";
+				else if (oops.getMessage().equals("badDayDate"))
+					msgCode = "request.register.badDayDate";
+				else if (oops.getMessage().equals("badCreditCard"))
+					msgCode = "request.register.badCreditCard";
+				else if (oops.getMessage().equals("badRClass"))
+					msgCode = "request.register.badRClass";
+				result = createEditModelAndView(requestForm, msgCode);
+			}
+
+		return result;
+
+	}
+
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/paid", method = RequestMethod.GET)
 	public ModelAndView paid(@RequestParam int requestId) throws ParseException {
@@ -188,7 +230,7 @@ public class StudentRequestController extends AbstractController {
 		request.setInvoice(invoice);
 		request.setPaid(true);
 		requestService.save(request);
-		
+
 		// Calculo del amount que obtendra el profesor
 		sI = fecha.parse(request.getcheckIn());
 		sO = fecha.parse(request.getCheckOut());
@@ -206,21 +248,20 @@ public class StudentRequestController extends AbstractController {
 
 		Double valor = (horas + (1.0 * (minutos) / 60));
 		Double value = valor * request.getRclass().getRate();
-		
-		if(proposalService.findOne(request.getRclass().getId())!=null){
+
+		if (proposalService.findOne(request.getRclass().getId()) != null) {
 			teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
 			Double feeAmount = teacher.getFeeAmount();
-			feeAmount += value-(value*(feeService.find().getValueTeacher()/100)); 
+			feeAmount += value - (value * (feeService.find().getValueTeacher() / 100));
 			teacher.setFeeAmount(feeAmount);
 			teacherService.save2(teacher);
-		}else{
+		} else {
 			academy = courseService.findOne(request.getRclass().getId()).getAcademy();
 			Double feeAmount = academy.getFeeAmount();
-			feeAmount += value-(value*(feeService.find().getValueAcademy()/100)); 
+			feeAmount += value - (value * (feeService.find().getValueAcademy() / 100));
 			academy.setFeeAmount(feeAmount);
 			academyService.save2(academy);
 		}
-		
 
 		return list();
 	}

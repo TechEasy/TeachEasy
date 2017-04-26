@@ -22,10 +22,15 @@
 	</definition>
 	
 	<definition name="request/register" extends="master.page">	
-		<put-attribute name="title" value="Edit Book Request" />
+		<put-attribute name="title" value="Book Request" />
 		<put-attribute name="body" value="/views/request/edit.jsp" />
 	</definition>	
 
+	<definition name="request/registerCourse" extends="master.page">	
+		<put-attribute name="title" value="Book Request" />
+		<put-attribute name="body" value="/views/request/editRC.jsp" />
+	</definition>
+	
 	<definition name="request/student/request" extends="master.page">	
 		<put-attribute name="title" value="Request a book" />
 		<put-attribute name="body" value="/views/request/request.jsp" />

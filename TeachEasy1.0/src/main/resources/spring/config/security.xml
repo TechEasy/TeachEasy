@@ -64,6 +64,8 @@
 		<security:intercept-url pattern="/academy/display.do" access="isAuthenticated()" /> 
 		
 		<security:intercept-url pattern="/student/request/register.do" access="hasRole('STUDENT')" />
+		<security:intercept-url pattern="/student/request/registerCourse.do" access="hasRole('STUDENT')" />
+		
 		<security:intercept-url pattern="/student/request/list.do" access="hasRole('STUDENT')" />
 		<security:intercept-url pattern="/administrator/request/list.do" access="hasRole('ADMIN')" />
 
