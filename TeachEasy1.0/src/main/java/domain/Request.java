@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -28,9 +27,9 @@ public class Request extends DomainEntity {
 	private String	status;
 	private String	checkIn;
 	private String	checkOut;
-	private Boolean paid;
+	private Boolean	paid;
 
-	
+
 	public Boolean getPaid() {
 		return paid;
 	}
@@ -46,7 +45,6 @@ public class Request extends DomainEntity {
 		this.status = status;
 	}
 
-	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getcheckIn() {
 		return checkIn;
@@ -55,7 +53,6 @@ public class Request extends DomainEntity {
 		this.checkIn = checkIn;
 	}
 
-	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public String getCheckOut() {
 		return checkOut;
@@ -65,11 +62,11 @@ public class Request extends DomainEntity {
 	}
 
 
-
 	// Relationships ----------------------------------------------------------
 	private Rclass	rclass;
 	private Student	student;
-	private Invoice invoice;
+	private Invoice	invoice;
+
 
 	@Valid
 	@OneToOne
