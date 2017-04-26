@@ -400,6 +400,7 @@
 		<property name="date" value="21/03/1999" />	
 		<property name="city" value="Málaga" />	
 		<property name="address" value="Marqués de Valdecañas" />
+		<property name="finder" ref="finder2" />
 		<property name="socialIdentity">
 			<list>
 			</list>
@@ -416,6 +417,7 @@
 		<property name="date" value="28/03/1997" />	
 		<property name="city" value="Sevilla" />	
 		<property name="address" value="Calle Malasmañanas" />	
+		<property name="finder" ref="finder3" />
 		<property name="socialIdentity">
 			<list>
 			</list>
@@ -846,6 +848,22 @@
 	<!-- Finder -->	
 	
 	<bean id="finder1" class="domain.Finder">
+		<property name="city" value="Sevilla" />
+		<property name="minimumPrice" value="10.0" />	
+		<property name="maximumPrice" value="20.0" />
+		<property name="keyword" value="english" />	
+		<property name="matter" value="English" />		
+	</bean>
+	
+	<bean id="finder2" class="domain.Finder">
+		<property name="city" value="Sevilla" />
+		<property name="minimumPrice" value="10.0" />	
+		<property name="maximumPrice" value="20.0" />
+		<property name="keyword" value="english" />	
+		<property name="matter" value="English" />		
+	</bean>
+	
+	<bean id="finder3" class="domain.Finder">
 		<property name="city" value="Sevilla" />
 		<property name="minimumPrice" value="10.0" />	
 		<property name="maximumPrice" value="20.0" />
