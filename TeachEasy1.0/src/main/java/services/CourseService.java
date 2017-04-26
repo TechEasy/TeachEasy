@@ -44,6 +44,7 @@ public class CourseService {
 		result.setAcademy(a);
 		result.setCreateMoment(new Date());
 		result.setUpdateMoment(new Date());
+		result.setAvailable(true);
 		return result;
 	}
 
@@ -75,6 +76,7 @@ public class CourseService {
 	public Collection<Course> findByFinder(Finder finder) {
 		Collection<Course> result = new ArrayList<Course>();
 		Collection<Course> aux;
+		Collection<Course> aux2 = new ArrayList<Course>();
 		if (finder.getKeyword() == null && finder.getMatter() == null) {
 			aux = courseRepository.findByCity(finder.getCity());
 		} else if (finder.getMatter() == null) {
@@ -105,12 +107,23 @@ public class CourseService {
 				}
 			}
 		}
-		return result;
+
+		for (Course c : result) {
+			if (c.getAvailable() == true) {
+				aux2.add(c);
+			}
+		}
+		return aux2;
 
 	}
 
 	public Collection<Course> findByCreator(Academy academy) {
 		Collection<Course> result = courseRepository.findByCreator(academy);
+		return result;
+	}
+
+	public Collection<Course> findAvailable() {
+		Collection<Course> result = courseRepository.findAvailable();
 		return result;
 	}
 }

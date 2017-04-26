@@ -27,4 +27,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
 	@Query("select c from Course c where c.academy=?1")
 	Collection<Course> findByCreator(Academy academy);
+
+	@Query("select  c from Course c where c.available = true")
+	Collection<Course> findAvailable();
 }
