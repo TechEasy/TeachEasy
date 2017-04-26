@@ -17,6 +17,8 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<div class="col-md-3"></div>
+<div class="col-md-6">
 <form:form action="socialIdentity/edit.do" modelAttribute="socialIdentity">
 
 	<form:hidden path="id"/>
@@ -25,9 +27,12 @@
 	<acme:textbox code="RegisterSocialIdentity.socialNetworkHeader" path="socialNetwork"/>
 	<acme:textbox code="RegisterSocialIdentity.profileUrlHeader" path="profileUrl"/>
 	
-	
-	<acme:submit name="save" code="RegisterSocialIdentity.save"/>
-	<acme:cancel url="socialIdentity/list.do" code="RegisterSocialIdentity.cancel"/>
-	<br/>
+	<div class="row">
+		<div class="col-md-3"><acme:cancel url="socialIdentity/list.do" code="RegisterSocialIdentity.cancel"/></div>
+		<div class="col-md-3"></div>
+		<div class="col-md-6"><acme:submit name="save" code="RegisterSocialIdentity.save"/></div>
+	</div>
 
 </form:form>
+</div>
+<div class="col-md-3"></div>

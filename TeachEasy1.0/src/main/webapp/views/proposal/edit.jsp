@@ -86,14 +86,13 @@
 	<!-- Buttons -->
 	
 	<div class="row">
-	<div class="col-md-6 ">
-		<input class="btn btn-success btn-block" type="submit" name="save" value="<spring:message code="proposal.save" />">
-	</div>
-	<div class="col-md-3"></div>
-	<div class="col-md-3">
+	<div class="col-md-3 ">
 		<input class="btn btn-default btn-block" type="button" value="<spring:message code="proposal.cancel"/>" onclick="javascript: relativeRedir('proposal/teacher/list.do')"/>
 	</div>
 	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<input class="btn btn-success btn-block" type="submit" name="save" value="<spring:message code="proposal.save" />">
+	</div>
 	</div>
 	
 </form:form>

@@ -16,6 +16,8 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<div class="col-md-12">
 <h2><spring:message code="lopd.title" /></h2>
 
 <p><spring:message code="lopd.text" /></p>
+</div>

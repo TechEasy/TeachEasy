@@ -22,6 +22,7 @@
 <div class="row">
 <div class="col-md-12">
 <h3><spring:message code="teachers"/></h3>
+<div class="table-responsive">
 <table class="table table-striped">
 	<thead>
       <tr>
@@ -61,10 +62,12 @@
 </table>
 </div>
 </div>
+</div>
 
 <div class="row">
 <div class="col-md-12">
 <h3><spring:message code="academies"/></h3>
+<div class="table-responsive">
 <table class="table table-striped">
 	<thead>
       <tr>
@@ -102,6 +105,7 @@
     </c:forEach>
     </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>

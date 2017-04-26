@@ -18,7 +18,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-
+<div class="col-md-3"></div>
+<div class="col-md-6">
 <form:form action = "comment/edit.do" modelAttribute="comment">
 	
 	<form:hidden path="id"/>
@@ -28,17 +29,15 @@
 	<form:hidden path="commentable"/>
 				
 	<acme:textbox code="comments.title" path="title"/>	
-	<acme:textbox code="comments.text" path="text"/>
+	<acme:textarea code="comments.text" path="text"/>
 	<acme:textbox code="comments.stars" path="stars"/>
 			
-	<br/>
-
-	<!-- Buttons -->
-	<acme:submit name="save" code="comments.save"/>
-	&nbsp; 
-	<acme:cancel url="welcome/index.do" code="comments.cancel"/>
-		
-	<br/>
-	<br/>
+	<div class="row">
+		<div class="col-md-3"><acme:cancel url="welcome/index.do" code="comments.cancel"/></div>
+		<div class="col-md-3"></div>
+		<div class="col-md-6"><acme:submit name="save" code="comments.save"/></div>
+	</div>
 
 </form:form>
+</div>
+<div class="col-md-3"></div>

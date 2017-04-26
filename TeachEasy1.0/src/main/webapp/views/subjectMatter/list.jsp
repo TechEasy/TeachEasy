@@ -29,6 +29,7 @@
 	<div class="row">
 		<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
 		<div class="col-md-12">
+		<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 		      <tr>
@@ -46,10 +47,10 @@
 		        <security:authorize access="hasRole('ADMIN')">
 							<jstl:if test="${!subjectMatter.validated}">
 								<a class="btn btn-success" href="javascript: window.location.replace('subjectMatter/administrator/accept.do?subjectMatterId=${subjectMatter.id}')"><spring:message code="subjectMatter.accept" /></a>
-								<br/>
+								
 								
 								<a class="btn btn-danger" href="javascript: window.location.replace('subjectMatter/administrator/deny.do?subjectMatterId=${subjectMatter.id}')"><spring:message code="subjectMatter.deny" /></a>
-								<br/>
+								
 							</jstl:if>
 					</security:authorize>
 		        </td>
@@ -57,6 +58,7 @@
 		    </c:forEach>
 		    </tbody>
 		</table>
+		</div>
 		</div>
 		</security:authorize>
 	</div>
