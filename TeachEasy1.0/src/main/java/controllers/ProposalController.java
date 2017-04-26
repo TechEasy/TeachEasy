@@ -29,18 +29,18 @@ public class ProposalController extends AbstractController {
 	public ModelAndView browse() {
 		ModelAndView result;
 		Collection<Proposal> proposals;
-		proposals = proposalService.findAll();
+		proposals = proposalService.findAvailable();
 		result = new ModelAndView("proposal/list");
 		result.addObject("proposals", proposals);
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Proposal> proposals;
-		proposals = proposalService.findAll();
+		proposals = proposalService.findAvailable();
 		result = new ModelAndView("proposal/list");
 		result.addObject("proposals", proposals);
 

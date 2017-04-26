@@ -76,6 +76,7 @@ public class ProposalService {
 	public Collection<Proposal> findByFinder(Finder finder) {
 		Collection<Proposal> result = new ArrayList<Proposal>();
 		Collection<Proposal> aux;
+		Collection<Proposal> aux2 = new ArrayList<Proposal>();
 		if (finder.getKeyword() == null && finder.getMatter() == null) {
 			aux = proposalRepository.findByCity(finder.getCity());
 		} else if (finder.getMatter() == null) {
@@ -106,11 +107,21 @@ public class ProposalService {
 				}
 			}
 		}
-		return result;
+		for(Proposal p:result){
+			if(p.getAvailable()==true){
+				aux2.add(p);
+			}
+		}
+		return aux2;
 
 	}
 	public Collection<Proposal> findByCreator(Teacher teacher) {
 		Collection<Proposal> result = proposalRepository.findByCreator(teacher);
+		return result;
+	}
+
+	public Collection<Proposal> findAvailable() {
+		Collection<Proposal> result = proposalRepository.findAvailable();
 		return result;
 	}
 }
