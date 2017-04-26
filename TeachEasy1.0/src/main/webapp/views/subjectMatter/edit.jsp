@@ -26,17 +26,24 @@
 </style>
 
 <security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
-
+<div class="col-md-3"></div>
+<div class="col-md-6">
 	<form:form	action="subjectMatter/edit.do"	modelAttribute="subjectMatter"> 
-
+			
 			<acme:textbox code="subjectMatter.name" path="name"/>
 			<acme:textbox code="subjectMatter.description" path="description"/>
 
+			<div class="row">
+				<div class="col-md-3"><acme:cancel code="subjectMatter.cancel" url="subjectMatter/list.do"/></div>
+				<div class="col-md-3"></div>
+				<div class="col-md-6"><acme:submit name="save" code="subjectMatter.save"/></div>
+						
 			
-			<acme:submit name="save" code="subjectMatter.save"/>
-			<acme:cancel code="subjectMatter.cancel" url="subjectMatter/list.do"/>
+			</div>
+
 		
 	</form:form>
-
+</div>
+<div class="col-md-3"></div>
 </security:authorize>
 

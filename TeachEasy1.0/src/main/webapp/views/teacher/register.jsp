@@ -93,7 +93,7 @@
 </div>
 </jstl:if>
 
-<jstl:if test="${studentForm.id!=0}">
+<jstl:if test="${teacherForm.id!=0}">
 <div class="col-md-12">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
