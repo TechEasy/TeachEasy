@@ -54,7 +54,7 @@
 					<h4>${academy.address}</h4>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row border-bottom">
 				<div class="col-md-4 col-xs-4">
 					<h4><strong><spring:message code="academy.description"/>: </strong></h4>
 				</div>
@@ -62,6 +62,27 @@
 					<h4>${academy.description}</h4>
 				</div>
 			</div>	
+			<security:authorize access="hasRole('ACADEMY')">
+			<jstl:if test="${pageContext.request.userPrincipal.name==academy.userAccount.username }">
+			<div class="row border-bottom">
+				<div class="col-md-4 col-xs-4">
+					<h4><strong><spring:message code="academy.paypalMail"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 col-xs-8 text-right">
+					<h4>${academy.paypalMail}</h4>
+				</div>
+			</div>	
+			
+			<div class="row">
+				<div class="col-md-4 col-xs-4">
+					<h4><strong><spring:message code="academy.feeAmount"/>: </strong></h4>
+				</div>
+				<div class="col-md-8 col-xs-8 text-right">
+					<h4>${academy.feeAmount}</h4>
+				</div>
+			</div>	
+			</jstl:if>
+			</security:authorize>
 		</div>
 		<div class="col-md-1"></div>	
 	</div>
