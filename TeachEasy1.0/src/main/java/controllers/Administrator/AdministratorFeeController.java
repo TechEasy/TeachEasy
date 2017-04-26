@@ -16,13 +16,13 @@ import domain.Fee;
 
 @Controller
 @RequestMapping("/administrator/fee")
-public class AdministratorFee extends AbstractController {
+public class AdministratorFeeController extends AbstractController {
 
 	@Autowired
 	private FeeService	feeService;
 
 
-	public AdministratorFee() {
+	public AdministratorFeeController() {
 		super();
 
 	}

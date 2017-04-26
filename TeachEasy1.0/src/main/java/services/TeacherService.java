@@ -231,4 +231,7 @@ public class TeacherService {
 		return t;
 	}
 
+	public Collection<Teacher> findTeachersToPay(){
+		return teacherRepository.findTeachersToPay();
+	}
 }

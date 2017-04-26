@@ -221,4 +221,8 @@ public class AcademyService {
 		return a;
 	}
 
+	public Collection<Academy> findAcademysToPay(){
+		return academyRepository.findAcademysToPay();
+	}
+	
 }
