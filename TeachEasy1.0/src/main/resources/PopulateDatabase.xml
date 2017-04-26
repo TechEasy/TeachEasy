@@ -614,6 +614,7 @@
 		<property name="rate" value="8"/>
 		<property name="teacher" ref="teacher1"/>
 		<property name="subjectMatter" ref="subjectMatter1"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="proposal2" class="domain.Proposal">
@@ -623,6 +624,7 @@
 		<property name="rate" value="10"/>
 		<property name="teacher" ref="teacher1"/>
 		<property name="subjectMatter" ref="subjectMatter2"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="proposal3" class="domain.Proposal">
@@ -632,6 +634,7 @@
 		<property name="rate" value="6"/>
 		<property name="teacher" ref="teacher2"/>
 		<property name="subjectMatter" ref="subjectMatter3"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="proposal4" class="domain.Proposal">
@@ -641,6 +644,7 @@
 		<property name="rate" value="12"/>
 		<property name="teacher" ref="teacher2"/>
 		<property name="subjectMatter" ref="subjectMatter7"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="proposal5" class="domain.Proposal">
@@ -650,6 +654,7 @@
 		<property name="rate" value="10"/>
 		<property name="teacher" ref="teacher3"/>
 		<property name="subjectMatter" ref="subjectMatter4"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="proposal6" class="domain.Proposal">
@@ -659,6 +664,7 @@
 		<property name="rate" value="11"/>
 		<property name="teacher" ref="teacher3"/>
 		<property name="subjectMatter" ref="subjectMatter5"/>
+		<property name="available" value="true" />
 	</bean>
 	<!-- Course -->
 	
@@ -671,6 +677,7 @@
 		<property name="level" value="4º ESO"/>
 		<property name="academy" ref="academy1"/>
 		<property name="subjectMatter" ref="subjectMatter10"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="course2" class="domain.Course">
@@ -682,6 +689,7 @@
 		<property name="level" value="Bachillerato"/>
 		<property name="academy" ref="academy1"/>
 		<property name="subjectMatter" ref="subjectMatter6"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="course3" class="domain.Course">
@@ -693,6 +701,7 @@
 		<property name="level" value="Bachillerato"/>
 		<property name="academy" ref="academy2"/>
 		<property name="subjectMatter" ref="subjectMatter9"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="course4" class="domain.Course">
@@ -704,6 +713,7 @@
 		<property name="level" value="B2"/>
 		<property name="academy" ref="academy3"/>
 		<property name="subjectMatter" ref="subjectMatter1"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<bean id="course5" class="domain.Course">
@@ -715,6 +725,7 @@
 		<property name="level" value="B1"/>
 		<property name="academy" ref="academy3"/>
 		<property name="subjectMatter" ref="subjectMatter2"/>
+		<property name="available" value="true" />
 	</bean>
 	
 	<!-- Requests -->

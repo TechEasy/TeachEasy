@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.MatterService;
 import services.ProposalService;
+import services.RClassService;
 import services.TeacherService;
 import controllers.AbstractController;
 import domain.Proposal;
@@ -31,6 +32,9 @@ public class TeacherProposalController extends AbstractController {
 
 	@Autowired
 	private ProposalService	proposalService;
+
+	@Autowired
+	private RClassService	rClassService;
 
 	@Autowired
 	private TeacherService	teacherService;
@@ -113,6 +117,21 @@ public class TeacherProposalController extends AbstractController {
 			result = new ModelAndView("redirect:list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(proposal, "proposal.commit.error");
+		}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/enableDisable", method = RequestMethod.GET)
+	public ModelAndView enableDisable(@RequestParam int proposalId) {
+		ModelAndView result;
+		Proposal p = proposalService.findOne(proposalId);
+		try {
+			rClassService.enableDisable(p);
+			result = list();
+		} catch (Throwable oops) {
+			result = list();
+			result.addObject("message", "proposal.commit.error");
 		}
 
 		return result;

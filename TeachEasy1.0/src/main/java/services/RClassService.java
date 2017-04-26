@@ -68,4 +68,13 @@ public class RClassService {
 	public void delete(Rclass rclass) {
 		rclassRepository.delete(rclass);
 	}
+
+	public void enableDisable(Rclass rclass) {
+		if (rclass.getAvailable() == true) {
+			rclass.setAvailable(false);
+		} else {
+			rclass.setAvailable(true);
+		}
+
+	}
 }

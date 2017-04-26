@@ -26,6 +26,7 @@
 	<form:hidden path="version"/>
 	<form:hidden path="requests"/>
 	<form:hidden path="teacher"/>
+	<form:hidden path="available"/>
 	
 		<div class="form-group">
 			<form:label path="title" class="control-label">

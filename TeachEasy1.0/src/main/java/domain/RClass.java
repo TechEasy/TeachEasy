@@ -34,6 +34,7 @@ public class Rclass extends DomainEntity {
 	private Date	createMoment;
 	private Date	updateMoment;
 	private Double	rate;
+	private Boolean	available;
 
 
 	@NotBlank
@@ -71,6 +72,14 @@ public class Rclass extends DomainEntity {
 	}
 	public void setRate(Double rate) {
 		this.rate = rate;
+	}
+
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
 	}
 
 

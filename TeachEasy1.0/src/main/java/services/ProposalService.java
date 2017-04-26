@@ -44,6 +44,7 @@ public class ProposalService {
 		result.setTeacher(t);
 		result.setCreateMoment(new Date());
 		result.setUpdateMoment(new Date());
+		result.setAvailable(true);
 		return result;
 	}
 

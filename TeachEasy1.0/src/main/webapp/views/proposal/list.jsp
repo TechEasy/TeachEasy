@@ -55,6 +55,17 @@
 							</security:authorize>
 						</div>
 					</div>
+					<security:authorize access="hasRole('TEACHER')">
+					
+							<jstl:if test="${proposal.available == false}">
+								<a class="btn btn-primary" href="proposal/teacher/enableDisable.do?proposalId=${proposal.id}"><spring:message code="proposal.enable" /></a>
+							</jstl:if>
+							<jstl:if test="${proposal.available == true}">
+								<a class="btn btn-primary" href="proposal/teacher/enableDisable.do?proposalId=${proposal.id}"><spring:message code="proposal.disable" /></a>
+							</jstl:if>
+						
+					</security:authorize>
+					
 				</div>
 			</div>
 		</div>
