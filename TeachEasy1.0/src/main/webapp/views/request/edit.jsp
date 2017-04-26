@@ -54,7 +54,7 @@
             </div>				
 		</div>
 	</div>
-	</jstl:if>
+	
 	<div class="row">
 		<div class="col-md-6">
 			<acme:submit name="save" code="request.save"/>			
@@ -66,7 +66,18 @@
 		
 		</div>
 	</div>
-	<br/>
+	</jstl:if>
+	<jstl:if test="${tipo=='course'}">
+	<div class="row">
+		<div class="col-md-6">
+			<acme:submit name="save" code="request.save"/>			
+		</div>
+		<div class="col-md-6">
+			<acme:cancel url="proposal/list.do" code="request.cancel"/>			
+		</div>
+	</div>
+	</jstl:if>
+
 
 </form:form>
 </div>

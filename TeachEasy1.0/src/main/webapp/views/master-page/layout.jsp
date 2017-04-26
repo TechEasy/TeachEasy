@@ -89,7 +89,7 @@
 				</h1>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row min-height">
 		<tiles:insertAttribute name="body" />	
 		<jstl:if test="${message != null}">
 			<br />

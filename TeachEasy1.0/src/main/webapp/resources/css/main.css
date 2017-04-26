@@ -174,3 +174,8 @@
 	font-weight:bold;
 	border:0px;
 }
+
+.min-height{
+	
+	min-height:500px;
+}
