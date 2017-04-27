@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="proposal/list" extends="master.page">	
-		<put-attribute name="title" value="Proposiciones" />
+		<put-attribute name="title" value="Clases" />
 		<put-attribute name="body" value="/views/proposal/list.jsp" />
 	</definition>
 
 	<definition name="proposal/edit" extends="master.page">	
-		<put-attribute name="title" value="Editar Proposal" />
+		<put-attribute name="title" value="Editar clase" />
 		<put-attribute name="body" value="/views/proposal/edit.jsp" />
 	</definition>
 	

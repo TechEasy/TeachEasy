@@ -22,12 +22,12 @@
 	</definition>
 	
 	<definition name="student/display" extends="master.page">	
-		<put-attribute name="title" value="List a student" />
+		<put-attribute name="title" value="Display student" />
 		<put-attribute name="body" value="/views/student/display.jsp" />
 	</definition>
 	
 	<definition name="student/edit" extends="master.page">	
-		<put-attribute name="title" value="Edit Personal" />
+		<put-attribute name="title" value="Edit Personal Data" />
 		<put-attribute name="body" value="/views/student/register.jsp" />
 	</definition>
 		

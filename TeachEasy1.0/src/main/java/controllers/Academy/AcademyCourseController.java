@@ -104,8 +104,7 @@ public class AcademyCourseController extends AbstractController {
 		} else {
 
 			try {
-				Course c;
-				c = courseService.save(course);
+				courseService.save(course);
 				result = new ModelAndView("redirect:listCourse.do");
 
 			} catch (Throwable oops) {

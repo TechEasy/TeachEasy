@@ -47,10 +47,10 @@
 	   <input type="hidden" name="cmd" value="_xclick">
 	   <input type="hidden" name="business" value="${teacher.paypalMail}">
 	   <input type="hidden" name="currency_code" value="EUR">
-	   <input type="hidden" name="item_name" value="Clase">
+	   <input type="hidden" name="item_name" value="Pago mensual">
 	   <input type="hidden" name="amount" value="${teacher.feeAmount}">
-	   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/administrator/teacherPay.do?teacherId=${row.id}">
-	   <input type='hidden' name='cancel' value="http://localhost:8080/TeachEasy/administrator/listToPay.do">
+	   <input type='hidden' name='return' value="http://teach-easy.jelastic.cloudhosted.es/administrator/teacherPay.do?teacherId=${teacher.id}">
+	   <input type='hidden' name='cancel' value="http://teach-easy.jelastic.cloudhosted.es/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>
@@ -92,10 +92,10 @@
 	   <input type="hidden" name="cmd" value="_xclick">
 	   <input type="hidden" name="business" value="${academy.paypalMail}">
 	   <input type="hidden" name="currency_code" value="EUR">
-	   <input type="hidden" name="item_name" value="Clase">
+	   <input type="hidden" name="item_name" value="Pago mensual">
 	   <input type="hidden" name="amount" value="${academy.feeAmount}">
-	   <input type='hidden' name='return' value="http://localhost:8080/TeachEasy/administrator/teacherPay.do?teacherId=${row.id}">
-	   <input type='hidden' name='cancel' value="http://localhost:8080/TeachEasy/administrator/listToPay.do">
+	   <input type='hidden' name='return' value="http://teach-easy.jelastic.cloudhosted.es/administrator/academyPay.do?academyId=${academy.id}">
+	   <input type='hidden' name='cancel' value="http://teach-easy.jelastic.cloudhosted.es/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>
