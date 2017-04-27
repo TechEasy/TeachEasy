@@ -30,7 +30,11 @@
 				
 	<acme:textbox code="comments.title" path="title"/>	
 	<acme:textarea code="comments.text" path="text"/>
-	<acme:textbox code="comments.stars" path="stars"/>
+	
+	<form:select path="stars" class="form-control">
+			<form:options items="${stars}" />
+		</form:select>
+	<form:errors cssClass="error" path="stars" />
 			
 	<div class="row">
 		<div class="col-md-3"><acme:cancel url="welcome/index.do" code="comments.cancel"/></div>

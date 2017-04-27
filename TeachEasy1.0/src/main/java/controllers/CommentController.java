@@ -1,6 +1,7 @@
 
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -8,7 +9,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +34,9 @@ public class CommentController extends AbstractController {
 
 	@Autowired
 	private CommentService		commentService;
-	
+
 	@Autowired
-	private TeacherService teacherService;
+	private TeacherService		teacherService;
 	@Autowired
 	private StudentService		studentService;
 
@@ -44,10 +44,12 @@ public class CommentController extends AbstractController {
 	private CommentableService	commentableService;
 
 	@Autowired
-	private AcademyService academyService;
-	
+	private AcademyService		academyService;
+
 	@Autowired
-	private Validator validator;
+	private Validator			validator;
+
+
 	// Constructors -----------------------------------------------------------
 
 	public CommentController() {
@@ -107,18 +109,17 @@ public class CommentController extends AbstractController {
 				commentService.save(comment);
 				Teacher teacher;
 				Academy academy;
-				if(teacherService.findOne(comment.getCommentable().getId())!=null){
-					teacher=teacherService.findOne(comment.getCommentable().getId());
+				if (teacherService.findOne(comment.getCommentable().getId()) != null) {
+					teacher = teacherService.findOne(comment.getCommentable().getId());
 					teacherService.updateAvgStars(teacher);
 					result = new ModelAndView("redirect:../teacher/displayById.do?id=" + teacher.getId());
-					
-				}else{
-					academy=academyService.findOne(comment.getCommentable().getId());
+
+				} else {
+					academy = academyService.findOne(comment.getCommentable().getId());
 					academyService.updateAvgStars(academy);
 					result = new ModelAndView("redirect:../academy/displayById.do?id=" + academy.getId());
 				}
-				
-				
+
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, "comment.commit.error");
 			}
@@ -138,9 +139,17 @@ public class CommentController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Comment comment, String message) {
 
 		ModelAndView result;
+		Collection<Integer> stars = new ArrayList<Integer>();
+		stars.add(0);
+		stars.add(1);
+		stars.add(2);
+		stars.add(3);
+		stars.add(4);
+		stars.add(5);
 
 		result = new ModelAndView("comment/edit");
 		result.addObject("comment", comment);
+		result.addObject("stars", stars);
 		result.addObject("message", message);
 
 		return result;
