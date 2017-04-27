@@ -66,7 +66,7 @@ CREATE TABLE `academy` (
 
 LOCK TABLES `academy` WRITE;
 /*!40000 ALTER TABLE `academy` DISABLE KEYS */;
-INSERT INTO `academy` VALUES (37,0,'Calle General Prim',3,'CIF152','Sevilla','Somos una academia especializada en Matematicas',200,'Academia de los numeros','academiaNumeros@gmail.com','https://pbs.twimg.com/profile_images/664478201725526016/tno78YbX.jpg',8),(38,0,'Calle Botica',5,'CIF45698','Granada','Academia de dibujo',560,'EzDraw','ezdraw@gmail.com','http://www.ediciona.com/portafolio/image/0/4/2/6/logo_llapis_i_paper_6240.jpg',9),(39,0,'Calle Maritima',4.2,'CIF55220','Cádiz','Academia de idiomas',450,'Languages Academy','academiaidiomas@gmail.com','http://www.srsanchez.es/wp-content/uploads/2013/12/logo-global-languaje.jpg',10);
+INSERT INTO `academy` VALUES (21,0,'Calle General Prim',3,'CIF152','Sevilla','Somos una academia especializada en Matematicas',200,'Academia de los numeros','academiaNumeros@gmail.com','https://pbs.twimg.com/profile_images/664478201725526016/tno78YbX.jpg',8),(22,0,'Calle Botica',5,'CIF45698','Granada','Academia de dibujo',560,'EzDraw','ezdraw@gmail.com','http://www.ediciona.com/portafolio/image/0/4/2/6/logo_llapis_i_paper_6240.jpg',9),(23,0,'Calle Maritima',4.2,'CIF55220','Cádiz','Academia de idiomas',450,'Languages Academy','academiaidiomas@gmail.com','http://www.srsanchez.es/wp-content/uploads/2013/12/logo-global-languaje.jpg',10);
 /*!40000 ALTER TABLE `academy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `administrator` (
 
 LOCK TABLES `administrator` WRITE;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES (27,0,'Calle Sanlucar la Mayor Bloque 7','Sevilla','1982-04-03 00:00:00','simantant@gmail.com','Simón','654123852','http://stawamuschiefpark.com/wp-content/uploads/2014/12/avatar-300x300.png','Antón Antunez',1);
+INSERT INTO `administrator` VALUES (11,0,'Calle Sanlucar la Mayor Bloque 7','Sevilla','1982-04-03 00:00:00','simantant@gmail.com','Simón','654123852','http://stawamuschiefpark.com/wp-content/uploads/2014/12/avatar-300x300.png','Antón Antunez',1);
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (80,0,'2017-02-04 20:00:00',3,'Podría asistir a otra hora?','Comentario sobre teacher1',28,34),(81,0,'2017-03-04 20:00:00',3,'Hola teacher2','Comentario sobre teacher2',30,34),(82,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,34),(83,0,'2017-11-04 20:00:00',5,'Gran clase, me sirvió de mucho','Comentario sobre academy2',38,35),(84,0,'2017-02-04 20:00:00',5,'Nice academy. Guess im improving my english level','Comentario sobre academy3',39,36),(85,0,'2017-03-04 20:00:00',4,'Hola teacher3, gracias por la clase','Comentario sobre teacher3',32,34),(86,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,35),(87,0,'2017-11-04 20:00:00',5,'Muy buena academia de numeros','Comentario sobre academy1',37,34);
+INSERT INTO `comment` VALUES (64,0,'2017-02-04 20:00:00',3,'Podría asistir a otra hora?','Comentario sobre teacher1',12,18),(65,0,'2017-03-04 20:00:00',3,'Hola teacher2','Comentario sobre teacher2',14,18),(66,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',21,18),(67,0,'2017-11-04 20:00:00',5,'Gran clase, me sirvió de mucho','Comentario sobre academy2',22,19),(68,0,'2017-02-04 20:00:00',5,'Nice academy. Guess im improving my english level','Comentario sobre academy3',23,20),(69,0,'2017-03-04 20:00:00',4,'Hola teacher3, gracias por la clase','Comentario sobre teacher3',16,18),(70,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',21,19),(71,0,'2017-11-04 20:00:00',5,'Muy buena academia de numeros','Comentario sobre academy1',21,18);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (60,0,'','2017-10-04 20:00:00',120,'Matematicas','2017-10-04 21:00:00',53,2,'4º ESO',37),(61,0,'','2017-05-05 20:00:00',160,'Algebra','2017-05-05 21:00:00',49,2,'Bachillerato',37),(62,0,'','2017-05-05 20:00:00',200,'Dibujo','2017-05-05 21:00:00',52,3,'Bachillerato',38),(63,0,'','2017-05-05 20:00:00',250,'Ingles','2017-05-05 21:00:00',44,3,'B2',39),(64,0,'','2017-05-05 20:00:00',300,'Frances','2017-05-05 21:00:00',45,4,'B1',39);
+INSERT INTO `course` VALUES (44,0,'','2017-10-04 20:00:00',120,'Matematicas','2017-10-04 21:00:00',37,2,'4º ESO',21),(45,0,'','2017-05-05 20:00:00',160,'Algebra','2017-05-05 21:00:00',33,2,'Bachillerato',21),(46,0,'','2017-05-05 20:00:00',200,'Dibujo','2017-05-05 21:00:00',36,3,'Bachillerato',22),(47,0,'','2017-05-05 20:00:00',250,'Ingles','2017-05-05 21:00:00',28,3,'B2',23),(48,0,'','2017-05-05 20:00:00',300,'Frances','2017-05-05 21:00:00',29,4,'B1',23);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,60 +231,8 @@ CREATE TABLE `curricula` (
 
 LOCK TABLES `curricula` WRITE;
 /*!40000 ALTER TABLE `curricula` DISABLE KEYS */;
-INSERT INTO `curricula` VALUES (29,0,'He cursado Ingeniería Informática del Software en Sevilla','He estado trabjando 10 años en Everis','Me gusta leer comics'),(31,0,'Tengo c1 en Inglés y Francés','Trabajando 10 años en un hotel de Inglaterra','Me gustan muchos los niños'),(33,0,'He cursado Educación Infantil','He estado trabjando en el colegio Joaquín García','Me gustan los videojuegos');
+INSERT INTO `curricula` VALUES (13,0,'He cursado Ingeniería Informática del Software en Sevilla','He estado trabjando 10 años en Everis','Me gusta leer comics'),(15,0,'Tengo c1 en Inglés y Francés','Trabajando 10 años en un hotel de Inglaterra','Me gustan muchos los niños'),(17,0,'He cursado Educación Infantil','He estado trabjando en el colegio Joaquín García','Me gustan los videojuegos');
 /*!40000 ALTER TABLE `curricula` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `day`
---
-
-DROP TABLE IF EXISTS `day`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `day` (
-  `id` int(11) NOT NULL,
-  `version` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `day`
---
-
-LOCK TABLES `day` WRITE;
-/*!40000 ALTER TABLE `day` DISABLE KEYS */;
-INSERT INTO `day` VALUES (19,0,'Lunes'),(20,0,'Martes'),(21,0,'Miercoles'),(22,0,'Jueves'),(23,0,'Viernes');
-/*!40000 ALTER TABLE `day` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `day_worktime`
---
-
-DROP TABLE IF EXISTS `day_worktime`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `day_worktime` (
-  `Day_id` int(11) NOT NULL,
-  `workTimes_id` int(11) NOT NULL,
-  UNIQUE KEY `UK_pt6mca0aytj5k30oskvbu2d2s` (`workTimes_id`),
-  KEY `FK_96moebmcciph8o6n1pjoreqx5` (`Day_id`),
-  CONSTRAINT `FK_96moebmcciph8o6n1pjoreqx5` FOREIGN KEY (`Day_id`) REFERENCES `day` (`id`),
-  CONSTRAINT `FK_pt6mca0aytj5k30oskvbu2d2s` FOREIGN KEY (`workTimes_id`) REFERENCES `worktime` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `day_worktime`
---
-
-LOCK TABLES `day_worktime` WRITE;
-/*!40000 ALTER TABLE `day_worktime` DISABLE KEYS */;
-INSERT INTO `day_worktime` VALUES (19,11),(19,12),(20,13),(20,14),(21,15),(21,16),(22,17),(23,18);
-/*!40000 ALTER TABLE `day_worktime` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -309,7 +257,7 @@ CREATE TABLE `fee` (
 
 LOCK TABLES `fee` WRITE;
 /*!40000 ALTER TABLE `fee` DISABLE KEYS */;
-INSERT INTO `fee` VALUES (88,0,7.5,8.5);
+INSERT INTO `fee` VALUES (72,0,7.5,8.5);
 /*!40000 ALTER TABLE `fee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,7 +286,7 @@ CREATE TABLE `finder` (
 
 LOCK TABLES `finder` WRITE;
 /*!40000 ALTER TABLE `finder` DISABLE KEYS */;
-INSERT INTO `finder` VALUES (77,0,'Sevilla','english','English',20,10),(78,0,'Sevilla','english','English',20,10),(79,0,'Sevilla','english','English',20,10);
+INSERT INTO `finder` VALUES (61,0,'Sevilla','english','English',20,10),(62,0,'Sevilla','english','English',20,10),(63,0,'Sevilla','english','English',20,10);
 /*!40000 ALTER TABLE `finder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,7 +363,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
-INSERT INTO `invoice` VALUES (72,0,'2017-03-03 16:00:00','Factura de la clase: Clases de Inglés','Factura de Antonio Iñigo Jaén',150,'ES-78451578'),(73,0,'2016-12-12 16:00:00','Factura de la clase: Clases de Francés','Factura de Antonio Iñigo Jaén',15,'ES-78451578'),(74,0,'2016-10-10 16:00:00','Factura de la clase: Clases de Programacion','Factura de Juan Mendizábal Millán',30,'ES-78451578'),(75,0,'2016-11-10 16:00:00','Factura de la clase: Clases de HTML y CSS','Factura de Antonio Iñigo Jaén',40,'ES-78451578'),(76,0,'2016-12-10 16:00:00','Factura de la clase: Clases de Fisica','Factura de Juan Mendizábal Millán',50,'ES-78451578');
+INSERT INTO `invoice` VALUES (56,0,'2017-03-03 16:00:00','Factura de la clase: Clases de Inglés','Factura de Antonio Iñigo Jaén',150,'ES-78451578'),(57,0,'2016-12-12 16:00:00','Factura de la clase: Clases de Francés','Factura de Antonio Iñigo Jaén',15,'ES-78451578'),(58,0,'2016-10-10 16:00:00','Factura de la clase: Clases de Programacion','Factura de Juan Mendizábal Millán',30,'ES-78451578'),(59,0,'2016-11-10 16:00:00','Factura de la clase: Clases de HTML y CSS','Factura de Antonio Iñigo Jaén',40,'ES-78451578'),(60,0,'2016-12-10 16:00:00','Factura de la clase: Clases de Fisica','Factura de Juan Mendizábal Millán',50,'ES-78451578');
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,7 +398,7 @@ CREATE TABLE `proposal` (
 
 LOCK TABLES `proposal` WRITE;
 /*!40000 ALTER TABLE `proposal` DISABLE KEYS */;
-INSERT INTO `proposal` VALUES (54,0,'','2017-01-04 20:00:00',8,'Clases de Inglés','2017-01-04 21:00:00',44,28),(55,0,'','2017-12-04 20:00:00',10,'Clases de Francés','2017-12-04 21:00:00',45,28),(56,0,'','2017-03-04 20:00:00',6,'Clases de Programacion','2017-03-04 21:00:00',46,30),(57,0,'','2017-12-04 20:00:00',12,'Clases de HTML y CSS','2017-12-04 21:00:00',50,30),(58,0,'','2017-12-04 20:00:00',10,'Clases de Fisica','2017-12-04 21:00:00',47,32),(59,0,'','2017-12-04 20:00:00',11,'Clases de Quimica','2017-12-04 21:00:00',48,32);
+INSERT INTO `proposal` VALUES (38,0,'','2017-01-04 20:00:00',8,'Clases de Inglés','2017-01-04 21:00:00',28,12),(39,0,'','2017-12-04 20:00:00',10,'Clases de Francés','2017-12-04 21:00:00',29,12),(40,0,'','2017-03-04 20:00:00',6,'Clases de Programacion','2017-03-04 21:00:00',30,14),(41,0,'','2017-12-04 20:00:00',12,'Clases de HTML y CSS','2017-12-04 21:00:00',34,14),(42,0,'','2017-12-04 20:00:00',10,'Clases de Fisica','2017-12-04 21:00:00',31,16),(43,0,'','2017-12-04 20:00:00',11,'Clases de Quimica','2017-12-04 21:00:00',32,16);
 /*!40000 ALTER TABLE `proposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,7 +464,7 @@ CREATE TABLE `request` (
 
 LOCK TABLES `request` WRITE;
 /*!40000 ALTER TABLE `request` DISABLE KEYS */;
-INSERT INTO `request` VALUES (65,1,'04/04/2017 15:00','04/04/2017 16:00','','ACCEPTED',72,54,34),(66,0,NULL,NULL,'\0','PENDING',NULL,60,35),(67,0,'15/03/2017 15:00','15/04/2017 16:00','\0','DENIED',NULL,54,35),(68,1,'05/04/2017 15:00','05/04/2017 16:00','','ACCEPTED',73,55,34),(69,1,'06/04/2017 15:00','06/04/2017 16:00','','ACCEPTED',74,56,35),(70,1,'04/03/2017 15:00','04/03/2017 16:00','','ACCEPTED',75,57,34),(71,1,'07/05/2017 15:00','07/05/2017 17:00','','ACCEPTED',76,58,35);
+INSERT INTO `request` VALUES (49,1,'04/04/2017 15:00','04/04/2017 16:00','','ACCEPTED',56,38,18),(50,0,NULL,NULL,'\0','PENDING',NULL,44,19),(51,0,'15/03/2017 15:00','15/04/2017 16:00','\0','DENIED',NULL,38,19),(52,1,'05/04/2017 15:00','05/04/2017 16:00','','ACCEPTED',57,39,18),(53,1,'06/04/2017 15:00','06/04/2017 16:00','','ACCEPTED',58,40,19),(54,1,'04/03/2017 15:00','04/03/2017 16:00','','ACCEPTED',59,41,18),(55,1,'07/05/2017 15:00','07/05/2017 17:00','','ACCEPTED',60,42,19);
 /*!40000 ALTER TABLE `request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,7 +495,7 @@ CREATE TABLE `socialidentity` (
 
 LOCK TABLES `socialidentity` WRITE;
 /*!40000 ALTER TABLE `socialidentity` DISABLE KEYS */;
-INSERT INTO `socialidentity` VALUES (40,0,'admin1','https://twitter.com/admin1','Twitter',NULL,27),(41,0,'student1','https://twitter.com/student1','Twitter',NULL,34),(42,0,'teacher1','https://twitter.com/teacher1','Twitter',NULL,28),(43,0,'academyNumber1','https://twitter.com/academy1','Twitter',37,NULL);
+INSERT INTO `socialidentity` VALUES (24,0,'admin1','https://twitter.com/admin1','Twitter',NULL,11),(25,0,'student1','https://twitter.com/student1','Twitter',NULL,18),(26,0,'teacher1','https://twitter.com/teacher1','Twitter',NULL,12),(27,0,'academyNumber1','https://twitter.com/academy1','Twitter',21,NULL);
 /*!40000 ALTER TABLE `socialidentity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -585,7 +533,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (34,1,'Calle Silos','Sevilla','1994-12-01 00:00:00','antiñijae@gmail.com','Antonio','654126547','https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png','Iñigo Jaén',5,77),(35,1,'Marqués de Valdecañas','Málaga','2000-09-03 00:00:00','juamenmil@gmail.com','Juan','694123447','https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png','Mendizábal Millán',6,78),(36,1,'Calle Malasmañanas','Sevilla','1999-04-03 00:00:00','fraramque@gmail.com','Francisco','654126547','https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png','Ramirez Quero',7,79);
+INSERT INTO `student` VALUES (18,1,'Calle Silos','Sevilla','1994-12-01 00:00:00','antiñijae@gmail.com','Antonio','654126547','https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png','Iñigo Jaén',5,61),(19,1,'Marqués de Valdecañas','Málaga','2000-09-03 00:00:00','juamenmil@gmail.com','Juan','694123447','https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png','Mendizábal Millán',6,62),(20,1,'Calle Malasmañanas','Sevilla','1999-04-03 00:00:00','fraramque@gmail.com','Francisco','654126547','https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png','Ramirez Quero',7,63);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -612,7 +560,7 @@ CREATE TABLE `subjectmatter` (
 
 LOCK TABLES `subjectmatter` WRITE;
 /*!40000 ALTER TABLE `subjectmatter` DISABLE KEYS */;
-INSERT INTO `subjectmatter` VALUES (44,0,'Clases de Inglés','Inglés',''),(45,0,'Clases de Francés','Francés',''),(46,0,'Programación orientada a objetos','Programación',''),(47,0,'Clases de Fisica','Fisica',''),(48,0,'Clases de Quimica','Quimica',''),(49,0,'Clases de Algebra','Algebra',''),(50,0,'Clases de HTML y CSS','HTMLCSS',''),(51,0,'Clases de Historia','Historia',''),(52,0,'Clases de Dibujo','Dibujo',''),(53,0,'Clases de Matematicas','Matematicas','');
+INSERT INTO `subjectmatter` VALUES (28,0,'Clases de Inglés','Inglés',''),(29,0,'Clases de Francés','Francés',''),(30,0,'Programación orientada a objetos','Programación',''),(31,0,'Clases de Fisica','Fisica',''),(32,0,'Clases de Quimica','Quimica',''),(33,0,'Clases de Algebra','Algebra',''),(34,0,'Clases de HTML y CSS','HTMLCSS',''),(35,0,'Clases de Historia','Historia',''),(36,0,'Clases de Dibujo','Dibujo',''),(37,0,'Clases de Matematicas','Matematicas','');
 /*!40000 ALTER TABLE `subjectmatter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -639,13 +587,10 @@ CREATE TABLE `teacher` (
   `feeAmount` double DEFAULT NULL,
   `paypalMail` varchar(255) DEFAULT NULL,
   `curricula_id` int(11) DEFAULT NULL,
-  `timeTable_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_hh7bf6toh1ysrkeqxhr1077dv` (`userAccount_id`),
   KEY `FK_hk6lhly9g3k54cnrc44wow98h` (`curricula_id`),
-  KEY `FK_ac2cti2cbblfs4ji7rbmb7vx3` (`timeTable_id`),
   CONSTRAINT `FK_hh7bf6toh1ysrkeqxhr1077dv` FOREIGN KEY (`userAccount_id`) REFERENCES `useraccount` (`id`),
-  CONSTRAINT `FK_ac2cti2cbblfs4ji7rbmb7vx3` FOREIGN KEY (`timeTable_id`) REFERENCES `timetable` (`id`),
   CONSTRAINT `FK_hk6lhly9g3k54cnrc44wow98h` FOREIGN KEY (`curricula_id`) REFERENCES `curricula` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -656,59 +601,8 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (28,0,'Calle Saenz de Tejada','Sevilla','1975-12-01 00:00:00','albcabcan@gmail.com','Alberto','654122347','https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png','Cabrera Cantero',2,2,200,'albcabcan@gmail.com',29,24),(30,0,'Pablo Picaso Portal 11','Granada','1980-12-01 00:00:00','joschaech@gmail.com','José','609822347','http://cyrusindia.com/hrpanel/mriAssets2016/me1.png','Chamorro Echevarria',3,5,1000,'joschaech@gmail.com',31,25),(32,0,'Álamo del Marques','Cadiz','1985-12-01 00:00:00','rauescdon@gmail.com','Raúl','645692347','http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png','Escribano Donoso',4,3.2,120,'rauescdon@gmail.com',33,26);
+INSERT INTO `teacher` VALUES (12,0,'Calle Saenz de Tejada','Sevilla','1975-12-01 00:00:00','albcabcan@gmail.com','Alberto','654122347','https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png','Cabrera Cantero',2,2,200,'albcabcan@gmail.com',13),(14,0,'Pablo Picaso Portal 11','Granada','1980-12-01 00:00:00','joschaech@gmail.com','José','609822347','http://cyrusindia.com/hrpanel/mriAssets2016/me1.png','Chamorro Echevarria',3,5,1000,'joschaech@gmail.com',15),(16,0,'Álamo del Marques','Cadiz','1985-12-01 00:00:00','rauescdon@gmail.com','Raúl','645692347','http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png','Escribano Donoso',4,3.2,120,'rauescdon@gmail.com',17);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `timetable`
---
-
-DROP TABLE IF EXISTS `timetable`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `timetable` (
-  `id` int(11) NOT NULL,
-  `version` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `timetable`
---
-
-LOCK TABLES `timetable` WRITE;
-/*!40000 ALTER TABLE `timetable` DISABLE KEYS */;
-INSERT INTO `timetable` VALUES (24,0),(25,0),(26,0);
-/*!40000 ALTER TABLE `timetable` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `timetable_day`
---
-
-DROP TABLE IF EXISTS `timetable_day`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `timetable_day` (
-  `TimeTable_id` int(11) NOT NULL,
-  `days_id` int(11) NOT NULL,
-  UNIQUE KEY `UK_hpw2u4dj4ltbmorrxulgb4r16` (`days_id`),
-  KEY `FK_krdjs1qrfrtmiaq9bi2x81pko` (`TimeTable_id`),
-  CONSTRAINT `FK_krdjs1qrfrtmiaq9bi2x81pko` FOREIGN KEY (`TimeTable_id`) REFERENCES `timetable` (`id`),
-  CONSTRAINT `FK_hpw2u4dj4ltbmorrxulgb4r16` FOREIGN KEY (`days_id`) REFERENCES `day` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `timetable_day`
---
-
-LOCK TABLES `timetable_day` WRITE;
-/*!40000 ALTER TABLE `timetable_day` DISABLE KEYS */;
-INSERT INTO `timetable_day` VALUES (24,19),(24,21),(25,20),(25,22),(26,23);
-/*!40000 ALTER TABLE `timetable_day` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -734,7 +628,7 @@ CREATE TABLE `useraccount` (
 
 LOCK TABLES `useraccount` WRITE;
 /*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
-INSERT INTO `useraccount` VALUES (1,0,'27fdbdefee182a748a4651458e689f6e','admin'),(2,0,'1c531af1d9131f9993d7e8e04866b9e3','albcabcan'),(3,0,'1c531af1d9131f9993d7e8e04866b9e3','joschaech'),(4,0,'1c531af1d9131f9993d7e8e04866b9e3','rauescdon'),(5,0,'1c531af1d9131f9993d7e8e04866b9e3','antiñijae'),(6,0,'1c531af1d9131f9993d7e8e04866b9e3','juamenmil'),(7,0,'1c531af1d9131f9993d7e8e04866b9e3','fraramque'),(8,0,'1c531af1d9131f9993d7e8e04866b9e3','acanum'),(9,0,'1c531af1d9131f9993d7e8e04866b9e3','ezdra'),(10,0,'1c531af1d9131f9993d7e8e04866b9e3','lanaca');
+INSERT INTO `useraccount` VALUES (1,0,'35a3289fbef8e4f33eae830f2813a85f','admin'),(2,0,'1c531af1d9131f9993d7e8e04866b9e3','alberto'),(3,0,'1c531af1d9131f9993d7e8e04866b9e3','josecha'),(4,0,'1c531af1d9131f9993d7e8e04866b9e3','raulescribano'),(5,0,'1c531af1d9131f9993d7e8e04866b9e3','antonio'),(6,0,'1c531af1d9131f9993d7e8e04866b9e3','juanito'),(7,0,'1c531af1d9131f9993d7e8e04866b9e3','francisco'),(8,0,'1c531af1d9131f9993d7e8e04866b9e3','numeros'),(9,0,'1c531af1d9131f9993d7e8e04866b9e3','ezdraw'),(10,0,'1c531af1d9131f9993d7e8e04866b9e3','languages');
 /*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -762,33 +656,6 @@ LOCK TABLES `useraccount_authorities` WRITE;
 INSERT INTO `useraccount_authorities` VALUES (1,'ADMIN'),(2,'TEACHER'),(3,'TEACHER'),(4,'TEACHER'),(5,'STUDENT'),(6,'STUDENT'),(7,'STUDENT'),(8,'ACADEMY'),(9,'ACADEMY'),(10,'ACADEMY');
 /*!40000 ALTER TABLE `useraccount_authorities` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `worktime`
---
-
-DROP TABLE IF EXISTS `worktime`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `worktime` (
-  `id` int(11) NOT NULL,
-  `version` int(11) NOT NULL,
-  `available` bit(1) DEFAULT NULL,
-  `checkIn` varchar(255) DEFAULT NULL,
-  `checkOut` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `worktime`
---
-
-LOCK TABLES `worktime` WRITE;
-/*!40000 ALTER TABLE `worktime` DISABLE KEYS */;
-INSERT INTO `worktime` VALUES (11,0,'','09:00','11:00'),(12,0,'\0','11:00','13:00'),(13,0,'','17:00','19:00'),(14,0,'','19:00','21:00'),(15,0,'','10:00','12:00'),(16,0,'','12:00','14:00'),(17,0,'','16:00','18:00'),(18,0,'','18:00','20:00');
-/*!40000 ALTER TABLE `worktime` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -799,4 +666,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-26 23:06:26
+-- Dump completed on 2017-04-27 17:00:47
