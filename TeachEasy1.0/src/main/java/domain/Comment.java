@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -31,7 +32,7 @@ public class Comment extends DomainEntity {
 	private String	title;
 	private Date	createMoment;
 	private String	text;
-	private Integer	stars;
+	private int	stars;
 
 
 	@NotBlank
@@ -62,13 +63,14 @@ public class Comment extends DomainEntity {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
 	@NotNull
 	@Range(min = 0, max = 5)
-	public Integer getStars() {
+	public int getStars() {
 		return stars;
 	}
 
-	public void setStars(Integer stars) {
+	public void setStars(int stars) {
 		this.stars = stars;
 	}
 
@@ -95,7 +97,7 @@ public class Comment extends DomainEntity {
 		return this.commentable;
 	}
 
-	public void setCommentable(final Commentable commentable) {
+	public void setCommentable(Commentable commentable) {
 		this.commentable = commentable;
 	}
 }
