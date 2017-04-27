@@ -10,11 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -32,9 +33,10 @@ public class Comment extends DomainEntity {
 	private String	title;
 	private Date	createMoment;
 	private String	text;
-	private int	stars;
+	private int		stars;
 
 
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	public String getTitle() {
 		return title;
@@ -55,6 +57,7 @@ public class Comment extends DomainEntity {
 		this.createMoment = create;
 	}
 
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	public String getText() {
 		return text;
@@ -63,7 +66,7 @@ public class Comment extends DomainEntity {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	@NotNull
 	@Range(min = 0, max = 5)
 	public int getStars() {

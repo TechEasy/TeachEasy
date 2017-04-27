@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -34,6 +36,7 @@ public class Course extends Rclass {
 		this.duration = duration;
 	}
 
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	public String getLevel() {
 		return level;

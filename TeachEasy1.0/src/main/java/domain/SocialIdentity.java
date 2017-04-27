@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -28,6 +30,7 @@ public class SocialIdentity extends DomainEntity {
 	private String	profileUrl;
 
 
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	public String getNick() {
 		return nick;
@@ -37,6 +40,7 @@ public class SocialIdentity extends DomainEntity {
 		this.nick = nick;
 	}
 
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	public String getSocialNetwork() {
 		return socialNetwork;
