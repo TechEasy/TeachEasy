@@ -52,6 +52,7 @@ public class SocialIdentity extends DomainEntity {
 
 	@NotBlank
 	@URL
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getProfileUrl() {
 		return profileUrl;
 	}
