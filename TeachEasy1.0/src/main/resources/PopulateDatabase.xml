@@ -20,7 +20,7 @@
 
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin" />
-		<property name="password" value="27fdbdefee182a748a4651458e689f6e" />
+		<property name="password" value="35a3289fbef8e4f33eae830f2813a85f" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -31,7 +31,7 @@
 	</bean>
 	
 	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="albcabcan" />
+		<property name="username" value="alberto" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -43,7 +43,7 @@
 	</bean>
 	
 		<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="joschaech" />
+		<property name="username" value="josecha" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -55,7 +55,7 @@
 	</bean>
 	
 	<bean id="userAccount4" class="security.UserAccount">
-		<property name="username" value="rauescdon" />
+		<property name="username" value="raulescribano" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -67,7 +67,7 @@
 	</bean>
 	
 	<bean id="userAccount5" class="security.UserAccount">
-		<property name="username" value="antiñijae" />
+		<property name="username" value="antonio" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -79,7 +79,7 @@
 	</bean>
 	
 	<bean id="userAccount6" class="security.UserAccount">
-		<property name="username" value="juamenmil" />
+		<property name="username" value="juanito" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -91,7 +91,7 @@
 	</bean>
 	
 	<bean id="userAccount7" class="security.UserAccount">
-		<property name="username" value="fraramque" />
+		<property name="username" value="francisco" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -103,7 +103,7 @@
 	</bean>
 	
 	<bean id="userAccount8" class="security.UserAccount">
-		<property name="username" value="acanum" />
+		<property name="username" value="numeros" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -115,7 +115,7 @@
 	</bean>
 	
 	<bean id="userAccount9" class="security.UserAccount">
-		<property name="username" value="ezdra" />
+		<property name="username" value="ezdraw" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -127,7 +127,7 @@
 	</bean>
 	
 	<bean id="userAccount10" class="security.UserAccount">
-		<property name="username" value="lanaca" />
+		<property name="username" value="languages" />
 		<property name="password" value="1c531af1d9131f9993d7e8e04866b9e3" />
 		<property name="authorities">
 			<list>
@@ -138,135 +138,6 @@
 		</property>
 	</bean>
 	
-	<!-- WorkTimes -->
-	
-	<bean id="workTime1" class="domain.WorkTime">
-		<property name="checkIn" value="09:00" />
-		<property name="checkOut" value="11:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime2" class="domain.WorkTime">
-		<property name="checkIn" value="11:00" />
-		<property name="checkOut" value="13:00" />
-		<property name="available" value="false" />
-	</bean>
-	
-	<bean id="workTime3" class="domain.WorkTime">
-		<property name="checkIn" value="17:00" />
-		<property name="checkOut" value="19:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime4" class="domain.WorkTime">
-		<property name="checkIn" value="19:00" />
-		<property name="checkOut" value="21:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime5" class="domain.WorkTime">
-		<property name="checkIn" value="10:00" />
-		<property name="checkOut" value="12:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime6" class="domain.WorkTime">
-		<property name="checkIn" value="12:00" />
-		<property name="checkOut" value="14:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime7" class="domain.WorkTime">
-		<property name="checkIn" value="16:00" />
-		<property name="checkOut" value="18:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<bean id="workTime8" class="domain.WorkTime">
-		<property name="checkIn" value="18:00" />
-		<property name="checkOut" value="20:00" />
-		<property name="available" value="true" />
-	</bean>
-	
-	<!-- Days  -->
-	
-	<bean id="day1" class="domain.Day">
-		<property name="name" value="Lunes" />
-		<property name="workTimes">
-			<list>
-				<ref bean="workTime1"/>
-				<ref bean="workTime2"/>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="day2" class="domain.Day">
-		<property name="name" value="Martes" />
-		<property name="workTimes">
-			<list>
-				<ref bean="workTime3"/>
-				<ref bean="workTime4"/>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="day3" class="domain.Day">
-		<property name="name" value="Miercoles" />
-		<property name="workTimes">
-			<list>
-				<ref bean="workTime5"/>
-				<ref bean="workTime6"/>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="day4" class="domain.Day">
-		<property name="name" value="Jueves" />
-		<property name="workTimes">
-			<list>
-				<ref bean="workTime7"/>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="day5" class="domain.Day">
-		<property name="name" value="Viernes" />
-		<property name="workTimes">
-			<list>
-				<ref bean="workTime8"/>
-			</list>
-		</property>
-	</bean>
-	
-	<!-- TimeTabes -->
-	
-	<bean id="timeTable1" class="domain.TimeTable">
-		<property name="days">
-			<list>
-				<ref bean="day1"/>
-				<ref bean="day3"/>
-			</list>
-		</property>
-	</bean>
-	
-		
-	<bean id="timeTable2" class="domain.TimeTable">
-		<property name="days">
-			<list>
-				<ref bean="day2"/>
-				<ref bean="day4"/>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="timeTable3" class="domain.TimeTable">
-		<property name="days">
-			<list>
-				<ref bean="day5"/>
-			</list>
-		</property>
-	</bean>
-
 	<!-- Administrators -->
 
 	<bean id="administrator1" class="domain.Administrator">
@@ -301,7 +172,6 @@
 		<property name="avgStars" value="2.0" />
 		<property name="feeAmount" value="200.0" />
 		<property name="paypalMail" value="albcabcan@gmail.com" />	
-		<property name="timeTable" ref="timeTable1" />		
 		<property name="curricula" ref="curricula1" />	
 		<property name="proposals">
 			<list>
@@ -329,7 +199,6 @@
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="1000.0" />
 		<property name="paypalMail" value="joschaech@gmail.com" />
-		<property name="timeTable" ref="timeTable2" />
 		<property name="curricula" ref="curricula2" />	
 		<property name="proposals">
 			<list>
@@ -356,7 +225,6 @@
 		<property name="avgStars" value="3.2" />
 		<property name="feeAmount" value="120.0" />
 		<property name="paypalMail" value="rauescdon@gmail.com" />
-		<property name="timeTable" ref="timeTable3" />
 		<property name="curricula" ref="curricula3" />	
 		<property name="proposals">
 			<list>
@@ -745,8 +613,6 @@
 	<bean id="request2" class="domain.Request">
 		<property name="status" value="PENDING" />
 		<property name="paid" value="false"/>
-		<property name="checkIn" value="10/04/2017 15:00" />	
-		<property name="checkOut" value="10/04/2017 16:00" />		
 		<property name="rclass" ref="course1" />	
 		<property name="student" ref="student2" />
 	</bean>

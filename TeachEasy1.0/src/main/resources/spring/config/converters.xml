@@ -27,7 +27,6 @@
 		<bean class="converters.CommentableToStringConverter" /> 
 		<bean class="converters.CourseToStringConverter" /> 
 		<bean class="converters.CurriculaToStringConverter" /> 
-		<bean class="converters.DayToStringConverter" /> 
 		<bean class="converters.FinderToStringConverter" />
 		<bean class="converters.InvoiceToStringConverter" />
 		<bean class="converters.SubjectMatterToStringConverter" />
@@ -36,8 +35,6 @@
 		<bean class="converters.SocialIdentityToStringConverter" />
 		<bean class="converters.StudentToStringConverter" /> 
 		<bean class="converters.TeacherToStringConverter" /> 
-		<bean class="converters.TimeTableToStringConverter" /> 
-		<bean class="converters.WorkTimeToStringConverter" /> 
 		<bean class="converters.FeeToStringConverter" /> 
 		
 		<bean class="converters.StringToActorConverter" />
@@ -48,7 +45,6 @@
 		<bean class="converters.StringToCommentableConverter" />
 		<bean class="converters.StringToCourseConverter" />
 		<bean class="converters.StringToCurriculaConverter" />
-		<bean class="converters.StringToDayConverter" />
 		<bean class="converters.StringToFinderConverter" />
 		<bean class="converters.StringToInvoiceConverter" />
 		<bean class="converters.StringToSubjectMatterConverter" />
@@ -57,8 +53,6 @@
 		<bean class="converters.StringToSocialIdentityConverter" />
 		<bean class="converters.StringToStudentConverter" />
 		<bean class="converters.StringToTeacherConverter" />
-		<bean class="converters.StringToTimeTableConverter" />
-		<bean class="converters.StringToWorkTimeConverter" />
 		<bean class="converters.StringToFeeConverter" />
 	</util:list>
 	

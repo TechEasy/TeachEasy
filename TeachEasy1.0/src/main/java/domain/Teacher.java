@@ -57,19 +57,7 @@ public class Teacher extends Actor {
 
 	// Relationships ----------------------------------------------------------
 	private Curricula				curricula;
-	private TimeTable				timeTable;
 	private Collection<Proposal>	proposals;
-
-
-	@Valid
-	@OneToOne(optional = true, cascade = CascadeType.ALL)
-	public TimeTable getTimeTable() {
-		return timeTable;
-	}
-
-	public void setTimeTable(TimeTable timeTable) {
-		this.timeTable = timeTable;
-	}
 
 	@Valid
 	@OneToOne(optional = true, cascade = CascadeType.ALL)

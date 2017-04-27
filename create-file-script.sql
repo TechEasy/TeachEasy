@@ -1,4 +1,4 @@
-﻿start transaction;
+﻿  start transaction;
 
 drop database if exists `TeachEasy`;
 create database `TeachEasy`;
@@ -14,10 +14,7 @@ grant select, insert, update, delete
 grant select, insert, update, delete, create, drop, references, index, alter, 
         create temporary tables, lock tables, create view, create routine, 
         alter routine, execute, trigger, show view
-	 on `Acme-Pad-Thai`.* to 'acme-manager'@'%';
-
-
-
+	 on `TeachEasy`.* to 'acme-manager'@'%';
 
 
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
@@ -156,15 +153,10 @@ CREATE TABLE `comment` (
   `stars` int(11) DEFAULT NULL,
   `text` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `academy_id` int(11) DEFAULT NULL,
+  `commentable_id` int(11) DEFAULT NULL,
   `student_id` int(11) NOT NULL,
-  `teacher_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_nnflthuefryvskgcyd8jj9ry` (`academy_id`),
   KEY `FK_shk7ebucipmiqnoe05wrtr371` (`student_id`),
-  KEY `FK_2qx823oe5qoub3xfghcfhgye3` (`teacher_id`),
-  CONSTRAINT `FK_2qx823oe5qoub3xfghcfhgye3` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`),
-  CONSTRAINT `FK_nnflthuefryvskgcyd8jj9ry` FOREIGN KEY (`academy_id`) REFERENCES `academy` (`id`),
   CONSTRAINT `FK_shk7ebucipmiqnoe05wrtr371` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -175,7 +167,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (78,0,'2017-02-04 20:00:00',3,'Podría asistir a otra hora?','Comentario sobre teacher1',NULL,34,28),(79,0,'2017-03-04 20:00:00',3,'Hola teacher2','Comentario sobre teacher2',NULL,34,30),(80,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,34,NULL),(81,0,'2017-11-04 20:00:00',5,'Gran clase, me sirvió de mucho','Comentario sobre academy2',38,35,NULL),(82,0,'2017-02-04 20:00:00',5,'Nice academy. Guess im improving my english level','Comentario sobre academy3',39,36,NULL),(83,0,'2017-03-04 20:00:00',4,'Hola teacher3, gracias por la clase','Comentario sobre teacher3',NULL,34,32),(84,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,35,NULL),(85,0,'2017-11-04 20:00:00',5,'Muy buena academia de numeros','Comentario sobre academy1',37,34,NULL);
+INSERT INTO `comment` VALUES (80,0,'2017-02-04 20:00:00',3,'Podría asistir a otra hora?','Comentario sobre teacher1',28,34),(81,0,'2017-03-04 20:00:00',3,'Hola teacher2','Comentario sobre teacher2',30,34),(82,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,34),(83,0,'2017-11-04 20:00:00',5,'Gran clase, me sirvió de mucho','Comentario sobre academy2',38,35),(84,0,'2017-02-04 20:00:00',5,'Nice academy. Guess im improving my english level','Comentario sobre academy3',39,36),(85,0,'2017-03-04 20:00:00',4,'Hola teacher3, gracias por la clase','Comentario sobre teacher3',32,34),(86,0,'2017-03-04 20:00:00',3,'¿Podrían darme un numero de contacto?','Comentario sobre academia 1',37,35),(87,0,'2017-11-04 20:00:00',5,'Muy buena academia de numeros','Comentario sobre academy1',37,34);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,9 +181,9 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
+  `available` bit(1) DEFAULT NULL,
   `createMoment` datetime DEFAULT NULL,
   `rate` double DEFAULT NULL,
-  `ticker` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `updateMoment` datetime DEFAULT NULL,
   `subjectMatter_id` int(11) NOT NULL,
@@ -199,11 +191,10 @@ CREATE TABLE `course` (
   `level` varchar(255) DEFAULT NULL,
   `academy_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_qa387lq6ajdnxxcqj2stkmt7v` (`ticker`),
   KEY `FK_bc9ifd1hhxpnv9se06pofu6sx` (`academy_id`),
   KEY `FK_htgo2cor10nf9heefu41ied1e` (`subjectMatter_id`),
-  CONSTRAINT `FK_bc9ifd1hhxpnv9se06pofu6sx` FOREIGN KEY (`academy_id`) REFERENCES `academy` (`id`),
-  CONSTRAINT `FK_htgo2cor10nf9heefu41ied1e` FOREIGN KEY (`subjectMatter_id`) REFERENCES `subjectmatter` (`id`)
+  CONSTRAINT `FK_htgo2cor10nf9heefu41ied1e` FOREIGN KEY (`subjectMatter_id`) REFERENCES `subjectmatter` (`id`),
+  CONSTRAINT `FK_bc9ifd1hhxpnv9se06pofu6sx` FOREIGN KEY (`academy_id`) REFERENCES `academy` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,7 +204,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (60,0,'2017-10-04 20:00:00',4,'07','Matematicas','2017-10-04 21:00:00',53,2,'4º ESO',37),(61,0,'2017-05-05 20:00:00',4,'08','Algebra','2017-05-05 21:00:00',49,2,'Bachillerato',37),(62,0,'2017-05-05 20:00:00',5,'09','Dibujo','2017-05-05 21:00:00',52,3,'Bachillerato',38),(63,0,'2017-05-05 20:00:00',5,'10','Ingles','2017-05-05 21:00:00',44,3,'B2',39),(64,0,'2017-05-05 20:00:00',4,'11','Frances','2017-05-05 21:00:00',45,4,'B1',39);
+INSERT INTO `course` VALUES (60,0,'','2017-10-04 20:00:00',120,'Matematicas','2017-10-04 21:00:00',53,2,'4º ESO',37),(61,0,'','2017-05-05 20:00:00',160,'Algebra','2017-05-05 21:00:00',49,2,'Bachillerato',37),(62,0,'','2017-05-05 20:00:00',200,'Dibujo','2017-05-05 21:00:00',52,3,'Bachillerato',38),(63,0,'','2017-05-05 20:00:00',250,'Ingles','2017-05-05 21:00:00',44,3,'B2',39),(64,0,'','2017-05-05 20:00:00',300,'Frances','2017-05-05 21:00:00',45,4,'B1',39);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,6 +288,32 @@ INSERT INTO `day_worktime` VALUES (19,11),(19,12),(20,13),(20,14),(21,15),(21,16
 UNLOCK TABLES;
 
 --
+-- Table structure for table `fee`
+--
+
+DROP TABLE IF EXISTS `fee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fee` (
+  `id` int(11) NOT NULL,
+  `version` int(11) NOT NULL,
+  `valueAcademy` double DEFAULT NULL,
+  `valueTeacher` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fee`
+--
+
+LOCK TABLES `fee` WRITE;
+/*!40000 ALTER TABLE `fee` DISABLE KEYS */;
+INSERT INTO `fee` VALUES (88,0,7.5,8.5);
+/*!40000 ALTER TABLE `fee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `finder`
 --
 
@@ -321,7 +338,7 @@ CREATE TABLE `finder` (
 
 LOCK TABLES `finder` WRITE;
 /*!40000 ALTER TABLE `finder` DISABLE KEYS */;
-INSERT INTO `finder` VALUES (77,0,'Sevilla','english','English',20,10);
+INSERT INTO `finder` VALUES (77,0,'Sevilla','english','English',20,10),(78,0,'Sevilla','english','English',20,10),(79,0,'Sevilla','english','English',20,10);
 /*!40000 ALTER TABLE `finder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +415,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
-INSERT INTO `invoice` VALUES (72,0,'2017-03-03 16:00:00','No hay detalles importantes que mostrar','Invoice realizado para el student 1',150,'000000001'),(73,0,'2016-12-12 16:00:00','Se ha pagado al completo','Segundo invoice realizado para el student 1',15,'000000010'),(74,0,'2016-10-10 16:00:00','Se ha pagado tarde','Invoice del student 2',30,'000000011'),(75,0,'2016-11-10 16:00:00','Se ha pagado al completo','Invoice del student 1',40,'000000111'),(76,0,'2016-12-10 16:00:00','Se ha pagado al completo','Invoice del student 2',50,'000001011');
+INSERT INTO `invoice` VALUES (72,0,'2017-03-03 16:00:00','Factura de la clase: Clases de Inglés','Factura de Antonio Iñigo Jaén',150,'ES-78451578'),(73,0,'2016-12-12 16:00:00','Factura de la clase: Clases de Francés','Factura de Antonio Iñigo Jaén',15,'ES-78451578'),(74,0,'2016-10-10 16:00:00','Factura de la clase: Clases de Programacion','Factura de Juan Mendizábal Millán',30,'ES-78451578'),(75,0,'2016-11-10 16:00:00','Factura de la clase: Clases de HTML y CSS','Factura de Antonio Iñigo Jaén',40,'ES-78451578'),(76,0,'2016-12-10 16:00:00','Factura de la clase: Clases de Fisica','Factura de Juan Mendizábal Millán',50,'ES-78451578');
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,19 +429,18 @@ DROP TABLE IF EXISTS `proposal`;
 CREATE TABLE `proposal` (
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
+  `available` bit(1) DEFAULT NULL,
   `createMoment` datetime DEFAULT NULL,
   `rate` double DEFAULT NULL,
-  `ticker` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `updateMoment` datetime DEFAULT NULL,
   `subjectMatter_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_palmm6k8kdw7a6r4jm9ona49b` (`ticker`),
   KEY `FK_2jc8xfdgpkg1o1tc98cpmpb38` (`teacher_id`),
   KEY `FK_kye2xh9rq5yvj90is66vkxekw` (`subjectMatter_id`),
-  CONSTRAINT `FK_2jc8xfdgpkg1o1tc98cpmpb38` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`),
-  CONSTRAINT `FK_kye2xh9rq5yvj90is66vkxekw` FOREIGN KEY (`subjectMatter_id`) REFERENCES `subjectmatter` (`id`)
+  CONSTRAINT `FK_kye2xh9rq5yvj90is66vkxekw` FOREIGN KEY (`subjectMatter_id`) REFERENCES `subjectmatter` (`id`),
+  CONSTRAINT `FK_2jc8xfdgpkg1o1tc98cpmpb38` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -434,7 +450,7 @@ CREATE TABLE `proposal` (
 
 LOCK TABLES `proposal` WRITE;
 /*!40000 ALTER TABLE `proposal` DISABLE KEYS */;
-INSERT INTO `proposal` VALUES (54,0,'2017-01-04 20:00:00',12,'01','Clases de Inglés','2017-01-04 21:00:00',44,28),(55,0,'2017-12-04 20:00:00',4,'03','Clases de Francés','2017-12-04 21:00:00',45,28),(56,0,'2017-03-04 20:00:00',5,'02','Clases de Programacion','2017-03-04 21:00:00',46,30),(57,0,'2017-12-04 20:00:00',4,'04','Clases de HTML y CSS','2017-12-04 21:00:00',50,30),(58,0,'2017-12-04 20:00:00',4,'05','Clases de Fisica','2017-12-04 21:00:00',47,32),(59,0,'2017-12-04 20:00:00',5,'06','Clases de Quimica','2017-12-04 21:00:00',48,32);
+INSERT INTO `proposal` VALUES (54,0,'','2017-01-04 20:00:00',8,'Clases de Inglés','2017-01-04 21:00:00',44,28),(55,0,'','2017-12-04 20:00:00',10,'Clases de Francés','2017-12-04 21:00:00',45,28),(56,0,'','2017-03-04 20:00:00',6,'Clases de Programacion','2017-03-04 21:00:00',46,30),(57,0,'','2017-12-04 20:00:00',12,'Clases de HTML y CSS','2017-12-04 21:00:00',50,30),(58,0,'','2017-12-04 20:00:00',10,'Clases de Fisica','2017-12-04 21:00:00',47,32),(59,0,'','2017-12-04 20:00:00',11,'Clases de Quimica','2017-12-04 21:00:00',48,32);
 /*!40000 ALTER TABLE `proposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,14 +464,13 @@ DROP TABLE IF EXISTS `rclass`;
 CREATE TABLE `rclass` (
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
+  `available` bit(1) DEFAULT NULL,
   `createMoment` datetime DEFAULT NULL,
   `rate` double DEFAULT NULL,
-  `ticker` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `updateMoment` datetime DEFAULT NULL,
   `subjectMatter_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_1uphs78rkuu39tdbumgwbeoj1` (`ticker`),
   KEY `FK_4vch5koxxrmtjl1qqdfjqdv41` (`subjectMatter_id`),
   CONSTRAINT `FK_4vch5koxxrmtjl1qqdfjqdv41` FOREIGN KEY (`subjectMatter_id`) REFERENCES `subjectmatter` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -482,6 +497,7 @@ CREATE TABLE `request` (
   `version` int(11) NOT NULL,
   `checkIn` varchar(255) DEFAULT NULL,
   `checkOut` varchar(255) DEFAULT NULL,
+  `paid` bit(1) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `invoice_id` int(11) DEFAULT NULL,
   `rclass_id` int(11) NOT NULL,
@@ -489,8 +505,8 @@ CREATE TABLE `request` (
   PRIMARY KEY (`id`),
   KEY `FK_g4m6p32gsyfqxeympot7hnam1` (`invoice_id`),
   KEY `FK_i0fb2ggwjb79hifdb8k0xwjxl` (`student_id`),
-  CONSTRAINT `FK_g4m6p32gsyfqxeympot7hnam1` FOREIGN KEY (`invoice_id`) REFERENCES `invoice` (`id`),
-  CONSTRAINT `FK_i0fb2ggwjb79hifdb8k0xwjxl` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
+  CONSTRAINT `FK_i0fb2ggwjb79hifdb8k0xwjxl` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
+  CONSTRAINT `FK_g4m6p32gsyfqxeympot7hnam1` FOREIGN KEY (`invoice_id`) REFERENCES `invoice` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -500,7 +516,7 @@ CREATE TABLE `request` (
 
 LOCK TABLES `request` WRITE;
 /*!40000 ALTER TABLE `request` DISABLE KEYS */;
-INSERT INTO `request` VALUES (65,6,'04/04/2017 14:45','04/04/2017 15:10','ACCEPTED',72,54,34),(66,0,'10/04/2017 15:00','10/04/2017 16:00','PENDING',NULL,60,35),(67,0,'15/03/2017 15:00','15/04/2017 16:00','DENIED',NULL,54,35),(68,1,'05/04/2017 15:00','05/04/2017 16:00','ACCEPTED',73,55,34),(69,1,'06/04/2017 15:00','06/04/2017 16:00','ACCEPTED',74,56,35),(70,1,'04/03/2017 15:00','04/03/2017 16:00','ACCEPTED',75,57,34),(71,1,'07/05/2017 15:00','07/05/2017 17:00','ACCEPTED',76,58,35);
+INSERT INTO `request` VALUES (65,1,'04/04/2017 15:00','04/04/2017 16:00','','ACCEPTED',72,54,34),(66,0,NULL,NULL,'\0','PENDING',NULL,60,35),(67,0,'15/03/2017 15:00','15/04/2017 16:00','\0','DENIED',NULL,54,35),(68,1,'05/04/2017 15:00','05/04/2017 16:00','','ACCEPTED',73,55,34),(69,1,'06/04/2017 15:00','06/04/2017 16:00','','ACCEPTED',74,56,35),(70,1,'04/03/2017 15:00','04/03/2017 16:00','','ACCEPTED',75,57,34),(71,1,'07/05/2017 15:00','07/05/2017 17:00','','ACCEPTED',76,58,35);
 /*!40000 ALTER TABLE `request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -569,7 +585,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (34,1,'Calle Silos','Sevilla','1994-12-01 00:00:00','antiñijae@gmail.com','Antonio','654126547','https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png','Iñigo Jaén',5,77),(35,0,'Marqués de Valdecañas','Málaga','2000-09-03 00:00:00','juamenmil@gmail.com','Juan','694123447','https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png','Mendizábal Millán',6,NULL),(36,0,'Calle Malasmañanas','Sevilla','1999-04-03 00:00:00','fraramque@gmail.com','Francisco','654126547','https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png','Ramirez Quero',7,NULL);
+INSERT INTO `student` VALUES (34,1,'Calle Silos','Sevilla','1994-12-01 00:00:00','antiñijae@gmail.com','Antonio','654126547','https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png','Iñigo Jaén',5,77),(35,1,'Marqués de Valdecañas','Málaga','2000-09-03 00:00:00','juamenmil@gmail.com','Juan','694123447','https://cdn2.iconfinder.com/data/icons/users-6/100/USER1-512.png','Mendizábal Millán',6,78),(36,1,'Calle Malasmañanas','Sevilla','1999-04-03 00:00:00','fraramque@gmail.com','Francisco','654126547','https://cdn2.iconfinder.com/data/icons/users-6/100/USER7-512.png','Ramirez Quero',7,79);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -628,8 +644,8 @@ CREATE TABLE `teacher` (
   UNIQUE KEY `UK_hh7bf6toh1ysrkeqxhr1077dv` (`userAccount_id`),
   KEY `FK_hk6lhly9g3k54cnrc44wow98h` (`curricula_id`),
   KEY `FK_ac2cti2cbblfs4ji7rbmb7vx3` (`timeTable_id`),
-  CONSTRAINT `FK_ac2cti2cbblfs4ji7rbmb7vx3` FOREIGN KEY (`timeTable_id`) REFERENCES `timetable` (`id`),
   CONSTRAINT `FK_hh7bf6toh1ysrkeqxhr1077dv` FOREIGN KEY (`userAccount_id`) REFERENCES `useraccount` (`id`),
+  CONSTRAINT `FK_ac2cti2cbblfs4ji7rbmb7vx3` FOREIGN KEY (`timeTable_id`) REFERENCES `timetable` (`id`),
   CONSTRAINT `FK_hk6lhly9g3k54cnrc44wow98h` FOREIGN KEY (`curricula_id`) REFERENCES `curricula` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -680,8 +696,8 @@ CREATE TABLE `timetable_day` (
   `days_id` int(11) NOT NULL,
   UNIQUE KEY `UK_hpw2u4dj4ltbmorrxulgb4r16` (`days_id`),
   KEY `FK_krdjs1qrfrtmiaq9bi2x81pko` (`TimeTable_id`),
-  CONSTRAINT `FK_hpw2u4dj4ltbmorrxulgb4r16` FOREIGN KEY (`days_id`) REFERENCES `day` (`id`),
-  CONSTRAINT `FK_krdjs1qrfrtmiaq9bi2x81pko` FOREIGN KEY (`TimeTable_id`) REFERENCES `timetable` (`id`)
+  CONSTRAINT `FK_krdjs1qrfrtmiaq9bi2x81pko` FOREIGN KEY (`TimeTable_id`) REFERENCES `timetable` (`id`),
+  CONSTRAINT `FK_hpw2u4dj4ltbmorrxulgb4r16` FOREIGN KEY (`days_id`) REFERENCES `day` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -718,7 +734,7 @@ CREATE TABLE `useraccount` (
 
 LOCK TABLES `useraccount` WRITE;
 /*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
-INSERT INTO `useraccount` VALUES (1,0,'21232f297a57a5a743894a0e4a801fc3','admin'),(2,0,'41c8949aa55b8cb5dbec662f34b62df3','teacher1'),(3,0,'ccffb0bb993eeb79059b31e1611ec353','teacher2'),(4,0,'82470256ea4b80343b27afccbca1015b','teacher3'),(5,0,'5e5545d38a68148a2d5bd5ec9a89e327','student1'),(6,0,'213ee683360d88249109c2f92789dbc3','student2'),(7,0,'8e4947690532bc44a8e41e9fb365b76a','student3'),(8,0,'2867dc13a84476546c069b33dc859bc7','academy1'),(9,0,'86cbff988e1e889653b316f6695e5e6b','academy2'),(10,0,'526c4e886de557da4a11880c41fe3c0f','academy3');
+INSERT INTO `useraccount` VALUES (1,0,'27fdbdefee182a748a4651458e689f6e','admin'),(2,0,'1c531af1d9131f9993d7e8e04866b9e3','albcabcan'),(3,0,'1c531af1d9131f9993d7e8e04866b9e3','joschaech'),(4,0,'1c531af1d9131f9993d7e8e04866b9e3','rauescdon'),(5,0,'1c531af1d9131f9993d7e8e04866b9e3','antiñijae'),(6,0,'1c531af1d9131f9993d7e8e04866b9e3','juamenmil'),(7,0,'1c531af1d9131f9993d7e8e04866b9e3','fraramque'),(8,0,'1c531af1d9131f9993d7e8e04866b9e3','acanum'),(9,0,'1c531af1d9131f9993d7e8e04866b9e3','ezdra'),(10,0,'1c531af1d9131f9993d7e8e04866b9e3','lanaca');
 /*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -783,6 +799,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-03 19:17:04
-
-commit;
+-- Dump completed on 2017-04-26 23:06:26

@@ -158,35 +158,6 @@
 	</div>
 	</div>
 	</jstl:if>
-	<h2><strong><spring:message code="schedule.info"/></strong></h2>
-	<div class="row">
-	<div class="col-md-12">
-	<div class="card-bordered">
-	<div class="row">
-		<div class="col-md-12">
-			<jstl:if test="${teacher.timeTable != null}">
-			<table id="row" class="table">
-			<jstl:forEach items="${teacher.timeTable.days}" var="day">
-				<tr>
-					<th><jstl:out value="${day.name}" /></th>
-					<jstl:forEach items="${day.workTimes}" var="work">
-						<tr>
-							<td>
-								<jstl:out value="${work.checkIn}-${work.checkOut}" />
-
-							</td>
-						</tr>
-					</jstl:forEach>
-				</tr>
-			</jstl:forEach>
-			</table>
-			</jstl:if>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-
 	<jstl:if test="${not empty commentable}">
 	<h2><strong><spring:message code="comment.info"/></strong></h2>
 	<div class="row">
