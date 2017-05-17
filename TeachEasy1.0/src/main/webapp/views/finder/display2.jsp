@@ -65,6 +65,7 @@
 		<div class="col-md-12">
 		<c:forEach items="${courses}" var="course" >
 			<div class="card-bordered">
+				<div class="row">
 				<div class="col-md-3 text-center">	
 					<img src="${course.academy.picture}"  width="200" height="200" class="img-responsive">
 				</div>
@@ -78,7 +79,7 @@
 						<div class="col-md-6">
 							<input id="star-academy-${course.academy.id}" name="star-academy-${course.academy.id}" value="${course.academy.avgStars}" class="rating-loading" data-size="sm">
 						</div>
-					</div>
+				</div>
 					<div class="row text-right">
 						<div class="col-md-12 mt-lg pr-xl">
 							<security:authorize access="hasRole('TEACHER') || hasRole('ADMIN') || hasRole('STUDENT') || hasRole('ACADEMY')">
@@ -90,6 +91,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</c:forEach>
 		</div>
