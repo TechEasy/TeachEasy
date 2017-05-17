@@ -105,13 +105,15 @@ public class RequestService {
 		Request result;
 		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		if(courseService.findOne(requestForm.getRclassId())==null){
+			Assert.isTrue(!requestForm.getCheckIn().equals(""),"nullCheckIn");
+			Assert.isTrue(!requestForm.getCheckOut().equals(""),"nullCheckOut");
 			Assert.isTrue(check(requestForm), "badDayDate");
 			Date sI,act,sO;
 			sI = fecha.parse(requestForm.getCheckIn());
 			act=new Date(System.currentTimeMillis()-1000);
 			Assert.isTrue(sI.after(act),"classMustBeFuture");
-			Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
 			Assert.isTrue(check2(requestForm), "lesserOneHour");
+			Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
 			Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
 		
 			result = create();
@@ -135,9 +137,6 @@ public class RequestService {
 	}
 
 	private boolean check(RequestForm request) {
-		if(request.getCheckIn()==null ||request.getCheckOut()==null)
-			return false;
-		else{
 			String fecha1, fecha2;
 			fecha1 = request.getCheckIn().substring(0, request.getCheckIn().indexOf(" "));
 			fecha2 = request.getCheckOut().substring(0, request.getCheckIn().indexOf(" "));
@@ -146,7 +145,6 @@ public class RequestService {
 				return true;
 			else
 				return false;
-		}
 	}
 	
 	@SuppressWarnings("deprecation")

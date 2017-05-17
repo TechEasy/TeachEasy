@@ -182,6 +182,10 @@ public class StudentRequestController extends AbstractController {
 					msgCode = "request.register.notBeforeDate";
 				else if (oops.getMessage().equals("lesserOneHour"))
 					msgCode = "request.register.lesserOneHour";
+				else if (oops.getMessage().equals("nullCheckIn"))
+					msgCode = "request.register.nullCheckIn";
+				else if (oops.getMessage().equals("nullCheckOut"))
+					msgCode = "request.register.nullCheckOut";
 				else if (oops.getMessage().equals("badDayDate"))
 					msgCode = "request.register.badDayDate";
 				else if (oops.getMessage().equals("badCreditCard"))
