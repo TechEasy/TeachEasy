@@ -25,7 +25,7 @@
 <div class="col-md-6">
 <div class="panel panel-default">
 <div class="panel-body payment-form">
-	<form:form	action="student/finder/edit2.do"	modelAttribute="finder"> 
+	<form:form	action="student/finder/course/edit2.do"	modelAttribute="finder"> 
 	<div class="row">
 		<div class="col-md-12">
 			<acme:textbox code="finder.city" path="city"/>			
