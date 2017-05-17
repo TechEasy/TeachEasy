@@ -94,8 +94,8 @@
 			   <input type="hidden" name="currency_code" value="EUR">
 			   <input type="hidden" name="item_name" value="${request.rclass.title}">
 			   <input type="hidden" name="amount" value="${amount[request.id]}">
-			   <input type='hidden' name='return' value="http://teacheasy.jelastic.cloudhosted.es/student/request/paid.do?requestId=${request.id}">
-			   <input type='hidden' name='cancel' value="http://teacheasy.jelastic.cloudhosted.es/student/request/list.do">
+			   <input type='hidden' name='return' value="http://teach-easy.jelastic.cloudhosted.es/student/request/paid.do?requestId=${request.id}">
+			   <input type='hidden' name='cancel' value="http://teach-easy.jelastic.cloudhosted.es/student/request/list.do">
 			   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 			  
 			 </form>

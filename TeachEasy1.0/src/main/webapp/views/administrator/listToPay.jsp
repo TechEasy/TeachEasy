@@ -49,8 +49,8 @@
 	   <input type="hidden" name="currency_code" value="EUR">
 	   <input type="hidden" name="item_name" value="Pago mensual">
 	   <input type="hidden" name="amount" value="${teacher.feeAmount}">
-	   <input type='hidden' name='return' value="http://teacheasy.jelastic.cloudhosted.es/administrator/teacherPay.do?teacherId=${teacher.id}">
-	   <input type='hidden' name='cancel' value="http://teacheasy.jelastic.cloudhosted.es/administrator/listToPay.do">
+	   <input type='hidden' name='return' value="http://teach-easy.jelastic.cloudhosted.es/administrator/teacherPay.do?teacherId=${teacher.id}">
+	   <input type='hidden' name='cancel' value="http://teach-easy.jelastic.cloudhosted.es/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>
@@ -94,8 +94,8 @@
 	   <input type="hidden" name="currency_code" value="EUR">
 	   <input type="hidden" name="item_name" value="Pago mensual">
 	   <input type="hidden" name="amount" value="${academy.feeAmount}">
-	   <input type='hidden' name='return' value="http://teacheasy.jelastic.cloudhosted.es/administrator/academyPay.do?academyId=${academy.id}">
-	   <input type='hidden' name='cancel' value="http://teacheasy.jelastic.cloudhosted.es/administrator/listToPay.do">
+	   <input type='hidden' name='return' value="http://teach-easy.jelastic.cloudhosted.es/administrator/academyPay.do?academyId=${academy.id}">
+	   <input type='hidden' name='cancel' value="http://teach-easy.jelastic.cloudhosted.es/administrator/listToPay.do">
 	   <input class="btn btn-primary" type="submit" name="save" alt="PayPal, la forma rápida y segura de pagar en Internet." value="<spring:message code="request.pay" />">
 	  
 	 </form>

@@ -180,6 +180,8 @@ public class StudentRequestController extends AbstractController {
 				String msgCode = "request.register.error";
 				if (oops.getMessage().equals("notBeforeDate"))
 					msgCode = "request.register.notBeforeDate";
+				else if (oops.getMessage().equals("lesserOneHour"))
+					msgCode = "request.register.lesserOneHour";
 				else if (oops.getMessage().equals("badDayDate"))
 					msgCode = "request.register.badDayDate";
 				else if (oops.getMessage().equals("badCreditCard"))

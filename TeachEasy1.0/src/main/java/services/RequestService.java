@@ -3,6 +3,7 @@ package services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -105,10 +106,11 @@ public class RequestService {
 		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		if(courseService.findOne(requestForm.getRclassId())==null){
 			
-			Date sI,act;
+			Date sI,act,sO;
 			sI = fecha.parse(requestForm.getCheckIn());
 			act=new Date(System.currentTimeMillis()-1000);
 			Assert.isTrue(requestForm.getCheckIn().compareTo(requestForm.getCheckOut()) < 0, "notBeforeDate");
+			Assert.isTrue(check2(requestForm), "lesserOneHour");
 			Assert.isTrue(check(requestForm), "badDayDate");
 			Assert.notNull(rClassService.findById(requestForm.getRclassId()), "badRClass");
 			Assert.isTrue(sI.after(act),"classMustBeFuture");
@@ -143,6 +145,35 @@ public class RequestService {
 		else
 			return false;
 	}
+	
+	private boolean check2(RequestForm r) throws ParseException{		
+		Boolean result = false;
+		
+			Date sI, sO;
+			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+			sI = fecha.parse(r.getCheckIn());
+			sO = fecha.parse(r.getCheckOut());
+
+			Integer minutos;
+			Integer horas;
+
+			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+				minutos = sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours();
+			} else {
+				minutos = 60 + sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours() - 1;
+			}
+
+			Double valor = (horas + (1.0 * (minutos) / 60));
+			
+			if(valor>=1)
+				result=true;
+			
+		return result;
+	}
+	
 	public Collection<Request> findCanceledAndPaid(){
 		Collection<Request> requests;
 		requests=requestRepository.findRequestCanceledAndPaid();
