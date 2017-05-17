@@ -110,50 +110,56 @@
 	<div class="row">
 	<div class="col-md-12">
 	<div class="card-bordered">
-	<div class="row border-bottom">
-				<div class="col-md-4 col-xs-4">
-					<h4><strong><spring:message code="teacher.curricula.educationSection"/>: </strong></h4>
-				</div>
-				<div class="col-md-8 col-xs-8 text-right mt-sm">
-					${teacher.curricula.educationSection}
-				</div>
-	</div>
-			<div class="row border-bottom">
-				<div class="col-md-4 col-xs-4">
-					<h4><strong><spring:message code="teacher.curricula.experienceSection"/>: </strong></h4>
-				</div>
-				<div class="col-md-8 col-xs-8 text-right mt-sm">
-					${teacher.curricula.experienceSection}
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-4 col-xs-4">
-					<h4><strong><spring:message code="teacher.curricula.hobbiesSection"/>: </strong></h4>
-				</div>
-				<div class="col-md-8 col-xs-8 text-right mt-sm">
-					${teacher.curricula.hobbiesSection}
-				</div>
-			</div>
-		</div>
+	<div class="table-responsive">
+	<table class="table table-striped">
+	    <tbody>
+	      <tr>    
+	        <td><strong><spring:message code="teacher.curricula.educationSection"/>: </strong></td>
+	        <td>${teacher.curricula.educationSection}</td>
+	      </tr>
+	      <tr>    
+	        <td><strong><spring:message code="teacher.curricula.experienceSection"/>: </strong></td>
+	        <td>${teacher.curricula.experienceSection}</td>
+	      </tr>
+	      <tr>    
+	        <td><strong><spring:message code="teacher.curricula.hobbiesSection"/>: </strong></td>
+	        <td>${teacher.curricula.hobbiesSection}</td>
+	      </tr>
+
+	    </tbody>
+	</table>
 	</div>
 	</div>
+	</div>
+	</div>
+	
 	<jstl:if test="${not empty socialIdentities}">
 	<h2><strong><spring:message code="socialIdentity.info"/></strong></h2>
 	<div class="row">
 	<div class="col-md-12">
 	<div class="card-bordered">
-	<div class="row">
-				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
-				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.nick"/></strong></div>
-				<div class="col-md-6 col-xs-6"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
-	</div>		
-			<c:forEach items="${socialIdentities}" var="socialIdentity" >
-			<div class="row">
-					<div class="col-md-3 col-xs-3">${socialIdentity.socialNetwork}</div>
-					<div class="col-md-3 col-xs-3">${socialIdentity.nick}</div>
-					<div class="col-md-6 col-xs-6">${socialIdentity.profileUrl}</div>
-			</div>
-			</c:forEach>
+	<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+	      <tr>
+	        <th><spring:message code="socialIdentity.nick"/></th>
+	        <th><spring:message code="socialIdentity.socialNetwork"/></th>
+	        <th><spring:message code="socialIdentity.profileURL"/></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		<c:forEach items="${socialIdentities}" var="socialIdentity" >
+	      <jstl:if test="${socialIdentity.id != null}">
+	      <tr>    
+	        <td>${socialIdentity.nick}</td>
+	        <td>${socialIdentity.socialNetwork}</td>
+	        <td><a href="${socialIdentity.profileUrl}">${socialIdentity.profileUrl}</a></td>
+	      </tr>
+	      </jstl:if>
+	    </c:forEach>
+	    </tbody>
+	</table>
+	</div>
 	</div>
 	</div>
 	</div>
@@ -180,7 +186,13 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<p>${comment.text}</p>
+									<div class="table-responsive">
+										<table class="table table-striped">
+										<tbody>
+											<tr><td>${comment.text}</td></tr>
+										</tbody>
+										</table>
+									</div>
 							</div>
 						</div>
 						<div class="row mb-md">

@@ -88,18 +88,28 @@
 	<div class="row">
 	<div class="col-md-12">
 	<div class="card-bordered">
-	<div class="row">
-				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.socialNetwork"/></strong></div>
-				<div class="col-md-3 col-xs-3"><strong><spring:message code="socialIdentity.nick"/></strong></div>
-				<div class="col-md-6 col-xs-6"><strong><spring:message code="socialIdentity.profileURL"/></strong></div>
-			</div>
-			<c:forEach items="${socialIdentities}" var="socialIdentity" >
-				<div class="row ">
-					<div class="col-md-3 col-xs-3">${socialIdentity.socialNetwork}</div>
-					<div class="col-md-3 col-xs-3">${socialIdentity.nick}</div>
-					<div class="col-md-6 col-xs-6">${socialIdentity.profileUrl}</div>
-				</div>
-			</c:forEach>
+	<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+	      <tr>
+	        <th><spring:message code="socialIdentity.nick"/></th>
+	        <th><spring:message code="socialIdentity.socialNetwork"/></th>
+	        <th><spring:message code="socialIdentity.profileURL"/></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		<c:forEach items="${socialIdentities}" var="socialIdentity" >
+	      <jstl:if test="${socialIdentity.id != null}">
+	      <tr>    
+	        <td>${socialIdentity.nick}</td>
+	        <td>${socialIdentity.socialNetwork}</td>
+	        <td><a href="${socialIdentity.profileUrl}">${socialIdentity.profileUrl}</a></td>
+	      </tr>
+	      </jstl:if>
+	    </c:forEach>
+	    </tbody>
+	</table>
+	</div>
 	</div>
 	</div>
 	</div>
@@ -127,7 +137,13 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<p>${comment.text}</p>
+								<div class="table-responsive">
+										<table class="table table-striped">
+										<tbody>
+											<tr><td>${comment.text}</td></tr>
+										</tbody>
+										</table>
+									</div>
 							</div>
 						</div>
 						<div class="row">
