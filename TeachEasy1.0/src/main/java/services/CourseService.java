@@ -9,8 +9,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.CourseRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 import domain.Academy;
 import domain.Course;
 import domain.Finder;
@@ -61,11 +65,21 @@ public class CourseService {
 	}
 
 	public Course save(Course course) {
+		Authority a = new Authority();
+		a.setAuthority(Authority.ACADEMY);
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
 		Course result;
 		result = new Course();
+		
+		Assert.isTrue(userAccount.getAuthorities().contains(a) && 
+					course.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()), "notYourCourse");
+		
 		Date date = new Date(System.currentTimeMillis() - 1000);
 		result.setUpdateMoment(date);
 		result = courseRepository.save(course);
+		
+		
 		return result;
 
 	}

@@ -102,13 +102,16 @@ public class AcademyCourseController extends AbstractController {
 			result = createEditModelAndView(course);
 
 		} else {
-
 			try {
 				courseService.save(course);
 				result = new ModelAndView("redirect:listCourse.do");
-
 			} catch (Throwable oops) {
-				result = createEditModelAndView(course, "course.commit.error");
+				String msgCode = "course.commit.error";
+				
+				if (oops.getMessage().equals("notYourCourse")){
+					msgCode="course.notYourCourse";
+				}
+				result = createEditModelAndView(course, msgCode);
 			}
 		}
 

@@ -9,8 +9,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.ProposalRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 import domain.Finder;
 import domain.Proposal;
 import domain.Teacher;
@@ -61,11 +65,21 @@ public class ProposalService {
 	}
 
 	public Proposal save(Proposal proposal) {
+		Authority a = new Authority();
+		a.setAuthority(Authority.TEACHER);
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
 		Proposal result;
 		result = new Proposal();
+		
+	
+		Assert.isTrue(userAccount.getAuthorities().contains(a) && 
+				proposal.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()), "notYourProposal");
 		Date date = new Date(System.currentTimeMillis() - 1000);
 		result.setUpdateMoment(date);
 		result = proposalRepository.save(proposal);
+		
+		
 		return result;
 
 	}

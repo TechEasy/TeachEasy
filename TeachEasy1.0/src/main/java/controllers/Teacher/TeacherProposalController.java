@@ -101,7 +101,12 @@ public class TeacherProposalController extends AbstractController {
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (Throwable oops) {
-				result = createEditModelAndView(proposal, "proposal.commit.error");
+					String msgCode = "proposal.commit.error";
+				
+				if (oops.getMessage().equals("notYourProposal")){
+					msgCode="proposal.notYourProposal";
+				}
+				result = createEditModelAndView(proposal, msgCode);
 			}
 		}
 
