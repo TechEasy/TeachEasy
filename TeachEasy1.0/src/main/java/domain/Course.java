@@ -6,6 +6,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -29,6 +30,7 @@ public class Course extends Rclass {
 
 
 	@NotNull
+	@Min(1)
 	public Integer getDuration() {
 		return duration;
 	}

@@ -32,7 +32,7 @@
 					<h2>${course.academy.name}</h2>
 					<div class="row">
 						<div class="col-md-6">
-							<h3><spring:message code="course.rate" />: ${course.rate} $</h3>
+							<h3><spring:message code="course.rate" />: ${course.rate} Eur.</h3>
 						</div>
 						<div class="col-md-6">
 							<h3><spring:message code="course.avgStars" />: ${course.academy.avgStars}</h3>

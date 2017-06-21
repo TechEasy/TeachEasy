@@ -69,7 +69,7 @@ public class Rclass extends DomainEntity {
 	}
 
 	@NotNull
-	@Min(0)
+	@Min(1)
 	public Double getRate() {
 		return rate;
 	}

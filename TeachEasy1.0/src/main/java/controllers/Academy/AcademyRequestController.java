@@ -3,6 +3,8 @@ package controllers.Academy;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,17 +47,22 @@ public class AcademyRequestController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Request> requests = new ArrayList<Request>();
+		Map<Integer, Double> amount = new HashMap<Integer, Double>();
 
 		Academy academy;
 		academy = academyService.findByPrincipal();
 
 		Collection<Course> courses = courseService.findByCreator(academy);
-		for (Course c : courses)
-			for (Request r : c.getRequests())
+		for (Course c : courses){
+			for (Request r : c.getRequests()){
 				requests.add(r);
+				amount.put(r.getId(), r.getRclass().getRate());
+			}
+		}
 		result = new ModelAndView("request/list");
 		result.addObject("requestURI", "academy/request/list.do");
 		result.addObject("requests", requests);
+		result.addObject("amount", amount);
 
 		return result;
 	}

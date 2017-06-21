@@ -74,7 +74,7 @@
 					<h2>${course.academy.name}</h2>
 					<div class="row">
 						<div class="col-md-6">
-							<h3><spring:message code="course.rate" />: ${course.rate} $</h3>
+							<h3><spring:message code="course.rate" />: ${course.rate} Eur.</h3>
 						</div>
 						<div class="col-md-6">
 							<input id="star-academy-${course.academy.id}" name="star-academy-${course.academy.id}" value="${course.academy.avgStars}" class="rating-loading" data-size="sm">
