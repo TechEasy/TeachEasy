@@ -95,19 +95,23 @@ public class SocialIdentityController extends AbstractController {
 	public ModelAndView save(SocialIdentity socialIdentity, BindingResult binding) {
 		ModelAndView result;
 
-		socialIdentity = socialIdentityService.reconstruct(socialIdentity, binding);
+		
 		if (binding.hasErrors()) {
-
 			result = createEditModelAndView(socialIdentity);
 		} else {
 			try {
-
+				socialIdentity = socialIdentityService.reconstruct(socialIdentity, binding);
 				socialIdentityService.save(socialIdentity);
 
 				result = new ModelAndView("redirect:/socialIdentity/list.do");
 			} catch (Throwable oops) {
-				//System.out.println(oops.getMessage());
-				result = createEditModelAndView(socialIdentity, "registerSocialIdentity.commit.error");
+
+				String msgCode = "registerSocialIdentity.commit.error";
+				
+				if (oops.getMessage().equals("notYourSocial")){
+					msgCode="socialIdentity.notYourSocial";
+				}
+				result = createEditModelAndView(socialIdentity, msgCode);
 			}
 		}
 

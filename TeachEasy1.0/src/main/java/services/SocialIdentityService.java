@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -61,6 +62,13 @@ public class SocialIdentityService {
 
 	public SocialIdentity save(SocialIdentity socialIdentity) {
 		SocialIdentity result;
+		
+		if(socialIdentity.getActor()!=null){
+			Assert.isTrue(socialIdentity.getActor().getUserAccount().getUsername().equals(LoginService.getPrincipal().getUsername()), "notYourSocial");
+		}else{
+			Assert.isTrue(socialIdentity.getAcademy().getUserAccount().getUsername().equals(LoginService.getPrincipal().getUsername()), "notYourSocial");
+		}
+		
 		result = socialIdentityRepository.save(socialIdentity);
 		return result;
 
@@ -101,26 +109,18 @@ public class SocialIdentityService {
 
 			validator.validate(socialIdentity, binding);
 		} else {
-			SocialIdentity aux = socialIdentityRepository.findOne(socialIdentity.getId());
+		SocialIdentity aux = socialIdentityRepository.findOne(socialIdentity.getId());
+
 			socialIdentity.setId(aux.getId());
 			socialIdentity.setVersion(aux.getVersion());
 
-			Authority au = new Authority();
-			au.setAuthority(Authority.STUDENT);
-
-			Authority au1 = new Authority();
-			au1.setAuthority(Authority.TEACHER);
-
-			Authority au2 = new Authority();
-			au2.setAuthority(Authority.ACADEMY);
-
-			if (LoginService.getPrincipal().getAuthorities().contains(au) || LoginService.getPrincipal().getAuthorities().contains(au1)) {
+			if (aux.getActor()!=null) {
 				socialIdentity.setActor(aux.getActor());
 
-			} else if (LoginService.getPrincipal().getAuthorities().contains(au2)) {
+			} else{
 				socialIdentity.setAcademy(aux.getAcademy());
 			}
-
+			
 			validator.validate(socialIdentity, binding);
 		}
 
