@@ -48,13 +48,24 @@ public class StudentInvoiceController extends AbstractController{
 
 			ModelAndView result;
 			Invoice invoice;
-
+			Student student;
+			student=studentService.findByPrincipal();
+			Collection<Invoice> invoices=new ArrayList<Invoice>();
+			for(Request r:student.getRequests()){
+				invoices.add(r.getInvoice());
+			}
 			invoice = invoiceService.findOne(invoiceId);
-			result = new ModelAndView("invoice/display");
-			result.addObject("invoice", invoice);
+			if(invoices.contains(invoice)){
+				result = new ModelAndView("invoice/display");
+				result.addObject("invoice", invoice);
 
-			result.addObject("requestURI", "student/invoice/display.do");
-
+				result.addObject("requestURI", "student/invoice/display.do");
+			}else{
+				
+				result=list();
+			}
+			
+			
 			return result;
 		}
 }
