@@ -52,7 +52,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<acme:textbox code="academy.cif" path="cif"/>
+							<acme:textbox code="academy.cif" path="cif"/> (A01234567)
 						</div>
 						<div class="col-md-6">
 						</div>

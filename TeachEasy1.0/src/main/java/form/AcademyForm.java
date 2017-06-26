@@ -5,6 +5,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -131,6 +132,7 @@ public class AcademyForm {
 	}
 
 	@NotBlank
+	@Pattern(regexp="^([A B C D E F G H J N P Q R S U V W]{1}\\d{8})$")
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getCif() {
 		return cif;
