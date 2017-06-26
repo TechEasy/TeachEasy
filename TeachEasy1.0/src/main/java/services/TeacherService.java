@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -133,10 +134,13 @@ public class TeacherService {
 	public Teacher reconstruct(TeacherForm teacherForm, BindingResult binding) {
 
 		Teacher result;
+		DateTime today = new DateTime();
+		DateTime birthDate = new DateTime(teacherForm.getDate());
 
 		String password;
 		password = teacherForm.getPassword();
 
+		Assert.isTrue(birthDate.isBefore(today.minusYears(18)), "not18Old");
 		Assert.isTrue(teacherForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(teacherForm.getAgreed(), "agreedNotAccepted");
 
@@ -234,4 +238,6 @@ public class TeacherService {
 	public Collection<Teacher> findTeachersToPay(){
 		return teacherRepository.findTeachersToPay();
 	}
+	
+	
 }

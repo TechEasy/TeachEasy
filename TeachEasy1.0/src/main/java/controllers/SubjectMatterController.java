@@ -87,7 +87,6 @@ public class SubjectMatterController extends AbstractController {
 
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(subjectMatter);
-			result.addObject("message", "subjectMatter.error.editable");
 		}
 
 		return result;

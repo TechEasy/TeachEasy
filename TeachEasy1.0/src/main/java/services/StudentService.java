@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -136,10 +137,12 @@ public class StudentService {
 	public Student reconstruct(StudentForm studentForm, BindingResult binding) {
 
 		Student result;
-
+		DateTime today = new DateTime();
+		DateTime birthDate = new DateTime(studentForm.getDate());
 		String password;
 		password = studentForm.getPassword();
 
+		Assert.isTrue(birthDate.isBefore(today.minusYears(18)), "not18Old");
 		Assert.isTrue(studentForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(studentForm.getAgreed(), "agreedNotAccepted");
 

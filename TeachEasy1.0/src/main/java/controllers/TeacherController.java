@@ -140,7 +140,8 @@ public class TeacherController extends AbstractController {
 					msgCode = "teacher.register.notEqualPassword";
 				else if (oops.getMessage().equals("agreedNotAccepted"))
 					msgCode = "teacher.register.agreedNotAccepted";
-
+				else if (oops.getMessage().equals("not18Old"))
+					msgCode = "teacher.register.not18Old";
 				result = createEditModelAndView(teacherForm, msgCode);
 			}
 
