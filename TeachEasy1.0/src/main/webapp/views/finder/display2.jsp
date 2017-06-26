@@ -29,18 +29,23 @@
 						<div class="col-md-12">	
 							<div class="row">
 								<div class="col-md-3">
+								<p><spring:message code="finder.cityNotOptional" /></p>
 									<acme:textbox code="finder.city" path="city"/>		
 								</div>
 								<div class="col-md-3">
+								<br></br>
 									<acme:textbox code="finder.matter" path="matter"/>		
 								</div>
-								<div class="col-md-2">		
+								<div class="col-md-2">	
+								<br></br>	
 									<acme:textbox code="finder.keyword" path="keyword"/>
 								</div>
 								<div class="col-md-2">
+								<br></br>
 									<acme:textbox code="finder.minimumPrice" path="minimumPrice"/>		
 								</div>
 								<div class="col-md-2">
+								<br></br>
 									<acme:textbox code="finder.maximumPrice" path="maximumPrice"/>	
 								</div>
 							</div>
@@ -61,6 +66,9 @@
 			</div>
 		</div>
 	</div>
+	<jstl:if test="${aux==true}">
+	 <h3><spring:message code="finder.nothingFound"/></h3>
+	 </jstl:if>
 	<div class="row">
 		<div class="col-md-12">
 		<c:forEach items="${courses}" var="course" >

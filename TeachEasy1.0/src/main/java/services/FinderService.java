@@ -108,13 +108,14 @@ public class FinderService {
 	
 	public Finder reconstruct(FinderForm finderForm, BindingResult binding) {
 		Student student=studentService.findByPrincipal();
-		
+		Assert.isTrue(!(finderForm.getCity().equals("")),"cityNotNull");
 		Finder result = student.getFinder();
 		result.setCity(finderForm.getCity());
 		result.setMinimumPrice(finderForm.getMinimumPrice());
 		result.setMaximumPrice(finderForm.getMaximumPrice());
 		result.setKeyword(finderForm.getKeyword());
 		result.setMatter(finderForm.getMatter());
+		
 		validator.validate(result, binding);
 		
 		return result;
@@ -123,10 +124,12 @@ public class FinderService {
 	public FinderForm transform(Finder finder){
 		FinderForm result=generateForm();
 		result.setCity(finder.getCity());
+		Assert.isTrue(!(result.getCity().equals("")),"cityNotNull");
 		result.setMinimumPrice(finder.getMinimumPrice());
 		result.setMaximumPrice(finder.getMaximumPrice());
 		result.setKeyword(finder.getKeyword());
 		result.setMatter(finder.getMatter());
+		
 		return result;
 	}
 

@@ -85,12 +85,20 @@ public class StudentFindCourseController {
 			try {
 				finder=finderService.reconstruct(finderForm, binding);
 				Collection<Course>courses=courseService.findByFinder(finder);
+				Boolean aux=false;
+				if(courses.isEmpty()){
+					aux=true;
+				}
 				finderService.save(finder);
 				result = display2();
-				
+				result.addObject("aux",aux);
 				result.addObject("courses",courses);
 			} catch (Throwable oops) {
-				result = createEditModelAndView(finderForm, "master.page.commit.error");
+				String msgCode = "finder.commit.error";
+				if(oops.getMessage().equals("cityNotNull")){
+					msgCode="finder.cityNotNull";
+				}
+				result = createEditModelAndView(finderForm, msgCode);
 		}
 
 		
@@ -114,7 +122,7 @@ return result;
 protected ModelAndView createEditModelAndView(FinderForm finderForm, String message) {
 ModelAndView result;
 
-result = new ModelAndView("finder/edit2");
+result = new ModelAndView("finder/display2");
 result.addObject("finder", finderForm);
 
 result.addObject("message", message);

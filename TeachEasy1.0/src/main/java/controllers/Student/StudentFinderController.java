@@ -91,11 +91,21 @@ public class StudentFinderController extends AbstractController {
 			try {
 				finder = finderService.reconstruct(finderForm, binding);
 				Collection<Proposal> proposals = proposalService.findByFinder(finder);
+				Boolean aux=false;
+				if(proposals.isEmpty()){
+					aux=true;
+				}
 				finderService.save(finder);
 				result = display();
+				result.addObject("aux",aux);
 				result.addObject("proposals", proposals);
 			} catch (Throwable oops) {
-				result = createEditModelAndView(finderForm, "master.page.commit.error");
+				String msgCode = "finder.commit.error";
+				if(oops.getMessage().equals("cityNotNull")){
+					msgCode="finder.cityNotNull";
+				}
+				
+				result = createEditModelAndView(finderForm, msgCode);
 			}
 
 		}
@@ -116,7 +126,7 @@ public class StudentFinderController extends AbstractController {
 	protected ModelAndView createEditModelAndView(FinderForm finderForm, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("finder/edit");
+		result = new ModelAndView("finder/display");
 		result.addObject("finder", finderForm);
 
 		result.addObject("message", message);
