@@ -3,6 +3,7 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -53,6 +54,7 @@ public class SocialIdentity extends DomainEntity {
 	@NotBlank
 	@URL
 	@SafeHtml(whitelistType = WhiteListType.NONE)
+	@Column(unique=true)
 	public String getProfileUrl() {
 		return profileUrl;
 	}

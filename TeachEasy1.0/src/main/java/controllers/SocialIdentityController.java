@@ -110,6 +110,8 @@ public class SocialIdentityController extends AbstractController {
 				
 				if (oops.getMessage().equals("notYourSocial")){
 					msgCode="socialIdentity.notYourSocial";
+				}else if(oops.getMessage().equals("urlMustBeUnique")){
+					msgCode="socialIdentity.urlExist";
 				}
 				result = createEditModelAndView(socialIdentity, msgCode);
 			}

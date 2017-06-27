@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -106,7 +107,12 @@ public class SocialIdentityService {
 			} else if (LoginService.getPrincipal().getAuthorities().contains(au2)) {
 				socialIdentity.setAcademy(academy);
 			}
-
+			Collection<SocialIdentity>aux=socialIdentityRepository.findAll();
+			Collection<String> all=new ArrayList<String>();
+			for(SocialIdentity s:aux){
+				all.add(s.getProfileUrl());
+			}
+			Assert.isTrue(!all.contains(socialIdentity.getProfileUrl()),"urlMustBeUnique");
 			validator.validate(socialIdentity, binding);
 		} else {
 		SocialIdentity aux = socialIdentityRepository.findOne(socialIdentity.getId());
@@ -120,7 +126,15 @@ public class SocialIdentityService {
 			} else{
 				socialIdentity.setAcademy(aux.getAcademy());
 			}
+			Collection<SocialIdentity>aux2=socialIdentityRepository.findAll();
+			aux2.remove(socialIdentity);
+			Collection<String> all=new ArrayList<String>();
+			for(SocialIdentity s:aux2){
+				
+				all.add(s.getProfileUrl());
+			}
 			
+			Assert.isTrue(!all.contains(socialIdentity.getProfileUrl()),"urlMustBeUnique");
 			validator.validate(socialIdentity, binding);
 		}
 
