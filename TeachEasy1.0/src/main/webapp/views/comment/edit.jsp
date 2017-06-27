@@ -30,12 +30,12 @@
 				
 	<acme:textbox code="comments.title" path="title"/>	
 	<acme:textarea code="comments.text" path="text"/>
-	
-	<form:select path="stars" class="form-control">
-			<form:options items="${stars}" />
-		</form:select>
-	<form:errors cssClass="error" path="stars" />
-			
+	<div class="row">
+		<div class="col-md-12 mb-md">
+			<label for="stars" class="control-label"></label>
+			<input id="stars" name="stars" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+		</div>
+	</div>		
 	<div class="row">
 		<div class="col-md-3"><acme:cancel url="welcome/index.do" code="comments.cancel"/></div>
 		<div class="col-md-3"></div>
@@ -45,3 +45,9 @@
 </form:form>
 </div>
 <div class="col-md-3"></div>
+
+<script>
+$(document).on('ready', function(){
+    $('#stars').rating({});
+});
+</script>
