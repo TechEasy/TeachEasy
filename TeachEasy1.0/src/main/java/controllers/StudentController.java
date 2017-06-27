@@ -65,7 +65,8 @@ public class StudentController extends AbstractController {
 		StudentForm studentForm;
 
 		studentForm = studentService.generateForm(studentService.findByPrincipal());
-		result = createEditModelAndView(studentForm, null);
+		result = new ModelAndView("student/edit");
+		result.addObject("studentForm", studentForm);
 
 		return result;
 	}
