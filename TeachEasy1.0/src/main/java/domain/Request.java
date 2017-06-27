@@ -37,7 +37,7 @@ public class Request extends DomainEntity {
 		this.paid = paid;
 	}
 	@NotBlank
-	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$|WAITING$")
+	@Pattern(regexp = "^PENDING|ACCEPTED|DENIED$|AWAITING PAYMENT$")
 	public String getStatus() {
 		return status;
 	}

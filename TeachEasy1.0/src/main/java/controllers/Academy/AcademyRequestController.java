@@ -53,8 +53,8 @@ public class AcademyRequestController extends AbstractController {
 		academy = academyService.findByPrincipal();
 
 		Collection<Course> courses = courseService.findByCreator(academy);
-		for (Course c : courses){
-			for (Request r : c.getRequests()){
+		for (Course c : courses) {
+			for (Request r : c.getRequests()) {
 				requests.add(r);
 				amount.put(r.getId(), r.getRclass().getRate());
 			}
@@ -73,7 +73,7 @@ public class AcademyRequestController extends AbstractController {
 	public ModelAndView accept(@RequestParam int requestId) {
 
 		Request request = requestService.findOne(requestId);
-		request.setStatus("WAITING");
+		request.setStatus("AWAITING PAYMENT");
 		requestService.save(request);
 
 		return list();

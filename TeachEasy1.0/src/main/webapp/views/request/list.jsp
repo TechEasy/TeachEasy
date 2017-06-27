@@ -85,7 +85,7 @@
         
         <security:authorize access="hasRole('STUDENT')">
          <td>
-	       <jstl:if test="${request.status eq 'WAITING'}">
+	       <jstl:if test="${request.status eq 'AWAITING PAYMENT'}">
 	       
 	        <td>
 	         <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">

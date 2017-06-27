@@ -54,41 +54,40 @@ public class TeacherRequestController extends AbstractController {
 		teacher = teacherService.findByPrincipal();
 
 		Collection<Proposal> proposals = proposalService.findByCreator(teacher);
-		for (Proposal p : proposals){
-			for (Request r : p.getRequests()){
+		for (Proposal p : proposals) {
+			for (Request r : p.getRequests()) {
 				requests.add(r);
 			}
 		}
-				
-		for (Request r : requests) {						
-				Date sI, sO;
-				SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-	
-				sI = fecha.parse(r.getcheckIn());
-				sO = fecha.parse(r.getCheckOut());
-	
-				Integer minutos;
-				Integer horas;
-	
-				if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
-					minutos = sO.getMinutes() - sI.getMinutes();
-					horas = sO.getHours() - sI.getHours();
-				} else {
-					minutos = 60 + sO.getMinutes() - sI.getMinutes();
-					horas = sO.getHours() - sI.getHours() - 1;
-				}
-	
-				Double valor = (horas + (1.0 * (minutos) / 60));
-				Double value = valor * r.getRclass().getRate();
-	
-				amount.put(r.getId(), value);		
+
+		for (Request r : requests) {
+			Date sI, sO;
+			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+			sI = fecha.parse(r.getcheckIn());
+			sO = fecha.parse(r.getCheckOut());
+
+			Integer minutos;
+			Integer horas;
+
+			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+				minutos = sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours();
+			} else {
+				minutos = 60 + sO.getMinutes() - sI.getMinutes();
+				horas = sO.getHours() - sI.getHours() - 1;
+			}
+
+			Double valor = (horas + (1.0 * (minutos) / 60));
+			Double value = valor * r.getRclass().getRate();
+
+			amount.put(r.getId(), value);
 		}
-		
+
 		result = new ModelAndView("request/list");
 		result.addObject("requestURI", "teacher/request/list.do");
 		result.addObject("requests", requests);
 		result.addObject("amount", amount);
-
 
 		return result;
 	}
@@ -99,7 +98,7 @@ public class TeacherRequestController extends AbstractController {
 	public ModelAndView accept(@RequestParam int requestId) throws ParseException {
 
 		Request request = requestService.findOne(requestId);
-		request.setStatus("WAITING");
+		request.setStatus("AWAITING PAYMENT");
 		requestService.save(request);
 
 		return list();
@@ -116,6 +115,5 @@ public class TeacherRequestController extends AbstractController {
 
 		return list();
 	}
-
 
 }
