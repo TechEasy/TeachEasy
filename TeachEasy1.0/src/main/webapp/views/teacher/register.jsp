@@ -72,7 +72,7 @@
 							<form:label path="agreed" class="control-label">
 								<form:checkbox path="agreed"/>
 								<spring:message code="teacher.register.agree" />
-								<a href="misc/lopd.do"><spring:message code="teacher.register.agree.2"/></a>
+								<a data-toggle="modal" data-target="#myModal"><spring:message code="teacher.register.agree.2"/></a>
 							</form:label>
 							<form:errors path="agreed" cssClass="error" />
 						</div>
@@ -156,4 +156,21 @@
 </div>
 </div>
 </jstl:if>
+
+<div class="modal fade" id="myModal" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><spring:message code="lopd.title" /></h4>
+        </div>
+        <div class="modal-body">
+          <p><spring:message code="lopd.text" /></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
 
