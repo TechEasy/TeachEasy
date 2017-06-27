@@ -167,7 +167,7 @@ public class AcademyCourseController extends AbstractController {
 
 	private Map<Integer, String> getMatters() {
 		Collection<SubjectMatter> cs;
-		cs = matterService.findAll();
+		cs = matterService.findSubjectMatterValidated();
 
 		Map<Integer, String> matters = new HashMap<Integer, String>();
 		for (SubjectMatter s : cs) {
