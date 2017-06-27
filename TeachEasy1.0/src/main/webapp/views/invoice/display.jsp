@@ -29,6 +29,14 @@
 		<div class="col-md-6"><h3><jstl:out value="${invoice.details}"/></h3></div>
 	</div>
 	<div class="row">
+		<div class="col-md-6"><h3><strong><spring:message code="invoice.desglose"/>: </strong></h3></div>
+		<div class="col-md-6"><h3><spring:message code="invoice.precio"/><jstl:out value=" ${aux2}"/></h3></div>
+	</div>
+	<div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-6"><h3><spring:message code="invoice.iva"/><jstl:out value=" ${aux}"/></h3></div>
+	</div>
+	<div class="row">
 		<div class="col-md-6"><h3><strong><spring:message code="invoice.total"/>: </strong></h3></div>
 		<div class="col-md-6"><h3><jstl:out value="${invoice.total}"/></h3></div>
 	</div>

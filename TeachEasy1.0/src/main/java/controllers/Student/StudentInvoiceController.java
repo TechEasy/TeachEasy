@@ -1,3 +1,4 @@
+
 package controllers.Student;
 
 import java.util.ArrayList;
@@ -16,56 +17,70 @@ import controllers.AbstractController;
 import domain.Invoice;
 import domain.Request;
 import domain.Student;
+
 @Controller
 @RequestMapping("/student/invoice")
-public class StudentInvoiceController extends AbstractController{
+public class StudentInvoiceController extends AbstractController {
+
 	//Services-----------------------------------
-	  @Autowired
-	  private StudentService studentService;
-	  @Autowired
-	  private InvoiceService invoiceService;
-	  
-	 //Constructor-------------------------------
-	  public StudentInvoiceController(){
-		  super();
-	  }
-	  @RequestMapping(value = "/list", method = RequestMethod.GET)
-		public ModelAndView list() {
-			ModelAndView result;
-			Student student;
-			student=studentService.findByPrincipal();
-			Collection<Invoice> invoices=new ArrayList<Invoice>();
-			for(Request r:student.getRequests()){
-				invoices.add(r.getInvoice());
-			}
-			result = new ModelAndView("invoice/list");
-			result.addObject("invoices", invoices);
-			result.addObject("requestURI","student/invoice/list.do");
-			return result;
-		}
-	  @RequestMapping(value = "/display", method = RequestMethod.GET)
-		public ModelAndView display(@RequestParam int invoiceId) {
+	@Autowired
+	private StudentService	studentService;
+	@Autowired
+	private InvoiceService	invoiceService;
 
-			ModelAndView result;
-			Invoice invoice;
-			Student student;
-			student=studentService.findByPrincipal();
-			Collection<Invoice> invoices=new ArrayList<Invoice>();
-			for(Request r:student.getRequests()){
-				invoices.add(r.getInvoice());
-			}
-			invoice = invoiceService.findOne(invoiceId);
-			if(invoices.contains(invoice)){
-				result = new ModelAndView("invoice/display");
-				result.addObject("invoice", invoice);
 
-				result.addObject("requestURI", "student/invoice/display.do");
-			}else{
-				
-				result=list();
-			}
-			
-			
-			return result;
+	//Constructor-------------------------------
+	public StudentInvoiceController() {
+		super();
+	}
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Student student;
+		student = studentService.findByPrincipal();
+		Collection<Invoice> invoices = new ArrayList<Invoice>();
+		for (Request r : student.getRequests()) {
+			invoices.add(r.getInvoice());
 		}
+		result = new ModelAndView("invoice/list");
+		result.addObject("invoices", invoices);
+		result.addObject("requestURI", "student/invoice/list.do");
+		return result;
+	}
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam int invoiceId) {
+
+		ModelAndView result;
+		Invoice invoice;
+		Student student;
+		Double aux;
+		Double aux2;
+		Double iva = 0.21;
+		Double total;
+
+		student = studentService.findByPrincipal();
+		Collection<Invoice> invoices = new ArrayList<Invoice>();
+		for (Request r : student.getRequests()) {
+			invoices.add(r.getInvoice());
+		}
+		invoice = invoiceService.findOne(invoiceId);
+
+		total = invoice.getTotal();
+		aux = total * iva;
+		aux2 = total - aux;
+
+		if (invoices.contains(invoice)) {
+			result = new ModelAndView("invoice/display");
+			result.addObject("invoice", invoice);
+			result.addObject("aux", aux);
+			result.addObject("aux2", aux2);
+
+			result.addObject("requestURI", "student/invoice/display.do");
+		} else {
+
+			result = list();
+		}
+
+		return result;
+	}
 }
