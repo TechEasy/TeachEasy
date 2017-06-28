@@ -16,6 +16,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.RequestRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
+import domain.Course;
+import domain.Proposal;
 import domain.Request;
 import form.RequestForm;
 
@@ -39,6 +44,8 @@ public class RequestService {
 	private StudentService		studentService;
 	
 	@Autowired
+	private ProposalService		proposalService;
+	@Autowired
 	private CourseService		courseService;
 	
 	
@@ -52,6 +59,11 @@ public class RequestService {
 
 	// Simple CRUD methods
 	public Request create() {
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Authority au = new Authority();
+		au.setAuthority("STUDENT");
+		Assert.isTrue(userAccount.getAuthorities().contains(au));
 		Request result;
 		result = new Request();
 		result.setPaid(false);
@@ -73,7 +85,26 @@ public class RequestService {
 	}
 
 	public Request save(Request request) {
-
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Authority au = new Authority();
+		Authority au2 = new Authority();
+		Authority au3 = new Authority();
+		au.setAuthority("STUDENT");
+		au2.setAuthority("TEACHER");
+		au3.setAuthority("ACADEMY");
+		Assert.isTrue(userAccount.getAuthorities().contains(au) || userAccount.getAuthorities().contains(au2) || userAccount.getAuthorities().contains(au3));
+		userAccount.getUsername();
+		Proposal p=null;
+		Course c=null;
+		if(proposalService.findOne(request.getRclass().getId())!=null){
+			p=proposalService.findOne(request.getRclass().getId());
+			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || p.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()));
+		}else{
+			c=courseService.findOne(request.getRclass().getId());
+			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || c.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()));
+		}
+		
 		Request result;
 		result = requestRepository.save(request);
 
