@@ -1,12 +1,14 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -68,9 +70,18 @@ public class MatterService {
 		subjectMatterRepository.delete(matter);
 	}
 
-	public SubjectMatter reconstruct(final SubjectMatter subjectMatter, final BindingResult binding) {
+	public SubjectMatter reconstruct(SubjectMatter subjectMatter, BindingResult binding) {
 		SubjectMatter result;
+		Collection<SubjectMatter> col = new ArrayList<SubjectMatter>();
+		
+		col = findAll();
+		
+		for(SubjectMatter s : col){
+			Assert.isTrue(!s.getName().equals(subjectMatter.getName()), "usedThisName");
+		}
 
+		
+		
 		if (subjectMatter.getId() == 0) {
 			result = subjectMatter;
 			result.setValidated(false);

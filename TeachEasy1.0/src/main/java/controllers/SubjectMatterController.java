@@ -75,7 +75,7 @@ public class SubjectMatterController extends AbstractController {
 	// Edition ---------------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int subjectMatterId) {
+	public ModelAndView edit(@RequestParam int subjectMatterId) {
 		ModelAndView result;
 		SubjectMatter subjectMatter;
 		Actor actor;
@@ -85,7 +85,7 @@ public class SubjectMatterController extends AbstractController {
 			actor = this.actorService.findByPrincipal();
 			result = this.createEditModelAndView(subjectMatter);
 
-		} catch (final Throwable oops) {
+		} catch (Throwable oops) {
 			result = this.createEditModelAndView(subjectMatter);
 		}
 
@@ -93,20 +93,26 @@ public class SubjectMatterController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(SubjectMatter subjectMatter, final BindingResult binding) {
+	public ModelAndView save(SubjectMatter subjectMatter, BindingResult binding) {
 		ModelAndView result;
 
-		subjectMatter = this.subjectMatterService.reconstruct(subjectMatter, binding);
+		
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(subjectMatter);
 		else
 			try {
+				subjectMatter = this.subjectMatterService.reconstruct(subjectMatter, binding);
 				this.subjectMatterService.save(subjectMatter);
-				result = new ModelAndView("redirect:/subjectMatter/list.do");
+				result = list();
+				result.addObject("msgSaved", "subjectMatter.msgSaved");
 
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(subjectMatter, "subjectMatter.commit.error");
+			} catch (Throwable oops) {
+				String msgCode = "subjectMatter.commit.error";
+				if (oops.getMessage().equals("usedThisName"))
+					msgCode = "subjectMatter.usedThisName";
+			
+				result = this.createEditModelAndView(subjectMatter, msgCode);
 			}
 
 		return result;

@@ -3,6 +3,7 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,7 +25,6 @@ public class SubjectMatter extends DomainEntity {
 	private String	name;
 	private String	description;
 	private Boolean	validated;
-
 
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)

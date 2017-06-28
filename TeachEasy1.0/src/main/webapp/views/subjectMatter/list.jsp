@@ -56,6 +56,8 @@
 		        </td>
 		      </tr>
 		    </c:forEach>
+		    
+		    <jstl:if test="${msgSaved!=null}"><b><spring:message code="subjectMatter.msgSaved"/></b></jstl:if>
 		    </tbody>
 		</table>
 		</div>
