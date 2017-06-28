@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="teacher/browse" extends="master.page">	
-		<put-attribute name="title" value="Browse teachers" />
+		<put-attribute name="title" value="Profesores" />
 		<put-attribute name="body" value="/views/teacher/browse.jsp" />
 	</definition>
 	

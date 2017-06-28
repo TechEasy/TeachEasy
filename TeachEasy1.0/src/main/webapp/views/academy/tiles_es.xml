@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="academy/browse" extends="master.page">	
-		<put-attribute name="title" value="Busca academias" />
+		<put-attribute name="title" value="Academias" />
 		<put-attribute name="body" value="/views/academy/browse.jsp" />
 	</definition>
 	
