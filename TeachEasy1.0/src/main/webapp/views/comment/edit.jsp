@@ -37,7 +37,12 @@
 		</div>
 	</div>		
 	<div class="row">
-		<div class="col-md-3"><acme:cancel url="welcome/index.do" code="comments.cancel"/></div>
+	<jstl:if test="${aux==true }">
+		<div class="col-md-3"><acme:cancel url="teacher/displayById.do?id=${idEnt }" code="comments.cancel"/></div>
+	</jstl:if>
+	<jstl:if test="${aux==false }">
+		<div class="col-md-3"><acme:cancel url="academy/displayById.do?id=${idEnt }" code="comments.cancel"/></div>
+	</jstl:if>
 		<div class="col-md-3"></div>
 		<div class="col-md-6"><acme:submit name="save" code="comments.save"/></div>
 	</div>
