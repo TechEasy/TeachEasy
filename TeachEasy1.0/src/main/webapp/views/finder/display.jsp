@@ -71,8 +71,10 @@
 	 <h3><spring:message code="finder.nothingFound"/></h3>
 	 </jstl:if>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" id="contenedor-tarjetas">
 		<c:forEach items="${proposals}" var="proposal" >
+		<div class="row paginador-item">
+		<div class="col-md-12">
 			<div class="card-bordered">
 				<div class="row">
 				<div class="col-md-3 text-center">	
@@ -102,6 +104,8 @@
 				</div>
 				</div>
 			</div>
+			</div>
+			</div>
 		</c:forEach>
 		</div>
 	</div>
@@ -111,6 +115,10 @@
 <script>
 	$(document).ready(function(){
 	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
-	;
+	    $ ('#contenedor-tarjetas').easyPaginate({
+	    	paginateElement: 'div.paginador-item',
+	    	elementsPerPage: 2,
+	    	effect: 'climb'
+	    });
 	});
 </script>

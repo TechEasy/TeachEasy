@@ -179,3 +179,19 @@
 	
 	min-height:500px;
 }
+
+.easyPaginateNav a{
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-weight:bold;
+}
+
+.easyPaginateNav {
+	margin-left:20px;
+}

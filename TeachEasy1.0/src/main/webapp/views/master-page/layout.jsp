@@ -46,6 +46,7 @@
 <script src="<c:url value="/resources/js/star-rating.min.js" />" type="text/javascript"></script>
 <script src="<c:url value="/resources/js/moment.js" />"></script>
 <script src="<c:url value="/resources/js/datetimepicker.js" />"></script>
+<script src="<c:url value="/resources/js/paginator.js" />"></script>
 
 
 

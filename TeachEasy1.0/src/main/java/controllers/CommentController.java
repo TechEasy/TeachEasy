@@ -67,30 +67,12 @@ public class CommentController extends AbstractController {
 
 		comment = commentService.create();
 		commentable = commentableService.findOne(idEntity);
-		Boolean aux=false;
-		if(teacherService.findOne(commentable.getId())!=null){
-			aux=true;
-		}
+
 		comment.setStudent(studentService.findByPrincipal());
 		comment.setCommentable(commentable);
 		comment.setCreateMoment(new Date());
-		
-		Integer idEnt=commentable.getId();
-		Collection<Integer> stars = new ArrayList<Integer>();
-		stars.add(0);
-		stars.add(1);
-		stars.add(2);
-		stars.add(3);
-		stars.add(4);
-		stars.add(5);
 
-		result = new ModelAndView("comment/edit");
-		result.addObject("comment", comment);
-		result.addObject("stars", stars);
-		result.addObject("message", null);
-		result.addObject("idEnt",idEnt);
-		result.addObject("aux",aux);
-
+		result = createEditModelAndView(comment);
 
 		return result;
 	}

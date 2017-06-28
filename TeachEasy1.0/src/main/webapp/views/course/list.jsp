@@ -17,9 +17,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<div class="col-md-12">
+<div class="col-md-12" id="contenedor-tarjetas">
 		<c:forEach items="${courses}" var="course" >
-		<div class="row">
+		<div class="row paginador-item">
 		<div class="col-md-12">
 		<div class="card-bordered">
 			<div class="row">
@@ -66,6 +66,10 @@
 <script>
 	$(document).ready(function(){
 	    $('[id^="star-academy-"]').rating({displayOnly: true, step: 0.5});
-	;
+	    $ ('#contenedor-tarjetas').easyPaginate({
+	    	paginateElement: 'div.paginador-item',
+	    	elementsPerPage: 2,
+	    	effect: 'climb'
+	    });
 	});
 </script>
