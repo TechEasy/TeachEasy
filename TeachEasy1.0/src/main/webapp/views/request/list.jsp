@@ -30,7 +30,7 @@
 
 
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" id="example width="100%"">
 	<thead>
       <tr>
         <th>${checkin}</th>
@@ -136,7 +136,11 @@ function target_popup(form) {
     form.target = 'formpopup';
 }
 </script>
-
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 
 

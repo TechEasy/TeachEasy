@@ -62,7 +62,7 @@
 	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
 	    $ ('#contenedor-tarjetas').easyPaginate({
 	    	paginateElement: 'div.paginador-item',
-	    	elementsPerPage: 2,
+	    	elementsPerPage: 5,
 	    	effect: 'climb'
 	    });
 	
