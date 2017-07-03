@@ -25,6 +25,10 @@
 	</div>
 </security:authorize>
 
+<jstl:if test="${msg!=null }">
+	<h3 style="color:red;"><spring:message code="${msg}" /></h3>
+</jstl:if>
+
 <div class="col-md-12" id="contenedor-tarjetas">
 		<c:forEach items="${proposals}" var="proposal" >
 		<div class="row paginador-item">

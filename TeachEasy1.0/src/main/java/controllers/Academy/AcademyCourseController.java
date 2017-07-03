@@ -82,14 +82,29 @@ public class AcademyCourseController extends AbstractController {
 
 	// Edition ----------------------------------------------------------------		
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int courseId) {
+	public ModelAndView edit(@RequestParam String courseId) {
 		ModelAndView result;
 		Course course;
 
-		course = courseService.findOne(courseId);
-
-		Assert.notNull(course);
-		result = createEditModelAndView(course);
+		try{
+			if(courseId.length()<10){
+				int id = Integer.valueOf(courseId);
+				course = courseService.findOne(id);
+			}else
+				course=null;
+			
+			if(course==null || !academyService.findByPrincipal().equals(course.getAcademy())){
+				result = listCourse();
+				String msg = "course.notYours";
+				result.addObject("msg", msg);
+			}else{
+				result = createEditModelAndView(course);
+			}
+		}catch (Throwable oops) {
+			result = listCourse();
+			String msg = "course.notYours";
+			result.addObject("msg", msg);
+		}
 
 		return result;
 	}
