@@ -297,21 +297,54 @@ public class StudentRequestController extends AbstractController {
 	// Cancel -----------------------------------------------------------
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public ModelAndView cancel(@RequestParam int requestId) throws ParseException {
+	public ModelAndView cancel(@RequestParam String requestId) throws ParseException {
 		String msg=null;
+		Request request=null;
+		Date f = new Date(System.currentTimeMillis());
+		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
-			Request request = requestService.findOne(requestId);
-			request.setStatus("DENIED");
-			requestService.save(request);
-		} catch (Throwable oops) {
-			String msgCode = "request.register.error";
-			if (oops.getMessage().equals("notYours")){
-				msgCode = "request.notYours";
-				msg="This request is not yours,it has been redirected to your list";
-			}
+			
+			try{
+				if(requestId.length()<10){
+					int id = Integer.valueOf(requestId);
+					request = requestService.findOne(id);
+				}else{
+					request=null;
+					msg = "request.notYours";
+				}
 				
+				if(request!=null){
+					if(courseService.findOne(request.getRclass().getId())!=null){
+						request.setStatus("DENIED");
+						requestService.save(request);
+					}else{
+						Date sI = fecha.parse(request.getcheckIn());
+					
+						if(f.before(sI)){
+							request.setStatus("DENIED");
+							requestService.save(request);
+						}else{
+							msg = "request.notPast";
+						}
+					}
+					
+				}else{
+					msg = "request.notYours";
+				}
+			}catch (Throwable oops) {
+				ModelAndView result=list(); 
+				msg = "request.notPast";
+				result.addObject("msg",msg);
+			}	
+			
+		} catch (Throwable oops) {
+			msg = "request.register.error";
+			if (oops.getMessage().equals("notYours")){
+				msg = "request.notYours";
+			}
 		}
-		ModelAndView result=list();
+
+		ModelAndView result=list(); 
 		result.addObject("msg",msg);
 		return result;
 	}

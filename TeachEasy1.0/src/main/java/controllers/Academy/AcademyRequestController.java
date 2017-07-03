@@ -93,13 +93,30 @@ public class AcademyRequestController extends AbstractController {
 	// Deny -----------------------------------------------------------
 
 	@RequestMapping(value = "/deny", method = RequestMethod.GET)
-	public ModelAndView deny(@RequestParam int requestId) {
+	public ModelAndView deny(@RequestParam String requestId) {
 		String msg=null;
+		Request request=null;
 		try {
-			Request request = requestService.findOne(requestId);
-			request.setStatus("DENIED");
-			requestService.save(request);
-
+			
+			try{
+				if(requestId.length()<10){
+					int id = Integer.valueOf(requestId);
+					 request = requestService.findOne(id);
+				}else
+					request=null;
+				
+				if(request==null){
+					 msg = "request.notYours";
+				}else{
+					request.setStatus("DENIED");
+					requestService.save(request);
+				}
+			}catch (Throwable oops) {
+				ModelAndView result=list(); 
+				 msg = "request.notYours";
+				result.addObject("msg",msg);
+			}	
+			
 		} catch (Throwable oops) {
 			String msgCode = "request.register.error";
 			if (oops.getMessage().equals("notYours")){
@@ -109,7 +126,7 @@ public class AcademyRequestController extends AbstractController {
 				
 		}
 
-		ModelAndView result=list();
+		ModelAndView result=list(); 
 		result.addObject("msg",msg);
 		return result;
 	}
