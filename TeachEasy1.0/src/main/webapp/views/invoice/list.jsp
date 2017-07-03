@@ -16,7 +16,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<jstl:if test="${msg!=null }">
+<h3 style="color:red;"><spring:message code="invoice.notYours"></spring:message></h3>
+</jstl:if>
 <div class="col-md-12">
 <table class="table table-striped">
 	<thead>

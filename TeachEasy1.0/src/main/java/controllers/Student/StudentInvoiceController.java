@@ -48,38 +48,47 @@ public class StudentInvoiceController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam int invoiceId) {
+	public ModelAndView display(@RequestParam String invoiceId) {
 
-		ModelAndView result;
+		ModelAndView result=new ModelAndView();
 		Invoice invoice;
 		Student student;
 		Double aux;
 		Double aux2;
 		Double iva = 0.21;
 		Double total;
-
+		String msg=null;
+		
 		student = studentService.findByPrincipal();
 		Collection<Invoice> invoices = new ArrayList<Invoice>();
 		for (Request r : student.getRequests()) {
 			invoices.add(r.getInvoice());
 		}
-		invoice = invoiceService.findOne(invoiceId);
-
-		total = invoice.getTotal();
-		aux = total * iva;
-		aux2 = total - aux;
-
-		if (invoices.contains(invoice)) {
-			result = new ModelAndView("invoice/display");
-			result.addObject("invoice", invoice);
-			result.addObject("aux", aux);
-			result.addObject("aux2", aux2);
-
-			result.addObject("requestURI", "student/invoice/display.do");
-		} else {
-
-			result = list();
+		int id = Integer.valueOf(invoiceId);
+		try{
+			invoice = invoiceService.findOne(id);
+			total = invoice.getTotal();
+			aux = total * iva;
+			aux2 = total - aux;
+			if (invoices.contains(invoice)) {
+				result = new ModelAndView("invoice/display");
+				result.addObject("invoice", invoice);
+				result.addObject("aux", aux);
+				result.addObject("aux2", aux2);
+			
+			
+				result.addObject("requestURI", "student/invoice/display.do");
+			} else {
+				msg="Not Yours";
+				result = list();
+				result.addObject("msg",msg);
 		}
+		}catch(Throwable oops){
+			msg="Is null";
+			result = list();
+			result.addObject("msg",msg);
+		}
+		
 
 		return result;
 	}

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.InvoiceRepository;
 import domain.Invoice;
@@ -57,6 +58,7 @@ public class InvoiceService {
 	public Invoice findOne(int id) {
 		Invoice result;
 		result = invoiceRepository.findOne(id);
+		
 		return result;
 	}
 
