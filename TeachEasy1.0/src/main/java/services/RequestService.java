@@ -99,10 +99,10 @@ public class RequestService {
 		Course c=null;
 		if(proposalService.findOne(request.getRclass().getId())!=null){
 			p=proposalService.findOne(request.getRclass().getId());
-			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || p.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()));
+			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || p.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
 		}else{
 			c=courseService.findOne(request.getRclass().getId());
-			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || c.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()));
+			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || c.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
 		}
 		
 		Request result;

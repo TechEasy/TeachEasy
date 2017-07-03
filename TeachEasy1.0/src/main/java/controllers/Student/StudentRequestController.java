@@ -298,12 +298,22 @@ public class StudentRequestController extends AbstractController {
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
 	public ModelAndView cancel(@RequestParam int requestId) throws ParseException {
-
-		Request request = requestService.findOne(requestId);
-		request.setStatus("DENIED");
-		requestService.save(request);
-
-		return list();
+		String msg=null;
+		try {
+			Request request = requestService.findOne(requestId);
+			request.setStatus("DENIED");
+			requestService.save(request);
+		} catch (Throwable oops) {
+			String msgCode = "request.register.error";
+			if (oops.getMessage().equals("notYours")){
+				msgCode = "request.notYours";
+				msg="This request is not yours,it has been redirected to your list";
+			}
+				
+		}
+		ModelAndView result=list();
+		result.addObject("msg",msg);
+		return result;
 	}
 
 	// Ancillary methods ---------------------------------------------------

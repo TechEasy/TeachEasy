@@ -18,6 +18,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<jstl:if test="${msg!=null }">
+<h3 style="color:red;"><spring:message code="request.notYours"></spring:message></h3>
+</jstl:if>
 
 <div class="col-md-12">
 <spring:message code="request.checkin" var="checkin" />

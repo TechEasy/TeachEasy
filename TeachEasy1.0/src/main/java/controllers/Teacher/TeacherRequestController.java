@@ -96,24 +96,46 @@ public class TeacherRequestController extends AbstractController {
 
 	@RequestMapping(value = "/accept", method = RequestMethod.GET)
 	public ModelAndView accept(@RequestParam int requestId) throws ParseException {
+		String msg=null;
+		try {
+			Request request = requestService.findOne(requestId);
+			request.setStatus("AWAITING PAYMENT");
+			requestService.save(request);
+		} catch (Throwable oops) {
+			String msgCode = "request.register.error";
+			if (oops.getMessage().equals("notYours")){
+				msgCode = "request.notYours";
+				msg="This request is not yours,it has been redirected to your list";
+			}
+				
+		}
 
-		Request request = requestService.findOne(requestId);
-		request.setStatus("AWAITING PAYMENT");
-		requestService.save(request);
-
-		return list();
+		ModelAndView result=list();
+		result.addObject("msg",msg);
+		return result;
 	}
 
 	// Deny -----------------------------------------------------------
 
 	@RequestMapping(value = "/deny", method = RequestMethod.GET)
 	public ModelAndView deny(@RequestParam int requestId) throws ParseException {
+		String msg=null;
+		try {
+			Request request = requestService.findOne(requestId);
+			request.setStatus("DENIED");
+			requestService.save(request);
+		} catch (Throwable oops) {
+			String msgCode = "request.register.error";
+			if (oops.getMessage().equals("notYours")){
+				msgCode = "request.notYours";
+				msg="This request is not yours,it has been redirected to your list";
+			}
+				
+		}
 
-		Request request = requestService.findOne(requestId);
-		request.setStatus("DENIED");
-		requestService.save(request);
-
-		return list();
+		ModelAndView result=list();
+		result.addObject("msg",msg);
+		return result;
 	}
 
 }
