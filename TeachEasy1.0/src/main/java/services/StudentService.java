@@ -92,9 +92,11 @@ public class StudentService {
 	}
 
 	public Student save2(Student student) {
+		UserAccount userAccount=LoginService.getPrincipal();
 		Student result;
-
+		Assert.isTrue(userAccount.getUsername().equals(student.getUserAccount().getUsername()),"notYou");
 		result = studentRepository.save(student);
+		
 		return result;
 
 	}

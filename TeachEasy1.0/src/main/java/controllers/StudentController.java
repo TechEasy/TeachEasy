@@ -101,6 +101,9 @@ public class StudentController extends AbstractController {
 					msgCode = "student.badCreditCard";
 				}else if (oops.getMessage().equals("not18Old"))
 					msgCode = "student.register.not18Old";
+				if(oops.getMessage().equals("notYou")){
+					msgCode="student.notYou";
+				}
 				result = createEditModelAndView(studentForm, msgCode);
 			}
 		}

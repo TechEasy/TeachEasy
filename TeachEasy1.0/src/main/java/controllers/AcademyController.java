@@ -141,7 +141,9 @@ public class AcademyController extends AbstractController {
 						msgCode = "academy.register.notEqualPassword";
 					else if (oops.getMessage().equals("agreedNotAccepted"))
 						msgCode = "academy.register.agreedNotAccepted";
-
+					else if(oops.getMessage().equals("notYou")){
+						msgCode="academy.notYou";
+					}
 					result = createEditModelAndView(academyForm, msgCode);
 				}
 

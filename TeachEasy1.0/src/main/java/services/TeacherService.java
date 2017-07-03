@@ -88,9 +88,11 @@ public class TeacherService {
 	}
 	
 	public Teacher save2(Teacher teacher) {
+		UserAccount userAccount=LoginService.getPrincipal();
 		Teacher result;
-
+		
 		result = teacherRepository.save(teacher);
+
 		return result;
 
 	}
@@ -159,7 +161,9 @@ public class TeacherService {
 		}else{
 			result = teacherRepository.findOne(teacherForm.getId());
 		}
-		
+		UserAccount userAccount=LoginService.getPrincipal();
+		Teacher teacher=teacherRepository.findOne(teacherForm.getId());
+		Assert.isTrue(userAccount.getUsername().equals(teacher.getUserAccount().getUsername()),"notYou");
 		result.setName(teacherForm.getName());
 		result.setSurname(teacherForm.getSurname());
 		result.setEmail(teacherForm.getEmail());

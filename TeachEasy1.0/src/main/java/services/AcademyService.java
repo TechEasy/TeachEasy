@@ -79,6 +79,7 @@ public class AcademyService {
 	}
 	
 	public Academy save2(Academy academy) {
+		UserAccount userAccount=LoginService.getPrincipal();
 		Academy result;
 		
 		result = academyRepository.save(academy);
@@ -147,7 +148,9 @@ public class AcademyService {
 		}else{
 			result = academyRepository.findOne(academyForm.getId());
 		}
-		
+		UserAccount userAccount=LoginService.getPrincipal();
+		Academy academy=academyRepository.findOne(academyForm.getId());
+		Assert.isTrue(userAccount.getUsername().equals(academy.getUserAccount().getUsername()),"notYou");
 		result.setName(academyForm.getName());
 		result.setCity(academyForm.getCity());
 		result.setAddress(academyForm.getAddress());
