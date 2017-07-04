@@ -86,11 +86,11 @@ public class TeacherService {
 		return result;
 
 	}
-	
+
 	public Teacher save2(Teacher teacher) {
-		UserAccount userAccount=LoginService.getPrincipal();
+		UserAccount userAccount = LoginService.getPrincipal();
 		Teacher result;
-		
+
 		result = teacherRepository.save(teacher);
 
 		return result;
@@ -146,7 +146,7 @@ public class TeacherService {
 		Assert.isTrue(teacherForm.getPassword2().equals(password), "notEqualPassword");
 		Assert.isTrue(teacherForm.getAgreed(), "agreedNotAccepted");
 
-		if (teacherForm.getId() == 0){
+		if (teacherForm.getId() == 0) {
 			result = create();
 			UserAccount userAccount;
 			userAccount = new UserAccount();
@@ -158,12 +158,12 @@ public class TeacherService {
 			authority.setAuthority(Authority.TEACHER);
 			userAccount.addAuthority(authority);
 			result.setUserAccount(userAccount);
-		}else{
+		} else {
 			result = teacherRepository.findOne(teacherForm.getId());
 		}
-		UserAccount userAccount=LoginService.getPrincipal();
-		Teacher teacher=teacherRepository.findOne(teacherForm.getId());
-		Assert.isTrue(userAccount.getUsername().equals(teacher.getUserAccount().getUsername()),"notYou");
+		//UserAccount userAccount=LoginService.getPrincipal();
+		//Teacher teacher=teacherRepository.findOne(teacherForm.getId());
+		//Assert.isTrue(userAccount.getUsername().equals(teacher.getUserAccount().getUsername()),"notYou");
 		result.setName(teacherForm.getName());
 		result.setSurname(teacherForm.getSurname());
 		result.setEmail(teacherForm.getEmail());
@@ -180,32 +180,30 @@ public class TeacherService {
 
 	}
 
-	
-	  public static Boolean validarCuentaBancaria(String cuenta){
-	  
-	  String A = cuenta.substring(0, 1);
-	  String B = cuenta.substring(1, 2);
-	  
-	  List<String>letras = Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-	  Integer primero = 10+letras.indexOf(A);
-	  Integer segundo = 10+letras.indexOf(B);
-	  
-	  cuenta = primero.toString()+segundo.toString()+cuenta.substring(2);
-	  cuenta = cuenta.substring(6)+cuenta.substring(0, 6);
-	  
-	  BigInteger numero = new BigInteger(cuenta);
-	  BigInteger v = new BigInteger("97");
-	  BigInteger s = new BigInteger("1");
-	  BigInteger validador = numero.mod(v);
-	  
-	  if (validador.compareTo(s)==0){
-	  return true;
-	  }else{
-	  return false;
-	  }
-	  
-	  }
-	 
+	public static Boolean validarCuentaBancaria(String cuenta) {
+
+		String A = cuenta.substring(0, 1);
+		String B = cuenta.substring(1, 2);
+
+		List<String> letras = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+		Integer primero = 10 + letras.indexOf(A);
+		Integer segundo = 10 + letras.indexOf(B);
+
+		cuenta = primero.toString() + segundo.toString() + cuenta.substring(2);
+		cuenta = cuenta.substring(6) + cuenta.substring(0, 6);
+
+		BigInteger numero = new BigInteger(cuenta);
+		BigInteger v = new BigInteger("97");
+		BigInteger s = new BigInteger("1");
+		BigInteger validador = numero.mod(v);
+
+		if (validador.compareTo(s) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 	public Teacher findByPrincipal() {
 		Teacher result;
@@ -239,9 +237,8 @@ public class TeacherService {
 		return t;
 	}
 
-	public Collection<Teacher> findTeachersToPay(){
+	public Collection<Teacher> findTeachersToPay() {
 		return teacherRepository.findTeachersToPay();
 	}
-	
-	
+
 }
