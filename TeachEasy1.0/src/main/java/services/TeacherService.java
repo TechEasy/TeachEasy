@@ -52,11 +52,9 @@ public class TeacherService {
 	// Simple CRUD methods
 	public Teacher create() {
 		Teacher result;
-		Curricula curricula = curriculaService.create();
-		curricula = curriculaService.save(curricula);
+		
 		result = new Teacher();
-
-		result.setCurricula(curricula);
+		
 		result.setAvgStars(0.0);
 		result.setFeeAmount(0.0);
 		return result;
@@ -81,8 +79,13 @@ public class TeacherService {
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		String md5 = encoder.encodePassword(password, null);
 		teacher.getUserAccount().setPassword(md5);
-
+		
 		result = teacherRepository.save(teacher);
+		Curricula curricula = curriculaService.create();
+		curricula.setTeacher(result);
+		curricula = curriculaService.save2(curricula);
+		result.setCurricula(curricula);
+		teacherRepository.save(result);
 		return result;
 
 	}

@@ -4,6 +4,7 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -50,5 +51,15 @@ public class Curricula extends DomainEntity {
 	}
 
 	// Relationships ----------------------------------------------------------
+	private Teacher	teacher;
+	
+	@OneToOne(optional= false)
+	public Teacher getTeacher() {
+		return teacher;
+	}
 
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	
 }

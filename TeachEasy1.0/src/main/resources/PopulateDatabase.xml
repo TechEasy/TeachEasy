@@ -369,18 +369,21 @@
 		<property name="educationSection" value="He cursado Ingeniería Informática del Software en Sevilla" />	
 		<property name="experienceSection" value="He estado trabjando 10 años en Everis" />	
 		<property name="hobbiesSection" value="Me gusta leer comics" />		
+		<property name="teacher" ref="teacher1" />	
 	</bean>	
 	
 	<bean id="curricula2" class="domain.Curricula">
 		<property name="educationSection" value="Tengo c1 en Inglés y Francés" />	
 		<property name="experienceSection" value="Trabajando 10 años en un hotel de Inglaterra" />	
-		<property name="hobbiesSection" value="Me gustan muchos los niños" />		
+		<property name="hobbiesSection" value="Me gustan muchos los niños" />	
+		<property name="teacher" ref="teacher2" />		
 	</bean>	
 	
 	<bean id="curricula3" class="domain.Curricula">
 		<property name="educationSection" value="He cursado Educación Infantil" />	
 		<property name="experienceSection" value="He estado trabjando en el colegio Joaquín García" />	
-		<property name="hobbiesSection" value="Me gustan los videojuegos" />		
+		<property name="hobbiesSection" value="Me gustan los videojuegos" />	
+	<property name="teacher" ref="teacher3" />
 	</bean>	
 	
 	<!-- SocialIdentities -->

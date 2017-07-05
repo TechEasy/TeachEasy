@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -64,6 +65,14 @@ public class CurriculaService {
 	}
 
 	public Curricula save(Curricula curricula) {
+		UserAccount userAccount=LoginService.getPrincipal();
+		Curricula result;
+		Assert.isTrue(curricula.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYourCurricula");
+		result = curriculaRepository.save(curricula);
+		return result;
+
+	}
+	public Curricula save2(Curricula curricula) {
 		Curricula result;
 		result = curriculaRepository.save(curricula);
 		return result;
