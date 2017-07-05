@@ -16,6 +16,7 @@ import security.LoginService;
 import services.AcademyService;
 import services.ActorService;
 import services.SocialIdentityService;
+import services.TeacherService;
 import domain.Academy;
 import domain.Actor;
 import domain.SocialIdentity;
@@ -25,13 +26,16 @@ import domain.SocialIdentity;
 public class SocialIdentityController extends AbstractController {
 
 	@Autowired
-	SocialIdentityService	socialIdentityService;
+	private SocialIdentityService	socialIdentityService;
 
 	@Autowired
-	ActorService			actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	AcademyService			academyService;
+	private AcademyService			academyService;
+	
+	@Autowired
+	private TeacherService			teacherService;
 
 
 	@RequestMapping("/list")
@@ -80,13 +84,41 @@ public class SocialIdentityController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int socialIdentityId) {
+	public ModelAndView edit(@RequestParam String socialIdentityId) {
 		ModelAndView result;
-		SocialIdentity socialIdentity;
-
-		socialIdentity = socialIdentityService.findOne(socialIdentityId);
-
-		result = createEditModelAndView(socialIdentity);
+		SocialIdentity socialIdentity;		
+		
+		try{
+			if(socialIdentityId.length()<10){
+				int id = Integer.valueOf(socialIdentityId);
+				socialIdentity = socialIdentityService.findOne(id);
+			}else
+				socialIdentity=null;
+			
+			
+			if(academyService.findByPrincipal()!=null){
+				if(socialIdentity==null || !academyService.findByPrincipal().equals(socialIdentity.getAcademy())){
+					result = list();
+					String msg = "socialIdentity.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(socialIdentity);
+				}
+			}else{
+				if(socialIdentity==null || !teacherService.findByPrincipal().equals(socialIdentity.getActor())){
+					result = list();
+					String msg = "socialIdentity.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(socialIdentity);
+				}
+			}
+			
+		}catch (Throwable oops) {
+			result = list();
+			String msg = "socialIdentity.notYours";
+			result.addObject("msg", msg);
+		}
 
 		return result;
 	}

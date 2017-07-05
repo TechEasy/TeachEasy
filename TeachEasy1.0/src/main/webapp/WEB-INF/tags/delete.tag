@@ -1,5 +1,5 @@
 <%--
- * cancel.tag
+ * submit.tag
  *
  * Copyright (C) 2017 Universidad de Sevilla
  * 
@@ -7,10 +7,10 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
- 
+
 <%@ tag language="java" body-content="empty" %>
- 
- <%-- Taglibs --%>
+
+<%-- Taglibs --%>
 
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -21,33 +21,12 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <%-- Attributes --%> 
- 
+
+<%@ attribute name="name" required="true" %> 
 <%@ attribute name="code" required="true" %>
-<%@ attribute name="url" required="true" %>
 
 <%-- Definition --%>
 
-<button type="button" onclick="javascript: window.location.replace('${url}')" >
+<button type="submit" name="${name}" class="btn btn-danger btn-block btn-lg">
 	<spring:message code="${code}" />
 </button>
-
-<%-- Notes --%>
-
-<%-- 
-
-	If you wish to use this custom tag, you need add the following 
-	script in your master page: 
-
-	<script type="text/javascript">
-		function relativeRedir(loc) {	
-			var b = document.getElementsByTagName('base');
-			if (b && b[0] && b[0].href) {
-	  			if (b[0].href.substr(b[0].href.length - 1) == '/' && loc.charAt(0) == '/')
-	    		loc = loc.substr(1);
-	  			loc = b[0].href + loc;
-			}
-			window.location.replace(loc);
-		}
-	</script>
-
---%>

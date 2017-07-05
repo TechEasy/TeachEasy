@@ -139,6 +139,7 @@ public class CommentController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Comment comment, String message) {
 
 		ModelAndView result;
+		Boolean aux;
 		Collection<Integer> stars = new ArrayList<Integer>();
 		stars.add(0);
 		stars.add(1);
@@ -146,11 +147,19 @@ public class CommentController extends AbstractController {
 		stars.add(3);
 		stars.add(4);
 		stars.add(5);
+		
+		if(teacherService.findOne(comment.getCommentable().getId())!=null){
+			aux=true;
+		}else{
+			aux=false;
+		}
 
 		result = new ModelAndView("comment/edit");
 		result.addObject("comment", comment);
 		result.addObject("stars", stars);
 		result.addObject("message", message);
+		result.addObject("aux", aux);
+		result.addObject("comId", comment.getCommentable().getId());
 
 		return result;
 	}

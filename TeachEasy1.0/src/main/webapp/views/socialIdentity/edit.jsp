@@ -30,7 +30,13 @@
 	<div class="row">
 		<div class="col-md-3"><acme:cancel url="socialIdentity/list.do" code="RegisterSocialIdentity.cancel"/></div>
 		<div class="col-md-3"></div>
-		<div class="col-md-6"><acme:submit name="save" code="RegisterSocialIdentity.save"/></div>
+		
+		<div class="col-md-6">
+			<acme:submit name="save" code="RegisterSocialIdentity.save"/>
+			<jstl:if test="${socialIdentity.id!=0 }">
+				<acme:delete name="delete" code="RegisterSocialIdentity.delete"/>
+			</jstl:if>
+		</div>
 	</div>
 
 </form:form>
