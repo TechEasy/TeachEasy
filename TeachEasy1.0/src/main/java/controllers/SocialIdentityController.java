@@ -16,6 +16,7 @@ import security.LoginService;
 import services.AcademyService;
 import services.ActorService;
 import services.SocialIdentityService;
+import services.StudentService;
 import services.TeacherService;
 import domain.Academy;
 import domain.Actor;
@@ -36,6 +37,11 @@ public class SocialIdentityController extends AbstractController {
 	
 	@Autowired
 	private TeacherService			teacherService;
+	
+
+	@Autowired
+	private StudentService			studentService;
+
 
 
 	@RequestMapping("/list")
@@ -104,8 +110,16 @@ public class SocialIdentityController extends AbstractController {
 				}else{
 					result = createEditModelAndView(socialIdentity);
 				}
-			}else{
+			}else if(teacherService.findByPrincipal()!=null){
 				if(socialIdentity==null || !teacherService.findByPrincipal().equals(socialIdentity.getActor())){
+					result = list();
+					String msg = "socialIdentity.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(socialIdentity);
+				}
+			}else{
+				if(socialIdentity==null || !studentService.findByPrincipal().equals(socialIdentity.getActor())){
 					result = list();
 					String msg = "socialIdentity.notYours";
 					result.addObject("msg", msg);
@@ -157,7 +171,8 @@ public class SocialIdentityController extends AbstractController {
 
 		try {
 
-			socialIdentityService.delete(socialIdentity);
+			SocialIdentity a = socialIdentityService.findOne(socialIdentity.getId());
+			socialIdentityService.delete(a);
 
 			result = new ModelAndView("redirect:/socialIdentity/list.do");
 		} catch (Throwable oops) {
