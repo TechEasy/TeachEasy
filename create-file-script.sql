@@ -9,13 +9,12 @@ create user 'acme-user'@'%' identified by password '*4F10007AADA9EE3DBB2CC36575D
 create user 'acme-manager'@'%' identified by password '*FDB8CD304EB2317D10C95D797A4BD7492560F55F';
 
 grant select, insert, update, delete
-	on `teacheasy`.* to 'acme-user'@'%';
+  on `teacheasy`.* to 'acme-user'@'%';
 
 grant select, insert, update, delete, create, drop, references, index, alter, 
         create temporary tables, lock tables, create view, create routine, 
         alter routine, execute, trigger, show view
-	 on `teacheasy`.* to 'acme-manager'@'%';
-
+   on `teacheasy`.* to 'acme-manager'@'%';
 
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
@@ -66,7 +65,7 @@ CREATE TABLE `academy` (
 
 LOCK TABLES `academy` WRITE;
 /*!40000 ALTER TABLE `academy` DISABLE KEYS */;
-INSERT INTO `academy` VALUES (21,0,'Calle General Prim',3,'CIF152','Sevilla','Somos una academia especializada en Matematicas',200,'Academia de los numeros','academiaNumeros@gmail.com','https://pbs.twimg.com/profile_images/664478201725526016/tno78YbX.jpg',8),(22,0,'Calle Botica',5,'CIF45698','Granada','Academia de dibujo',560,'EzDraw','ezdraw@gmail.com','http://www.ediciona.com/portafolio/image/0/4/2/6/logo_llapis_i_paper_6240.jpg',9),(23,0,'Calle Maritima',4.2,'CIF55220','Cádiz','Academia de idiomas',450,'Languages Academy','academiaidiomas@gmail.com','http://www.srsanchez.es/wp-content/uploads/2013/12/logo-global-languaje.jpg',10);
+INSERT INTO `academy` VALUES (21,0,'Calle General Prim',3,'C25362547','Sevilla','Somos una academia especializada en Matematicas',200,'Academia de los numeros','academiaNumeros@gmail.com','https://pbs.twimg.com/profile_images/664478201725526016/tno78YbX.jpg',8),(22,0,'Calle Botica',5,'D12536478','Granada','Academia de dibujo',560,'EzDraw','ezdraw@gmail.com','http://www.ediciona.com/portafolio/image/0/4/2/6/logo_llapis_i_paper_6240.jpg',9),(23,0,'Calle Maritima',4.2,'A21452032','Cádiz','Academia de idiomas',450,'Languages Academy','academiaidiomas@gmail.com','http://www.srsanchez.es/wp-content/uploads/2013/12/logo-global-languaje.jpg',10);
 /*!40000 ALTER TABLE `academy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +149,7 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
   `createMoment` datetime DEFAULT NULL,
-  `stars` int(11) DEFAULT NULL,
+  `stars` int(11) NOT NULL,
   `text` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `commentable_id` int(11) DEFAULT NULL,
@@ -221,7 +220,10 @@ CREATE TABLE `curricula` (
   `educationSection` varchar(255) DEFAULT NULL,
   `experienceSection` varchar(255) DEFAULT NULL,
   `hobbiesSection` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `teacher_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_4hpg2rynupj9x38wxrxnt6dum` (`teacher_id`),
+  CONSTRAINT `FK_4hpg2rynupj9x38wxrxnt6dum` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -231,7 +233,7 @@ CREATE TABLE `curricula` (
 
 LOCK TABLES `curricula` WRITE;
 /*!40000 ALTER TABLE `curricula` DISABLE KEYS */;
-INSERT INTO `curricula` VALUES (13,0,'He cursado Ingeniería Informática del Software en Sevilla','He estado trabjando 10 años en Everis','Me gusta leer comics'),(15,0,'Tengo c1 en Inglés y Francés','Trabajando 10 años en un hotel de Inglaterra','Me gustan muchos los niños'),(17,0,'He cursado Educación Infantil','He estado trabjando en el colegio Joaquín García','Me gustan los videojuegos');
+INSERT INTO `curricula` VALUES (13,0,'He cursado Ingeniería Informática del Software en Sevilla','He estado trabjando 10 años en Everis','Me gusta leer comics',12),(15,0,'Tengo c1 en Inglés y Francés','Trabajando 10 años en un hotel de Inglaterra','Me gustan muchos los niños',14),(17,0,'He cursado Educación Infantil','He estado trabjando en el colegio Joaquín García','Me gustan los videojuegos',16);
 /*!40000 ALTER TABLE `curricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -484,6 +486,7 @@ CREATE TABLE `socialidentity` (
   `academy_id` int(11) DEFAULT NULL,
   `actor_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_9g8tpgrm7cqkd9r0vnollaevc` (`profileUrl`),
   KEY `FK_brkdx34hqt39d1yd00a2l90qx` (`academy_id`),
   CONSTRAINT `FK_brkdx34hqt39d1yd00a2l90qx` FOREIGN KEY (`academy_id`) REFERENCES `academy` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -601,7 +604,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (12,0,'Calle Saenz de Tejada','Sevilla','1975-12-01 00:00:00','albcabcan@gmail.com','Alberto','654122347','https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png','Cabrera Cantero',2,2,200,'albcabcan@gmail.com',13),(14,0,'Pablo Picaso Portal 11','Granada','1980-12-01 00:00:00','joschaech@gmail.com','José','609822347','http://cyrusindia.com/hrpanel/mriAssets2016/me1.png','Chamorro Echevarria',3,5,1000,'joschaech@gmail.com',15),(16,0,'Álamo del Marques','Cadiz','1985-12-01 00:00:00','rauescdon@gmail.com','Raúl','645692347','http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png','Escribano Donoso',4,3.2,120,'rauescdon@gmail.com',17);
+INSERT INTO `teacher` VALUES (12,1,'Calle Saenz de Tejada','Sevilla','1975-12-01 00:00:00','albcabcan@gmail.com','Alberto','654122347','https://cdn3.iconfinder.com/data/icons/users-6/100/654854-user-women-256.png','Cabrera Cantero',2,2,200,'albcabcan@gmail.com',13),(14,1,'Pablo Picaso Portal 11','Granada','1980-12-01 00:00:00','joschaech@gmail.com','José','609822347','http://cyrusindia.com/hrpanel/mriAssets2016/me1.png','Chamorro Echevarria',3,5,1000,'joschaech@gmail.com',15),(16,1,'Álamo del Marques','Cadiz','1985-12-01 00:00:00','rauescdon@gmail.com','Raúl','645692347','http://media.keepo.me/keepo.me-cartoon_avatar-male-bald.png','Escribano Donoso',4,3.2,120,'rauescdon@gmail.com',17);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,4 +669,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-27 17:00:47
+-- Dump completed on 2017-07-05 19:02:25
+commit;
