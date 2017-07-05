@@ -93,11 +93,26 @@ public class TeacherService {
 	public Teacher save2(Teacher teacher) {
 		UserAccount userAccount = LoginService.getPrincipal();
 		Teacher result;
-
+	
+		Assert.isTrue(teacher.getUserAccount().getUsername().equals(userAccount.getUsername()),"notYou");
+	
 		result = teacherRepository.save(teacher);
 
 		return result;
 
+	}
+	public Teacher save3(Teacher teacher){
+		Teacher result;
+		UserAccount userAccount = LoginService.getPrincipal();
+		Authority au = new Authority();
+		au.setAuthority("STUDENT");
+		Teacher aux=teacherRepository.findOne(teacher.getId());
+		Assert.isTrue(userAccount.getAuthorities().contains(au),"notYou");
+		Assert.isTrue(teacher.getAddress().equals(aux.getAddress()) && teacher.getCity().equals(aux.getCity()) && teacher.getCurricula().equals(aux.getCurricula()) && teacher.getDate().equals(aux.getDate()) && teacher.getName().equals(aux.getName()) && teacher.getSurname().equals(aux.getSurname()) && teacher.getEmail().equals(aux.getEmail()) && teacher.getPaypalMail().equals(aux.getPaypalMail()),"notYou");
+		result = teacherRepository.save(teacher);
+		
+		return result;
+		
 	}
 
 	public void delete(Teacher teacher) {
@@ -226,7 +241,7 @@ public class TeacherService {
 
 	public void updateAvgStars(Teacher teacher) {
 		teacher.setAvgStars(teacherRepository.fingAvgStars(teacher));
-		save2(teacher);
+		save3(teacher);
 	}
 
 	public Teacher findRandom() {

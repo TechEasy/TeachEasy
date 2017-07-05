@@ -18,6 +18,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Academy;
+import domain.Teacher;
 import form.AcademyForm;
 
 @Service
@@ -81,13 +82,25 @@ public class AcademyService {
 	public Academy save2(Academy academy) {
 		UserAccount userAccount = LoginService.getPrincipal();
 		Academy result;
-
+		Assert.isTrue(academy.getUserAccount().getUsername().equals(userAccount.getUsername()),"notYou");
 		result = academyRepository.save(academy);
 
 		return result;
 
 	}
-
+	public Academy save3(Academy academy){
+		Academy result;
+		UserAccount userAccount = LoginService.getPrincipal();
+		Authority au = new Authority();
+		au.setAuthority("STUDENT");
+		Academy aux=academyRepository.findOne(academy.getId());
+		Assert.isTrue(userAccount.getAuthorities().contains(au),"notYou");
+		Assert.isTrue(academy.getAddress().equals(aux.getAddress()) && academy.getCif().equals(aux.getCif()) &&  academy.getCity().equals(aux.getCity()) && academy.getDescription().equals(aux.getDescription()) && academy.getName().equals(aux.getName())  && academy.getPaypalMail().equals(aux.getPaypalMail()) && academy.getPicture().equals(aux.getPicture()),"notYou");
+		result = academyRepository.save(academy);
+		
+		return result;
+		
+	}
 	public void delete(Academy academy) {
 		academyRepository.delete(academy);
 	}
@@ -210,7 +223,7 @@ public class AcademyService {
 
 	public void updateAvgStars(Academy academy) {
 		academy.setAvgStars(academyRepository.fingAvgStars(academy));
-		save2(academy);
+		save3(academy);
 	}
 
 	public Academy findRandom() {
