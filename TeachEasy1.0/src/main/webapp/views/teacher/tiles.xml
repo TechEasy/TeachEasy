@@ -22,7 +22,7 @@
 	</definition>
 	
 	<definition name="teacher/display" extends="master.page">	
-		<put-attribute name="title" value="Profile of teacher" />
+		<put-attribute name="title" value="Teacher's Profile" />
 		<put-attribute name="body" value="/views/teacher/display.jsp" />
 	</definition>
 	
