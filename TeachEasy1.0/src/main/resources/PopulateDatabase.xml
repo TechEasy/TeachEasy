@@ -301,7 +301,7 @@
 		<property name="address" value="Calle General Prim" />	
 		<property name="description" value="Somos una academia especializada en Matematicas" />
 		<property name="picture" value="https://pbs.twimg.com/profile_images/664478201725526016/tno78YbX.jpg" />
-		<property name="cif" value="CIF152" />
+		<property name="cif" value="C25362547" />
 		<property name="avgStars" value="3.0" />
 		<property name="feeAmount" value="200.0" />
 		<property name="paypalMail" value="academiaNumeros@gmail.com" />	
@@ -325,7 +325,7 @@
 		<property name="address" value="Calle Botica" />	
 		<property name="description" value="Academia de dibujo" />
 		<property name="picture" value="http://www.ediciona.com/portafolio/image/0/4/2/6/logo_llapis_i_paper_6240.jpg" />
-		<property name="cif" value="CIF45698" />
+		<property name="cif" value="D12536478" />
 		<property name="avgStars" value="5.0" />
 		<property name="feeAmount" value="560.0" />
 		<property name="paypalMail" value="ezdraw@gmail.com" />	
@@ -347,7 +347,7 @@
 		<property name="address" value="Calle Maritima" />	
 		<property name="description" value="Academia de idiomas" />
 		<property name="picture" value="http://www.srsanchez.es/wp-content/uploads/2013/12/logo-global-languaje.jpg" />
-		<property name="cif" value="CIF55220" />
+		<property name="cif" value="A21452032" />
 		<property name="avgStars" value="4.2" />
 		<property name="feeAmount" value="450.0" />
 		<property name="paypalMail" value="academiaidiomas@gmail.com" />	

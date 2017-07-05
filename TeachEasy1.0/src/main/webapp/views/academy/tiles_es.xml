@@ -22,7 +22,7 @@
 	</definition>
 	
 	<definition name="academy/display" extends="master.page">	
-		<put-attribute name="title" value="Mostrar una academia" />
+		<put-attribute name="title" value="Perfil de academia" />
 		<put-attribute name="body" value="/views/academy/display.jsp" />
 	</definition>
 	
