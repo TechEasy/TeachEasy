@@ -16,7 +16,7 @@
 <div class="row text-left">
 	<div class="col-md-6 col-xs-6">
 		<font size="3" color="blue">
-			<a href="?language=en"><img src="images/ing.png" width="50" height="50" alt="Ingles" /></a> | <a href="?language=es"><img src="images/es.jpg" width="50" height="50" alt="Español" /></a>
+			<a href="javascript:cambiarIdioma('en');"><img src="images/ing.png" width="50" height="50" alt="Ingles" /></a> | <a href="javascript:cambiarIdioma('es');"><img src="images/es.jpg" width="50" height="50" alt="Español" /></a>
 		</font>
 	</div>
 	<security:authorize access="isAuthenticated()">

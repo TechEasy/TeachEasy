@@ -20,7 +20,7 @@
 <h3 style="color:red;"><spring:message code="invoice.notYours"></spring:message></h3>
 </jstl:if>
 <div class="col-md-12">
-<table class="table table-striped">
+<table class="table table-striped" id="table-invoice">
 	<thead>
       <tr>
         <th><spring:message code="invoice.authoredMoment"/></th>
@@ -43,4 +43,15 @@
     </c:forEach>
     </tbody>
 </table>
+<div class='pagination-container' >
+	<nav>
+	  <ul class="pagination" id="pagination"></ul>
+	</nav>
 </div>
+</div>
+
+<script>
+$(document).ready(function() {
+	getPagination('#table-invoice', 10);
+} );
+</script>

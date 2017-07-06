@@ -139,7 +139,7 @@
 	<div class="col-md-12">
 	<div class="card-bordered">
 	<div class="table-responsive">
-	<table class="table table-striped">
+	<table class="table table-striped" id="table-socialIde">
 		<thead>
 	      <tr>
 	        <th><spring:message code="socialIdentity.nick"/></th>
@@ -159,6 +159,11 @@
 	    </c:forEach>
 	    </tbody>
 	</table>
+	<div class='pagination-container' >
+	<nav>
+	  <ul class="pagination" id="pagination"></ul>
+	</nav>
+	</div>
 	</div>
 	</div>
 	</div>
@@ -170,9 +175,9 @@
 	<div class="col-md-12">
 	<div class="card-bordered">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" id="contenedor-tarjetas">
 			<c:forEach items="${commentable}" var="comment" >
-				<div class="row border-bottom">
+				<div class="row border-bottom paginador-item mb-md">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
@@ -221,8 +226,12 @@
 <script>
 	$(document).ready(function(){
 	    $('[id^="star-comment-"]').rating({displayOnly: true, step: 0.5});
-	;
-  	 	 $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
-	;
+  	 	$('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
+  	 	getPagination('#table-socialIde', 5);
+  	 	$ ('#contenedor-tarjetas').easyPaginate({
+  	 	    	paginateElement: 'div.paginador-item',
+  	 	    	elementsPerPage: 5,
+  	 	    	effect: 'climb'
+  	 	});
 	});
 </script>

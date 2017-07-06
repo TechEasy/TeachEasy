@@ -33,7 +33,7 @@
 
 
 <div class="table-responsive">
-<table class="table table-striped" id="example width="100%"">
+<table class="table table-striped" id="table-request" width="100%">
 	<thead>
       <tr>
         <th>${checkin}</th>
@@ -129,6 +129,11 @@
     </c:forEach>
     </tbody>
 </table>
+<div class='pagination-container' >
+	<nav>
+	  <ul class="pagination" id="pagination"></ul>
+	</nav>
+</div>
 </div>
 </div>
 <script>
@@ -141,7 +146,7 @@ function target_popup(form) {
 </script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
+	getPagination('#table-request', 10);
 } );
 </script>
 

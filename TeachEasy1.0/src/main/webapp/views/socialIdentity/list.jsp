@@ -24,7 +24,7 @@
 <div class="row">
 	<div class="col-md-12">
 	<div class="table-responsive">
-	<table class="table table-striped">
+	<table class="table table-striped" id="table-socialIde">
 		<thead>
 	      <tr>
 	        <th><spring:message code="RegisterSocialIdentity.nickHeader"/></th>
@@ -46,6 +46,11 @@
 	    </c:forEach>
 	    </tbody>
 	</table>
+	<div class='pagination-container' >
+	<nav>
+	  <ul class="pagination" id="pagination"></ul>
+	</nav>
+	</div>
 	</div>
 	</div>
 </div>
@@ -55,3 +60,8 @@
 	</div>
 </div>
 </div>
+<script>
+$(document).ready(function() {
+	getPagination('#table-socialIde', 5);
+} );
+</script>

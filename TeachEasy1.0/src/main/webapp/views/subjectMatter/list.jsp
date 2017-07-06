@@ -30,7 +30,7 @@
 		<security:authorize access="hasRole('ADMIN') || hasRole('TEACHER') || hasRole('ACADEMY')">
 		<div class="col-md-12">
 		<div class="table-responsive">
-		<table class="table table-striped">
+		<table class="table table-striped" id="table-subjectMatter">
 			<thead>
 		      <tr>
 		        <th><spring:message code="subjectMatter.name"/></th>
@@ -60,10 +60,20 @@
 		    <jstl:if test="${msgSaved!=null}"><b><spring:message code="subjectMatter.msgSaved"/></b></jstl:if>
 		    </tbody>
 		</table>
+		<div class='pagination-container' >
+			<nav>
+			  <ul class="pagination" id="pagination"></ul>
+			</nav>
+		</div>
 		</div>
 		</div>
 		</security:authorize>
 	</div>
 	
 </div>
+<script>
+$(document).ready(function() {
+	getPagination('#table-subjectMatter', 10);
+} );
+</script>
 

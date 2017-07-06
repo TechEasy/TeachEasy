@@ -66,3 +66,14 @@
 
 </security:authorize>
 
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-teacher-"]').rating({displayOnly: true, step: 0.5});
+	    $ ('#contenedor-tarjetas').easyPaginate({
+	    	paginateElement: 'div.paginador-item',
+	    	elementsPerPage: 5,
+	    	effect: 'climb'
+	    });
+	});
+</script>
+

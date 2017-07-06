@@ -20,9 +20,9 @@
 <jstl:if test="${msg!=null }">
 	<h3 style="color:red;"><spring:message code="${msg}" /></h3>
 </jstl:if>
-<div class="col-md-12">
+<div class="col-md-12" id="contenedor-tarjetas">
 		<c:forEach items="${courses}" var="course" >
-		<div class="row">
+		<div class="row paginador-item">
 		<div class="col-md-12">
 		<div class="card-bordered">
 			<div class="row">
@@ -37,7 +37,7 @@
 							<h3><spring:message code="course.rate" />: ${course.rate} Eur.</h3>
 						</div>
 						<div class="col-md-6">
-							<h3><spring:message code="course.avgStars" />: ${course.academy.avgStars}</h3>
+							<input id="star-academy-${course.academy.id}" name="star-academy-${course.academy.id}" value="${course.academy.avgStars}" class="rating-loading" data-size="sm">
 						</div>
 					</div>
 					<div class="row text-right">
@@ -69,3 +69,13 @@
 			</div>
 		</security:authorize>
 </div>
+<script>
+	$(document).ready(function(){
+	    $('[id^="star-academy-"]').rating({displayOnly: true, step: 0.5});
+	    $ ('#contenedor-tarjetas').easyPaginate({
+	    	paginateElement: 'div.paginador-item',
+	    	elementsPerPage: 5,
+	    	effect: 'climb'
+	    });
+	});
+</script>
