@@ -28,32 +28,29 @@ public class CurriculaForm {
 
 	// Getters and Setters ------------------------------------------
 
-	@NotBlank
+	
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getEducationSection() {
 		return educationSection;
 	}
-
 	public void setEducationSection(String educationSection) {
 		this.educationSection = educationSection;
 	}
 
-	@NotBlank
+	
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getExperienceSection() {
 		return experienceSection;
 	}
-
 	public void setExperienceSection(String experienceSection) {
 		this.experienceSection = experienceSection;
 	}
 
-	@NotBlank
+	
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getHobbiesSection() {
 		return hobbiesSection;
 	}
-
 	public void setHobbiesSection(String hobbiesSection) {
 		this.hobbiesSection = hobbiesSection;
 	}

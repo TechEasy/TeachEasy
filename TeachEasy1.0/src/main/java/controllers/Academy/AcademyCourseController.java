@@ -82,23 +82,27 @@ public class AcademyCourseController extends AbstractController {
 
 	// Edition ----------------------------------------------------------------		
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam String courseId) {
+	public ModelAndView edit(String courseId) {
 		ModelAndView result;
 		Course course;
 
 		try{
-			if(courseId.length()<10){
-				int id = Integer.valueOf(courseId);
-				course = courseService.findOne(id);
-			}else
-				course=null;
-			
-			if(course==null || !academyService.findByPrincipal().equals(course.getAcademy())){
+			if(courseId==null || courseId.equals("")){
 				result = listCourse();
-				String msg = "course.notYours";
-				result.addObject("msg", msg);
 			}else{
-				result = createEditModelAndView(course);
+				if(courseId.length()<10){
+					int id = Integer.valueOf(courseId);
+					course = courseService.findOne(id);
+				}else
+					course=null;
+				
+				if(course==null || !academyService.findByPrincipal().equals(course.getAcademy())){
+					result = listCourse();
+					String msg = "course.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(course);
+				}
 			}
 		}catch (Throwable oops) {
 			result = listCourse();
@@ -114,7 +118,7 @@ public class AcademyCourseController extends AbstractController {
 		ModelAndView result;
 
 		if (bindingResult.hasErrors()) {
-			result = new ModelAndView("redirect:../academy/edit.do?courseId="+course.getId());
+			 result = createEditModelAndView(course, null);
 		} else {
 			try {
 				courseService.save(course);
@@ -125,8 +129,7 @@ public class AcademyCourseController extends AbstractController {
 				if (oops.getMessage().equals("notYourCourse")){
 					msgCode="course.notYourCourse";
 				}
-				result = new ModelAndView("redirect:../academy/edit.do?courseId="+course.getId());
-				result.addObject("messge", msgCode);
+				 result = createEditModelAndView(course, msgCode);
 			}
 		}
 
@@ -173,6 +176,7 @@ public class AcademyCourseController extends AbstractController {
 	public ModelAndView createEditModelAndView(Course course, String message) {
 		ModelAndView result;
 		result = new ModelAndView("course/edit");
+		result.addObject("courseId", course.getId());
 		result.addObject("course", course);
 		result.addObject("message", message);
 		result.addObject("matters", getMatters());
