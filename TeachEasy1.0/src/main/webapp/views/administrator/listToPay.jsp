@@ -23,7 +23,7 @@
 <div class="col-md-12">
 <h3><spring:message code="teachers"/></h3>
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" id="listToPay">
 	<thead>
       <tr>
         <th><spring:message code="teacher.name"/></th>
@@ -68,7 +68,7 @@
 <div class="col-md-12">
 <h3><spring:message code="academies"/></h3>
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" id="listToPay2">
 	<thead>
       <tr>
         <th><spring:message code="academy.name"/></th>
@@ -109,4 +109,13 @@
 </div>
 </div>
 </div>
-
+<script>
+$(document).ready(function() {
+	getPagination('#table-listToPay', 5);
+} );
+</script>
+<script>
+$(document).ready(function() {
+	getPagination('#table-listToPay2', 5);
+} );
+</script>

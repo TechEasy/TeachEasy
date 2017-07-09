@@ -55,7 +55,7 @@ public class AdministratorActorPayController extends AbstractController{
 
 		Teacher teacher = teacherService.findOne(teacherId);
 		teacher.setFeeAmount(0.0);
-		teacherService.save(teacher);
+		teacherService.save3(teacher);
 		
 		return list();
 	}
@@ -66,7 +66,7 @@ public class AdministratorActorPayController extends AbstractController{
 
 			Academy academy = academyService.findOne(academyId);
 			academy.setFeeAmount(0.0);
-			academyService.save(academy);
+			academyService.save3(academy);
 			
 			return list();
 		}

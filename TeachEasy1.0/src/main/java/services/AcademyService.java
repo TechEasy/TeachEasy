@@ -93,8 +93,10 @@ public class AcademyService {
 		UserAccount userAccount = LoginService.getPrincipal();
 		Authority au = new Authority();
 		au.setAuthority("STUDENT");
+		Authority au2 = new Authority();
+		au2.setAuthority("ADMIN");
 		Academy aux=academyRepository.findOne(academy.getId());
-		Assert.isTrue(userAccount.getAuthorities().contains(au),"notYou");
+		Assert.isTrue(userAccount.getAuthorities().contains(au)||userAccount.getAuthorities().contains(au2),"notYou");
 		Assert.isTrue(academy.getAddress().equals(aux.getAddress()) && academy.getCif().equals(aux.getCif()) &&  academy.getCity().equals(aux.getCity()) && academy.getDescription().equals(aux.getDescription()) && academy.getName().equals(aux.getName())  && academy.getPaypalMail().equals(aux.getPaypalMail()) && academy.getPicture().equals(aux.getPicture()),"notYou");
 		result = academyRepository.save(academy);
 		

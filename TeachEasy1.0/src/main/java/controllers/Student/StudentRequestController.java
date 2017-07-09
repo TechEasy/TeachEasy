@@ -282,14 +282,14 @@ public class StudentRequestController extends AbstractController {
 			Double feeAmount = teacher.getFeeAmount();
 			feeAmount += value - (value * (feeService.find().getValueTeacher() / 100));
 			teacher.setFeeAmount(feeAmount);
-			teacherService.save2(teacher);
+			teacherService.save3(teacher);
 		}else {
 			Course c = courseService.findOne(request.getRclass().getId());
 			academy = c.getAcademy();
 			Double feeAmount = academy.getFeeAmount();
 			feeAmount += c.getRate() - (c.getRate() * (feeService.find().getValueAcademy() / 100));
 			academy.setFeeAmount(feeAmount);
-			academyService.save2(academy);
+			academyService.save3(academy);
 		}
 
 		return list();
@@ -301,7 +301,9 @@ public class StudentRequestController extends AbstractController {
 		String msg=null;
 		Request request=null;
 		Date f = new Date(System.currentTimeMillis());
-		SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Teacher teacher;
+		Academy academy;
+		SimpleDateFormat fecha2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
 			
 			try{
@@ -315,12 +317,51 @@ public class StudentRequestController extends AbstractController {
 				
 				if(request!=null){
 					if(courseService.findOne(request.getRclass().getId())!=null){
+						
+						if(request.getStatus().equals("ACCEPTED")){
+							Course c = courseService.findOne(request.getRclass().getId());
+							academy = c.getAcademy();
+							Double feeAmount = academy.getFeeAmount();
+							feeAmount -= c.getRate() - (c.getRate() * (feeService.find().getValueAcademy() / 100));
+							academy.setFeeAmount(feeAmount);
+							academyService.save3(academy);
+						}
+						
 						request.setStatus("DENIED");
 						requestService.save(request);
+						
 					}else{
-						Date sI = fecha.parse(request.getcheckIn());
+						Date f2 = fecha2.parse(request.getcheckIn());
 					
-						if(f.before(sI)){
+						if(f.before(f2)){
+							if(request.getStatus().equals("ACCEPTED")){
+								Date sI, sO;
+								SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+								
+								// Calculo del amount que obtendra el profesor
+								sI = fecha.parse(request.getcheckIn());
+								sO = fecha.parse(request.getCheckOut());
+						
+								Integer minutos;
+								Integer horas;
+						
+								if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+									minutos = sO.getMinutes() - sI.getMinutes();
+									horas = sO.getHours() - sI.getHours();
+								} else {
+									minutos = 60 + sO.getMinutes() - sI.getMinutes();
+									horas = sO.getHours() - sI.getHours() - 1;
+								}
+						
+								Double valor = (horas + (1.0 * (minutos) / 60));
+								Double value = valor * request.getRclass().getRate();
+								
+								teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
+								Double feeAmount = teacher.getFeeAmount();
+								feeAmount -= value - (value * (feeService.find().getValueTeacher() / 100));
+								teacher.setFeeAmount(feeAmount);
+								teacherService.save3(teacher);
+							}
 							request.setStatus("DENIED");
 							requestService.save(request);
 						}else{

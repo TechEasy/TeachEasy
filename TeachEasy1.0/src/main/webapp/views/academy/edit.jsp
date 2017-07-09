@@ -23,7 +23,7 @@
 	<acme:textbox code="academy.address" path="address" />
 	<acme:textbox code="academy.description" path="description" />
 	<acme:textarea code="academy.picture" path="picture" />
-	<acme:textbox code="academy.cif" path="cif" />
+	<acme:textbox code="academy.cifEx" path="cif"/>
 	<acme:textbox code="academy.paypalMail" path="paypalMail" />
 
 	

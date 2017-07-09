@@ -21,6 +21,11 @@
 		<put-attribute name="body" value="/views/request/list.jsp" />
 	</definition>
 	
+	<definition name="request/cancelList" extends="master.page">	
+		<put-attribute name="title" value="Books Canceled Requests" />
+		<put-attribute name="body" value="/views/request/list.jsp" />
+	</definition>
+	
 	<definition name="request/register" extends="master.page">	
 		<put-attribute name="title" value="Book Request" />
 		<put-attribute name="body" value="/views/request/edit.jsp" />

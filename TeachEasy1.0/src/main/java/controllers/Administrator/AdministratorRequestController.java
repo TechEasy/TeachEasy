@@ -95,7 +95,7 @@ public class AdministratorRequestController extends AbstractController{
 			}
 
 			result = new ModelAndView("request/list");
-			result.addObject("requestURI", "request/list.do");
+			result.addObject("requestURI", "request/cancelList.do");
 			result.addObject("requests", requests);
 			result.addObject("amount", amount);
 			result.addObject("oneDay", oneDay);

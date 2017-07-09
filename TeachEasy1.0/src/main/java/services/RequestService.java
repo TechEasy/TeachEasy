@@ -90,19 +90,21 @@ public class RequestService {
 		Authority au = new Authority();
 		Authority au2 = new Authority();
 		Authority au3 = new Authority();
+		Authority au4 = new Authority();
 		au.setAuthority("STUDENT");
 		au2.setAuthority("TEACHER");
 		au3.setAuthority("ACADEMY");
-		Assert.isTrue(userAccount.getAuthorities().contains(au) || userAccount.getAuthorities().contains(au2) || userAccount.getAuthorities().contains(au3));
+		au4.setAuthority("ADMIN");
+		Assert.isTrue(userAccount.getAuthorities().contains(au) || userAccount.getAuthorities().contains(au2) || userAccount.getAuthorities().contains(au3) || userAccount.getAuthorities().contains(au4));
 		userAccount.getUsername();
 		Proposal p=null;
 		Course c=null;
 		if(proposalService.findOne(request.getRclass().getId())!=null){
 			p=proposalService.findOne(request.getRclass().getId());
-			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || p.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
+			Assert.isTrue(userAccount.getAuthorities().contains(au4) || request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || p.getTeacher().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
 		}else{
 			c=courseService.findOne(request.getRclass().getId());
-			Assert.isTrue(request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || c.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
+			Assert.isTrue(userAccount.getAuthorities().contains(au4) || request.getStudent().getUserAccount().getUsername().equals(userAccount.getUsername()) || c.getAcademy().getUserAccount().getUsername().equals(userAccount.getUsername()),"notYours");
 		}
 		
 		Request result;

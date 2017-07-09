@@ -106,8 +106,10 @@ public class TeacherService {
 		UserAccount userAccount = LoginService.getPrincipal();
 		Authority au = new Authority();
 		au.setAuthority("STUDENT");
+		Authority au2 = new Authority();
+		au2.setAuthority("ADMIN");
 		Teacher aux=teacherRepository.findOne(teacher.getId());
-		Assert.isTrue(userAccount.getAuthorities().contains(au),"notYou");
+		Assert.isTrue(userAccount.getAuthorities().contains(au)||userAccount.getAuthorities().contains(au2),"notYou");
 		Assert.isTrue(teacher.getAddress().equals(aux.getAddress()) && teacher.getCity().equals(aux.getCity()) && teacher.getCurricula().equals(aux.getCurricula()) && teacher.getDate().equals(aux.getDate()) && teacher.getName().equals(aux.getName()) && teacher.getSurname().equals(aux.getSurname()) && teacher.getEmail().equals(aux.getEmail()) && teacher.getPaypalMail().equals(aux.getPaypalMail()),"notYou");
 		result = teacherRepository.save(teacher);
 		
