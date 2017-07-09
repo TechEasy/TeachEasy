@@ -59,38 +59,55 @@ public class SubjectMatterController extends AbstractController {
 
 	// Creation ------------------------------------------------
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		SubjectMatter subjectMatter;
 
 		subjectMatter = this.subjectMatterService.create();
-		Assert.notNull(subjectMatter);
+	
 
-		result = this.createEditModelAndView(subjectMatter);
+		result = createEditModelAndView(subjectMatter);
 
 		return result;
 	}
 
 	// Edition ---------------------------------------------------------------
-
+/*
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int subjectMatterId) {
+	public ModelAndView edit(String subjectMatterId) {
 		ModelAndView result;
 		SubjectMatter subjectMatter;
 		Actor actor;
-		subjectMatter = this.subjectMatterService.findOne(subjectMatterId);
+		
 
 		try {
 			actor = this.actorService.findByPrincipal();
 			result = this.createEditModelAndView(subjectMatter);
+			
+			if(subjectMatterId==null || subjectMatterId.equals("")){
+				result = list();
+			}else{
+				if(subjectMatterId.length()<10){
+					int id = Integer.valueOf(subjectMatterId);
+					subjectMatter = subjectMatterService.findOne(id);
+				}else
+					subjectMatter=null;
+				
+				if(subjectMatter==null){
+					result = list();
+					String msg = "proposal.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(proposal);
+				}
 
 		} catch (Throwable oops) {
 			result = this.createEditModelAndView(subjectMatter);
 		}
 
 		return result;
-	}
+	}*/
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(SubjectMatter subjectMatter, BindingResult binding) {

@@ -20,7 +20,7 @@
 <div class="col-md-12 mb-md">
 	<security:authorize access="hasRole('TEACHER') || hasRole('ACADEMY')">
 		<div>
-			<a class="btn btn-primary" href="javascript: window.location.replace('subjectMatter/create.do')"><spring:message code="subjectMatter.create" /></a>
+			<a class="btn btn-primary" href="javascript: window.location.replace('subjectMatter/edit.do')"><spring:message code="subjectMatter.create" /></a>
 		</div>
 	</security:authorize>
 </div>

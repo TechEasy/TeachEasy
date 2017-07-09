@@ -20,9 +20,9 @@
   		<put-attribute name="title" value="Listing Social Identity" /> 
   		<put-attribute name="body" value="/views/socialIdentity/list.jsp" /> 
   	</definition>
-
+  	
 	<definition name="socialIdentity/edit" extends="master.page">
-  		<put-attribute name="title" value="Editing Social Identity" /> 
+  		<put-attribute name="title" value="Social Identity" /> 
   		<put-attribute name="body" value="/views/socialIdentity/edit.jsp" /> 
   	</definition>
 	

@@ -20,9 +20,9 @@
   		<put-attribute name="title" value="Redes sociales" /> 
   		<put-attribute name="body" value="/views/socialIdentity/list.jsp" /> 
   	</definition>
-
-	<definition name="socialIdentity/edit" extends="master.page">
-  		<put-attribute name="title" value="Editar red social" /> 
+  	
+  	<definition name="socialIdentity/edit" extends="master.page">
+  		<put-attribute name="title" value="Red Social" /> 
   		<put-attribute name="body" value="/views/socialIdentity/edit.jsp" /> 
   	</definition>
 	
