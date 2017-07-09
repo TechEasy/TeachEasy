@@ -145,13 +145,16 @@ public class StudentRequestController extends AbstractController {
 	// Creation ------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam int rClassId) {
+	public ModelAndView create(String rClassId) {
 		ModelAndView result;
 		RequestForm requestForm;
-
+		if(rClassId==null || rClassId.equals("")){
+			result=new ModelAndView("redirect:../../proposal/list.do");
+		}else{
+		Integer id=Integer.valueOf(rClassId);
 		requestForm = requestService.generateForm();
-		requestForm.setRclassId(rClassId);
-		if(proposalService.findOne(rClassId)!=null){
+		requestForm.setRclassId(id);
+		if(proposalService.findOne(id)!=null){
 			result = new ModelAndView("request/register");
 			result.addObject("requestForm", requestForm);
 			result.addObject("tipo","proposal");
@@ -160,7 +163,7 @@ public class StudentRequestController extends AbstractController {
 			result.addObject("requestForm", requestForm);
 			result.addObject("tipo","course");
 		}
-		
+		}
 		return result;
 	}
 
