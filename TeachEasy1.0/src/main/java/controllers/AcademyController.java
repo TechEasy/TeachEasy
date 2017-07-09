@@ -104,20 +104,8 @@ public class AcademyController extends AbstractController {
 			return result;
 		}
 		
-		@RequestMapping(value = "/edit", method = RequestMethod.GET)
-		public ModelAndView edit() {
-			ModelAndView result;
-			AcademyForm academyForm;
-
-			academyForm = academyService.generateForm(academyService.findByPrincipal());
-			result = new ModelAndView("academy/edit");
-			result.addObject("academyForm", academyForm);
-
-			return result;
-		}
-
 		@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-		public ModelAndView save(@Valid AcademyForm academyForm, BindingResult binding) {
+		public ModelAndView save1(@Valid AcademyForm academyForm, BindingResult binding) {
 			ModelAndView result;
 			Academy academy;
 
@@ -150,6 +138,54 @@ public class AcademyController extends AbstractController {
 			return result;
 
 		}
+		
+		@RequestMapping(value = "/edit", method = RequestMethod.GET)
+		public ModelAndView edit() {
+			ModelAndView result;
+			AcademyForm academyForm;
+
+			academyForm = academyService.generateForm(academyService.findByPrincipal());
+			result = new ModelAndView("academy/edit");
+			result.addObject("academyForm", academyForm);
+
+			return result;
+		}
+
+		@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+		public ModelAndView save(@Valid AcademyForm academyForm, BindingResult binding) {
+			ModelAndView result;
+			Academy academy;
+
+			if (binding.hasErrors())
+				result = createEditModelAndView2(academyForm, null);
+			else
+				try {
+					academy = academyService.reconstruct(academyForm, binding);
+					
+					if(academy.getId()==0){
+						academyService.save(academy);
+						result = new ModelAndView("redirect:../security/login.do");
+					}else{
+						academyService.save2(academy);
+						result = display();
+					}
+					
+				} catch (Throwable oops) {
+					String msgCode = "academy.register.error";
+					if (oops.getMessage().equals("notEqualPassword"))
+						msgCode = "academy.register.notEqualPassword";
+					else if (oops.getMessage().equals("agreedNotAccepted"))
+						msgCode = "academy.register.agreedNotAccepted";
+					else if(oops.getMessage().equals("notYou")){
+						msgCode="academy.notYou";
+					}
+
+					result = createEditModelAndView2(academyForm, msgCode);
+				}
+
+			return result;
+
+		}
 
 	// Ancillary methods ---------------------------------------------------
 
@@ -164,6 +200,16 @@ public class AcademyController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("academy/register");
+		result.addObject("academyForm", academyForm);
+		result.addObject("message", message);
+
+		return result;
+	}
+	
+	public ModelAndView createEditModelAndView2(AcademyForm academyForm, String message) {
+		ModelAndView result;
+
+		result = new ModelAndView("academy/edit");
 		result.addObject("academyForm", academyForm);
 		result.addObject("message", message);
 

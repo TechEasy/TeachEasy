@@ -98,7 +98,7 @@
 <div class="panel panel-default">
 <div class="panel-body payment-form">
 
-<form:form action="teacher/register.do" modelAttribute="teacherForm">
+<form:form action="teacher/edit.do" modelAttribute="teacherForm">
 		<form:hidden path="id"/>
 			<div class="row">
 				<form:hidden path="username"/>

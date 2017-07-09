@@ -100,7 +100,7 @@
 <div class="panel panel-default">
 <div class="panel-body payment-form">
 
-<form:form action="student/register.do" modelAttribute="studentForm">
+<form:form action="student/edit.do" modelAttribute="studentForm">
 		<form:hidden path="id"/>
 			<div class="row">
 				<form:hidden path="username"/>

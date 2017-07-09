@@ -91,7 +91,7 @@
 <div class="panel panel-default">
 <div class="panel-body payment-form">
 
-<form:form action="academy/register.do" modelAttribute="academyForm">
+<form:form action="academy/edit.do" modelAttribute="academyForm">
 		<form:hidden path="id"/>
 			<div class="row">
 				<form:hidden path="username"/>
@@ -112,7 +112,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<acme:textbox code="academy.cif" path="cif"/>
+							<acme:textbox code="academy.cifEx" path="cif"/>
 						</div>
 						<div class="col-md-6">
 							<acme:textbox code="academy.paypalMail" path="paypalMail" />

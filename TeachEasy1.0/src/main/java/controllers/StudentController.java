@@ -58,19 +58,7 @@ public class StudentController extends AbstractController {
 
 		return result;
 	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit() {
-		ModelAndView result;
-		StudentForm studentForm;
-
-		studentForm = studentService.generateForm(studentService.findByPrincipal());
-		result = new ModelAndView("student/edit");
-		result.addObject("studentForm", studentForm);
-
-		return result;
-	}
-
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid StudentForm studentForm, BindingResult binding) {
 		ModelAndView result;
@@ -112,12 +100,75 @@ public class StudentController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		StudentForm studentForm;
+
+		studentForm = studentService.generateForm(studentService.findByPrincipal());
+		result = new ModelAndView("student/edit");
+		result.addObject("studentForm", studentForm);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save1(@Valid StudentForm studentForm, BindingResult binding) {
+		ModelAndView result;
+		Student student;
+
+		if (binding.hasErrors()) {
+			result = createEditModelAndView2(studentForm, null);
+		} else {
+			try {
+				student = studentService.reconstruct(studentForm, binding);
+
+				if (student.getId() == 0) {
+					studentService.save(student);
+					result = new ModelAndView("redirect:../security/login.do");
+				} else {
+					studentService.save2(student);
+					result = display();
+				}
+
+			} catch (Throwable oops) {
+				String msgCode = "student.register.error";
+				if (oops.getMessage().equals("notEqualPassword")) {
+					msgCode = "student.register.notEqualPassword";
+				} else if (oops.getMessage().equals("agreedNotAccepted")) {
+					msgCode = "student.register.agreedNotAccepted";
+				}
+				if (oops.getMessage().equals("badCreditCard")) {
+					msgCode = "student.badCreditCard";
+				}else if (oops.getMessage().equals("not18Old"))
+					msgCode = "student.register.not18Old";
+				if(oops.getMessage().equals("notYou")){
+					msgCode="student.notYou";
+				}
+				result = createEditModelAndView2(studentForm, null);
+			}
+		}
+
+		return result;
+
+	}
+
 	// Ancillary methods ---------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(StudentForm studentForm, String message) {
 		ModelAndView result;
 
 		result = new ModelAndView("student/register");
+		result.addObject("studentForm", studentForm);
+		result.addObject("message", message);
+
+		return result;
+	}
+	
+	protected ModelAndView createEditModelAndView2(StudentForm studentForm, String message) {
+		ModelAndView result;
+
+		result = new ModelAndView("student/edit");
 		result.addObject("studentForm", studentForm);
 		result.addObject("message", message);
 

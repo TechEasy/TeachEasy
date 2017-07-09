@@ -114,8 +114,7 @@ public class AcademyCourseController extends AbstractController {
 		ModelAndView result;
 
 		if (bindingResult.hasErrors()) {
-			result = createEditModelAndView(course);
-
+			result = new ModelAndView("redirect:../academy/edit.do?courseId="+course.getId());
 		} else {
 			try {
 				courseService.save(course);
@@ -126,7 +125,8 @@ public class AcademyCourseController extends AbstractController {
 				if (oops.getMessage().equals("notYourCourse")){
 					msgCode="course.notYourCourse";
 				}
-				result = createEditModelAndView(course, msgCode);
+				result = new ModelAndView("redirect:../academy/edit.do?courseId="+course.getId());
+				result.addObject("messge", msgCode);
 			}
 		}
 

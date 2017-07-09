@@ -60,12 +60,12 @@ public class StudentFindCourseController {
 	//Edition--------------------------
 
 	@RequestMapping(value = "/edit2", method = RequestMethod.GET)
-	public ModelAndView edit2(@RequestParam int finderId) {
+	public ModelAndView edit2() {
 
 		ModelAndView result;
 		Finder finder;
 		
-		finder = finderService.findOne(finderId);
+		finder = finderService.findByPrincipal();
 		FinderForm finderform=finderService.transform(finder);
 		Assert.notNull(finderform);
 		result = createEditModelAndView(finderform);
@@ -99,6 +99,7 @@ public class StudentFindCourseController {
 					msgCode="finder.cityNotNull";
 				}
 				result = createEditModelAndView(finderForm, msgCode);
+				
 		}
 
 		

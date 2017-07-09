@@ -66,12 +66,12 @@ public class StudentFinderController extends AbstractController {
 	//Edition--------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int finderId) {
+	public ModelAndView edit() {
 
 		ModelAndView result;
 		Finder finder;
 
-		finder = finderService.findOne(finderId);
+		finder = finderService.findByPrincipal();
 		FinderForm finderform = finderService.transform(finder);
 		Assert.notNull(finderform);
 		result = createEditModelAndView(finderform);

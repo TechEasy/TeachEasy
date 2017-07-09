@@ -103,18 +103,6 @@ public class TeacherController extends AbstractController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit() {
-		ModelAndView result;
-		TeacherForm teacherForm;
-
-		teacherForm = teacherService.generateForm(teacherService.findByPrincipal());
-		result = new ModelAndView("teacher/edit");
-		result.addObject("teacherForm", teacherForm);
-
-		return result;
-	}
-
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid TeacherForm teacherForm, BindingResult binding) {
 		ModelAndView result;
@@ -151,6 +139,55 @@ public class TeacherController extends AbstractController {
 		return result;
 
 	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		TeacherForm teacherForm;
+
+		teacherForm = teacherService.generateForm(teacherService.findByPrincipal());
+		result = new ModelAndView("teacher/edit");
+		result.addObject("teacherForm", teacherForm);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save1(@Valid TeacherForm teacherForm, BindingResult binding) {
+		ModelAndView result;
+		Teacher teacher;
+
+		if (binding.hasErrors())
+			result = createEditModelAndView2(teacherForm, null);
+		else
+			try {
+				teacher = teacherService.reconstruct(teacherForm, binding);
+				
+				if(teacher.getId()==0){
+					teacherService.save(teacher);
+					result = new ModelAndView("redirect:../security/login.do");
+				}else{
+					teacherService.save2(teacher);
+					result = display();
+				}
+				
+			} catch (Throwable oops) {
+				String msgCode = "teacher.register.error";
+				if (oops.getMessage().equals("notEqualPassword"))
+					msgCode = "teacher.register.notEqualPassword";
+				else if (oops.getMessage().equals("agreedNotAccepted"))
+					msgCode = "teacher.register.agreedNotAccepted";
+				else if (oops.getMessage().equals("not18Old"))
+					msgCode = "teacher.register.not18Old";
+				else if(oops.getMessage().equals("notYou")){
+					msgCode="teacher.notYou";
+				}
+				result =createEditModelAndView2(teacherForm, msgCode);
+			}
+
+		return result;
+
+	}
 
 	// Ancillary methods ---------------------------------------------------
 
@@ -158,6 +195,16 @@ public class TeacherController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("teacher/register");
+		result.addObject("teacherForm", teacherForm);
+		result.addObject("message", message);
+
+		return result;
+	}
+	
+	protected ModelAndView createEditModelAndView2(TeacherForm teacherForm, String message) {
+		ModelAndView result;
+
+		result = new ModelAndView("teacher/edit");
 		result.addObject("teacherForm", teacherForm);
 		result.addObject("message", message);
 
