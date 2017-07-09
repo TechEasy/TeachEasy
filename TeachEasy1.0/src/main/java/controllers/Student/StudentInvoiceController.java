@@ -61,34 +61,55 @@ public class StudentInvoiceController extends AbstractController {
 		
 		student = studentService.findByPrincipal();
 		Collection<Invoice> invoices = new ArrayList<Invoice>();
-		for (Request r : student.getRequests()) {
-			invoices.add(r.getInvoice());
-		}
-		int id = Integer.valueOf(invoiceId);
 		try{
+			if(invoiceId.length()<10){
+		
+			int id = Integer.valueOf(invoiceId);
 			invoice = invoiceService.findOne(id);
-			total = invoice.getTotal();
-			aux = total * iva;
-			aux2 = total - aux;
-			if (invoices.contains(invoice)) {
-				result = new ModelAndView("invoice/display");
-				result.addObject("invoice", invoice);
-				result.addObject("aux", aux);
-				result.addObject("aux2", aux2);
-			
-			
-				result.addObject("requestURI", "student/invoice/display.do");
-			} else {
-				msg="Not Yours";
-				result = list();
-				result.addObject("msg",msg);
-		}
-		}catch(Throwable oops){
-			msg="Is null";
-			result = list();
-			result.addObject("msg",msg);
+		}else{
+			invoice=null;
+			msg = "invoice.notYours";
 		}
 		
+		if(invoice!=null){
+			for (Request r : student.getRequests()) {
+				invoices.add(r.getInvoice());
+			}
+			int id = Integer.valueOf(invoiceId);
+			try{
+				invoice = invoiceService.findOne(id);
+				total = invoice.getTotal();
+				aux = total * iva;
+				aux2 = total - aux;
+				if (invoices.contains(invoice)) {
+					result = new ModelAndView("invoice/display");
+					result.addObject("invoice", invoice);
+					result.addObject("aux", aux);
+					result.addObject("aux2", aux2);
+				
+				
+					result.addObject("requestURI", "student/invoice/display.do");
+				} else {
+					msg="Not Yours";
+					result = list();
+					result.addObject("msg",msg);
+				}
+		
+			}catch(Throwable oops){
+				msg="Is null";
+				result = list();
+				result.addObject("msg",msg);
+			}
+		}else{
+			result = list();
+			msg = "invoice.notYours";
+			result.addObject("msg", msg);
+		}
+		}catch (Throwable e) {
+			result = list();
+			msg = "invoice.notYours";
+			result.addObject("msg", msg);
+		}
 
 		return result;
 	}

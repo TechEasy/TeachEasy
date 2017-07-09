@@ -80,7 +80,7 @@ public class TeacherRequestController extends AbstractController {
 
 			Double valor = (horas + (1.0 * (minutos) / 60));
 			Double value = valor * r.getRclass().getRate();
-
+			value = Math.floor(value * 100) / 100;
 			amount.put(r.getId(), value);
 		}
 

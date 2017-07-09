@@ -126,6 +126,7 @@ public class StudentRequestController extends AbstractController {
 	
 				Double valor = (horas + (1.0 * (minutos) / 60));
 				Double value = valor * r.getRclass().getRate();
+				value = Math.floor(value * 100) / 100;
 	
 				amount.put(r.getId(), value);
 			}else{
@@ -247,56 +248,94 @@ public class StudentRequestController extends AbstractController {
 
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/paid", method = RequestMethod.GET)
-	public ModelAndView paid(@RequestParam int requestId) throws ParseException {
-		
-		Request request = requestService.findOne(requestId);
-		Teacher teacher;
+	public ModelAndView paid(@RequestParam String requestId) throws ParseException {
+		String msg=null;
+		Request request;
 		Academy academy;
-		Invoice invoice = invoiceService.generateInvoice(requestId);
-		request.setStatus("ACCEPTED");
-		request.setInvoice(invoice);
-		request.setPaid(true);
-		requestService.save(request);
-
-
-		if(proposalService.findOne(request.getRclass().getId())!=null){
-			Date sI, sO;
-			SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Teacher teacher;
+		try {
 			
-			// Calculo del amount que obtendra el profesor
-			sI = fecha.parse(request.getcheckIn());
-			sO = fecha.parse(request.getCheckOut());
-	
-			Integer minutos;
-			Integer horas;
-	
-			if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
-				minutos = sO.getMinutes() - sI.getMinutes();
-				horas = sO.getHours() - sI.getHours();
-			} else {
-				minutos = 60 + sO.getMinutes() - sI.getMinutes();
-				horas = sO.getHours() - sI.getHours() - 1;
+			try{
+				if(requestId.length()<10){
+					int id = Integer.valueOf(requestId);
+					request = requestService.findOne(id);
+				}else{
+					request=null;
+					msg = "request.notYours";
+				}
+				
+				if(request!=null){
+					if(courseService.findOne(request.getRclass().getId())!=null){
+						
+							Course c = courseService.findOne(request.getRclass().getId());
+							academy = c.getAcademy();
+							Double feeAmount = academy.getFeeAmount();
+							feeAmount += c.getRate() - (c.getRate() * (feeService.find().getValueAcademy() / 100));
+							academy.setFeeAmount(feeAmount);
+							academyService.save3(academy);
+
+							request.setStatus("ACCEPTED");
+							request.setPaid(true);
+							requestService.save(request);
+							
+						
+						
+					}else{
+						Date sI, sO;
+						SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+						
+						// Calculo del amount que obtendra el profesor
+						sI = fecha.parse(request.getcheckIn());
+						sO = fecha.parse(request.getCheckOut());
+				
+						Integer minutos;
+						Integer horas;
+				
+						if (sO.getMinutes() > sI.getMinutes() || sO.getMinutes() == sI.getMinutes()) {
+							minutos = sO.getMinutes() - sI.getMinutes();
+							horas = sO.getHours() - sI.getHours();
+						} else {
+							minutos = 60 + sO.getMinutes() - sI.getMinutes();
+							horas = sO.getHours() - sI.getHours() - 1;
+						}
+				
+						Double valor = (horas + (1.0 * (minutos) / 60));
+						Double value = valor * request.getRclass().getRate();
+						value = Math.floor(value * 100) / 100;
+						
+						teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
+						Double feeAmount = teacher.getFeeAmount();
+						feeAmount += Math.floor((value - (value * (feeService.find().getValueTeacher() / 100))) * 100) / 100;
+						teacher.setFeeAmount(feeAmount);
+						teacherService.save3(teacher);
+						
+						request.setStatus("ACCEPTED");
+						request.setPaid(true);
+						requestService.save(request);
+						
+					}
+					
+				}else{
+					msg = "request.notYours";
+				}
+			}catch (Throwable oops) {
+				ModelAndView result=list(); 
+				msg = "request.notPast";
+				result.addObject("msg",msg);
+			}	
+			
+		} catch (Throwable oops) {
+			msg = "request.register.error";
+			if (oops.getMessage().equals("notYours")){
+				msg = "request.notYours";
 			}
-	
-			Double valor = (horas + (1.0 * (minutos) / 60));
-			Double value = valor * request.getRclass().getRate();
-			
-			teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
-			Double feeAmount = teacher.getFeeAmount();
-			feeAmount += value - (value * (feeService.find().getValueTeacher() / 100));
-			teacher.setFeeAmount(feeAmount);
-			teacherService.save3(teacher);
-		}else {
-			Course c = courseService.findOne(request.getRclass().getId());
-			academy = c.getAcademy();
-			Double feeAmount = academy.getFeeAmount();
-			feeAmount += c.getRate() - (c.getRate() * (feeService.find().getValueAcademy() / 100));
-			academy.setFeeAmount(feeAmount);
-			academyService.save3(academy);
 		}
 
-		return list();
+		ModelAndView result=list(); 
+		result.addObject("msg",msg);
+		return result;
 	}
+
 	// Cancel -----------------------------------------------------------
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
@@ -358,10 +397,10 @@ public class StudentRequestController extends AbstractController {
 						
 								Double valor = (horas + (1.0 * (minutos) / 60));
 								Double value = valor * request.getRclass().getRate();
-								
+								value = Math.floor(value * 100) / 100;
 								teacher = proposalService.findOne(request.getRclass().getId()).getTeacher();
 								Double feeAmount = teacher.getFeeAmount();
-								feeAmount -= value - (value * (feeService.find().getValueTeacher() / 100));
+								feeAmount -= Math.floor((value - (value * (feeService.find().getValueTeacher() / 100))) * 100) / 100;
 								teacher.setFeeAmount(feeAmount);
 								teacherService.save3(teacher);
 							}
