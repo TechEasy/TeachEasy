@@ -54,7 +54,7 @@ public class TeacherCurriculaController extends AbstractController {
 			try {
 				curricula = curriculaService.reconstruct(curriculaForm, binding);
 				curriculaService.save(curricula);
-				result = new ModelAndView("welcome/index");
+				result = new ModelAndView("redirect:../display.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(curriculaForm, "master.page.commit.error");
 			}
