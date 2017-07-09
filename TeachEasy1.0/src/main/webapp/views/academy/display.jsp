@@ -174,7 +174,7 @@
 	<security:authorize access="hasRole('STUDENT')">
 	<div class="row mt-md">
 		<div class="col-md-12">
-			<a class="btn btn-primary" href="javascript: window.location.replace('comment/create.do?idEntity=${academy.id}')"><spring:message code="academy.comment" /></a>
+			<a class="btn btn-primary" href="javascript: window.location.replace('comment/edit.do?idEntity=${academy.id}')"><spring:message code="academy.comment" /></a>
 		</div>
 	</div>
 

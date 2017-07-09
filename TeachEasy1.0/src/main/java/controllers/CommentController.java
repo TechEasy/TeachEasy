@@ -58,21 +58,32 @@ public class CommentController extends AbstractController {
 
 	// Creation ---------------------------------------------------------------
 
-	@RequestMapping("/create")
-	public ModelAndView create(@RequestParam int idEntity) {
+	@RequestMapping("/edit")
+	public ModelAndView create(String idEntity) {
 		ModelAndView result;
 
-		Comment comment;
+		Comment comment = commentService.create();
 		Commentable commentable;
+		
+		if(idEntity==null || idEntity.equals("")){
+			result = new ModelAndView("redirect:../welcome/index.do");
+		}else{
+			if(idEntity.length()<10){
+				int id = Integer.valueOf(idEntity);
+				commentable = commentableService.findOne(id);
+			}else
+				commentable=null;
+			
+			if(commentable==null){
+				result = new ModelAndView("redirect:../welcome/index.do");
+			}else{
 
-		comment = commentService.create();
-		commentable = commentableService.findOne(idEntity);
-
-		comment.setStudent(studentService.findByPrincipal());
-		comment.setCommentable(commentable);
-		comment.setCreateMoment(new Date());
-
-		result = createEditModelAndView(comment);
+				comment.setStudent(studentService.findByPrincipal());
+				comment.setCommentable(commentable);
+				comment.setCreateMoment(new Date());
+				result = createEditModelAndView(comment);
+			}
+		}
 
 		return result;
 	}
