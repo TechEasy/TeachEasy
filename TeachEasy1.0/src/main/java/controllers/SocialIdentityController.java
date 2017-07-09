@@ -90,41 +90,45 @@ public class SocialIdentityController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam String socialIdentityId) {
+	public ModelAndView edit(String socialIdentityId) {
 		ModelAndView result;
 		SocialIdentity socialIdentity;		
 		
 		try{
-			if(socialIdentityId.length()<10){
-				int id = Integer.valueOf(socialIdentityId);
-				socialIdentity = socialIdentityService.findOne(id);
-			}else
-				socialIdentity=null;
-			
-			
-			if(academyService.findByPrincipal()!=null){
-				if(socialIdentity==null || !academyService.findByPrincipal().equals(socialIdentity.getAcademy())){
-					result = list();
-					String msg = "socialIdentity.notYours";
-					result.addObject("msg", msg);
-				}else{
-					result = createEditModelAndView(socialIdentity);
-				}
-			}else if(teacherService.findByPrincipal()!=null){
-				if(socialIdentity==null || !teacherService.findByPrincipal().equals(socialIdentity.getActor())){
-					result = list();
-					String msg = "socialIdentity.notYours";
-					result.addObject("msg", msg);
-				}else{
-					result = createEditModelAndView(socialIdentity);
-				}
+			if(socialIdentityId==null || socialIdentityId.equals("")){
+				result = list();
 			}else{
-				if(socialIdentity==null || !studentService.findByPrincipal().equals(socialIdentity.getActor())){
-					result = list();
-					String msg = "socialIdentity.notYours";
-					result.addObject("msg", msg);
+				if(socialIdentityId.length()<10){
+					int id = Integer.valueOf(socialIdentityId);
+					socialIdentity = socialIdentityService.findOne(id);
+				}else
+					socialIdentity=null;
+				
+				
+				if(academyService.findByPrincipal()!=null){
+					if(socialIdentity==null || !academyService.findByPrincipal().equals(socialIdentity.getAcademy())){
+						result = list();
+						String msg = "socialIdentity.notYours";
+						result.addObject("msg", msg);
+					}else{
+						result = createEditModelAndView(socialIdentity);
+					}
+				}else if(teacherService.findByPrincipal()!=null){
+					if(socialIdentity==null || !teacherService.findByPrincipal().equals(socialIdentity.getActor())){
+						result = list();
+						String msg = "socialIdentity.notYours";
+						result.addObject("msg", msg);
+					}else{
+						result = createEditModelAndView(socialIdentity);
+					}
 				}else{
-					result = createEditModelAndView(socialIdentity);
+					if(socialIdentity==null || !studentService.findByPrincipal().equals(socialIdentity.getActor())){
+						result = list();
+						String msg = "socialIdentity.notYours";
+						result.addObject("msg", msg);
+					}else{
+						result = createEditModelAndView(socialIdentity);
+					}
 				}
 			}
 			
