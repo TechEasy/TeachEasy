@@ -74,23 +74,27 @@ public class TeacherProposalController extends AbstractController {
 
 	// Edition ----------------------------------------------------------------		
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam String proposalId) {
+	public ModelAndView edit(String proposalId) {
 		ModelAndView result;
 		Proposal proposal;
 
 		try{
-			if(proposalId.length()<10){
-				int id = Integer.valueOf(proposalId);
-				proposal = proposalService.findOne(id);
-			}else
-				proposal=null;
-			
-			if(proposal==null || !teacherService.findByPrincipal().equals(proposal.getTeacher())){
+			if(proposalId==null || proposalId.equals("")){
 				result = list();
-				String msg = "proposal.notYours";
-				result.addObject("msg", msg);
 			}else{
-				result = createEditModelAndView(proposal);
+				if(proposalId.length()<10){
+					int id = Integer.valueOf(proposalId);
+					proposal = proposalService.findOne(id);
+				}else
+					proposal=null;
+				
+				if(proposal==null || !teacherService.findByPrincipal().equals(proposal.getTeacher())){
+					result = list();
+					String msg = "proposal.notYours";
+					result.addObject("msg", msg);
+				}else{
+					result = createEditModelAndView(proposal);
+				}
 			}
 		}catch (Throwable oops) {
 			result = list();
